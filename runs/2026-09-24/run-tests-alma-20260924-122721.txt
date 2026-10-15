@@ -1,0 +1,333 @@
+==============================
+mattx commit: cc5331c08944b18f496f86f06de5aa717b2d8ab5
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+[setup] cleaning up stale test processes...
+
+=== Pre-flight: cluster state ===
+  Cluster OK
+    almanode1: ID=377  IP=x.x.x.x
+    almanode2: ID=378  IP=x.x.x.x
+
+=== Test 1: Basic migration (migtest) ===
+
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21207       1 mattx    S     0.0       00:02 migtest
+        21208   21207 mattx    S    92.8       00:02 migtest
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21208]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  After forward migration:
+  Deputy export tracker on almanode1 (/proc/mattx/remote):
+   21208:378  ← Deputy PID 21208 is exported to node 378
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        20349       2 mattx    T    10.5       00:03 migtest
+[PASS] test1: Deputy present on almanode1 (/proc/mattx/remote)
+[PASS] test1: Surrogate running on almanode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21208]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  After return migration:
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21207       1 mattx    S     0.0       00:15 migtest
+        21208   21207 mattx    R    31.8       00:15 migtest
+[PASS] test1: migtest returned to almanode1
+[PASS] test1: no oops on almanode1
+[PASS] test1: no oops on almanode2
+
+=== Test 2: Network wormhole (servertestpoll) ===
+
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'servertestpoll' | grep -v grep
+        21547       1 mattx    S     0.0       00:02 servertestpoll
+        21548   21547 mattx    S     0.0       00:02 servertestpoll
+  Checking TCP reachability on x.x.x.x:8080 before migration...
+[PASS] test2: server reachable on almanode1 before migration
+
+  ─────────────────────────────────────────────────────
+  Starting migration of servertestpoll [PID 21548]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  Waiting for migration to complete (up to 60s)...
+
+  After migration:
+  Deputy export tracker on almanode1 (/proc/mattx/remote):
+   (PID 21548 not found — migration may have failed or process already returned)
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'servertestpoll' | grep -v grep
+      (no process matching 'servertestpoll' on almanode2)
+[FAIL] test2: servertestpoll not on almanode2
+  dmesg tail on almanode1 (migration diagnostics):
+    [ 1102.829389] MattX:[MIGRATE] =====================================================
+    [ 1102.830919] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+    [ 1102.832442] MattX:[REGISTRY] PID 21548 registered as Exported to Node 378.
+    [ 1103.689382] MattX:[RPC] Poll Worker started for Deputy PID 21548 (Timeout: 0ms)
+    [ 1103.705034] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 1103.803027] MattX:[RPC] Received CLOSE request for Remote FD 3 from Node 378
+    [ 1103.804909] MattX:[RPC] Successfully closed Remote FD 3
+    [ 1103.806797] MattX:[RPC] Received CLOSE request for Remote FD 2 from Node 378
+    [ 1103.809968] MattX:[RPC] Successfully closed Remote FD 2
+    [ 1103.811988] MattX:[RPC] Received CLOSE request for Remote FD 1 from Node 378
+    [ 1103.814259] MattX:[RPC] Successfully closed Remote FD 1
+    [ 1103.815419] MattX:[RPC] Received CLOSE request for Remote FD 0 from Node 378
+    [ 1103.817254] MattX:[RPC] Successfully closed Remote FD 0
+    [ 1105.765699] MattX: [FUNERAL] Received exit notice for Deputy PID 21548 from Node 378
+    [ 1105.771223] MattX: [FUNERAL] Laying Deputy PID 21548 to rest (Sending SIGKILL)...
+  Skipping wormhole nc check — migration did not succeed (result would be a false positive)
+[PASS] test2: no oops on almanode1
+[PASS] test2: no oops on almanode2
+
+  To reproduce manually, set these in your shell first:
+    export MATTX_KEY="<path-to-test>/keys/mattx_test"
+    # AlmaLinux: N1=x.x.x.x  N2=x.x.x.x
+    # Debian:    N1=x.x.x.x  N2=x.x.x.x
+    export N1=x.x.x.x
+    export N2=x.x.x.x
+    export SSH="ssh -i $MATTX_KEY -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null mattx@"
+    export N2_ID=$($SSH${N2} 'cat /proc/mattx/nodes' | awk '/\(Local\)/{print $1}')
+
+  ── Test 2 repro: network wormhole (servertestpoll) ──────────────────────
+    # 1. Start server on node1
+    $SSH${N1} 'servertestpoll &>/tmp/server.log & echo $!'
+    export PID=<pid-from-above>
+
+    # 2. Verify reachable from node2 before migration
+    $SSH${N2} "nc -z $N1 8080 && echo reachable"
+
+    # 3. Migrate to node2
+    $SSH${N1} "echo 'migrate $PID $N2_ID' | sudo tee /proc/mattx/admin"; sleep 5
+    $SSH${N2} 'ps aux | grep servertestpoll'          # expect: Surrogate on node2
+
+    # 4. Wormhole check: still serves on node1's IP after migration
+    $SSH${N2} "nc -z $N1 8080 && echo wormhole-ok"
+
+    # Cleanup + oops check
+    $SSH${N1} "kill $PID 2>/dev/null; true"
+    $SSH${N1} 'sudo dmesg | grep -E "Oops|BUG:"'
+    $SSH${N2} 'sudo dmesg | grep -E "Oops|BUG:"'
+  ─────────────────────────────────────────────────────────────────────────
+
+=== Test 3: Pingpong (5 cycles) ===
+
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21812       1 mattx    S     0.0       00:02 migtest
+        21813   21812 mattx    S     9.3       00:02 migtest
+
+  -- Cycle 1/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21440       2 mattx    T    43.9       00:06 migtest
+[PASS] test3: cycle 1 forward — migtest on almanode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21812       1 mattx    S     0.0       00:16 migtest
+        21813   21812 mattx    S     3.0       00:16 migtest
+[PASS] test3: cycle 1 return — migtest back on almanode1
+
+  -- Cycle 2/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21502       2 mattx    T     0.0       00:06 migtest
+[PASS] test3: cycle 2 forward — migtest on almanode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21812       1 mattx    S     0.0       00:30 migtest
+        21813   21812 mattx    S     2.4       00:30 migtest
+[PASS] test3: cycle 2 return — migtest back on almanode1
+
+  -- Cycle 3/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21585       2 mattx    T    42.1       00:06 migtest
+[PASS] test3: cycle 3 forward — migtest on almanode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21812       1 mattx    S     0.0       00:43 migtest
+        21813   21812 mattx    S     2.1       00:43 migtest
+[PASS] test3: cycle 3 return — migtest back on almanode1
+
+  -- Cycle 4/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21664       2 mattx    T    41.4       00:06 migtest
+[PASS] test3: cycle 4 forward — migtest on almanode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21812       1 mattx    S     0.0       00:57 migtest
+        21813   21812 mattx    S     2.0       00:57 migtest
+[PASS] test3: cycle 4 return — migtest back on almanode1
+
+  -- Cycle 5/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21743       2 mattx    T     0.0       00:06 migtest
+[PASS] test3: cycle 5 forward — migtest on almanode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 21813]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        21812       1 mattx    S     0.0       01:11 migtest
+        21813   21812 mattx    S     1.9       01:11 migtest
+[PASS] test3: cycle 5 return — migtest back on almanode1
+[PASS] test3: migtest alive after 5 full cycles
+[PASS] test3: no oops on almanode1
+[PASS] test3: no oops on almanode2
+
+=== Test 4: Sustained file I/O across migration (dd_migtest, ~10min) ===
+  Starting dd_migtest on almanode1 (x.x.x.x) -- single open fd to a plain file,
+  os.urandom()-generated data (getrandom(2), no lingering fd to a character device),
+  fsync'd writes every tick. Tests the ghost-file wormhole path directly, not just process
+  presence: the fd was opened on $NODE1 before migration, so every write after migration
+  must be RPC'd back through mattx_fileio.c to keep landing there.
+
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dd_migtest' | grep -v grep
+        22724       1 mattx    S     0.1       00:05 python3 /tmp/dd_migtest.py
+  Log tail from almanode1:
+    dd_migtest PID=22724 starting on almanode1.local
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dd_migtest [PID 22724]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dd_migtest' | grep -v grep
+        21853       2 mattx    S     0.1       00:08 python3 /tmp/dd_migtest.py
+  Log tail (stdout forwarded via MattX wormhole):
+    dd_migtest PID=22724 starting on almanode1.local
+[PASS] test4: dd_migtest migrated to almanode2
+[FAIL] test4: dd_migtest not actually running on almanode2, or file stopped growing on almanode1, 15s after migration
+[PASS] test4: no oops on almanode1
+[PASS] test4: no oops on almanode2
+
+  To reproduce manually, set these in your shell first:
+    export MATTX_KEY="<path-to-test>/keys/mattx_test"
+    # AlmaLinux: N1=x.x.x.x  N2=x.x.x.x
+    # Debian:    N1=x.x.x.x  N2=x.x.x.x
+    export N1=x.x.x.x
+    export N2=x.x.x.x
+    export SSH="ssh -i $MATTX_KEY -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null mattx@"
+    export N2_ID=$($SSH${N2} 'cat /proc/mattx/nodes' | awk '/\(Local\)/{print $1}')
+
+  ── Test 4 repro: sustained file I/O across migration (dd_migtest) ───────
+    # 1. Upload the workload and start it on node1; note the PID
+    $SSH${N1} 'cat > /tmp/dd_migtest.py' <<'PY'
+import os, time, hashlib
+OUT = "/tmp/dd_migtest.dat"; CHUNK = 64*1024; TICKS = 600; INTERVAL = 1.0
+pid = os.getpid()
+print("dd_migtest PID={} starting on {}".format(pid, os.uname().nodename), flush=True)
+h = hashlib.sha256(); total = 0
+with open(OUT, "wb") as f:
+    for i in range(1, TICKS + 1):
+        data = os.urandom(CHUNK); f.write(data); f.flush(); os.fsync(f.fileno())
+        h.update(data); total += len(data)
+        if i % 10 == 0:
+            print("tick {}/{} bytes={} sha256={}".format(i, TICKS, total, h.hexdigest()), flush=True)
+        time.sleep(INTERVAL)
+print("dd_migtest DONE bytes={} sha256={}".format(total, h.hexdigest()), flush=True)
+PY
+    $SSH${N1} 'nohup python3 /tmp/dd_migtest.py >/tmp/dd_migtest.log 2>&1 & echo $!'
+    export PID=<pid-from-above>
+
+    # 2. Forward migration; file keeps growing on node1 even though the
+    #    process is now running (frozen Deputy + Surrogate) on node2
+    $SSH${N1} "echo 'migrate $PID $N2_ID' | sudo tee /proc/mattx/admin"; sleep 8
+    $SSH${N2} 'ps -eo stat,cmd | grep dd_migtest'   # expect STAT != T (actually running)
+    $SSH${N1} 'stat -c%s /tmp/dd_migtest.dat'        # expect: growing on repeat checks
+
+    # 3. Return migration -- MUST use "home", sent to node1 (the home node),
+    #    NOT a numeric node id sent to node2. The kernel looks up the
+    #    Surrogate's own local PID via its guest registry automatically
+    #    (mattx_trigger_recall -> mattx_capture_and_return_state); this is a
+    #    distinct code path from admin_write's general forward-migrate
+    #    branch where mattx#8's NULL-deref/deadlock live.
+    $SSH${N1} "echo 'migrate $PID home' | sudo tee /proc/mattx/admin"; sleep 8
+    $SSH${N1} 'ps -eo stat,cmd | grep dd_migtest'    # expect STAT != T, back on node1
+    $SSH${N1} 'stat -c%s /tmp/dd_migtest.dat'         # expect: still growing
+
+    # Cleanup + oops check
+    $SSH${N1} "pkill -9 -f '[d]d_migtest.py' 2>/dev/null; true"
+    $SSH${N2} "pkill -9 -f '[d]d_migtest.py' 2>/dev/null; true"
+    $SSH${N1} 'sudo dmesg | grep -E "Oops|BUG:"'
+    $SSH${N2} 'sudo dmesg | grep -E "Oops|BUG:"'
+  ─────────────────────────────────────────────────────────────────────────
+
+==============================
+Results: 24 passed, 2 failed
+==============================

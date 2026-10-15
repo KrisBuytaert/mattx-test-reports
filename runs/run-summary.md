@@ -1,0 +1,117 @@
+## mattx test run summary
+
+| Kernel | mattx commit | Label | Date | Result |
+|---|---|---|---|---|
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | run-tests (alma) | 2026-09-27 08:12 | ⚠️ incomplete run (stopped early) — 17 passed, 2 failed so far — FAIL: test3: lost at cycle 3 (forward migration); test4: dd_migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | run-tests (alma) | 2026-09-27 08:15 | ❌ 1 failed, 26 passed — FAIL: test2: servertestpoll worker did not start |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | run-tests (alma) | 2026-09-27 08:19 | ✅ all 29 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | dsm (alma) | 2026-09-27 08:22 | ✅ all 11 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | test-stale-link (alma) | 2026-09-27 08:28 | ⚠️ incomplete run (stopped early) — no checks reached |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | test-stale-link (alma) | 2026-09-27 08:29 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | test-stale-link (alma) | 2026-09-27 08:30 | ⚠️ incomplete run (stopped early) — no checks reached |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | test-stale-link (alma) | 2026-09-27 13:04 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | test-stale-link (alma) | 2026-09-27 13:05 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | eessi-pytorch (alma) | 2026-10-12 21:54 | ❌ 1 failed, 4 passed — FAIL: pytorch-3: PyTorch process not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | eessi-pytorch (alma) | 2026-10-12 21:57 | ❌ 1 failed, 4 passed — FAIL: pytorch-3: PyTorch process not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | eessi-pytorch (alma) | 2026-10-12 22:00 | ✅ all 8 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | eessi-pytorch-mp (alma) | 2026-10-12 22:02 | ✅ all 7 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | eessi-pytorch-mp (alma) | 2026-10-12 22:04 | ✅ all 7 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | eessi-pytorch-mp (alma) | 2026-10-12 22:06 | ❌ 1 failed, 4 passed — FAIL: pytorch-mp-2: running on almanode2 but shared-memory progress did not advance (epoch 48 -> 48) -- workers likely no longer share memory with the migrated parent -- alive but not making progress |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | eessi-pytorch-mp (alma) | 2026-10-14 10:17 | ❌ 1 failed, 3 passed — FAIL: pytorch-mp-2: multi-process PyTorch job not running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | 103e83b064ba | eessi-pytorch-mp (alma) | 2026-10-14 10:23 | ❌ 1 failed, 4 passed — FAIL: pytorch-mp-2: running on almanode2 but shared-memory progress did not advance (epoch 41 -> 41) -- workers likely no longer share memory with the migrated parent -- alive but not making progress |
+| 6.12.0-211.56.1.el10_2.x86_64 | 2022351bf57e | dsm (alma) | 2026-09-25 04:42 | ❌ 1 failed, 6 passed — FAIL: dsm-3: dsmtest did not reach completion within the wait budget after early migration -- suspected hang (matches known issue brainmatt/mattx#18: shmget() through the wormhole fails with EFAULT and the worker never proceeds) |
+| 6.12.0-211.56.1.el10_2.x86_64 | 2770394575aa | run-tests (alma) | 2026-09-24 14:54 | ❌ 2 failed, 24 passed — FAIL: test2: servertestpoll not on almanode2; test4: dd_migtest not actually running on almanode2, or file stopped growing on almanode1, 15s after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | 2770394575aa | run-tests (alma) | 2026-09-25 07:26 | ❌ 4 failed, 13 passed — FAIL: test2: servertestpoll worker did not start; test3: lost at cycle 2 (forward migration); test3: process died during pingpong; test4: dd_migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | run-tests (alma) | 2026-10-14 21:53 | ✅ all 29 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | dsm (alma) | 2026-10-14 21:56 | ✅ all 11 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | test-stale-link (alma) | 2026-10-14 22:02 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | mpi (alma) | 2026-10-14 22:04 | ❌ 1 failed, 4 passed — FAIL: mpi-3: counting stalled or broke after migration -- last count was 7, wanted >= 21 within 60s (sequence continuous: yes) -- suspected post-migration hang, not just 'no clean round trip' |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-espresso (alma) | 2026-10-14 22:06 | ❌ 1 failed, 4 passed — FAIL: espresso-3: ESPResSo process not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-ntomp2 (alma) | 2026-10-14 22:07 | ✅ all 14 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-quantumespresso (alma) | 2026-10-14 22:11 | ❌ 1 failed, 4 passed — FAIL: qe-3: pw.x not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-openfoam (alma) | 2026-10-14 22:12 | ⚠️ incomplete run (stopped early) — 1 passed, 1 failed so far — FAIL: openfoam-2: pitzDaily smoke test failed or timed out on almanode1 |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-pytorch (alma) | 2026-10-14 22:12 | ✅ all 8 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-pytorch-mp (alma) | 2026-10-14 22:14 | ❌ 1 failed, 4 passed — FAIL: pytorch-mp-2: running on almanode2 but shared-memory progress did not advance (epoch 45 -> 45) -- workers likely no longer share memory with the migrated parent -- alive but not making progress |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-tensorflow (alma) | 2026-10-14 22:15 | ❌ 2 failed, 3 passed — FAIL: tensorflow-2: MNIST smoke test failed or timed out on almanode1 (check network access for dataset download); tensorflow-3: training loop not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-bioconductor (alma) | 2026-10-14 22:17 | ❌ 1 failed, 4 passed — FAIL: bioconductor-3: bioconductor_migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-nextflow (alma) | 2026-10-14 22:19 | ❌ 1 failed, 3 passed — FAIL: nextflow-2: payload task never started (Nextflow/JVM startup or scheduling failure) |
+| 6.12.0-211.56.1.el10_2.x86_64 | b401a0e97721 | eessi-osu-shm (alma) | 2026-10-14 22:19 | ⚠️ incomplete run (stopped early) — 2 passed, 0 failed so far |
+| 6.12.0-211.56.1.el10_2.x86_64 | cc5331c08944 | run-tests (alma) | 2026-09-24 12:27 | ❌ 2 failed, 24 passed — FAIL: test2: servertestpoll not on almanode2; test4: dd_migtest not actually running on almanode2, or file stopped growing on almanode1, 15s after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | cc5331c08944 | run-tests (alma) | 2026-09-24 14:02 | ❌ 2 failed, 24 passed — FAIL: test2: servertestpoll not on almanode2; test4: dd_migtest not actually running on almanode2, or file stopped growing on almanode1, 15s after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | cc5331c08944 | dsm (alma) | 2026-09-24 14:05 | ❌ 1 failed, 6 passed — FAIL: dsm-3: dsmtest did not reach completion within the wait budget after early migration -- suspected hang |
+| 6.12.0-211.56.1.el10_2.x86_64 | cc5331c08944 | run-tests (alma) | 2026-09-25 07:16 | ❌ 1 failed, 25 passed — FAIL: test4: dd_migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | d27ab0db27f1 | run-tests (alma) | 2026-09-25 18:46 | ⚠️ incomplete run (stopped early) — 23 passed, 0 failed so far |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | run-tests (alma) | 2026-09-25 22:25 | ❌ 2 failed, 25 passed — FAIL: test2: wormhole broken — x.x.x.x:8080 not reachable after migration (known issue: brainmatt/mattx#19); test4: dd_migtest not actually running on almanode2, or file stopped growing on almanode1, 15s after migration (known issue: brainmatt/mattx#20) |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | run-tests (alma) | 2026-09-26 11:11 | ❌ 1 failed, 28 passed — FAIL: test4: dd_migtest not actually running, or file stopped growing, on almanode1 after return migration settled |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | run-tests (alma) | 2026-09-26 19:05 | ✅ all 29 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | dsm (alma) | 2026-09-26 19:19 | ✅ all 11 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-26 21:45 | ⚠️ incomplete run (stopped early) — no checks reached |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | run-tests (alma) | 2026-09-27 17:01 | ⚠️ incomplete run (stopped early) — no checks reached |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:09 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:10 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:11 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:13 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:14 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:18 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:19 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:21 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:22 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:23 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:26 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:27 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:29 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:31 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:33 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:34 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:35 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:37 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:39 | ❌ 1 failed, 2 passed — FAIL: test5: migtest not actually running on almanode2 after migration |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 17:40 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | run-tests (alma) | 2026-09-27 17:43 | ✅ all 29 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | run-tests (alma) | 2026-09-27 18:57 | ⚠️ incomplete run (stopped early) — no checks reached |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | run-tests (alma) | 2026-09-27 18:58 | ⚠️ incomplete run (stopped early) — no checks reached |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | run-tests (alma) | 2026-09-27 19:51 | ✅ all 29 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 19:54 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 19:55 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 19:56 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 19:58 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 19:59 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 20:01 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 20:02 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 20:04 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 20:06 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | test-stale-link (alma) | 2026-09-27 20:07 | ✅ all 3 passed |
+| 6.12.0-211.56.1.el10_2.x86_64 | unknown | eessi-pytorch-mp (alma) | 2026-10-14 13:45 | ❌ 1 failed, 4 passed — FAIL: pytorch-mp-2: running on almanode2 but shared-memory progress did not advance (epoch 41 -> 41) -- workers likely no longer share memory with the migrated parent -- alive but not making progress |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | run-tests (alma) | 2026-10-14 22:48 | ✅ all 29 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | dsm (alma) | 2026-10-14 22:51 | ✅ all 11 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | test-dsm-mesi3 (alma) | 2026-10-14 22:57 | ✅ all 15 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | test-stale-link (alma) | 2026-10-14 22:57 | ✅ all 3 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | mpi (alma) | 2026-10-14 22:58 | ❌ 1 failed, 4 passed — FAIL: mpi-3: counting stalled or broke after migration -- last count was 7, wanted >= 21 within 60s (sequence continuous: yes) -- suspected post-migration hang, not just 'no clean round trip' |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-full (alma) | 2026-10-14 23:01 | ❌ 8 failed, 40 passed — FAIL: espresso-3: ESPResSo process not actually running on almanode2 after migration; qe-3: pw.x not actually running on almanode2 after migration; openfoam-2: pitzDaily smoke test failed or timed out on almanode1; pytorch-4: PyTorch process present and running on almanode1, but epoch count did not advance (33 -> 33) -- looks alive but not making progress; tensorflow-2: MNIST smoke test failed or timed out on almanode1 (check network access for dataset download); tensorflow-3: training loop not actually running on almanode2 after migration; bioconductor-3: bioconductor_migtest not actually running on almanode2 after migration; nextflow-2: payload task never started (Nextflow/JVM startup or scheduling failure) |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-espresso (alma) | 2026-10-14 23:12 | ❌ 1 failed, 4 passed — FAIL: espresso-3: ESPResSo process not actually running on almanode2 after migration |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-ntomp2 (alma) | 2026-10-14 23:13 | ✅ all 14 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-quantumespresso (alma) | 2026-10-14 23:17 | ❌ 1 failed, 4 passed — FAIL: qe-3: pw.x not actually running on almanode2 after migration |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-openfoam (alma) | 2026-10-14 23:18 | ⚠️ incomplete run (stopped early) — 1 passed, 1 failed so far — FAIL: openfoam-2: pitzDaily smoke test failed or timed out on almanode1 |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-pytorch (alma) | 2026-10-14 23:18 | ❌ 1 failed, 6 passed — FAIL: pytorch-4: PyTorch process not actually running on almanode1 after return migration |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-pytorch-mp (alma) | 2026-10-14 23:25 | ❌ 1 failed, 4 passed — FAIL: pytorch-mp-2: running on almanode2 but shared-memory progress did not advance (epoch 44 -> 44) -- workers likely no longer share memory with the migrated parent -- alive but not making progress |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-tensorflow (alma) | 2026-10-14 23:26 | ⚠️ incomplete run (stopped early) — 1 passed, 1 failed so far — FAIL: tensorflow-2: MNIST smoke test failed or timed out on almanode1 (check network access for dataset download) |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-bioconductor (alma) | 2026-10-14 23:27 | ❌ 1 failed, 5 passed — FAIL: bioconductor-3: bioconductor_migtest present on almanode2 but frozen (STAT=T) -- looks stuck/deadlocked, not completed (see mattx#8) |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-nextflow (alma) | 2026-10-14 23:29 | ❌ 1 failed, 3 passed — FAIL: nextflow-2: payload task never started (Nextflow/JVM startup or scheduling failure) |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-osu-shm (alma) | 2026-10-14 23:29 | ⚠️ incomplete run (stopped early) — 2 passed, 0 failed so far |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-chain-ntomp2 (alma) | 2026-10-14 23:30 | ✅ all 8 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-relay-ntomp2 (alma) | 2026-10-14 23:32 | ✅ all 9 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-chain-ntomp2 (alma) | 2026-10-14 23:34 | ❌ 1 failed, 6 passed — FAIL: gromacs-chain-3: mattx-admin unexpectedly ALLOWED the almanode2 -> almanode3 direct hop -- if chain support was added upstream, update this test and the CHANGELOG Known Issues entry |
+| 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-relay-ntomp2 (alma) | 2026-10-14 23:35 | ✅ all 9 passed |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.49.1.el10_2.x86_64 | 103e83b064ba | test-dsm-mesi3 (alma) | 2026-09-28 08:32 | ⚠️ incomplete run (stopped early) — 0 passed, 1 failed so far — FAIL: mesi3: dsmstresstest-debug did not report 3 worker PIDs within 15s |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.49.1.el10_2.x86_64 | 103e83b064ba | test-dsm-mesi3 (alma) | 2026-09-28 08:34 | ⚠️ incomplete run (stopped early) — 1 passed, 0 failed so far |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.49.1.el10_2.x86_64 | 103e83b064ba | test-dsm-mesi3 (alma) | 2026-09-28 08:38 | ⚠️ incomplete run (stopped early) — 8 passed, 4 failed so far — FAIL: mesi3: round2 (node2 writes, node3 must see it) -- almanode1 did NOT see 'r2-from-node2' (stale/incoherent read -- matches Matt's 3+-node MESI gap); mesi3: round2 (node2 writes, node3 must see it) -- almanode3 did NOT see 'r2-from-node2' (stale/incoherent read -- matches Matt's 3+-node MESI gap); mesi3: round3 (node3 writes, node2 must see it) -- almanode1 did NOT see 'r3-from-node3' (stale/incoherent read -- matches Matt's 3+-node MESI gap); mesi3: round3 (node3 writes, node2 must see it) -- almanode2 did NOT see 'r3-from-node3' (stale/incoherent read -- matches Matt's 3+-node MESI gap) |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.49.1.el10_2.x86_64 | 103e83b064ba | test-dsm-mesi3 (alma) | 2026-09-28 08:40 | ❌ 4 failed, 11 passed — FAIL: mesi3: round2 (node2 writes, node3 must see it) -- almanode1 did NOT see 'r2-from-node2' (stale/incoherent read -- matches Matt's 3+-node MESI gap); mesi3: round2 (node2 writes, node3 must see it) -- almanode3 did NOT see 'r2-from-node2' (stale/incoherent read -- matches Matt's 3+-node MESI gap); mesi3: round3 (node3 writes, node2 must see it) -- almanode1 did NOT see 'r3-from-node3' (stale/incoherent read -- matches Matt's 3+-node MESI gap); mesi3: round3 (node3 writes, node2 must see it) -- almanode2 did NOT see 'r3-from-node3' (stale/incoherent read -- matches Matt's 3+-node MESI gap) |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | test-dsm-mesi3 (alma) | 2026-10-14 22:03 | ✅ all 15 passed |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-chain-ntomp2 (alma) | 2026-10-14 22:21 | ✅ all 8 passed |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-relay-ntomp2 (alma) | 2026-10-14 22:23 | ✅ all 9 passed |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-chain-ntomp2 (alma) | 2026-10-14 22:25 | ❌ 1 failed, 6 passed — FAIL: gromacs-chain-3: mattx-admin unexpectedly ALLOWED the almanode2 -> almanode3 direct hop -- if chain support was added upstream, update this test and the CHANGELOG Known Issues entry |
+| almanode1=6.12.0-211.56.1.el10_2.x86_64, almanode2=6.12.0-211.56.1.el10_2.x86_64, almanode3=6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | eessi-gromacs-relay-ntomp2 (alma) | 2026-10-14 22:26 | ✅ all 9 passed |
+| unknown | unknown | run-tests (alma) | 2026-09-22 07:32 | ⚠️ incomplete run (stopped early) — 25 passed, 2 failed so far — FAIL: test2: wormhole broken — x.x.x.x:8080 not reachable after migration; test4: dd_migtest not actually running on almanode2, or file stopped growing on almanode1, 15s after migration |
+| unknown | unknown | run-tests (alma) | 2026-09-23 15:29 | ⚠️ incomplete run (stopped early) — 25 passed, 2 failed so far — FAIL: test2: wormhole broken — x.x.x.x:8080 not reachable after migration; test4: dd_migtest not actually running on almanode2, or file stopped growing on almanode1, 15s after migration |
+| unknown | unknown | eessi-full (alma) | 2026-10-14 22:06 | ⚠️ incomplete run (stopped early) — no checks reached |
+| unknown | unknown | eessi-pytorch-mp (alma) | 2026-10-13 12:59 | ⚠️ incomplete run (stopped early) — no checks reached |

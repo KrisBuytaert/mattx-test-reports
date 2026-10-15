@@ -1,0 +1,301 @@
+==============================
+mattx commit: b401a0e977214435fd3bc19b6e92e782cd5cc5b3
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode3 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== GROMACS 3-node relay migration on alma cluster (EESSI 2025.06) ===
+    almanode1 -> almanode2 -> home(almanode1) -> almanode3 -> home(almanode1)
+
+[PASS] gromacs-relay-0: all 3 nodes mutually visible in /proc/mattx/nodes
+  Fetching PRACE test case on almanode1 (may take a minute)...
+  Starting gmx mdrun on almanode1 (x.x.x.x) — 30000 steps (relay migration target)...
+
+  --- ps snapshot: baseline, before any migration (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Rl    126       00:10 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode3)
+  Log tail from almanode1:
+    Using 1 MPI thread
+    Using 2 OpenMP threads 
+    
+    starting mdrun 'Protein'
+    30000 steps,     75.0 ps.
+[PASS] gromacs-relay-1: gmx mdrun running on almanode1 before relay migration
+  Migration tool for this run: raw /proc/mattx/admin
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun [PID 4190]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after leg A (almanode1 -> almanode2) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Tl   78.8       00:20 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        14504       2 mattx    Rl    109       00:08 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode3)
+  mattx@almanode1 (x.x.x.x) dmesg — leg A (almanode1 -> almanode2):
+      [  155.425060] MattX:[MIGRATE] Processing VMA 252/255: 0x7fbe5cad8000 - 0x7fbe5cada000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [  155.427066] MattX:[MIGRATE] -> VMA 251: Entering page extraction loop...
+      [  155.428475] MattX:[MIGRATE] -> VMA 251: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  155.430600] MattX:[MIGRATE] -> VMA 251 finished. Sent 2 pages.
+      [  155.432274] MattX:[MIGRATE] Processing VMA 253/255: 0x7fbe5cada000 - 0x7fbe5cadb000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [  155.434217] MattX:[MIGRATE] -> VMA 252: Entering page extraction loop...
+      [  155.435563] MattX:[MIGRATE] -> VMA 252: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [  155.437727] MattX:[MIGRATE] -> VMA 252 finished. Sent 1 pages.
+      [  155.441051] MattX:[MIGRATE] Processing VMA 254/255: 0x7fbe5cadb000 - 0x7fbe5cadc000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [  155.443054] MattX:[MIGRATE] -> VMA 253: Entering page extraction loop...
+      [  155.444402] MattX:[MIGRATE] -> VMA 253: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [  155.446548] MattX:[MIGRATE] -> VMA 253 finished. Sent 1 pages.
+      [  155.448186] MattX:[MIGRATE] Processing VMA 255/255: 0x7ffcad812000 - 0x7ffcad864000 (Size: 335872 bytes, ~82 pages, Flags: 0x100173)
+      [  155.450151] MattX:[MIGRATE] -> VMA 254: Entering page extraction loop...
+      [  155.451486] MattX:[MIGRATE] -> VMA 254: Sending page 0/82 (Offset: 0x0, Payload: 4112 bytes)...
+      [  155.453875] MattX:[MIGRATE] -> VMA 254 finished. Sent 82 pages.
+      [  155.455251] MattX:[MIGRATE] Pipeline stats: 154644 total, 154638 sent, 6 skipped, 0 net errors
+      [  155.456818] MattX:[MIGRATE] =====================================================
+      [  155.457970] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [  155.458958] MattX:[REGISTRY] PID 4190 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — leg A (almanode1 -> almanode2):
+      [ 2081.878913] MattX:[MIGRATE] Processing VMA 53/54: 0x7ffcea5c8000 - 0x7ffcea61a000 (Size: 335872 bytes, ~82 pages, Flags: 0x8100177)
+      [ 2081.880777] MattX:[MIGRATE] -> VMA 52: Entering page extraction loop...
+      [ 2081.881951] MattX:[MIGRATE] -> VMA 52: Sending page 0/82 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2081.884977] MattX:[MIGRATE] -> VMA 52 finished. Sent 82 pages.
+      [ 2081.886054] MattX:[MIGRATE] Processing VMA 54/54: 0x7ffed89b1000 - 0x7ffed89d2000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [ 2081.887897] MattX:[MIGRATE] -> VMA 53: Entering page extraction loop...
+      [ 2081.889107] MattX:[MIGRATE] -> VMA 53: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2081.891415] MattX:[MIGRATE] -> VMA 53 finished. Sent 33 pages.
+      [ 2081.892889] MattX:[MIGRATE] Pipeline stats: 159444 total, 159444 sent, 0 skipped, 0 net errors
+      [ 2081.894327] MattX:[MIGRATE] =====================================================
+      [ 2081.895584] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [ 2081.896916] MattX:[RECALL] Executing local Surrogate PID 13564...
+      [ 2129.631872] MattX:[IMPORT] Received Blueprint for PID 4190. Saving to pending...
+      [ 2129.642456] MattX:[DRAIN] Injected Task Work into PID 14504. Waiting for stable state...
+      [ 2129.654362] MattX:[DRAIN] PID 14504 is now stable and frozen at the user-space boundary!
+      [ 2133.389179] MattX:[IMPORT] All memory transferred! Total pages injected: 154638
+      [ 2133.390150] MattX:[IMPORT] Commencing full brain transplant on PID 14504...
+      [ 2133.391171] MattX:[IMPORT] Successfully injected 5 Fake FDs!
+      [ 2133.394202] MattX:[IMPORT] Registered clock-offset fixup for PID 14504: 1980935604339 ns (2 threads)
+      [ 2133.395314] MattX:[IMPORT] IT'S ALIVE! Waking 2 threads in Gang PID 14504
+
+  --- ps snapshot: 15s after leg A (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Tl   43.2       00:37 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        14504       2 mattx    Rl    163       00:25 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode3)
+[PASS] gromacs-relay-2: gmx mdrun migrated almanode1 -> almanode2 and still running after 15s
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun [PID 4190]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after leg B (recall almanode2 -> almanode1) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Rl   55.0       00:47 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode3)
+  mattx@almanode1 (x.x.x.x) dmesg — leg B (recall almanode2 -> almanode1):
+      [  178.876253] MattX:[RECALL] Carving missing memory hole: 0x7f4a55e01000 (Size: 4096)
+      [  178.877312] MattX:[RECALL] Carving missing memory hole: 0x7f4a55e02000 (Size: 159744)
+      [  178.878688] MattX:[RECALL] Carving missing memory hole: 0x7f4a55e29000 (Size: 45056)
+      [  178.880000] MattX:[RECALL] Carving missing memory hole: 0x7f4a55e34000 (Size: 8192)
+      [  178.881348] MattX:[RECALL] Carving missing memory hole: 0x7f4a55e36000 (Size: 8192)
+      [  178.882685] MattX:[RECALL] Carving missing memory hole: 0x7fbe40b07000 (Size: 55545856)
+      [  178.884066] MattX:[RECALL] Carving missing memory hole: 0x7fbe45e48000 (Size: 305438720)
+      [  178.886124] MattX:[RECALL] Carving missing memory hole: 0x7fbe58221000 (Size: 10895360)
+      [  178.888321] MattX:[RECALL] Carving missing memory hole: 0x7fbe58cf3000 (Size: 4268032)
+      [  178.889569] MattX:[RECALL] Carving missing memory hole: 0x7fbe5910d000 (Size: 3260416)
+      [  178.890947] MattX:[RECALL] Carving missing memory hole: 0x7fbe594ae000 (Size: 7716864)
+      [  178.892255] MattX:[RECALL] Carving missing memory hole: 0x7fbe59c85000 (Size: 10842112)
+      [  178.893709] MattX:[RECALL] Carving missing memory hole: 0x7fbe5a6df000 (Size: 37072896)
+      [  178.895819] MattX:[RECALL] Carving missing memory hole: 0x7fbe5ca3f000 (Size: 643072)
+      [  178.896939] MattX:[RECALL] Carving missing memory hole: 0x7ffc17610000 (Size: 135168)
+      [  178.898563] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+      [  181.826533] MattX:[IMPORT] Return memory transferred successfully! Pages: 162049
+      [  181.827852] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7fbe5ca637e3
+      [  181.829172] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 4190: -1973909931154 ns (2 threads)
+      [  181.830464] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 4190
+  mattx@almanode2 (x.x.x.x) dmesg — leg B (recall almanode2 -> almanode1):
+      [ 2159.718124] MattX:[MIGRATE] -> VMA 48: Sending page 8448/9053 (Offset: 0x2100000, Payload: 4112 bytes)...
+      [ 2159.721635] MattX:[MIGRATE] -> VMA 48: Sending page 8704/9053 (Offset: 0x2200000, Payload: 4112 bytes)...
+      [ 2159.724599] MattX:[MIGRATE] -> VMA 48: Sending page 8960/9053 (Offset: 0x2300000, Payload: 4112 bytes)...
+      [ 2159.727231] MattX:[MIGRATE] -> VMA 48 finished. Sent 9053 pages.
+      [ 2159.728322] MattX:[MIGRATE] Processing VMA 50/52: 0x7fbe5ca3b000 - 0x7fbe5cadc000 (Size: 659456 bytes, ~161 pages, Flags: 0x8100077)
+      [ 2159.730177] MattX:[MIGRATE] -> VMA 49: Entering page extraction loop...
+      [ 2159.731350] MattX:[MIGRATE] -> VMA 49: Sending page 0/161 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2159.736135] MattX:[MIGRATE] -> VMA 49 finished. Sent 161 pages.
+      [ 2159.737220] MattX:[MIGRATE] Processing VMA 51/52: 0x7ffc17610000 - 0x7ffc17631000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [ 2159.739066] MattX:[MIGRATE] -> VMA 50: Entering page extraction loop...
+      [ 2159.740249] MattX:[MIGRATE] -> VMA 50: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2159.743483] MattX:[MIGRATE] -> VMA 50 finished. Sent 33 pages.
+      [ 2159.744541] MattX:[MIGRATE] Processing VMA 52/52: 0x7ffcad812000 - 0x7ffcad864000 (Size: 335872 bytes, ~82 pages, Flags: 0x8100177)
+      [ 2159.746376] MattX:[MIGRATE] -> VMA 51: Entering page extraction loop...
+      [ 2159.747581] MattX:[MIGRATE] -> VMA 51: Sending page 0/82 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2159.752007] MattX:[MIGRATE] -> VMA 51 finished. Sent 82 pages.
+      [ 2159.752955] MattX:[MIGRATE] Pipeline stats: 162049 total, 162049 sent, 0 skipped, 0 net errors
+      [ 2159.754136] MattX:[MIGRATE] =====================================================
+      [ 2159.755184] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [ 2159.756290] MattX:[RECALL] Executing local Surrogate PID 14504...
+
+  --- ps snapshot: 15s after leg B (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Rl   90.4       01:04 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode3)
+[PASS] gromacs-relay-3: gmx mdrun recalled almanode2 -> almanode1 and still running after 15s (cumulative CPU time so far: 61s)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun [PID 4190]
+    from : almanode1 (x.x.x.x)
+    to   : almanode3   (x.x.x.x)  [node ID 379]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after leg C (almanode1 -> almanode3) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Tl   82.3       01:14 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         3908       2 mattx    Rl    134       00:08 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode1 (x.x.x.x) dmesg — leg C (almanode1 -> almanode3):
+      [  208.563258] MattX:[MIGRATE] Processing VMA 50/53: 0x7fbe5ca3b000 - 0x7fbe5ca3f000 (Size: 16384 bytes, ~4 pages, Flags: 0x8100073)
+      [  208.565692] MattX:[MIGRATE] -> VMA 49: Entering page extraction loop...
+      [  208.567294] MattX:[MIGRATE] -> VMA 49: Sending page 0/4 (Offset: 0x0, Payload: 4112 bytes)...
+      [  208.569678] MattX:[MIGRATE] -> VMA 49 finished. Sent 4 pages.
+      [  208.571362] MattX:[MIGRATE] Processing VMA 51/53: 0x7fbe5ca3f000 - 0x7fbe5cadc000 (Size: 643072 bytes, ~157 pages, Flags: 0x8100077)
+      [  208.573798] MattX:[MIGRATE] -> VMA 50: Entering page extraction loop...
+      [  208.575376] MattX:[MIGRATE] -> VMA 50: Sending page 0/157 (Offset: 0x0, Payload: 4112 bytes)...
+      [  208.579101] MattX:[MIGRATE] -> VMA 50 finished. Sent 157 pages.
+      [  208.580511] MattX:[MIGRATE] Processing VMA 52/53: 0x7ffc17610000 - 0x7ffc17631000 (Size: 135168 bytes, ~33 pages, Flags: 0x8100173)
+      [  208.583902] MattX:[MIGRATE] -> VMA 51: Entering page extraction loop...
+      [  208.585388] MattX:[MIGRATE] -> VMA 51: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [  208.587681] MattX:[MIGRATE] -> VMA 51 finished. Sent 33 pages.
+      [  208.589361] MattX:[MIGRATE] Processing VMA 53/53: 0x7ffcad812000 - 0x7ffcad864000 (Size: 335872 bytes, ~82 pages, Flags: 0x100173)
+      [  208.591232] MattX:[MIGRATE] -> VMA 52: Entering page extraction loop...
+      [  208.592355] MattX:[MIGRATE] -> VMA 52: Sending page 0/82 (Offset: 0x0, Payload: 4112 bytes)...
+      [  208.594839] MattX:[MIGRATE] -> VMA 52 finished. Sent 82 pages.
+      [  208.595809] MattX:[MIGRATE] Pipeline stats: 167289 total, 167289 sent, 0 skipped, 0 net errors
+      [  208.597033] MattX:[MIGRATE] =====================================================
+      [  208.598115] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [  208.599168] MattX:[REGISTRY] PID 4190 registered as Exported to Node 379.
+  mattx@almanode3 (x.x.x.x) dmesg — leg C (almanode1 -> almanode3):
+      [  611.688707] MattX:[IMPORT] Registered clock-offset fixup for PID 2489: -884847175184 ns (1 threads)
+      [  611.689908] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 2489
+      [  611.690805] MattX:[IMPORT] Armed DSM Tripwire at 0x7fa64efb2000 (ID: 3, Size: 4096)
+      [ 2615.499830] MattX:[IMPORT] Received Blueprint for PID 13564. Saving to pending...
+      [ 2615.511905] MattX:[DRAIN] Injected Task Work into PID 3113. Waiting for stable state...
+      [ 2615.523413] MattX:[DRAIN] PID 3113 is now stable and frozen at the user-space boundary!
+      [ 2618.344648] MattX:[IMPORT] All memory transferred! Total pages injected: 159613
+      [ 2618.346214] MattX:[IMPORT] Commencing full brain transplant on PID 3113...
+      [ 2618.347500] MattX:[IMPORT] Successfully injected 5 Fake FDs!
+      [ 2618.350687] MattX:[IMPORT] Registered clock-offset fixup for PID 3113: 567979082703 ns (2 threads)
+      [ 2618.352015] MattX:[IMPORT] IT'S ALIVE! Waking 2 threads in Gang PID 3113
+      [ 2647.826705] MattX:[ASSASSIN] Executing Surrogate PID 3113 (Sending SIGKILL)...
+      [ 2748.347561] MattX:[IMPORT] Received Blueprint for PID 4190. Saving to pending...
+      [ 2748.359063] MattX:[DRAIN] Injected Task Work into PID 3908. Waiting for stable state...
+      [ 2748.370735] MattX:[DRAIN] PID 3908 is now stable and frozen at the user-space boundary!
+      [ 2751.079487] MattX:[IMPORT] All memory transferred! Total pages injected: 167289
+      [ 2751.081233] MattX:[IMPORT] Commencing full brain transplant on PID 3908...
+      [ 2751.082909] MattX:[IMPORT] Successfully injected 5 Fake FDs!
+      [ 2751.086976] MattX:[IMPORT] Registered clock-offset fixup for PID 3908: 2544912489610 ns (2 threads)
+      [ 2751.088233] MattX:[IMPORT] IT'S ALIVE! Waking 2 threads in Gang PID 3908
+
+  --- ps snapshot: 15s after leg C (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Tl   67.1       01:31 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         3908       2 mattx    Rl    173       00:26 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+[PASS] gromacs-relay-4: gmx mdrun migrated almanode1 -> almanode3 and still running after 15s
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun [PID 4190]
+    from : almanode3 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode3, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after leg D (recall almanode3 -> almanode1) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Rl   71.2       01:41 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode3)
+  mattx@almanode1 (x.x.x.x) dmesg — leg D (recall almanode3 -> almanode1):
+      [  232.904226] MattX:[RECALL] Carving missing memory hole: 0x7f99b14a7000 (Size: 4096)
+      [  232.906082] MattX:[RECALL] Carving missing memory hole: 0x7f99b14a8000 (Size: 159744)
+      [  232.907871] MattX:[RECALL] Carving missing memory hole: 0x7f99b14cf000 (Size: 45056)
+      [  232.909682] MattX:[RECALL] Carving missing memory hole: 0x7f99b14da000 (Size: 8192)
+      [  232.912596] MattX:[RECALL] Carving missing memory hole: 0x7f99b14dc000 (Size: 8192)
+      [  232.914084] MattX:[RECALL] Carving missing memory hole: 0x7fbe40b07000 (Size: 55545856)
+      [  232.915434] MattX:[RECALL] Carving missing memory hole: 0x7fbe45e48000 (Size: 305438720)
+      [  232.919158] MattX:[RECALL] Carving missing memory hole: 0x7fbe58221000 (Size: 10895360)
+      [  232.921027] MattX:[RECALL] Carving missing memory hole: 0x7fbe58cf3000 (Size: 4268032)
+      [  232.922415] MattX:[RECALL] Carving missing memory hole: 0x7fbe5910d000 (Size: 3260416)
+      [  232.924071] MattX:[RECALL] Carving missing memory hole: 0x7fbe594ae000 (Size: 7716864)
+      [  232.925794] MattX:[RECALL] Carving missing memory hole: 0x7fbe59c85000 (Size: 10842112)
+      [  232.927527] MattX:[RECALL] Carving missing memory hole: 0x7fbe5a6df000 (Size: 37072896)
+      [  232.930442] MattX:[RECALL] Carving missing memory hole: 0x7fbe5ca3f000 (Size: 643072)
+      [  232.931598] MattX:[RECALL] Carving missing memory hole: 0x7ffe19c06000 (Size: 135168)
+      [  232.933105] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 379...
+      [  235.427858] MattX:[IMPORT] Return memory transferred successfully! Pages: 168074
+      [  235.428891] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7fbe5c1d9ede
+      [  235.430009] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 4190: -2539348894166 ns (2 threads)
+      [  235.431352] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 4190
+  mattx@almanode3 (x.x.x.x) dmesg — leg D (recall almanode3 -> almanode1):
+      [ 2777.880844] MattX:[MIGRATE] Processing VMA 53/56: 0x7fbe5ca3b000 - 0x7fbe5cadc000 (Size: 659456 bytes, ~161 pages, Flags: 0x8100077)
+      [ 2777.882436] MattX:[MIGRATE] -> VMA 52: Entering page extraction loop...
+      [ 2777.883467] MattX:[MIGRATE] -> VMA 52: Sending page 0/161 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2777.886249] MattX:[MIGRATE] -> VMA 52 finished. Sent 161 pages.
+      [ 2777.887151] MattX:[MIGRATE] Processing VMA 54/56: 0x7ffc17610000 - 0x7ffc17631000 (Size: 135168 bytes, ~33 pages, Flags: 0x8100177)
+      [ 2777.888746] MattX:[MIGRATE] -> VMA 53: Entering page extraction loop...
+      [ 2777.889797] MattX:[MIGRATE] -> VMA 53: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2777.892903] MattX:[MIGRATE] -> VMA 53 finished. Sent 33 pages.
+      [ 2777.893834] MattX:[MIGRATE] Processing VMA 55/56: 0x7ffcad812000 - 0x7ffcad864000 (Size: 335872 bytes, ~82 pages, Flags: 0x8100177)
+      [ 2777.895299] MattX:[MIGRATE] -> VMA 54: Entering page extraction loop...
+      [ 2777.896245] MattX:[MIGRATE] -> VMA 54: Sending page 0/82 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2777.898520] MattX:[MIGRATE] -> VMA 54 finished. Sent 82 pages.
+      [ 2777.899398] MattX:[MIGRATE] Processing VMA 56/56: 0x7ffe19c06000 - 0x7ffe19c27000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [ 2777.900892] MattX:[MIGRATE] -> VMA 55: Entering page extraction loop...
+      [ 2777.901818] MattX:[MIGRATE] -> VMA 55: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 2777.903612] MattX:[MIGRATE] -> VMA 55 finished. Sent 33 pages.
+      [ 2777.904609] MattX:[MIGRATE] Pipeline stats: 168074 total, 168074 sent, 0 skipped, 0 net errors
+      [ 2777.905738] MattX:[MIGRATE] =====================================================
+      [ 2777.906745] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [ 2777.907859] MattX:[RECALL] Executing local Surrogate PID 3908...
+
+  --- ps snapshot: 15s after leg D (relay complete) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         4190       1 mattx    Rl   88.3       01:58 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 30000 -g logfile_relay -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+  mattx@almanode3 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode3)
+[PASS] gromacs-relay-5: gmx mdrun back on almanode1 and running after 15s (relay complete: almanode1 -> almanode2 -> home -> almanode3 -> home, cumulative CPU time 61s -> 107s -- genuinely advanced, not resurrected)
+[PASS] gromacs-relay-6: no kernel oops on almanode1
+[PASS] gromacs-relay-6: no kernel oops on almanode2
+[PASS] gromacs-relay-6: no kernel oops on almanode3
+
+==============================
+GROMACS Relay Results: 9 passed, 0 failed
+==============================

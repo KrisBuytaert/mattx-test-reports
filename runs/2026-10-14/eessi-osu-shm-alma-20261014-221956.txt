@@ -1,0 +1,118 @@
+==============================
+mattx commit: b401a0e977214435fd3bc19b6e92e782cd5cc5b3
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== OSU Micro-Benchmarks shared-memory migration tests on alma cluster (EESSI 2023.06) ===
+
+[mpi] enabling MPI support on almanode1 and almanode2 (echo 'mpi 1' > /proc/mattx/admin)...
+=== Test 1: EESSI OSU-Micro-Benchmarks module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+/cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/OSU-Micro-Benchmarks/7.1-1-gompi-2023a/libexec/osu-micro-benchmarks/mpi/pt2pt/osu_bw
+/cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/OSU-Micro-Benchmarks/7.1-1-gompi-2023a/libexec/osu-micro-benchmarks/mpi/pt2pt/osu_latency
+[PASS] osu-shm-1: OSU-Micro-Benchmarks module loads on almanode1 (OSU-Micro-Benchmarks/7.1-1-gompi-2023a)
+
+=== Test 2: osu_bw baseline, 2 ranks co-located on almanode1 (shared-memory transport) ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+  Running: mpirun -np 2 --bind-to none osu_bw
+almanode1.local:rank0.osu_bw: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1.osu_bw: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank0: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank0.osu_bw: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1.osu_bw: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank0: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank1.osu_bw: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank0.osu_bw: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank0: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank1.osu_bw: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank0.osu_bw: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank0: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)
+# OSU MPI Bandwidth Test v7.1
+# Size      Bandwidth (MB/s)
+# Datatype: MPI_CHAR.
+1                       4.60
+2                      10.03
+4                      19.89
+8                      39.94
+16                     82.38
+32                    153.29
+64                    306.25
+128                   589.27
+256                  1005.53
+512                  1794.26
+1024                 3274.61
+2048                 5230.20
+4096                 5365.73
+8192                 8530.86
+16384               11399.36
+32768               12773.14
+65536               13010.54
+131072              13164.37
+262144              14026.26
+524288              12116.64
+1048576             12218.81
+2097152             12166.47
+4194304             12478.49
+[PASS] osu-shm-2: osu_bw completed via shared-memory transport on almanode1
+
+=== Test 3: migrate one rank of a live osu_latency pair via MattX ===
+  Starting a round-heartbeat osu_latency wrapper (2 co-located ranks) on almanode1 (x.x.x.x)...
+  In-flight round at migration time: 3
+
+  --- ps snapshot: baseline, before migration (pattern: 'osu_latency') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'osu_latency' | grep -v grep
+        45775   45668 mattx    S     0.0       00:00 timeout 45 mpirun -np 2 --bind-to none osu_latency -x 20 -i 20000 -m 64:64
+        45776   45775 mattx    Sl   21.7       00:00 mpirun -np 2 --bind-to none osu_latency -x 20 -i 20000 -m 64:64
+        45787   45776 mattx    Sl   23.5       00:00 osu_latency -x 20 -i 20000 -m 64 64
+        45788   45776 mattx    Sl   29.4       00:00 osu_latency -x 20 -i 20000 -m 64 64
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'osu_latency' | grep -v grep
+      (no process matching 'osu_latency' on almanode2)
+  Log tail from almanode1:
+    almanode1.local:rank1.osu_latency: Failed to get eth0 (unit 0) cpu set
+    almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)
+    # OSU MPI Latency Test v7.1
+    # Size          Latency (us)
+    # Datatype: MPI_CHAR.
+
+  ─────────────────────────────────────────────────────
+  Starting migration of osu_latency rank (shared-memory peer) [PID 45707]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+Read from remote host x.x.x.x: Connection reset by peer
+client_loop: send disconnect: Broken pipe

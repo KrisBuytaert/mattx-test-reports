@@ -1,0 +1,29 @@
+==============================
+mattx commit: unknown
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== Test 5: migration against a stale cluster link (peer service bounce) ===
+Read from remote host x.x.x.x: Connection reset by peer
+client_loop: send disconnect: Broken pipe
+  ⚠ restart command on almanode2 did not return cleanly (rc=255) -- possible crash mid-restart (mattx#16/#17)
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         6336       1 mattx    S     0.0       00:02 migtest
+         6337    6336 mattx    R    94.7       00:02 migtest
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 6337]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  ► stale-link condition did not reproduce this run (send succeeded) -- falling back to a normal migration assertion
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         1308       2 mattx    T    30.3       00:16 migtest
+[PASS] test5: migtest migrated normally to almanode2 (stale-link condition not present this run)
+[PASS] test5: no oops on almanode1
+[PASS] test5: no oops on almanode2
+
+==============================
+Stale-Link Results: 3 passed, 0 failed
+==============================

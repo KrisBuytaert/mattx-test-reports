@@ -1,0 +1,10 @@
+==============================
+ssh: connect to host x.x.x.x port 22: No route to host
+mattx commit: unknown
+almanode1 kernel: unknown
+almanode2 kernel: unknown
+==============================
+=== PyTorch multiprocessing / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: eessi-demo pytorch_multiprocessing.py (no migration) ===
+ssh: connect to host x.x.x.x port 22: No route to host

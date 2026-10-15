@@ -1,0 +1,184 @@
+==============================
+mattx commit: b401a0e977214435fd3bc19b6e92e782cd5cc5b3
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== Bioconductor / EESSI tests on alma cluster (EESSI 2025.06) ===
+
+=== Test 1: EESSI Bioconductor module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2025.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2025.06), have fun!
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, saveRDS, setdiff,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+2.74.0 
+[PASS] bioconductor-1: R-bundle-Bioconductor (R-bundle-Bioconductor/3.20-foss-2024a-R-4.4.2) loads on almanode1
+
+=== Test 2: Biostrings pairwise alignment (functional check) ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2025.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2025.06), have fun!
+Warning message:
+In .call_fun_in_pwalign("pairwiseAlignment", ...) :
+  pairwiseAlignment() has moved to the pwalign package. Please call
+  pwalign::pairwiseAlignment() to get rid of this warning.
+Alignment score: -5208.613 
+[PASS] bioconductor-2: Biostrings pairwiseAlignment completed on almanode1
+
+=== Test 3: Bioconductor migration via MattX ===
+  Starting Bioconductor migtest on almanode1 (x.x.x.x)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'bioconductor_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'bioconductor_migtest' | grep -v grep
+        43353       1 mattx    R    40.8       00:10 /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/R/4.4.2-gfbf-2024a/lib64/R/bin/exec/R --no-echo --no-restore --file=/tmp/bioconductor_migtest.R
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'bioconductor_migtest' | grep -v grep
+      (no process matching 'bioconductor_migtest' on almanode2)
+  Log tail from almanode1:
+    bioconductor_migtest PID=43353 starting on almanode1.local
+
+  ─────────────────────────────────────────────────────
+  Starting migration of bioconductor_migtest [PID 43353]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'bioconductor_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'bioconductor_migtest' | grep -v grep
+        43353       1 mattx    T    21.8       00:19 /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/R/4.4.2-gfbf-2024a/lib64/R/bin/exec/R --no-echo --no-restore --file=/tmp/bioconductor_migtest.R
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'bioconductor_migtest' | grep -v grep
+         7223       2 mattx    T     9.8       00:08 /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/R/4.4.2-gfbf-2024a/lib64/R/bin/exec/R --no-echo --no-restore --file=/tmp/bioconductor_migtest.R
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 8557.410065] MattX:[MIGRATE] Processing VMA 202/205: 0x7f6c92220000 - 0x7f6c92222000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 8557.411535] MattX:[MIGRATE] -> VMA 201: Entering page extraction loop...
+      [ 8557.412562] MattX:[MIGRATE] -> VMA 201: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8557.414246] MattX:[MIGRATE] -> VMA 201 finished. Sent 2 pages.
+      [ 8557.415518] MattX:[MIGRATE] Processing VMA 203/205: 0x7f6c92222000 - 0x7f6c92223000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [ 8557.417017] MattX:[MIGRATE] -> VMA 202: Entering page extraction loop...
+      [ 8557.418065] MattX:[MIGRATE] -> VMA 202: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8557.419807] MattX:[MIGRATE] -> VMA 202 finished. Sent 1 pages.
+      [ 8557.421174] MattX:[MIGRATE] Processing VMA 204/205: 0x7f6c92223000 - 0x7f6c92224000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [ 8557.422687] MattX:[MIGRATE] -> VMA 203: Entering page extraction loop...
+      [ 8557.423715] MattX:[MIGRATE] -> VMA 203: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8557.425403] MattX:[MIGRATE] -> VMA 203 finished. Sent 1 pages.
+      [ 8557.426692] MattX:[MIGRATE] Processing VMA 205/205: 0x7ffdbe17c000 - 0x7ffdbe217000 (Size: 634880 bytes, ~155 pages, Flags: 0x100173)
+      [ 8557.428330] MattX:[MIGRATE] -> VMA 204: Entering page extraction loop...
+      [ 8557.429393] MattX:[MIGRATE] -> VMA 204: Sending page 0/155 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8557.432222] MattX:[MIGRATE] -> VMA 204 finished. Sent 155 pages.
+      [ 8557.433210] MattX:[MIGRATE] Pipeline stats: 195035 total, 195029 sent, 6 skipped, 0 net errors
+      [ 8557.434450] MattX:[MIGRATE] =====================================================
+      [ 8557.435556] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 8557.436668] MattX:[REGISTRY] PID 43353 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [  863.704601] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7f90ce988000 (res: 0)
+      [  863.709022] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7f90ce989000 (res: 0)
+      [  863.712041] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7f90ce98a000 (res: 0)
+      [  863.714990] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7f90ce98b000 (res: 0)
+      [  863.717215] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7f90ce98c000 (res: 0)
+      [  863.719442] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7f90ce98d000 (res: 0)
+      [  863.721703] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7f90ce98e000 (res: 0)
+      [  863.723954] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7f90ce98f000 (res: 0)
+      [  866.938720] MattX:[IMPORT] All memory transferred! Total pages injected: 299638
+      [  866.940404] MattX:[IMPORT] Commencing full brain transplant on PID 6773...
+      [  868.041511] MattX:[IMPORT] Registered clock-offset fixup for PID 6773: -7566619206177 ns (0 threads)
+      [  868.042610] MattX:[IMPORT] IT'S ALIVE! Waking 0 threads in Gang PID 6773
+      [  972.052955] MattX:[IMPORT] Received Blueprint for PID 43353. Saving to pending...
+      [  972.062497] MattX:[DRAIN] Injected Task Work into PID 7223. Waiting for stable state...
+      [  972.074842] MattX:[DRAIN] PID 7223 is now stable and frozen at the user-space boundary!
+      [  976.258882] MattX:[IMPORT] All memory transferred! Total pages injected: 195029
+      [  976.259963] MattX:[IMPORT] Commencing full brain transplant on PID 7223...
+      [  976.261200] MattX:[IMPORT] Successfully injected 4 Fake FDs!
+      [  976.264555] MattX:[IMPORT] Registered clock-offset fixup for PID 7223: -7577458695033 ns (1 threads)
+      [  976.265861] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 7223
+[FAIL] bioconductor-3: bioconductor_migtest not actually running on almanode2 after migration
+  dmesg tail on almanode1:
+    [ 8557.421174] MattX:[MIGRATE] Processing VMA 204/205: 0x7f6c92223000 - 0x7f6c92224000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+    [ 8557.422687] MattX:[MIGRATE] -> VMA 203: Entering page extraction loop...
+    [ 8557.423715] MattX:[MIGRATE] -> VMA 203: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 8557.425403] MattX:[MIGRATE] -> VMA 203 finished. Sent 1 pages.
+    [ 8557.426692] MattX:[MIGRATE] Processing VMA 205/205: 0x7ffdbe17c000 - 0x7ffdbe217000 (Size: 634880 bytes, ~155 pages, Flags: 0x100173)
+    [ 8557.428330] MattX:[MIGRATE] -> VMA 204: Entering page extraction loop...
+    [ 8557.429393] MattX:[MIGRATE] -> VMA 204: Sending page 0/155 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 8557.432222] MattX:[MIGRATE] -> VMA 204 finished. Sent 155 pages.
+    [ 8557.433210] MattX:[MIGRATE] Pipeline stats: 195035 total, 195029 sent, 6 skipped, 0 net errors
+    [ 8557.434450] MattX:[MIGRATE] =====================================================
+    [ 8557.435556] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+    [ 8557.436668] MattX:[REGISTRY] PID 43353 registered as Exported to Node 378.
+    [ 8557.637455] MattX:[RPC] Poll Worker started for Deputy PID 43353 (Timeout: 999ms)
+    [ 8558.640185] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 8558.965414] MattX:[RPC] Poll Worker started for Deputy PID 43353 (Timeout: 999ms)
+    [ 8559.968150] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 8560.218484] MattX:[RPC] Poll Worker started for Deputy PID 43353 (Timeout: 999ms)
+    [ 8561.220196] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 8561.438735] MattX:[RPC] Poll Worker started for Deputy PID 43353 (Timeout: 999ms)
+    [ 8562.444170] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+[PASS] bioconductor-4: no kernel oops on almanode1
+[PASS] bioconductor-4: no kernel oops on almanode2
+
+==============================
+Bioconductor Results: 4 passed, 1 failed
+==============================

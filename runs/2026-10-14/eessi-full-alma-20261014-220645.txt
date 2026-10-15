@@ -1,0 +1,4 @@
+==============================
+/home/USER/mattx/test/scripts/lib.sh: line 300: NODE1: unbound variable
+mattx commit: 
+/home/USER/mattx/test/scripts/lib.sh: line 301: NODE1: unbound variable

@@ -1,0 +1,128 @@
+==============================
+mattx commit: b401a0e977214435fd3bc19b6e92e782cd5cc5b3
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== MPI (MPI_Comm_spawn) migration tests on alma cluster ===
+
+[mpi] enabling MPI support on almanode1 and almanode2 (echo 'mpi 1' > /proc/mattx/admin)...
+
+=== Test 1: install MPICH (if needed) + build mpitest/mpitest-client ===
+mpicc -g -Wall -o mpitest mpitest.c
+mpicc -g -Wall -o mpitest-client mpitest-client.c
+  built OK on almanode1
+mpicc -g -Wall -o mpitest mpitest.c
+mpicc -g -Wall -o mpitest-client mpitest-client.c
+  built OK on almanode2
+[PASS] mpi-1: mpitest + mpitest-client built on both nodes
+
+=== Test 2: baseline sanity -- master spawns client, client starts counting ===
+[PASS] mpi-2: baseline master/client started and counting, no migration involved
+
+=== Test 3: migrate mpitest-client mid-count via MattX ===
+  Counts completed before migration: 6 (last: 6)
+
+  --- ps snapshot: baseline, before migration (pattern: 'mpitest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'mpitest' | grep -v grep
+        20068       1 mattx    Ss    0.0       00:45 mpirun -launcher fork -np 1 ./mpitest
+        20294   20293 mattx    Rsl  99.4       00:25 ./mpitest
+        20520   20297 mattx    Ssl   2.1       00:05 ./mpitest-client
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'mpitest' | grep -v grep
+      (no process matching 'mpitest' on almanode2)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of mpitest-client [PID 20520]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  Polling up to 60s for the count to reach 21 (pre-migration last: 6)...
+    ...5s: last count seen = 7
+    ...10s: last count seen = 7
+    ...15s: last count seen = 7
+    ...20s: last count seen = 7
+    ...25s: last count seen = 7
+    ...30s: last count seen = 7
+    ...35s: last count seen = 7
+    ...40s: last count seen = 7
+    ...45s: last count seen = 7
+    ...50s: last count seen = 7
+    ...55s: last count seen = 7
+    ...60s: last count seen = 7
+
+  --- ps snapshot: after migration, poll ended at 60s (pattern: 'mpitest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'mpitest' | grep -v grep
+        20068       1 mattx    Ss    0.0       01:49 mpirun -launcher fork -np 1 ./mpitest
+        20294   20293 mattx    Rsl  99.2       01:29 ./mpitest
+        20520   20297 mattx    Tsl   0.1       01:09 ./mpitest-client
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'mpitest' | grep -v grep
+         3256       2 mattx    Tl    0.0       01:03 ./mpitest-client
+  mattx@almanode1 (x.x.x.x) dmesg — migration (almanode1 -> almanode2):
+      [ 1619.665603] MattX:[MIGRATE] Processing VMA 120/123: 0x7f248c756000 - 0x7f248c761000 (Size: 45056 bytes, ~11 pages, Flags: 0x8000071)
+      [ 1619.667433] MattX:[MIGRATE] -> VMA 119: Entering page extraction loop...
+      [ 1619.668661] MattX:[MIGRATE] -> VMA 119: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1619.670676] MattX:[MIGRATE] -> VMA 119 finished. Sent 11 pages.
+      [ 1619.672237] MattX:[MIGRATE] Processing VMA 121/123: 0x7f248c761000 - 0x7f248c763000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 1619.674007] MattX:[MIGRATE] -> VMA 120: Entering page extraction loop...
+      [ 1619.675220] MattX:[MIGRATE] -> VMA 120: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1619.677172] MattX:[MIGRATE] -> VMA 120 finished. Sent 2 pages.
+      [ 1619.678712] MattX:[MIGRATE] Processing VMA 122/123: 0x7f248c763000 - 0x7f248c765000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [ 1619.681624] MattX:[MIGRATE] -> VMA 121: Entering page extraction loop...
+      [ 1619.682859] MattX:[MIGRATE] -> VMA 121: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1619.684929] MattX:[MIGRATE] -> VMA 121 finished. Sent 2 pages.
+      [ 1619.686551] MattX:[MIGRATE] Processing VMA 123/123: 0x7fff148d0000 - 0x7fff148f1000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [ 1619.688418] MattX:[MIGRATE] -> VMA 122: Entering page extraction loop...
+      [ 1619.689689] MattX:[MIGRATE] -> VMA 122: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1619.691809] MattX:[MIGRATE] -> VMA 122 finished. Sent 33 pages.
+      [ 1619.693343] MattX:[MIGRATE] Pipeline stats: 22303 total, 22297 sent, 6 skipped, 0 net errors
+      [ 1619.694704] MattX:[MIGRATE] =====================================================
+      [ 1619.695956] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 1619.697183] MattX:[REGISTRY] PID 20520 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — migration (almanode1 -> almanode2):
+      [   23.499976] MattX:[IMPORT] Registered clock-offset fixup for PID 2251: -1449842090427 ns (1 threads)
+      [   23.501059] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 2251
+      [   29.455011] MattX:[ASSASSIN] Executing Surrogate PID 2251 (Sending SIGKILL)...
+      [   40.588434] MattX:[IMPORT] Received Blueprint for PID 18029. Saving to pending...
+      [   40.594979] MattX:[DRAIN] Injected Task Work into PID 2682. Waiting for stable state...
+      [   40.607142] MattX:[DRAIN] PID 2682 is now stable and frozen at the user-space boundary!
+      [   40.784494] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [   40.785752] MattX:[IMPORT] Commencing full brain transplant on PID 2682...
+      [   40.786851] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [   40.789675] MattX:[IMPORT] Registered clock-offset fixup for PID 2682: -1449846964165 ns (1 threads)
+      [   40.790842] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 2682
+      [   40.791790] MattX:[IMPORT] Armed DSM Tripwire at 0x7fa64efb2000 (ID: 3, Size: 4096)
+      [  168.263275] MattX:[IMPORT] Received Blueprint for PID 20520. Saving to pending...
+      [  168.276357] MattX:[DRAIN] Injected Task Work into PID 3256. Waiting for stable state...
+      [  168.293470] MattX:[DRAIN] PID 3256 is now stable and frozen at the user-space boundary!
+      [  169.648441] MattX:[IMPORT] All memory transferred! Total pages injected: 22297
+      [  169.649885] MattX:[IMPORT] Commencing full brain transplant on PID 3256...
+      [  169.651368] MattX:[IMPORT] Successfully injected 30 Fake FDs!
+      [  169.654943] MattX:[IMPORT] Registered clock-offset fixup for PID 3256: -1448630790576 ns (3 threads)
+      [  169.656484] MattX:[IMPORT] IT'S ALIVE! Waking 3 threads in Gang PID 3256
+  Total counts recorded (before + after migration): 7 (last: 7)
+[FAIL] mpi-3: counting stalled or broke after migration -- last count was 7, wanted >= 21 within 60s (sequence continuous: yes) -- suspected post-migration hang, not just 'no clean round trip'
+  Log tail:
+    [MASTER] Starting up. Initializing MPI...
+    [MASTER] Initialized successfully. My Rank is 0
+    [MASTER] Spawning 'mpitest-client'...
+    [CLIENT] Starting up. Initializing MPI...
+    [MASTER] Successfully spawned client.
+    [MASTER] Packing and sending initial integer: 1
+    [MASTER] Message sent. Entering retrieve mode (waiting for result)...
+    [CLIENT] Initialized successfully. My Rank is 0.
+    [CLIENT] Waiting for initial message from Master...
+    [CLIENT] Received starting integer: 1
+    [CLIENT] Beginning count-up to 1000...
+    [CLIENT] Counting... 1
+    [CLIENT] Counting... 2
+    [CLIENT] Counting... 3
+    [CLIENT] Counting... 4
+    [CLIENT] Counting... 5
+    [CLIENT] Counting... 6
+    [CLIENT] Counting... 7
+[PASS] mpi-3: no kernel oops on almanode1
+[PASS] mpi-3: no kernel oops on almanode2
+
+==============================
+MPI Results: 4 passed, 1 failed
+==============================

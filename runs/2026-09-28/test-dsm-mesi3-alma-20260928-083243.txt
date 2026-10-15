@@ -1,0 +1,10 @@
+==============================
+mattx commit: 103e83b064ba1f57a6d46086d52398d7bbf49a29
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode3 kernel: 6.12.0-211.49.1.el10_2.x86_64
+==============================
+=== Test: MESI (DSM_MODE=2) consistency across 3 independent nodes ===
+  DSM_MODE=2 (MESI) confirmed set, balancer disabled, on all 3 nodes.
+  Starting dsmstresstest-debug with 3 workers on almanode1 (x.x.x.x)...
+[FAIL] mesi3: dsmstresstest-debug did not report 3 worker PIDs within 15s

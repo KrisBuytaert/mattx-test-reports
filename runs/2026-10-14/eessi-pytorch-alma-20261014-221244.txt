@@ -1,0 +1,220 @@
+==============================
+mattx commit: b401a0e977214435fd3bc19b6e92e782cd5cc5b3
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== PyTorch / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI PyTorch module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+2.1.2
+[PASS] pytorch-1: PyTorch module loads on almanode1
+
+=== Test 2: short training loop (functional smoke test) ===
+  Running a 200-epoch smoke-test training loop on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+first_loss=5.1295 last_loss=0.0050
+SMOKE OK
+[PASS] pytorch-2: training loop converges on almanode1
+
+=== Test 3/4: PyTorch training-job migration via MattX ===
+  Starting PyTorch migtest on almanode1 (x.x.x.x)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        39503       1 mattx    S    23.7       00:08 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no process matching 'pytorch_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pytorch_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        39503   39503       1 mattx    S    22.0 hrtimer_nanosleep        python3 /tmp/pytorch_migtest.py
+  Log tail from almanode1:
+    epoch 8/600  node=almanode1.local  pid=39503  loss=23.743212
+    epoch 10/600  node=almanode1.local  pid=39503  loss=23.400255
+    epoch 12/600  node=almanode1.local  pid=39503  loss=22.985620
+    epoch 14/600  node=almanode1.local  pid=39503  loss=22.467949
+    epoch 16/600  node=almanode1.local  pid=39503  loss=21.808033
+
+  ─────────────────────────────────────────────────────
+  Starting migration of python3 (PyTorch) [PID 39503]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        39503       1 mattx    T     8.1       00:24 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+         4952       2 mattx    S     0.0       00:14 python3 /tmp/pytorch_migtest.py
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pytorch_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        39503   39503       1 mattx    T     8.0 do_signal_stop           python3 /tmp/pytorch_migtest.py
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 8212.891108] MattX:[MIGRATE] Processing VMA 874/877: 0x7f7f7f76f000 - 0x7f7f7f77a000 (Size: 45056 bytes, ~11 pages, Flags: 0x8000071)
+      [ 8212.893244] MattX:[MIGRATE] -> VMA 873: Entering page extraction loop...
+      [ 8212.895882] MattX:[MIGRATE] -> VMA 873: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8212.899027] MattX:[MIGRATE] -> VMA 873 finished. Sent 11 pages.
+      [ 8212.900928] MattX:[MIGRATE] Processing VMA 875/877: 0x7f7f7f77a000 - 0x7f7f7f77c000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 8212.903349] MattX:[MIGRATE] -> VMA 874: Entering page extraction loop...
+      [ 8212.905387] MattX:[MIGRATE] -> VMA 874: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8212.908330] MattX:[MIGRATE] -> VMA 874 finished. Sent 2 pages.
+      [ 8212.910729] MattX:[MIGRATE] Processing VMA 876/877: 0x7f7f7f77c000 - 0x7f7f7f77e000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [ 8212.913657] MattX:[MIGRATE] -> VMA 875: Entering page extraction loop...
+      [ 8212.915170] MattX:[MIGRATE] -> VMA 875: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8212.918149] MattX:[MIGRATE] -> VMA 875 finished. Sent 2 pages.
+      [ 8212.919734] MattX:[MIGRATE] Processing VMA 877/877: 0x7fff2527e000 - 0x7fff252e6000 (Size: 425984 bytes, ~104 pages, Flags: 0x100173)
+      [ 8212.921710] MattX:[MIGRATE] -> VMA 876: Entering page extraction loop...
+      [ 8212.923086] MattX:[MIGRATE] -> VMA 876: Sending page 0/104 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8212.926200] MattX:[MIGRATE] -> VMA 876 finished. Sent 104 pages.
+      [ 8212.927444] MattX:[MIGRATE] Pipeline stats: 214569 total, 214563 sent, 6 skipped, 0 net errors
+      [ 8212.928980] MattX:[MIGRATE] =====================================================
+      [ 8212.930266] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 8212.931576] MattX:[REGISTRY] PID 39503 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [  517.156315] MattX:[MIGRATE] Pipeline stats: 159428 total, 159428 sent, 0 skipped, 0 net errors
+      [  517.157887] MattX:[MIGRATE] =====================================================
+      [  517.159333] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [  517.160844] MattX:[RECALL] Executing local Surrogate PID 3713...
+      [  560.608055] MattX:[IMPORT] Received Blueprint for PID 35298. Saving to pending...
+      [  560.630196] MattX:[DRAIN] Injected Task Work into PID 4363. Waiting for stable state...
+      [  560.651751] MattX:[DRAIN] PID 4363 is now stable and frozen at the user-space boundary!
+      [  567.887944] MattX:[IMPORT] All memory transferred! Total pages injected: 230837
+      [  567.889551] MattX:[IMPORT] Commencing full brain transplant on PID 4363...
+      [  567.891303] MattX:[IMPORT] Successfully injected 17 Fake FDs!
+      [  567.895038] MattX:[IMPORT] Registered clock-offset fixup for PID 4363: -7574337062173 ns (4 threads)
+      [  567.896661] MattX:[IMPORT] IT'S ALIVE! Waking 4 threads in Gang PID 4363
+      [  621.806507] MattX:[IMPORT] Received Blueprint for PID 39503. Saving to pending...
+      [  621.815959] MattX:[DRAIN] Injected Task Work into PID 4952. Waiting for stable state...
+      [  621.827926] MattX:[DRAIN] PID 4952 is now stable and frozen at the user-space boundary!
+      [  631.753787] MattX:[IMPORT] All memory transferred! Total pages injected: 214563
+      [  631.754975] MattX:[IMPORT] Commencing full brain transplant on PID 4952...
+      [  631.756208] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [  631.760209] MattX:[IMPORT] Registered clock-offset fixup for PID 4952: -7571712009181 ns (1 threads)
+      [  631.761862] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 4952
+  Log tail (stdout forwarded via MattX wormhole):
+    epoch 24/600  node=almanode1.local  pid=39503  loss=16.803886
+    epoch 26/600  node=almanode1.local  pid=39503  loss=14.733795
+    epoch 28/600  node=almanode1.local  pid=39503  loss=12.328929
+    epoch 30/600  node=almanode1.local  pid=39503  loss=9.720249
+    epoch 32/600  node=almanode1.local  pid=39503  loss=7.139793
+[PASS] pytorch-3: PyTorch process migrated to almanode2
+
+  --- ps snapshot: 15s after outbound migration (settled state) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        39503       1 mattx    T     4.5       00:42 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+         4952       2 mattx    S     0.1       00:33 python3 /tmp/pytorch_migtest.py
+[PASS] pytorch-3: PyTorch process still running on almanode2 after 15s (epochs 9 -> 32)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of python3 (PyTorch) [PID 39503]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after return migration (almanode2 -> almanode1) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        39503       1 mattx    S     3.5       00:55 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no process matching 'pytorch_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode2 (pattern: 'pytorch_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode2 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no threads matching 'pytorch_migtest' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — return migration (almanode2 -> almanode1):
+      [ 8239.401776] MattX:[RECALL] Carving missing memory hole: 0x7f7f5c000000 (Size: 2883584)
+      [ 8239.402967] MattX:[RECALL] Carving missing memory hole: 0x7f7f5c2fe000 (Size: 10702848)
+      [ 8239.405115] MattX:[RECALL] Carving missing memory hole: 0x7f7f5cd71000 (Size: 291643392)
+      [ 8239.407002] MattX:[RECALL] Carving missing memory hole: 0x7f7f6e3c7000 (Size: 11468800)
+      [ 8239.408470] MattX:[RECALL] Carving missing memory hole: 0x7f7f6eeba000 (Size: 6336512)
+      [ 8239.410068] MattX:[RECALL] Carving missing memory hole: 0x7f7f6f4cc000 (Size: 5173248)
+      [ 8239.411627] MattX:[RECALL] Carving missing memory hole: 0x7f7f6f9be000 (Size: 26509312)
+      [ 8239.413740] MattX:[RECALL] Carving missing memory hole: 0x7f7f7130d000 (Size: 4968448)
+      [ 8239.415498] MattX:[RECALL] Carving missing memory hole: 0x7f7f717cd000 (Size: 2424832)
+      [ 8239.417284] MattX:[RECALL] Carving missing memory hole: 0x7f7f71a22000 (Size: 4816896)
+      [ 8239.419126] MattX:[RECALL] Carving missing memory hole: 0x7f7f71ebd000 (Size: 184872960)
+      [ 8239.426627] MattX:[RECALL] Carving missing memory hole: 0x7f7f7cf12000 (Size: 25931776)
+      [ 8239.429359] MattX:[RECALL] Carving missing memory hole: 0x7f7f7e7d1000 (Size: 5349376)
+      [ 8239.431316] MattX:[RECALL] Carving missing memory hole: 0x7f7f7ecf1000 (Size: 11063296)
+      [ 8239.433282] MattX:[RECALL] Carving missing memory hole: 0x7ffc0b9c9000 (Size: 135168)
+      [ 8239.436047] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+      [ 8243.513229] MattX:[IMPORT] Return memory transferred successfully! Pages: 215402
+      [ 8243.514422] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7f7f7eef5ee3
+      [ 8243.515720] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 39503: 7586070881279 ns (1 threads)
+      [ 8243.517217] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 39503
+  mattx@almanode2 (x.x.x.x) dmesg — return migration (almanode2 -> almanode1):
+      [  662.278136] MattX:[MIGRATE] -> VMA 55: Sending page 1024/2704 (Offset: 0x400000, Payload: 4112 bytes)...
+      [  662.283381] MattX:[MIGRATE] -> VMA 55: Sending page 1280/2704 (Offset: 0x500000, Payload: 4112 bytes)...
+      [  662.286576] MattX:[MIGRATE] -> VMA 55: Sending page 1536/2704 (Offset: 0x600000, Payload: 4112 bytes)...
+      [  662.289295] MattX:[MIGRATE] -> VMA 55: Sending page 1792/2704 (Offset: 0x700000, Payload: 4112 bytes)...
+      [  662.296127] MattX:[MIGRATE] -> VMA 55: Sending page 2048/2704 (Offset: 0x800000, Payload: 4112 bytes)...
+      [  662.301370] MattX:[MIGRATE] -> VMA 55: Sending page 2304/2704 (Offset: 0x900000, Payload: 4112 bytes)...
+      [  662.306443] MattX:[MIGRATE] -> VMA 55: Sending page 2560/2704 (Offset: 0xa00000, Payload: 4112 bytes)...
+      [  662.310173] MattX:[MIGRATE] -> VMA 55 finished. Sent 2704 pages.
+      [  662.311701] MattX:[MIGRATE] Processing VMA 57/58: 0x7ffc0b9c9000 - 0x7ffc0b9ea000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [  662.314404] MattX:[MIGRATE] -> VMA 56: Entering page extraction loop...
+      [  662.316175] MattX:[MIGRATE] -> VMA 56: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [  662.318376] MattX:[MIGRATE] -> VMA 56 finished. Sent 33 pages.
+      [  662.319798] MattX:[MIGRATE] Processing VMA 58/58: 0x7fff2527e000 - 0x7fff252e6000 (Size: 425984 bytes, ~104 pages, Flags: 0x8100177)
+      [  662.323293] MattX:[MIGRATE] -> VMA 57: Entering page extraction loop...
+      [  662.324890] MattX:[MIGRATE] -> VMA 57: Sending page 0/104 (Offset: 0x0, Payload: 4112 bytes)...
+      [  662.328258] MattX:[MIGRATE] -> VMA 57 finished. Sent 104 pages.
+      [  662.329714] MattX:[MIGRATE] Pipeline stats: 215402 total, 215402 sent, 0 skipped, 0 net errors
+      [  662.331587] MattX:[MIGRATE] =====================================================
+      [  662.333281] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [  662.335087] MattX:[RECALL] Executing local Surrogate PID 4952...
+  Log tail (stdout forwarded via MattX wormhole):
+    epoch 80/600  node=almanode1.local  pid=39503  loss=0.246245
+    epoch 82/600  node=almanode1.local  pid=39503  loss=0.237741
+    epoch 84/600  node=almanode1.local  pid=39503  loss=0.229750
+    epoch 86/600  node=almanode1.local  pid=39503  loss=0.222147
+    epoch 88/600  node=almanode1.local  pid=39503  loss=0.214936
+[PASS] pytorch-4: PyTorch process migrated back to almanode1
+
+  --- ps snapshot: 15s after return migration (settled state) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        39503       1 mattx    S     2.7       01:15 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no process matching 'pytorch_migtest' on almanode2)
+[PASS] pytorch-4: PyTorch process still running on almanode1 after 15s (round trip complete, epochs 45 -> 67)
+[PASS] pytorch-3: no kernel oops on almanode1
+[PASS] pytorch-3: no kernel oops on almanode2
+
+==============================
+PyTorch Results: 8 passed, 0 failed
+==============================

@@ -1,0 +1,144 @@
+==============================
+mattx commit: b401a0e977214435fd3bc19b6e92e782cd5cc5b3
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== QuantumESPRESSO / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI QuantumESPRESSO module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+
+     Program PWSCF v.7.3.1 starts on 14Oct2026 at 20:11:52 
+
+/cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/QuantumESPRESSO/7.3.1-foss-2023a/bin/pw.x
+[PASS] qe-1: QuantumESPRESSO module (QuantumESPRESSO/7.3.1-foss-2023a) loads on almanode1
+
+=== Test 2: Si SCF functional run (serial pw.x) ===
+  Fetching Si pseudopotential on almanode1...
+  Running quick Si SCF on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+[PASS] qe-2: Si SCF converged on almanode1 (!    total energy              =     -15.84756981 Ry)
+
+=== Test 3: QuantumESPRESSO round-trip migration via MattX ===
+  Starting pw.x SCF on almanode1 (x.x.x.x) -- slow-converging migration target...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'pw\.x') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pw\.x' | grep -v grep
+        35298       1 mattx    Rl    182       00:10 pw.x
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pw\.x' | grep -v grep
+      (no process matching 'pw\.x' on almanode2)
+  Log tail from almanode1 (iteration count so far):
+    iterations: 4
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pw.x [PID 35298]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'pw\.x') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pw\.x' | grep -v grep
+        35298       1 mattx    Tl    105       00:20 pw.x
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pw\.x' | grep -v grep
+         4363       2 mattx    Tl    0.4       00:08 pw.x
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 8149.018401] MattX:[MIGRATE] -> VMA 538: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8149.020934] MattX:[MIGRATE] -> VMA 538 finished. Sent 11 pages.
+      [ 8149.022815] MattX:[MIGRATE] Processing VMA 540/542: 0x7f9d17295000 - 0x7f9d17297000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 8149.025272] MattX:[MIGRATE] -> VMA 539: Entering page extraction loop...
+      [ 8149.027053] MattX:[MIGRATE] -> VMA 539: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8149.029630] MattX:[MIGRATE] -> VMA 539 finished. Sent 2 pages.
+      [ 8149.031707] MattX:[MIGRATE] Processing VMA 541/542: 0x7f9d17297000 - 0x7f9d17299000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [ 8149.034278] MattX:[MIGRATE] -> VMA 540: Entering page extraction loop...
+      [ 8149.036090] MattX:[MIGRATE] -> VMA 540: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8149.038707] MattX:[MIGRATE] -> VMA 540 finished. Sent 2 pages.
+      [ 8149.040317] MattX:[MIGRATE] Processing VMA 542/542: 0x7ffc90fcc000 - 0x7ffc911ee000 (Size: 2236416 bytes, ~546 pages, Flags: 0x100177)
+      [ 8149.044232] MattX:[MIGRATE] -> VMA 541: Entering page extraction loop...
+      [ 8149.046049] MattX:[MIGRATE] -> VMA 541: Sending page 0/546 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8149.050573] MattX:[MIGRATE] -> VMA 541: Sending page 256/546 (Offset: 0x100000, Payload: 4112 bytes)...
+      [ 8149.054912] MattX:[MIGRATE] -> VMA 541: Sending page 512/546 (Offset: 0x200000, Payload: 4112 bytes)...
+      [ 8149.057590] MattX:[MIGRATE] -> VMA 541 finished. Sent 546 pages.
+      [ 8149.059623] MattX:[MIGRATE] Pipeline stats: 230843 total, 230837 sent, 6 skipped, 0 net errors
+      [ 8149.061848] MattX:[MIGRATE] =====================================================
+      [ 8149.063889] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 8149.065864] MattX:[REGISTRY] PID 35298 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [  517.139851] MattX:[MIGRATE] Processing VMA 50/51: 0x7ffe02d17000 - 0x7ffe02d38000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [  517.141813] MattX:[MIGRATE] -> VMA 49: Entering page extraction loop...
+      [  517.143125] MattX:[MIGRATE] -> VMA 49: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [  517.146991] MattX:[MIGRATE] -> VMA 49 finished. Sent 33 pages.
+      [  517.148673] MattX:[MIGRATE] Processing VMA 51/51: 0x7fffae577000 - 0x7fffae5c9000 (Size: 335872 bytes, ~82 pages, Flags: 0x8100177)
+      [  517.150650] MattX:[MIGRATE] -> VMA 50: Entering page extraction loop...
+      [  517.151978] MattX:[MIGRATE] -> VMA 50: Sending page 0/82 (Offset: 0x0, Payload: 4112 bytes)...
+      [  517.155090] MattX:[MIGRATE] -> VMA 50 finished. Sent 82 pages.
+      [  517.156315] MattX:[MIGRATE] Pipeline stats: 159428 total, 159428 sent, 0 skipped, 0 net errors
+      [  517.157887] MattX:[MIGRATE] =====================================================
+      [  517.159333] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [  517.160844] MattX:[RECALL] Executing local Surrogate PID 3713...
+      [  560.608055] MattX:[IMPORT] Received Blueprint for PID 35298. Saving to pending...
+      [  560.630196] MattX:[DRAIN] Injected Task Work into PID 4363. Waiting for stable state...
+      [  560.651751] MattX:[DRAIN] PID 4363 is now stable and frozen at the user-space boundary!
+      [  567.887944] MattX:[IMPORT] All memory transferred! Total pages injected: 230837
+      [  567.889551] MattX:[IMPORT] Commencing full brain transplant on PID 4363...
+      [  567.891303] MattX:[IMPORT] Successfully injected 17 Fake FDs!
+      [  567.895038] MattX:[IMPORT] Registered clock-offset fixup for PID 4363: -7574337062173 ns (4 threads)
+      [  567.896661] MattX:[IMPORT] IT'S ALIVE! Waking 4 threads in Gang PID 4363
+[FAIL] qe-3: pw.x not actually running on almanode2 after migration
+  dmesg tail on almanode1:
+    [ 8149.018401] MattX:[MIGRATE] -> VMA 538: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 8149.020934] MattX:[MIGRATE] -> VMA 538 finished. Sent 11 pages.
+    [ 8149.022815] MattX:[MIGRATE] Processing VMA 540/542: 0x7f9d17295000 - 0x7f9d17297000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+    [ 8149.025272] MattX:[MIGRATE] -> VMA 539: Entering page extraction loop...
+    [ 8149.027053] MattX:[MIGRATE] -> VMA 539: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 8149.029630] MattX:[MIGRATE] -> VMA 539 finished. Sent 2 pages.
+    [ 8149.031707] MattX:[MIGRATE] Processing VMA 541/542: 0x7f9d17297000 - 0x7f9d17299000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+    [ 8149.034278] MattX:[MIGRATE] -> VMA 540: Entering page extraction loop...
+    [ 8149.036090] MattX:[MIGRATE] -> VMA 540: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 8149.038707] MattX:[MIGRATE] -> VMA 540 finished. Sent 2 pages.
+    [ 8149.040317] MattX:[MIGRATE] Processing VMA 542/542: 0x7ffc90fcc000 - 0x7ffc911ee000 (Size: 2236416 bytes, ~546 pages, Flags: 0x100177)
+    [ 8149.044232] MattX:[MIGRATE] -> VMA 541: Entering page extraction loop...
+    [ 8149.046049] MattX:[MIGRATE] -> VMA 541: Sending page 0/546 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 8149.050573] MattX:[MIGRATE] -> VMA 541: Sending page 256/546 (Offset: 0x100000, Payload: 4112 bytes)...
+    [ 8149.054912] MattX:[MIGRATE] -> VMA 541: Sending page 512/546 (Offset: 0x200000, Payload: 4112 bytes)...
+    [ 8149.057590] MattX:[MIGRATE] -> VMA 541 finished. Sent 546 pages.
+    [ 8149.059623] MattX:[MIGRATE] Pipeline stats: 230843 total, 230837 sent, 6 skipped, 0 net errors
+    [ 8149.061848] MattX:[MIGRATE] =====================================================
+    [ 8149.063889] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+    [ 8149.065864] MattX:[REGISTRY] PID 35298 registered as Exported to Node 378.
+[PASS] qe-4: no kernel oops on almanode1
+[PASS] qe-4: no kernel oops on almanode2
+
+==============================
+QuantumESPRESSO Results: 4 passed, 1 failed
+==============================

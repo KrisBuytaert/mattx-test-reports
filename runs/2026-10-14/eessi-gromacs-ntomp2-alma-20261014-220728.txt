@@ -1,0 +1,295 @@
+==============================
+mattx commit: b401a0e977214435fd3bc19b6e92e782cd5cc5b3
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== GROMACS / EESSI tests on alma cluster (EESSI 2025.06) ===
+
+=== Test 1: EESSI GROMACS module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2025.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2025.06), have fun!
+                 :-) GROMACS - gmx, 2025.2-EasyBuild_5.1.2 (-:
+
+Executable:   /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/GROMACS/2025.2-foss-2025a/bin/gmx
+[PASS] gromacs-1: GROMACS module (GROMACS/2025.2-foss-2025a) loads on almanode1
+
+=== Test 2: GROMACS ion_channel benchmark (1000 steps) ===
+  Fetching PRACE test case on almanode1 (may take a minute)...
+  Running ion_channel benchmark on almanode1 (x.x.x.x) — 1000 steps...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2025.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2025.06), have fun!
+              :-) GROMACS - gmx mdrun, 2025.2-EasyBuild_5.1.2 (-:
+
+Executable:   /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/GROMACS/2025.2-foss-2025a/bin/gmx
+Data prefix:  /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/GROMACS/2025.2-foss-2025a
+Working dir:  /tmp/eessi-gromacs
+Command line:
+  gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 1000 -g logfile -ntmpi 1 -ntomp 2
+
+Reading file ion_channel.tpr, VERSION 5.1.4 (single precision)
+Note: file tpx version 103, software tpx version 137
+Overriding nsteps with value passed on the command line: 1000 steps, 2.5 ps
+Changing nstlist from 10 to 80, rlist from 1 to 1.131
+
+
+Update groups can not be used for this system because there are three or more consecutively coupled constraints
+
+Using 1 MPI thread
+Using 2 OpenMP threads 
+
+starting mdrun 'Protein'
+1000 steps,      2.5 ps.
+
+step 500: resetting all time and cycle counters
+
+               Core t (s)   Wall t (s)        (%)
+       Time:       97.063       48.532      200.0
+                 (ns/day)    (hour/ns)
+Performance:        2.230       10.763
+
+GROMACS reminds you: "Ludwig Boltzmann, who spent much of his life studying statistical mechanics, died in 1906, by his own hand. Paul Ehrenfest, carrying on the same work, died similarly in 1933. Now it is our turn to study statistical mechanics. Perhaps it will be wise to approach the subject cautiously." (David Goodstein)
+
+[PASS] gromacs-2: ion_channel benchmark completed on almanode1 (Performance:        2.230       10.763)
+
+=== Test 3: GROMACS round-trip migration via MattX ===
+  Starting gmx mdrun on almanode1 (x.x.x.x) — 20000 steps (round-trip migration target)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        33052       1 mattx    Rl    124       00:10 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'gmx mdrun') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        33052   33052       1 mattx    Rl   94.1 -                        gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+        33052   33054       1 mattx    Rl   48.8 -                        gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  Log tail from almanode1:
+    Using 1 MPI thread
+    Using 2 OpenMP threads 
+    
+    starting mdrun 'Protein'
+    20000 steps,     50.0 ps.
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun [PID 33052]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        33052       1 mattx    Tl   76.2       00:20 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         3238       2 mattx    Rl   92.3       00:08 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'gmx mdrun') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        33052   33052       1 mattx    Tl   53.0 do_signal_stop           gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+        33052   33054       1 mattx    Tl   25.1 do_signal_stop           gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 8000.584968] MattX:[MIGRATE] Processing VMA 251/254: 0x7f5346cfb000 - 0x7f5346cfd000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 8000.586706] MattX:[MIGRATE] -> VMA 250: Entering page extraction loop...
+      [ 8000.587892] MattX:[MIGRATE] -> VMA 250: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8000.589709] MattX:[MIGRATE] -> VMA 250 finished. Sent 2 pages.
+      [ 8000.591059] MattX:[MIGRATE] Processing VMA 252/254: 0x7f5346cfd000 - 0x7f5346cfe000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [ 8000.592781] MattX:[MIGRATE] -> VMA 251: Entering page extraction loop...
+      [ 8000.593957] MattX:[MIGRATE] -> VMA 251: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8000.596905] MattX:[MIGRATE] -> VMA 251 finished. Sent 1 pages.
+      [ 8000.598269] MattX:[MIGRATE] Processing VMA 253/254: 0x7f5346cfe000 - 0x7f5346cff000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [ 8000.600019] MattX:[MIGRATE] -> VMA 252: Entering page extraction loop...
+      [ 8000.601215] MattX:[MIGRATE] -> VMA 252: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8000.603023] MattX:[MIGRATE] -> VMA 252 finished. Sent 1 pages.
+      [ 8000.604414] MattX:[MIGRATE] Processing VMA 254/254: 0x7ffdb463b000 - 0x7ffdb468c000 (Size: 331776 bytes, ~81 pages, Flags: 0x100173)
+      [ 8000.606184] MattX:[MIGRATE] -> VMA 253: Entering page extraction loop...
+      [ 8000.607396] MattX:[MIGRATE] -> VMA 253: Sending page 0/81 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 8000.609904] MattX:[MIGRATE] -> VMA 253 finished. Sent 81 pages.
+      [ 8000.610971] MattX:[MIGRATE] Pipeline stats: 154643 total, 154637 sent, 6 skipped, 0 net errors
+      [ 8000.612333] MattX:[MIGRATE] =====================================================
+      [ 8000.613553] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 8000.614761] MattX:[REGISTRY] PID 33052 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [  168.815585] MattX:[IMPORT] Commencing full brain transplant on PID 2415...
+      [  168.817413] MattX:[IMPORT] Successfully injected 30 Fake FDs!
+      [  168.821290] MattX:[IMPORT] Registered clock-offset fixup for PID 2415: -7580300305379 ns (3 threads)
+      [  168.823265] MattX:[IMPORT] IT'S ALIVE! Waking 3 threads in Gang PID 2415
+      [  265.052428] MattX:[IMPORT] Received Blueprint for PID 31975. Saving to pending...
+      [  265.066855] MattX:[DRAIN] Injected Task Work into PID 2815. Waiting for stable state...
+      [  265.080538] MattX:[DRAIN] PID 2815 is now stable and frozen at the user-space boundary!
+      [  272.876898] MattX:[IMPORT] All memory transferred! Total pages injected: 156504
+      [  272.877947] MattX:[IMPORT] Commencing full brain transplant on PID 2815...
+      [  272.879016] MattX:[IMPORT] Successfully injected 18 Fake FDs!
+      [  272.882047] MattX:[IMPORT] Registered clock-offset fixup for PID 2815: -7573810949322 ns (3 threads)
+      [  272.883277] MattX:[IMPORT] IT'S ALIVE! Waking 3 threads in Gang PID 2815
+      [  414.968326] MattX:[IMPORT] Received Blueprint for PID 33052. Saving to pending...
+      [  414.985997] MattX:[DRAIN] Injected Task Work into PID 3238. Waiting for stable state...
+      [  414.997240] MattX:[DRAIN] PID 3238 is now stable and frozen at the user-space boundary!
+      [  419.436830] MattX:[IMPORT] All memory transferred! Total pages injected: 154637
+      [  419.437989] MattX:[IMPORT] Commencing full brain transplant on PID 3238...
+      [  419.439216] MattX:[IMPORT] Successfully injected 5 Fake FDs!
+      [  419.442389] MattX:[IMPORT] Registered clock-offset fixup for PID 3238: -7577181345308 ns (2 threads)
+      [  419.443686] MattX:[IMPORT] IT'S ALIVE! Waking 2 threads in Gang PID 3238
+  Log tail (stdout forwarded via MattX wormhole):
+    Using 1 MPI thread
+    Using 2 OpenMP threads 
+    
+    starting mdrun 'Protein'
+    20000 steps,     50.0 ps.
+[PASS] gromacs-3: gmx mdrun migrated to almanode2
+
+  --- ps snapshot: 15s after outbound migration (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        33052       1 mattx    Tl   41.6       00:37 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         3238       2 mattx    Rl    158       00:26 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+[PASS] gromacs-3: gmx mdrun still running on almanode2 after 15s (ener.edr 0 -> 0 bytes, informational)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun [PID 33052]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after return migration (almanode2 -> almanode1) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        33052       1 mattx    Rl   54.3       00:47 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+
+  --- per-THREAD snapshot on almanode2 (pattern: 'gmx mdrun') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode2 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no threads matching 'gmx mdrun' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — return migration (almanode2 -> almanode1):
+      [ 8023.513925] MattX:[RECALL] Carving missing memory hole: 0x7f1cb5265000 (Size: 159744)
+      [ 8023.515538] MattX:[RECALL] Carving missing memory hole: 0x7f1cb528c000 (Size: 45056)
+      [ 8023.518513] MattX:[RECALL] Carving missing memory hole: 0x7f1cb5297000 (Size: 8192)
+      [ 8023.520653] MattX:[RECALL] Carving missing memory hole: 0x7f1cb5299000 (Size: 8192)
+      [ 8023.522527] MattX:[RECALL] Carving missing memory hole: 0x7f5328b07000 (Size: 55545856)
+      [ 8023.524293] MattX:[RECALL] Carving missing memory hole: 0x7f5330048000 (Size: 305438720)
+      [ 8023.526724] MattX:[RECALL] Carving missing memory hole: 0x7f5342421000 (Size: 10895360)
+      [ 8023.528315] MattX:[RECALL] Carving missing memory hole: 0x7f5342ef3000 (Size: 4268032)
+      [ 8023.529752] MattX:[RECALL] Carving missing memory hole: 0x7f534330d000 (Size: 3260416)
+      [ 8023.531446] MattX:[RECALL] Carving missing memory hole: 0x7f53436ae000 (Size: 7716864)
+      [ 8023.533242] MattX:[RECALL] Carving missing memory hole: 0x7f5343ea7000 (Size: 5685248)
+      [ 8023.534839] MattX:[RECALL] Carving missing memory hole: 0x7f5344417000 (Size: 16146432)
+      [ 8023.537056] MattX:[RECALL] Carving missing memory hole: 0x7f5345382000 (Size: 25919488)
+      [ 8023.539282] MattX:[RECALL] Carving missing memory hole: 0x7f5346c3d000 (Size: 794624)
+      [ 8023.540618] MattX:[RECALL] Carving missing memory hole: 0x7ffc27457000 (Size: 135168)
+      [ 8023.542363] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+      [ 8026.300704] MattX:[IMPORT] Return memory transferred successfully! Pages: 159464
+      [ 8026.302231] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7f5346425c99
+      [ 8026.303367] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 33052: 7584754794640 ns (2 threads)
+      [ 8026.304733] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 33052
+  mattx@almanode2 (x.x.x.x) dmesg — return migration (almanode2 -> almanode1):
+      [  445.078702] MattX:[MIGRATE] -> VMA 48: Sending page 5632/6332 (Offset: 0x1600000, Payload: 4112 bytes)...
+      [  445.082415] MattX:[MIGRATE] -> VMA 48: Sending page 5888/6332 (Offset: 0x1700000, Payload: 4112 bytes)...
+      [  445.089455] MattX:[MIGRATE] -> VMA 48: Sending page 6144/6332 (Offset: 0x1800000, Payload: 4112 bytes)...
+      [  445.094024] MattX:[MIGRATE] -> VMA 48 finished. Sent 6332 pages.
+      [  445.095394] MattX:[MIGRATE] Processing VMA 50/52: 0x7f5346c3b000 - 0x7f5346cff000 (Size: 802816 bytes, ~196 pages, Flags: 0x8100077)
+      [  445.097849] MattX:[MIGRATE] -> VMA 49: Entering page extraction loop...
+      [  445.099254] MattX:[MIGRATE] -> VMA 49: Sending page 0/196 (Offset: 0x0, Payload: 4112 bytes)...
+      [  445.102470] MattX:[MIGRATE] -> VMA 49 finished. Sent 196 pages.
+      [  445.103463] MattX:[MIGRATE] Processing VMA 51/52: 0x7ffc27457000 - 0x7ffc27478000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [  445.105189] MattX:[MIGRATE] -> VMA 50: Entering page extraction loop...
+      [  445.106303] MattX:[MIGRATE] -> VMA 50: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [  445.108404] MattX:[MIGRATE] -> VMA 50 finished. Sent 33 pages.
+      [  445.109867] MattX:[MIGRATE] Processing VMA 52/52: 0x7ffdb463b000 - 0x7ffdb468c000 (Size: 331776 bytes, ~81 pages, Flags: 0x8100177)
+      [  445.111640] MattX:[MIGRATE] -> VMA 51: Entering page extraction loop...
+      [  445.115486] MattX:[MIGRATE] -> VMA 51: Sending page 0/81 (Offset: 0x0, Payload: 4112 bytes)...
+      [  445.117722] MattX:[MIGRATE] -> VMA 51 finished. Sent 81 pages.
+      [  445.119039] MattX:[MIGRATE] Pipeline stats: 159464 total, 159464 sent, 0 skipped, 0 net errors
+      [  445.120259] MattX:[MIGRATE] =====================================================
+      [  445.121338] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [  445.122550] MattX:[RECALL] Executing local Surrogate PID 3238...
+  Log tail (stdout forwarded via MattX wormhole):
+    Using 1 MPI thread
+    Using 2 OpenMP threads 
+    
+    starting mdrun 'Protein'
+    20000 steps,     50.0 ps.
+[PASS] gromacs-4: gmx mdrun migrated back to almanode1
+
+  --- ps snapshot: 15s after return migration (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        33052       1 mattx    Rl   90.6       01:05 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+[PASS] gromacs-4: gmx mdrun still running on almanode1 after 15s (round trip complete, ener.edr 0 -> 0 bytes, informational)
+[PASS] gromacs-4: no kernel oops on almanode1
+[PASS] gromacs-4: no kernel oops on almanode2
+
+=== Test 5: GROMACS return migration via 'expel' ===
+  Starting a fresh gmx mdrun on almanode1 for the expel round-trip...
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun (expel test) [PID 34067]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (expel test) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        34067       1 mattx    Tl   66.5       00:19 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         3713       2 mattx    Rl    108       00:08 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+[PASS] gromacs-5: gmx mdrun migrated to almanode2 (expel test)
+
+  --- ps snapshot: 15s after outbound migration (expel test, settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        34067       1 mattx    Tl   35.9       00:35 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+         3713       2 mattx    Rl    162       00:25 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+[PASS] gromacs-5: gmx mdrun still running on almanode2 after 15s (expel test, ener.edr 0 -> 0 bytes, informational)
+  Expelling local Surrogate PID 3713 on almanode2 (blocks until finished)...
+
+  --- ps snapshot: immediately after expel (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        34067       1 mattx    Rl   37.1       00:42 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+[PASS] gromacs-5: gmx mdrun expelled back to almanode1
+
+  --- ps snapshot: 15s after expel (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        34067       1 mattx    Rl   79.3       00:59 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+[PASS] gromacs-5: gmx mdrun still running on almanode1 after 15s (expel round trip complete, ener.edr 0 -> 0 bytes, informational)
+[PASS] gromacs-5: no kernel oops on almanode1
+[PASS] gromacs-5: no kernel oops on almanode2
+
+==============================
+GROMACS Results: 14 passed, 0 failed
+==============================

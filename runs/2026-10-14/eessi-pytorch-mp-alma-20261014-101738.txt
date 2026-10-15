@@ -1,0 +1,124 @@
+==============================
+mattx commit: 103e83b064ba1f57a6d46086d52398d7bbf49a29
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== PyTorch multiprocessing / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: eessi-demo pytorch_multiprocessing.py (no migration) ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+#samples: 4, #features: 1
+Prediction before training: f(5) = -3.919
+Started Process-0
+Rank Process-1: epoch 1: w = 0.061, loss = 58.337
+Rank Process-1: epoch 11: w = 1.713, loss = 0.115
+Rank Process-1: epoch 21: w = 1.755, loss = 0.087
+Rank Process-1: epoch 31: w = 1.770, loss = 0.077
+Rank Process-1: epoch 41: w = 1.784, loss = 0.068
+Rank Process-1: epoch 51: w = 1.796, loss = 0.061
+Rank Process-1: epoch 61: w = 1.807, loss = 0.054
+Rank Process-1: epoch 71: w = 1.819, loss = 0.048
+Rank Process-1: epoch 81: w = 1.829, loss = 0.043
+Rank Process-1: epoch 91: w = 1.839, loss = 0.038
+Rank Process-0: epoch 1: w = 0.061, loss = 58.337
+Rank Process-0: epoch 11: w = 1.713, loss = 0.115
+Rank Process-0: epoch 21: w = 1.757, loss = 0.086
+Rank Process-0: epoch 31: w = 1.772, loss = 0.076
+Rank Process-0: epoch 41: w = 1.785, loss = 0.068
+Rank Process-0: epoch 51: w = 1.797, loss = 0.060
+Rank Process-0: epoch 61: w = 1.809, loss = 0.053
+Rank Process-0: epoch 71: w = 1.820, loss = 0.047
+Rank Process-0: epoch 81: w = 1.831, loss = 0.042
+Rank Process-0: epoch 91: w = 1.841, loss = 0.037
+Started Process-1
+Finished Process-0
+Finished Process-1
+Prediction after training: f(5) = 9.688
+[PASS] pytorch-mp-1: eessi-demo multiprocessing example runs to completion on almanode1
+
+=== Test 2/3: multi-process PyTorch migration via MattX ===
+  Starting PyTorch mp migtest (2 workers) on almanode1 (x.x.x.x)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'pytorch_mp_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_mp_migtest' | grep -v grep
+         2959       1 mattx    S    11.4       00:10 python3 /tmp/pytorch_mp_migtest.py 2
+         2961    2959 mattx    S     3.9       00:08 python3 /tmp/pytorch_mp_migtest.py 2
+         2963    2959 mattx    S     4.0       00:08 python3 /tmp/pytorch_mp_migtest.py 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_mp_migtest' | grep -v grep
+      (no process matching 'pytorch_mp_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pytorch_mp_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_mp_migtest' | grep -v grep
+         2959    2959       1 mattx    S    10.7 hrtimer_nanosleep        python3 /tmp/pytorch_mp_migtest.py 2
+         2961    2961    2959 mattx    S     3.6 hrtimer_nanosleep        python3 /tmp/pytorch_mp_migtest.py 2
+         2963    2963    2959 mattx    S     3.7 hrtimer_nanosleep        python3 /tmp/pytorch_mp_migtest.py 2
+  Log tail from almanode1:
+    epoch 10/300  node=almanode1.local  pid=2959  w=0.0698  counts=[10, 10]
+    epoch 15/300  node=almanode1.local  pid=2959  w=0.3545  counts=[15, 15]
+    epoch 20/300  node=almanode1.local  pid=2959  w=0.5505  counts=[20, 20]
+
+  ─────────────────────────────────────────────────────
+  Starting migration of python3 (PyTorch mp) [PID 2959]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: after outbound migration (almanode1 -> almanode2) (pattern: 'pytorch_mp_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_mp_migtest' | grep -v grep
+      (no process matching 'pytorch_mp_migtest' on almanode1)
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_mp_migtest' | grep -v grep
+      (no process matching 'pytorch_mp_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pytorch_mp_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_mp_migtest' | grep -v grep
+      (no threads matching 'pytorch_mp_migtest' on almanode1)
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [    7.091615] MattX: [IMPORT] Network handlers registered.
+      [    7.393394] MattX: [EXPORT] Network handlers registered.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [    6.721166] MattX: [IMPORT] Network handlers registered.
+      [    7.152054] MattX: [EXPORT] Network handlers registered.
+[FAIL] pytorch-mp-2: multi-process PyTorch job not running on almanode2 after migration
+  dmesg tail on almanode1:
+    [    7.091615] MattX: [IMPORT] Network handlers registered.
+    [    7.371722] MattX: FATAL - Could not resolve x86_task_fpu!
+    [    7.393394] MattX: [EXPORT] Network handlers registered.
+    [    7.394169] MattX: [GUEST] Network handlers registered.
+    [    7.394934] MattX: [FILEIO] Network handlers registered.
+    [    7.395964] MattX: Balancer thread started
+    [    7.397650] MattX: [DSM] Dirty Sweeper thread started
+    [    7.418268] MattX: [NL] Daemon registered local IP: x.x.x.x
+    [    7.419116] MattX: [NL] Daemon registered local Node ID: 377
+    [    7.420019] MattX:[NL] MattXFS Overlay Mode Enabled: TRUE
+    [    7.421210] MattX:[NL] DFSA Directory set to: '/mnt/shared'
+    [    7.422016] MattX:[NL] MPI Support Enabled: FALSE
+    [    7.422699] MattX:[NL] Accept Guests Enabled: TRUE
+    [    7.423356] MattX:[NL] HPC Local Libs Fast-Path: ON
+    [    7.424043] MattX:[NL] DSM Mode set to: 2
+    [    7.424624] MattX: Configuration Updated - FileIO: TRUE, NetworkIO: TRUE, MattXFS: TRUE, MPI: FALSE, Accept: TRUE, HPC Local Libs: TRUE, DSM Mode: 2
+    [    8.433556] MattX: Filesystem registered successfully.
+    [    8.441142] MattX: [ADMIN] Migration includes set to 'pvmchess-client,mpichess-client,migtest,migtest2,migtest3,dfsatest,epolltest'
+    [48525.580863] MattX: [ADMIN] Manual migration requested: PID 2959 to Node 378
+    [48525.581698] MattX:[ADMIN] Target Node 378 is not connected!
+[PASS] pytorch-mp-3: no kernel oops on almanode1
+[PASS] pytorch-mp-3: no kernel oops on almanode2
+
+==============================
+PyTorch-MP Results: 3 passed, 1 failed
+==============================

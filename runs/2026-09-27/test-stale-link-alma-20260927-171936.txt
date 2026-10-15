@@ -1,0 +1,62 @@
+==============================
+mattx commit: unknown
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== Test 5: migration against a stale cluster link (peer service bounce) ===
+Read from remote host x.x.x.x: Connection reset by peer
+client_loop: send disconnect: Broken pipe
+  ⚠ restart command on almanode2 did not return cleanly (rc=255) -- possible crash mid-restart (mattx#16/#17)
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         6066       1 mattx    S     0.0       00:02 migtest
+         6067    6066 mattx    R    93.2       00:02 migtest
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 6067]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  ► stale-link condition did not reproduce this run (send succeeded) -- falling back to a normal migration assertion
+[FAIL] test5: migtest not actually running on almanode2 after migration
+[PASS] test5: no oops on almanode1
+[PASS] test5: no oops on almanode2
+
+  To reproduce manually, set these in your shell first:
+    export MATTX_KEY="<path-to-test>/keys/mattx_test"
+    # AlmaLinux: N1=x.x.x.x  N2=x.x.x.x
+    # Debian:    N1=x.x.x.x  N2=x.x.x.x
+    export N1=x.x.x.x
+    export N2=x.x.x.x
+    export SSH="ssh -i $MATTX_KEY -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null mattx@"
+    export N2_ID=$($SSH${N2} 'cat /proc/mattx/nodes' | awk '/\(Local\)/{print $1}')
+
+  ── Test 5 repro: migration against a stale cluster link ────────────────
+    # 1. Bounce node2's mattx service (kills its socket to node1 outright)
+    $SSH${N2} "sudo systemctl restart mattx"
+    sleep 3
+    $SSH${N2} 'cat /proc/mattx/nodes'   # wait for it to come back up
+
+    # 2. Immediately try a migration FROM node1 TO node2 -- node1 may still
+    #    be holding the old, now-dead socket in cluster_map
+    $SSH${N1} 'migtest &>/tmp/migtest5.log & sleep 2; pgrep migtest | tail -1'
+    export PID=<child-pid-from-above>
+    $SSH${N1} "echo 'migrate $PID $N2_ID' | sudo tee /proc/mattx/admin"; sleep 5
+
+    # 3. Check dmesg on node1 for the failure signature
+    $SSH${N1} 'sudo dmesg | grep "Network send failed"'
+
+    # 4. THE ACTUAL BUG: if that line is present, PID never resumes on its
+    #    own -- no further dmesg output, ps shows it permanently STAT=T.
+    #    Confirmed only killable with SIGKILL, never self-recovers:
+    $SSH${N1} 'ps -eo pid,stat,cmd | grep migtest'   # expect (currently): stuck at STAT=T forever
+
+    # Cleanup + oops check
+    $SSH${N1} "pkill -9 migtest 2>/dev/null; true"
+    $SSH${N1} 'sudo dmesg | grep -E "Oops|BUG:"'
+    $SSH${N2} 'sudo dmesg | grep -E "Oops|BUG:"'
+  ─────────────────────────────────────────────────────────────────────────
+
+==============================
+Stale-Link Results: 2 passed, 1 failed
+==============================

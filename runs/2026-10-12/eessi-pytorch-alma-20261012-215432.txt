@@ -1,0 +1,139 @@
+==============================
+mattx commit: 103e83b064ba1f57a6d46086d52398d7bbf49a29
+almanode1 kernel: 6.12.0-211.56.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.56.1.el10_2.x86_64
+==============================
+=== PyTorch / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI PyTorch module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+2.1.2
+[PASS] pytorch-1: PyTorch module loads on almanode1
+
+=== Test 2: short training loop (functional smoke test) ===
+  Running a 200-epoch smoke-test training loop on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+first_loss=5.1295 last_loss=0.0050
+SMOKE OK
+[PASS] pytorch-2: training loop converges on almanode1
+
+=== Test 3/4: PyTorch training-job migration via MattX ===
+  Starting PyTorch migtest on almanode1 (x.x.x.x)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+         2619       1 mattx    S    24.3       00:08 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no process matching 'pytorch_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pytorch_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+         2619    2619       1 mattx    S    22.5 hrtimer_nanosleep        python3 /tmp/pytorch_migtest.py
+  Log tail from almanode1:
+    epoch 8/600  node=almanode1.local  pid=2619  loss=23.743212
+    epoch 10/600  node=almanode1.local  pid=2619  loss=23.400255
+    epoch 12/600  node=almanode1.local  pid=2619  loss=22.985620
+    epoch 14/600  node=almanode1.local  pid=2619  loss=22.467949
+    epoch 16/600  node=almanode1.local  pid=2619  loss=21.808033
+
+  ─────────────────────────────────────────────────────
+  Starting migration of python3 (PyTorch) [PID 2619]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+         2619       1 mattx    T    11.1       00:17 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no process matching 'pytorch_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pytorch_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+         2619    2619       1 mattx    T    10.8 do_signal_stop           python3 /tmp/pytorch_migtest.py
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [  350.973764] MattX:[MIGRATE] -> VMA 751 finished. Sent 1 pages.
+      [  350.975547] MattX:[MIGRATE] Processing VMA 753/879: 0x7f33c1835000 - 0x7f33c1836000 (Size: 4096 bytes, ~1 pages, Flags: 0x8000071)
+      [  350.977666] MattX:[MIGRATE] -> VMA 752: Entering page extraction loop...
+      [  350.979218] MattX:[MIGRATE] -> VMA 752: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [  350.981504] MattX:[MIGRATE] -> VMA 752 finished. Sent 1 pages.
+      [  350.983299] MattX:[MIGRATE] Processing VMA 754/879: 0x7f33c1836000 - 0x7f33c1837000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100071)
+      [  350.985421] MattX:[MIGRATE] -> VMA 753: Entering page extraction loop...
+      [  350.986859] MattX:[MIGRATE] -> VMA 753: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [  350.990570] MattX:[MIGRATE] -> VMA 753 finished. Sent 1 pages.
+      [  350.992317] MattX:[MIGRATE] Processing VMA 755/879: 0x7f33c1837000 - 0x7f33c1838000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [  350.994497] MattX:[MIGRATE] -> VMA 754: Entering page extraction loop...
+      [  350.996015] MattX:[MIGRATE] -> VMA 754: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [  350.998387] MattX:[MIGRATE] -> VMA 754 finished. Sent 1 pages.
+      [  351.000180] MattX:[MIGRATE] Processing VMA 756/879: 0x7f33c1838000 - 0x7f33c183a000 (Size: 8192 bytes, ~2 pages, Flags: 0x8000071)
+      [  351.002453] MattX:[MIGRATE] -> VMA 755: Entering page extraction loop...
+      [  351.004019] MattX:[MIGRATE] -> VMA 755: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  351.006493] MattX:[MIGRATE] -> VMA 755 finished. Sent 2 pages.
+      [  351.008323] MattX:[MIGRATE] Processing VMA 757/879: 0x7f33c183a000 - 0x7f33c183b000 (Size: 4096 bytes, ~1 pages, Flags: 0x8000075)
+      [  351.010681] MattX:[MIGRATE] -> VMA 756: Entering page extraction loop...
+      [  351.012344] MattX:[MIGRATE] -> VMA 756: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [   10.796386] MattX: [IMPORT] Network handlers registered.
+      [   11.163703] MattX: [EXPORT] Network handlers registered.
+      [  341.554050] MattX:[IMPORT] Received Blueprint for PID 2619. Saving to pending...
+      [  341.568149] MattX:[DRAIN] Injected Task Work into PID 2289. Waiting for stable state...
+      [  341.579640] MattX:[DRAIN] PID 2289 is now stable and frozen at the user-space boundary!
+[FAIL] pytorch-3: PyTorch process not actually running on almanode2 after migration
+  dmesg tail on almanode1:
+    [  351.847441] MattX:[MIGRATE] -> VMA 857: Entering page extraction loop...
+    [  351.848735] MattX:[MIGRATE] -> VMA 857: Sending page 0/6 (Offset: 0x0, Payload: 4112 bytes)...
+    [  351.852757] MattX:[MIGRATE] -> VMA 857 finished. Sent 6 pages.
+    [  351.854421] MattX:[MIGRATE] Processing VMA 859/879: 0x7f33c2753000 - 0x7f33c2755000 (Size: 8192 bytes, ~2 pages, Flags: 0x8000071)
+    [  351.856230] MattX:[MIGRATE] -> VMA 858: Entering page extraction loop...
+    [  351.857563] MattX:[MIGRATE] -> VMA 858: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [  351.859695] MattX:[MIGRATE] -> VMA 858 finished. Sent 2 pages.
+    [  351.861896] MattX:[MIGRATE] Processing VMA 860/879: 0x7f33c2755000 - 0x7f33c2756000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100071)
+    [  351.864772] MattX:[MIGRATE] -> VMA 859: Entering page extraction loop...
+    [  351.866702] MattX:[MIGRATE] -> VMA 859: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+    [  351.869416] MattX:[MIGRATE] -> VMA 859 finished. Sent 1 pages.
+    [  351.871339] MattX:[MIGRATE] Processing VMA 861/879: 0x7f33c2756000 - 0x7f33c2757000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+    [  351.873444] MattX:[MIGRATE] -> VMA 860: Entering page extraction loop...
+    [  351.874909] MattX:[MIGRATE] -> VMA 860: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+    [  351.877193] MattX:[MIGRATE] -> VMA 860 finished. Sent 1 pages.
+    [  351.879063] MattX:[MIGRATE] Processing VMA 862/879: 0x7f33c2757000 - 0x7f33c27bd000 (Size: 417792 bytes, ~102 pages, Flags: 0x8100073)
+    [  351.881328] MattX:[MIGRATE] -> VMA 861: Entering page extraction loop...
+    [  351.884419] MattX:[MIGRATE] -> VMA 861: Sending page 0/102 (Offset: 0x0, Payload: 4112 bytes)...
+    [  351.887707] MattX:[MIGRATE] -> VMA 861 finished. Sent 102 pages.
+    [  351.889204] MattX:[MIGRATE] Processing VMA 863/879: 0x7f33c27bd000 - 0x7f33c27c4000 (Size: 28672 bytes, ~7 pages, Flags: 0x80000d1)
+[PASS] pytorch-3: no kernel oops on almanode1
+[PASS] pytorch-3: no kernel oops on almanode2
+
+==============================
+PyTorch Results: 4 passed, 1 failed
+==============================
