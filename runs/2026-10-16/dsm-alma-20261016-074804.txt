@@ -1,0 +1,158 @@
+==============================
+mattx commit: 2770394575aabd29901936d673144af9bc6c228b
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== dsmtest (SysV shared memory) tests on alma cluster ===
+
+=== Test 1: dsmtest completes cleanly with no migration ===
+  Waiting up to 130s for baseline completion (10s countdown + 100 x 1s loops)...
+[PASS] dsm-1: baseline produced 100 continuous, self-consistent loops with no migration
+[PASS] dsm-1: baseline shared-memory segment removed cleanly
+
+=== Test 2: migrate dsmtest worker mid-loop, verify DSM survives ===
+  Loops completed before migration: 0 (last: )
+
+  --- ps snapshot: baseline, before migration (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+         7949       1 mattx    S     0.0       00:15 dsmtest
+         7950    7949 mattx    S     0.0       00:15 dsmtest
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode2)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dsmtest [PID 7950]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  Waiting up to 130s more for completion on whichever node it lands on...
+
+  --- ps snapshot: after migration, wait ended (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode1)
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — migration (almanode1 -> almanode2):
+      [  695.317135] MattX:[MIGRATE] -> VMA 20: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [  695.318881] MattX:[MIGRATE] -> VMA 20 finished. Sent 11 pages.
+      [  695.320309] MattX:[MIGRATE] Processing VMA 22/24: 0x7f396bda7000 - 0x7f396bda9000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [  695.321896] MattX:[MIGRATE] -> VMA 21: Entering page extraction loop...
+      [  695.322977] MattX:[MIGRATE] -> VMA 21: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  695.324786] MattX:[MIGRATE] -> VMA 21 finished. Sent 2 pages.
+      [  695.325990] MattX:[MIGRATE] Processing VMA 23/24: 0x7f396bda9000 - 0x7f396bdab000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [  695.327491] MattX:[MIGRATE] -> VMA 22: Entering page extraction loop...
+      [  695.328490] MattX:[MIGRATE] -> VMA 22: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  695.330021] MattX:[MIGRATE] -> VMA 22 finished. Sent 2 pages.
+      [  695.331320] MattX:[MIGRATE] Processing VMA 24/24: 0x7ffe82974000 - 0x7ffe82995000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [  695.332865] MattX:[MIGRATE] -> VMA 23: Entering page extraction loop...
+      [  695.333993] MattX:[MIGRATE] -> VMA 23: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [  695.337319] MattX:[MIGRATE] -> VMA 23 finished. Sent 33 pages.
+      [  695.338893] MattX:[MIGRATE] Pipeline stats: 614 total, 608 sent, 6 skipped, 0 net errors
+      [  695.340196] MattX:[MIGRATE] =====================================================
+      [  695.341279] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [  695.342383] MattX:[REGISTRY] PID 7950 registered as Exported to Node 378.
+      [  697.044264] MattX: [FUNERAL] Received exit notice for Deputy PID 7950 from Node 378
+      [  697.045312] MattX: [FUNERAL] Laying Deputy PID 7950 to rest (Sending SIGKILL)...
+  mattx@almanode2 (x.x.x.x) dmesg — migration (almanode1 -> almanode2):
+      [30992.595528] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 6879
+      [31006.056362] MattX:[IMPORT] Received Blueprint for PID 5345. Saving to pending...
+      [31147.311588] MattX:[IMPORT] Received Blueprint for PID 7950. Saving to pending...
+      [31147.318015] MattX:[DRAIN] Injected Task Work into PID 7281. Waiting for stable state...
+      [31147.329335] MattX:[DRAIN] PID 7281 is now stable and frozen at the user-space boundary!
+      [31147.342642] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x400000 (res: 0)
+      [31147.347571] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x401000 (res: 0)
+      [31147.352507] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x402000 (res: 0)
+      [31147.357663] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x403000 (res: 0)
+      [31147.364109] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x404000 (res: 0)
+      [31147.369576] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x22b24000 (res: 0)
+      [31147.370962] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x22b25000 (res: 0)
+      [31147.372590] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x22b26000 (res: 0)
+      [31147.374473] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x22b27000 (res: 0)
+      [31147.376091] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x22b28000 (res: 0)
+      [31147.494765] MattX:[IMPORT] All memory transferred! Total pages injected: 0
+      [31147.496042] MattX:[IMPORT] Commencing full brain transplant on PID 7281...
+      [31147.497411] MattX:[IMPORT] Successfully injected 1 Fake FDs!
+      [31147.498850] MattX:[IMPORT] Registered clock-offset fixup for PID 7281: -32746829519131712 ns (1 threads)
+      [31147.500851] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 7281
+[FAIL] dsm-2: dsmtest did not reach completion within the wait budget after migration -- suspected hang (ps liveness alone would not have caught this, see header comment)
+  Log tail:
+    ==================================================
+    dsmtest: Spawned child worker with PID 7950.
+    dsmtest: Parent exiting to detach from terminal.
+    ==================================================
+    [Manager] Waiting for worker. Press Ctrl-C to terminate the cluster job.
+    [Manager] Worker finished. Exiting.
+
+=== Test 3: migrate dsmtest worker BEFORE any SHM syscall (shmget/shmat wormhole) ===
+  Confirmed: worker still in its startup countdown, no SHM syscalls made yet.
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dsmtest [PID 10746]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  Waiting up to 130s for completion on whichever node it lands on...
+
+  --- ps snapshot: test 3, after wait ended (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode1)
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — test 3 migration (almanode1 -> almanode2):
+      [  842.374151] MattX:[MIGRATE] -> VMA 19: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [  842.376728] MattX:[MIGRATE] -> VMA 19 finished. Sent 11 pages.
+      [  842.377924] MattX:[MIGRATE] Processing VMA 21/23: 0x7f5f5111d000 - 0x7f5f5111f000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [  842.379291] MattX:[MIGRATE] -> VMA 20: Entering page extraction loop...
+      [  842.380235] MattX:[MIGRATE] -> VMA 20: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  842.381702] MattX:[MIGRATE] -> VMA 20 finished. Sent 2 pages.
+      [  842.382896] MattX:[MIGRATE] Processing VMA 22/23: 0x7f5f5111f000 - 0x7f5f51121000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [  842.384268] MattX:[MIGRATE] -> VMA 21: Entering page extraction loop...
+      [  842.385209] MattX:[MIGRATE] -> VMA 21: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  842.386657] MattX:[MIGRATE] -> VMA 21 finished. Sent 2 pages.
+      [  842.387864] MattX:[MIGRATE] Processing VMA 23/23: 0x7ffc99be7000 - 0x7ffc99c08000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [  842.389244] MattX:[MIGRATE] -> VMA 22: Entering page extraction loop...
+      [  842.390201] MattX:[MIGRATE] -> VMA 22: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [  842.392154] MattX:[MIGRATE] -> VMA 22 finished. Sent 33 pages.
+      [  842.393000] MattX:[MIGRATE] Pipeline stats: 613 total, 607 sent, 6 skipped, 0 net errors
+      [  842.394037] MattX:[MIGRATE] =====================================================
+      [  842.395017] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [  842.395969] MattX:[REGISTRY] PID 10746 registered as Exported to Node 378.
+      [  844.500500] MattX: [FUNERAL] Received exit notice for Deputy PID 10746 from Node 378
+      [  844.501515] MattX: [FUNERAL] Laying Deputy PID 10746 to rest (Sending SIGKILL)...
+  mattx@almanode2 (x.x.x.x) dmesg — test 3 migration (almanode1 -> almanode2):
+      [31147.498850] MattX:[IMPORT] Registered clock-offset fixup for PID 7281: -32746829519131712 ns (1 threads)
+      [31147.500851] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 7281
+      [31294.384825] MattX:[IMPORT] Received Blueprint for PID 10746. Saving to pending...
+      [31294.390676] MattX:[DRAIN] Injected Task Work into PID 7435. Waiting for stable state...
+      [31294.402532] MattX:[DRAIN] PID 7435 is now stable and frozen at the user-space boundary!
+      [31294.413694] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x400000 (res: 0)
+      [31294.418839] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x401000 (res: 0)
+      [31294.424213] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x402000 (res: 0)
+      [31294.430216] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x403000 (res: 0)
+      [31294.436530] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x404000 (res: 0)
+      [31294.442071] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x28bd8000 (res: 0)
+      [31294.444547] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x28bd9000 (res: 0)
+      [31294.445605] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x28bda000 (res: 0)
+      [31294.447309] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x28bdb000 (res: 0)
+      [31294.448912] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x28bdc000 (res: 0)
+      [31294.548355] MattX:[IMPORT] All memory transferred! Total pages injected: 0
+      [31294.549325] MattX:[IMPORT] Commencing full brain transplant on PID 7435...
+      [31294.550365] MattX:[IMPORT] Successfully injected 1 Fake FDs!
+      [31294.551697] MattX:[IMPORT] Registered clock-offset fixup for PID 7435: -32746682466474917 ns (1 threads)
+      [31294.553239] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 7435
+[FAIL] dsm-3: dsmtest did not reach completion within the wait budget after early migration -- suspected hang (matches known issue brainmatt/mattx#18: shmget() through the wormhole fails with EFAULT and the worker never proceeds)
+  Log tail:
+    ==================================================
+    dsmtest: Spawned child worker with PID 10746.
+    dsmtest: Parent exiting to detach from terminal.
+    ==================================================
+    [Manager] Waiting for worker. Press Ctrl-C to terminate the cluster job.
+    [Manager] Worker finished. Exiting.
+[PASS] dsm-2/3: no kernel oops on almanode1
+[PASS] dsm-2/3: no kernel oops on almanode2
+
+==============================
+DSM Results: 4 passed, 2 failed
+==============================
