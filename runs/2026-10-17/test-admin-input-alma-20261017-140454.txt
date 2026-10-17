@@ -1,0 +1,18 @@
+==============================
+mattx commit: b86787c364d2a3cb4389df4f754650d2145302c2
+mattx source: KrisBuytaert/mattx@fix/admin-migrate-nonexistent-pid
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== /proc/mattx/admin input handling on almanode1 (peer node id: 378) ===
+
+--- #27: migrate to a PID that does not exist ---
+[PASS] admin-27 (nonexistent pid): almanode1 survived
+
+--- #37: migrate a zombie (exited task, kernel stack already freed) ---
+  zombie PID 2528
+Read from remote host x.x.x.x: Connection reset by peer
+client_loop: send disconnect: Broken pipe
+[FAIL] admin-37 (zombie pid 2528): almanode1 rebooted (boot_id changed) -- kernel crash
+
+Admin-Input Results: 1 passed, 1 failed
