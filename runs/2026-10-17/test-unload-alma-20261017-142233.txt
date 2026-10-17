@@ -1,0 +1,14 @@
+==============================
+mattx commit: 312b0af967d424066b33fd00a38c34e613289ae4
+mattx source: KrisBuytaert/mattx@fix/capture-exited-task
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== Unload test (mattx#36): 3 stop/start cycles of mattx on almanode1 ===
+
+--- cycle 1 ---
+Read from remote host x.x.x.x: Connection reset by peer
+client_loop: send disconnect: Broken pipe
+[FAIL] unload-1: connection to almanode1 lost or hung while unloading (rc=255) -- the node crashed (mattx#36) or wedged
+  (waiting for almanode1 to come back before stopping the test)
+
+Unload Results: 0 passed, 1 failed
