@@ -1,0 +1,13 @@
+==============================
+mattx commit: 2770394575aabd29901936d673144af9bc6c228b
+mattx source: brainmatt/mattx@main
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== MattXFS umount after lookups (mattx#31): 3 cycles on almanode1 ===
+
+--- cycle 1 ---
+[PASS] umount-1: looked up 396 directory entries below /mattxfs
+[FAIL] umount-1: connection to almanode1 lost during umount -- the node crashed (mattx#31)
+  (waiting for almanode1 to come back before stopping the test)
+
+MattXFS-Umount Results: 1 passed, 1 failed
