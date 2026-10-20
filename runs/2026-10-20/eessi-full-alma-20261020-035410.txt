@@ -1,0 +1,1429 @@
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+
+######################################
+# ESPResSo
+######################################
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== ESPResSo / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI ESPResSo module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+[PASS] espresso-1: ESPResSo module loads on almanode1
+
+=== Test 2: plate_capacitor.py (MPI, 2 ranks) ===
+  Syncing demo scripts to almanode1...
+  Launching plate_capacitor.py on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+  Running: mpirun -np 2 pypresso plate_capacitor.py
+almanode1.local:rank0.python: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank0: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank0.python: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1.python: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1.python: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank0: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)almanode1.local:rank0: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank0.python: Failed to get eth0 (unit 0) cpu set
+
+almanode1.local:rank1.python: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank0.python: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank0: PSM3 can't open nic unit: 0 (err=23)
+almanode1.local:rank1.python: Failed to get eth0 (unit 0) cpu set
+almanode1.local:rank1: PSM3 can't open nic unit: 0 (err=23)
+WARNING: Statistics of tuning samples is very bad.
+WARNING: Statistics of tuning samples is very bad.
+WARNING: Statistics of tuning samples is very bad.
+WARNING: Statistics of tuning samples is very bad.
+WARNING: Statistics of tuning samples is very bad.
+WARNING: Statistics of tuning samples is very bad.
+WARNING: Statistics of tuning samples is very bad.
+/tmp/eessi-espresso/plate_capacitor.py:77: UserWarning: The figure layout has changed to tight
+  plt.tight_layout()
+[PASS] espresso-2: plate_capacitor.py completed and produced output on almanode1
+
+=== Test 3: ESPResSo migration via MattX ===
+  Starting pypresso migtest on almanode1 (x.x.x.x)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'pypresso|espresso_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pypresso|espresso_migtest' | grep -v grep
+        18630       1 mattx    Sl    6.0       00:08 /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/Python/3.11.3-GCCcore-12.3.0/bin/python /tmp/espresso_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pypresso|espresso_migtest' | grep -v grep
+      (no process matching 'pypresso|espresso_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pypresso|espresso_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pypresso|espresso_migtest' | grep -v grep
+        18630   18630       1 mattx    Sl    5.6 hrtimer_nanosleep        /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/Python/3.11.3-GCCcore-12.3.0/bin/python /tmp/espresso_migtest.py
+        18630   18637       1 mattx    Sl    0.0 poll_schedule_timeout.co /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/Python/3.11.3-GCCcore-12.3.0/bin/python /tmp/espresso_migtest.py
+        18630   18638       1 mattx    Sl    0.0 ep_poll                  /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/Python/3.11.3-GCCcore-12.3.0/bin/python /tmp/espresso_migtest.py
+  Log tail from almanode1:
+    almanode1.local:pid18630.python: Failed to get eth0 (unit 0) cpu set
+    ESPResSo migtest PID=18630 starting on almanode1.local
+    step 0/500  node=almanode1.local  pid=18630
+    step 10/500  node=almanode1.local  pid=18630
+    step 20/500  node=almanode1.local  pid=18630
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pypresso (ESPResSo) [PID 18630]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'pypresso|espresso_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pypresso|espresso_migtest' | grep -v grep
+        18630       1 mattx    Tl    2.8       00:17 /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/Python/3.11.3-GCCcore-12.3.0/bin/python /tmp/espresso_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pypresso|espresso_migtest' | grep -v grep
+      (no process matching 'pypresso|espresso_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pypresso|espresso_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pypresso|espresso_migtest' | grep -v grep
+        18630   18630       1 mattx    Tl    2.7 do_signal_stop           /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/Python/3.11.3-GCCcore-12.3.0/bin/python /tmp/espresso_migtest.py
+        18630   18637       1 mattx    Tl    0.0 do_signal_stop           /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/Python/3.11.3-GCCcore-12.3.0/bin/python /tmp/espresso_migtest.py
+        18630   18638       1 mattx    Tl    0.0 do_signal_stop           /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/Python/3.11.3-GCCcore-12.3.0/bin/python /tmp/espresso_migtest.py
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [  848.118023] MattX:[MIGRATE] -> VMA 816: Entering page extraction loop...
+      [  848.119520] MattX:[MIGRATE] -> VMA 816: Sending page 0/7 (Offset: 0x0, Payload: 4112 bytes)...
+      [  848.121946] MattX:[MIGRATE] -> VMA 816 finished. Sent 7 pages.
+      [  848.123785] MattX:[MIGRATE] Processing VMA 818/827: 0x7f1a3c98a000 - 0x7f1a3c991000 (Size: 28672 bytes, ~7 pages, Flags: 0x8100073)
+      [  848.125972] MattX:[MIGRATE] -> VMA 817: Entering page extraction loop...
+      [  848.127464] MattX:[MIGRATE] -> VMA 817: Sending page 0/7 (Offset: 0x0, Payload: 4112 bytes)...
+      [  848.133729] MattX:[MIGRATE] -> VMA 817 finished. Sent 7 pages.
+      [  848.134944] MattX:[MIGRATE] Processing VMA 819/827: 0x7f1a3c991000 - 0x7f1a3c995000 (Size: 16384 bytes, ~4 pages, Flags: 0xc044411)
+      [  848.136850] MattX:[MIGRATE] -> VMA 818: Entering page extraction loop...
+      [  848.145626] MattX:[MIGRATE] -> VMA 818 finished. Sent 0 pages.
+      [  848.147090] MattX:[MIGRATE] Processing VMA 820/827: 0x7f1a3c995000 - 0x7f1a3c997000 (Size: 8192 bytes, ~2 pages, Flags: 0xc044411)
+      [  848.148959] MattX:[MIGRATE] -> VMA 819: Entering page extraction loop...
+      [  848.153624] MattX:[MIGRATE] -> VMA 819 finished. Sent 0 pages.
+      [  848.155359] MattX:[MIGRATE] Processing VMA 821/827: 0x7f1a3c997000 - 0x7f1a3c999000 (Size: 8192 bytes, ~2 pages, Flags: 0x8040075)
+      [  848.157558] MattX:[MIGRATE] -> VMA 820: Entering page extraction loop...
+      [  848.159019] MattX:[MIGRATE] -> VMA 820: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  848.163222] MattX:[MIGRATE] -> VMA 820 finished. Sent 2 pages.
+      [  848.165487] MattX:[MIGRATE] Processing VMA 822/827: 0x7f1a3c999000 - 0x7f1a3c99a000 (Size: 4096 bytes, ~1 pages, Flags: 0x8000071)
+      [  848.168666] MattX:[MIGRATE] -> VMA 821: Entering page extraction loop...
+      [  848.171094] MattX:[MIGRATE] -> VMA 821: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [22734.370282] MattX:[IMPORT] Successfully injected 5 Fake FDs!
+      [22734.374282] MattX:[IMPORT] Registered clock-offset fixup for PID 24922: 22043117017950 ns (1 threads)
+      [22734.375982] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 24922
+      [22757.228323] MattX:[IMPORT] Received Blueprint for PID 14230. Saving to pending...
+      [22757.233602] MattX:[DRAIN] Injected Task Work into PID 25310. Waiting for stable state...
+      [22757.245608] MattX:[DRAIN] PID 25310 is now stable and frozen at the user-space boundary!
+      [22757.429505] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [22757.431264] MattX:[IMPORT] Commencing full brain transplant on PID 25310...
+      [22757.433187] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [22757.436949] MattX:[IMPORT] Registered clock-offset fixup for PID 25310: 22043074806875 ns (1 threads)
+      [22757.438656] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 25310
+      [22757.439988] MattX:[IMPORT] Armed DSM Tripwire at 0x7f0c85d8a000 (ID: 3, Size: 4096)
+      [22882.679193] MattX:[IMPORT] Received Blueprint for PID 18630. Saving to pending...
+      [22882.693169] MattX:[DRAIN] Injected Task Work into PID 25911. Waiting for stable state...
+      [22882.708178] MattX:[DRAIN] PID 25911 is now stable and frozen at the user-space boundary!
+      [22891.866846] MattX:[IMPORT] All memory transferred! Total pages injected: 156503
+      [22891.868112] MattX:[IMPORT] Commencing full brain transplant on PID 25911...
+      [22891.869449] MattX:[IMPORT] Successfully injected 18 Fake FDs!
+      [22891.873248] MattX:[IMPORT] Registered clock-offset fixup for PID 25911: 22052083784187 ns (3 threads)
+      [22891.874705] MattX:[IMPORT] IT'S ALIVE! Waking 3 threads in Gang PID 25911
+[FAIL] espresso-3: ESPResSo process not actually running on almanode2 after migration
+  dmesg tail on almanode1:
+    [  848.188610] MattX:[MIGRATE] Processing VMA 824/827: 0x7f1a3c9bf000 - 0x7f1a3c9ca000 (Size: 45056 bytes, ~11 pages, Flags: 0x8000071)
+    [  848.191801] MattX:[MIGRATE] -> VMA 823: Entering page extraction loop...
+    [  848.194230] MattX:[MIGRATE] -> VMA 823: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+    [  848.197379] MattX:[MIGRATE] -> VMA 823 finished. Sent 11 pages.
+    [  848.198931] MattX:[MIGRATE] Processing VMA 825/827: 0x7f1a3c9ca000 - 0x7f1a3c9cc000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+    [  848.200533] MattX:[MIGRATE] -> VMA 824: Entering page extraction loop...
+    [  848.201631] MattX:[MIGRATE] -> VMA 824: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [  848.203525] MattX:[MIGRATE] -> VMA 824 finished. Sent 2 pages.
+    [  848.204973] MattX:[MIGRATE] Processing VMA 826/827: 0x7f1a3c9cc000 - 0x7f1a3c9ce000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+    [  848.206565] MattX:[MIGRATE] -> VMA 825: Entering page extraction loop...
+    [  848.207678] MattX:[MIGRATE] -> VMA 825: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [  848.209645] MattX:[MIGRATE] -> VMA 825 finished. Sent 2 pages.
+    [  848.211131] MattX:[MIGRATE] Processing VMA 827/827: 0x7ffeb271d000 - 0x7ffeb2782000 (Size: 413696 bytes, ~101 pages, Flags: 0x100173)
+    [  848.212819] MattX:[MIGRATE] -> VMA 826: Entering page extraction loop...
+    [  848.213973] MattX:[MIGRATE] -> VMA 826: Sending page 0/101 (Offset: 0x0, Payload: 4112 bytes)...
+    [  848.216783] MattX:[MIGRATE] -> VMA 826 finished. Sent 101 pages.
+    [  848.217859] MattX:[MIGRATE] Pipeline stats: 156509 total, 156503 sent, 6 skipped, 0 net errors
+    [  848.219215] MattX:[MIGRATE] =====================================================
+    [  848.220439] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+    [  848.221650] MattX:[REGISTRY] PID 18630 registered as Exported to Node 378.
+[PASS] espresso-3: no kernel oops on almanode1
+[PASS] espresso-3: no kernel oops on almanode2
+
+==============================
+ESPResSo Results: 4 passed, 1 failed
+==============================
+
+######################################
+# GROMACS
+######################################
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== GROMACS / EESSI tests on alma cluster (EESSI 2025.06) ===
+
+=== Test 1: EESSI GROMACS module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2025.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2025.06), have fun!
+                 :-) GROMACS - gmx, 2025.2-EasyBuild_5.1.2 (-:
+
+Executable:   /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/GROMACS/2025.2-foss-2025a/bin/gmx
+[PASS] gromacs-1: GROMACS module (GROMACS/2025.2-foss-2025a) loads on almanode1
+
+=== Test 2: GROMACS ion_channel benchmark (1000 steps) ===
+  Fetching PRACE test case on almanode1 (may take a minute)...
+  Running ion_channel benchmark on almanode1 (x.x.x.x) — 1000 steps...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2025.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2025.06), have fun!
+              :-) GROMACS - gmx mdrun, 2025.2-EasyBuild_5.1.2 (-:
+
+Executable:   /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/GROMACS/2025.2-foss-2025a/bin/gmx
+Data prefix:  /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/GROMACS/2025.2-foss-2025a
+Working dir:  /tmp/eessi-gromacs
+Command line:
+  gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 1000 -g logfile -ntmpi 1 -ntomp 2
+
+Reading file ion_channel.tpr, VERSION 5.1.4 (single precision)
+Note: file tpx version 103, software tpx version 137
+Overriding nsteps with value passed on the command line: 1000 steps, 2.5 ps
+Changing nstlist from 10 to 80, rlist from 1 to 1.131
+
+
+Update groups can not be used for this system because there are three or more consecutively coupled constraints
+
+Using 1 MPI thread
+Using 2 OpenMP threads 
+
+starting mdrun 'Protein'
+1000 steps,      2.5 ps.
+
+step 500: resetting all time and cycle counters
+
+               Core t (s)   Wall t (s)        (%)
+       Time:      103.060       51.530      200.0
+                 (ns/day)    (hour/ns)
+Performance:        2.100       11.428
+
+GROMACS reminds you: "Here's the Way It Might End" (G. Michael)
+
+[PASS] gromacs-2: ion_channel benchmark completed on almanode1 (Performance:        2.100       11.428)
+
+=== Test 3: GROMACS round-trip migration via MattX ===
+  Starting gmx mdrun on almanode1 (x.x.x.x) — 20000 steps (round-trip migration target)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        19747       1 mattx    Rl    116       00:10 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'gmx mdrun') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        19747   19747       1 mattx    Rl   94.5 -                        gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+        19747   19749       1 mattx    Rl   42.4 -                        gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  Log tail from almanode1:
+    Using 1 MPI thread
+    Using 2 OpenMP threads 
+    
+    starting mdrun 'Protein'
+    20000 steps,     50.0 ps.
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun [PID 19747]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        19747       1 mattx    Tl   73.6       00:21 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        26344       2 mattx    Rl    102       00:08 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'gmx mdrun') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        19747   19747       1 mattx    Tl   53.1 do_signal_stop           gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+        19747   19749       1 mattx    Tl   21.8 do_signal_stop           gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 1000.249152] MattX:[MIGRATE] Processing VMA 254/257: 0x7f54c36de000 - 0x7f54c36e0000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 1000.250778] MattX:[MIGRATE] -> VMA 253: Entering page extraction loop...
+      [ 1000.251898] MattX:[MIGRATE] -> VMA 253: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1000.253930] MattX:[MIGRATE] -> VMA 253 finished. Sent 2 pages.
+      [ 1000.255513] MattX:[MIGRATE] Processing VMA 255/257: 0x7f54c36e0000 - 0x7f54c36e1000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [ 1000.257108] MattX:[MIGRATE] -> VMA 254: Entering page extraction loop...
+      [ 1000.258293] MattX:[MIGRATE] -> VMA 254: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1000.260287] MattX:[MIGRATE] -> VMA 254 finished. Sent 1 pages.
+      [ 1000.261769] MattX:[MIGRATE] Processing VMA 256/257: 0x7f54c36e1000 - 0x7f54c36e2000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [ 1000.263505] MattX:[MIGRATE] -> VMA 255: Entering page extraction loop...
+      [ 1000.264665] MattX:[MIGRATE] -> VMA 255: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1000.266511] MattX:[MIGRATE] -> VMA 255 finished. Sent 1 pages.
+      [ 1000.267934] MattX:[MIGRATE] Processing VMA 257/257: 0x7fff4ed69000 - 0x7fff4edbb000 (Size: 335872 bytes, ~82 pages, Flags: 0x100173)
+      [ 1000.269684] MattX:[MIGRATE] -> VMA 256: Entering page extraction loop...
+      [ 1000.272394] MattX:[MIGRATE] -> VMA 256: Sending page 0/82 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1000.274828] MattX:[MIGRATE] -> VMA 256 finished. Sent 82 pages.
+      [ 1000.275916] MattX:[MIGRATE] Pipeline stats: 154644 total, 154638 sent, 6 skipped, 0 net errors
+      [ 1000.277328] MattX:[MIGRATE] =====================================================
+      [ 1000.278583] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 1000.279781] MattX:[REGISTRY] PID 19747 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [22757.433187] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [22757.436949] MattX:[IMPORT] Registered clock-offset fixup for PID 25310: 22043074806875 ns (1 threads)
+      [22757.438656] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 25310
+      [22757.439988] MattX:[IMPORT] Armed DSM Tripwire at 0x7f0c85d8a000 (ID: 3, Size: 4096)
+      [22882.679193] MattX:[IMPORT] Received Blueprint for PID 18630. Saving to pending...
+      [22882.693169] MattX:[DRAIN] Injected Task Work into PID 25911. Waiting for stable state...
+      [22882.708178] MattX:[DRAIN] PID 25911 is now stable and frozen at the user-space boundary!
+      [22891.866846] MattX:[IMPORT] All memory transferred! Total pages injected: 156503
+      [22891.868112] MattX:[IMPORT] Commencing full brain transplant on PID 25911...
+      [22891.869449] MattX:[IMPORT] Successfully injected 18 Fake FDs!
+      [22891.873248] MattX:[IMPORT] Registered clock-offset fixup for PID 25911: 22052083784187 ns (3 threads)
+      [22891.874705] MattX:[IMPORT] IT'S ALIVE! Waking 3 threads in Gang PID 25911
+      [23039.814388] MattX:[IMPORT] Received Blueprint for PID 19747. Saving to pending...
+      [23039.833284] MattX:[DRAIN] Injected Task Work into PID 26344. Waiting for stable state...
+      [23039.846128] MattX:[DRAIN] PID 26344 is now stable and frozen at the user-space boundary!
+      [23043.925015] MattX:[IMPORT] All memory transferred! Total pages injected: 154638
+      [23043.927240] MattX:[IMPORT] Commencing full brain transplant on PID 26344...
+      [23043.928418] MattX:[IMPORT] Successfully injected 5 Fake FDs!
+      [23043.931422] MattX:[IMPORT] Registered clock-offset fixup for PID 26344: 22046996449691 ns (2 threads)
+      [23043.932711] MattX:[IMPORT] IT'S ALIVE! Waking 2 threads in Gang PID 26344
+  Log tail (stdout forwarded via MattX wormhole):
+    Using 1 MPI thread
+    Using 2 OpenMP threads 
+    
+    starting mdrun 'Protein'
+    20000 steps,     50.0 ps.
+[PASS] gromacs-3: gmx mdrun migrated to almanode2
+
+  --- ps snapshot: 15s after outbound migration (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        19747       1 mattx    Tl   40.0       00:39 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        26344       2 mattx    Rl    161       00:26 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+[PASS] gromacs-3: gmx mdrun still running on almanode2 after 15s (ener.edr 0 -> 0 bytes, informational)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun [PID 19747]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after return migration (almanode2 -> almanode1) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        19747       1 mattx    Rl   53.4       00:49 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+
+  --- per-THREAD snapshot on almanode2 (pattern: 'gmx mdrun') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode2 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no threads matching 'gmx mdrun' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — return migration (almanode2 -> almanode1):
+      [ 1024.301204] MattX:[RECALL] Carving missing memory hole: 0x7f41f4cf4000 (Size: 159744)
+      [ 1024.302773] MattX:[RECALL] Carving missing memory hole: 0x7f41f4d1b000 (Size: 45056)
+      [ 1024.304210] MattX:[RECALL] Carving missing memory hole: 0x7f41f4d26000 (Size: 8192)
+      [ 1024.305561] MattX:[RECALL] Carving missing memory hole: 0x7f41f4d28000 (Size: 8192)
+      [ 1024.306877] MattX:[RECALL] Carving missing memory hole: 0x7f54a8b06000 (Size: 55549952)
+      [ 1024.308246] MattX:[RECALL] Carving missing memory hole: 0x7f54aca48000 (Size: 305438720)
+      [ 1024.310656] MattX:[RECALL] Carving missing memory hole: 0x7f54bee21000 (Size: 10895360)
+      [ 1024.311907] MattX:[RECALL] Carving missing memory hole: 0x7f54bf8f3000 (Size: 4268032)
+      [ 1024.313330] MattX:[RECALL] Carving missing memory hole: 0x7f54bfd0d000 (Size: 3260416)
+      [ 1024.314793] MattX:[RECALL] Carving missing memory hole: 0x7f54c00ae000 (Size: 7716864)
+      [ 1024.316303] MattX:[RECALL] Carving missing memory hole: 0x7f54c088a000 (Size: 10821632)
+      [ 1024.317929] MattX:[RECALL] Carving missing memory hole: 0x7f54c12df000 (Size: 5795840)
+      [ 1024.319089] MattX:[RECALL] Carving missing memory hole: 0x7f54c1868000 (Size: 31268864)
+      [ 1024.321909] MattX:[RECALL] Carving missing memory hole: 0x7f54c3645000 (Size: 643072)
+      [ 1024.322872] MattX:[RECALL] Carving missing memory hole: 0x7ffcd0023000 (Size: 135168)
+      [ 1024.324258] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+      [ 1026.902740] MattX:[IMPORT] Return memory transferred successfully! Pages: 162049
+      [ 1026.904217] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7f54c21fe755
+      [ 1026.905693] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 19747: -22039954328945 ns (2 threads)
+      [ 1026.907648] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 19747
+  mattx@almanode2 (x.x.x.x) dmesg — return migration (almanode2 -> almanode1):
+      [23070.503376] MattX:[MIGRATE] -> VMA 49: Sending page 6912/7635 (Offset: 0x1b00000, Payload: 4112 bytes)...
+      [23070.510080] MattX:[MIGRATE] -> VMA 49: Sending page 7168/7635 (Offset: 0x1c00000, Payload: 4112 bytes)...
+      [23070.514755] MattX:[MIGRATE] -> VMA 49: Sending page 7424/7635 (Offset: 0x1d00000, Payload: 4112 bytes)...
+      [23070.518879] MattX:[MIGRATE] -> VMA 49 finished. Sent 7635 pages.
+      [23070.520372] MattX:[MIGRATE] Processing VMA 51/53: 0x7f54c363b000 - 0x7f54c36e2000 (Size: 684032 bytes, ~167 pages, Flags: 0x8100077)
+      [23070.522420] MattX:[MIGRATE] -> VMA 50: Entering page extraction loop...
+      [23070.523684] MattX:[MIGRATE] -> VMA 50: Sending page 0/167 (Offset: 0x0, Payload: 4112 bytes)...
+      [23070.527346] MattX:[MIGRATE] -> VMA 50 finished. Sent 167 pages.
+      [23070.528590] MattX:[MIGRATE] Processing VMA 52/53: 0x7ffcd0023000 - 0x7ffcd0044000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [23070.530511] MattX:[MIGRATE] -> VMA 51: Entering page extraction loop...
+      [23070.531736] MattX:[MIGRATE] -> VMA 51: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [23070.533956] MattX:[MIGRATE] -> VMA 51 finished. Sent 33 pages.
+      [23070.536792] MattX:[MIGRATE] Processing VMA 53/53: 0x7fff4ed69000 - 0x7fff4edbb000 (Size: 335872 bytes, ~82 pages, Flags: 0x8100177)
+      [23070.538641] MattX:[MIGRATE] -> VMA 52: Entering page extraction loop...
+      [23070.539832] MattX:[MIGRATE] -> VMA 52: Sending page 0/82 (Offset: 0x0, Payload: 4112 bytes)...
+      [23070.542505] MattX:[MIGRATE] -> VMA 52 finished. Sent 82 pages.
+      [23070.543595] MattX:[MIGRATE] Pipeline stats: 162049 total, 162049 sent, 0 skipped, 0 net errors
+      [23070.544986] MattX:[MIGRATE] =====================================================
+      [23070.546243] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [23070.547615] MattX:[RECALL] Executing local Surrogate PID 26344...
+  Log tail (stdout forwarded via MattX wormhole):
+    Using 1 MPI thread
+    Using 2 OpenMP threads 
+    
+    starting mdrun 'Protein'
+    20000 steps,     50.0 ps.
+[PASS] gromacs-4: gmx mdrun migrated back to almanode1
+
+  --- ps snapshot: 15s after return migration (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        19747       1 mattx    Rl   89.0       01:06 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_mig -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+[PASS] gromacs-4: gmx mdrun still running on almanode1 after 15s (round trip complete, ener.edr 0 -> 0 bytes, informational)
+[PASS] gromacs-4: no kernel oops on almanode1
+[PASS] gromacs-4: no kernel oops on almanode2
+
+=== Test 5: GROMACS return migration via 'expel' ===
+  Starting a fresh gmx mdrun on almanode1 for the expel round-trip...
+
+  ─────────────────────────────────────────────────────
+  Starting migration of gmx mdrun (expel test) [PID 20763]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (expel test) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        20763       1 mattx    Tl   66.5       00:19 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        26823       2 mattx    Rl    100       00:09 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+[PASS] gromacs-5: gmx mdrun migrated to almanode2 (expel test)
+
+  --- ps snapshot: 15s after outbound migration (expel test, settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        20763       1 mattx    Tl   35.9       00:35 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        26823       2 mattx    Sl    159       00:25 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+[PASS] gromacs-5: gmx mdrun still running on almanode2 after 15s (expel test, ener.edr 0 -> 0 bytes, informational)
+  Expelling local Surrogate PID 26823 on almanode2 (blocks until finished)...
+
+  --- ps snapshot: immediately after expel (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        20763       1 mattx    Rl   33.6       00:41 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+[PASS] gromacs-5: gmx mdrun expelled back to almanode1
+
+  --- ps snapshot: 15s after expel (settled state) (pattern: 'gmx mdrun') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+        20763       1 mattx    Sl   78.0       00:57 gmx mdrun -s ion_channel.tpr -maxh 0.50 -resethway -noconfout -nsteps 20000 -g logfile_expel -ntmpi 1 -ntomp 2
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'gmx mdrun' | grep -v grep
+      (no process matching 'gmx mdrun' on almanode2)
+[PASS] gromacs-5: gmx mdrun still running on almanode1 after 15s (expel round trip complete, ener.edr 0 -> 0 bytes, informational)
+[PASS] gromacs-5: no kernel oops on almanode1
+[PASS] gromacs-5: no kernel oops on almanode2
+
+==============================
+GROMACS Results: 14 passed, 0 failed
+==============================
+
+######################################
+# QuantumESPRESSO
+######################################
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== QuantumESPRESSO / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI QuantumESPRESSO module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+
+     Program PWSCF v.7.3.1 starts on 20Oct2026 at  1:59:28 
+
+/cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/QuantumESPRESSO/7.3.1-foss-2023a/bin/pw.x
+[PASS] qe-1: QuantumESPRESSO module (QuantumESPRESSO/7.3.1-foss-2023a) loads on almanode1
+
+=== Test 2: Si SCF functional run (serial pw.x) ===
+  Fetching Si pseudopotential on almanode1...
+  Running quick Si SCF on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+[PASS] qe-2: Si SCF converged on almanode1 (!    total energy              =     -15.84756981 Ry)
+
+=== Test 3: QuantumESPRESSO round-trip migration via MattX ===
+  Starting pw.x SCF on almanode1 (x.x.x.x) -- slow-converging migration target...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'pw\.x') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pw\.x' | grep -v grep
+        22033       1 mattx    Rl    182       00:10 pw.x
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pw\.x' | grep -v grep
+      (no process matching 'pw\.x' on almanode2)
+  Log tail from almanode1 (iteration count so far):
+    iterations: 4
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pw.x [PID 22033]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'pw\.x') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pw\.x' | grep -v grep
+        22033       1 mattx    Tl    105       00:20 pw.x
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pw\.x' | grep -v grep
+        27473       2 mattx    Tl    0.3       00:08 pw.x
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 1150.445676] MattX:[MIGRATE] -> VMA 540: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1150.448085] MattX:[MIGRATE] -> VMA 540 finished. Sent 11 pages.
+      [ 1150.449808] MattX:[MIGRATE] Processing VMA 542/544: 0x7f05dbac1000 - 0x7f05dbac3000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 1150.451875] MattX:[MIGRATE] -> VMA 541: Entering page extraction loop...
+      [ 1150.453319] MattX:[MIGRATE] -> VMA 541: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1150.455597] MattX:[MIGRATE] -> VMA 541 finished. Sent 2 pages.
+      [ 1150.459171] MattX:[MIGRATE] Processing VMA 543/544: 0x7f05dbac3000 - 0x7f05dbac5000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [ 1150.461151] MattX:[MIGRATE] -> VMA 542: Entering page extraction loop...
+      [ 1150.462594] MattX:[MIGRATE] -> VMA 542: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1150.464924] MattX:[MIGRATE] -> VMA 542 finished. Sent 2 pages.
+      [ 1150.466800] MattX:[MIGRATE] Processing VMA 544/544: 0x7ffe7dbd5000 - 0x7ffe7ddf7000 (Size: 2236416 bytes, ~546 pages, Flags: 0x100177)
+      [ 1150.468822] MattX:[MIGRATE] -> VMA 543: Entering page extraction loop...
+      [ 1150.470228] MattX:[MIGRATE] -> VMA 543: Sending page 0/546 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1150.476865] MattX:[MIGRATE] -> VMA 543: Sending page 256/546 (Offset: 0x100000, Payload: 4112 bytes)...
+      [ 1150.484000] MattX:[MIGRATE] -> VMA 543: Sending page 512/546 (Offset: 0x200000, Payload: 4112 bytes)...
+      [ 1150.485836] MattX:[MIGRATE] -> VMA 543 finished. Sent 546 pages.
+      [ 1150.487394] MattX:[MIGRATE] Pipeline stats: 230826 total, 230820 sent, 6 skipped, 0 net errors
+      [ 1150.490072] MattX:[MIGRATE] =====================================================
+      [ 1150.491359] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 1150.492689] MattX:[REGISTRY] PID 22033 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [23142.958922] MattX:[MIGRATE] Processing VMA 54/55: 0x7ffc75a88000 - 0x7ffc75aa9000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [23142.961029] MattX:[MIGRATE] -> VMA 53: Entering page extraction loop...
+      [23142.962463] MattX:[MIGRATE] -> VMA 53: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [23142.965338] MattX:[MIGRATE] -> VMA 53 finished. Sent 33 pages.
+      [23142.967103] MattX:[MIGRATE] Processing VMA 55/55: 0x7ffce4b5b000 - 0x7ffce4bac000 (Size: 331776 bytes, ~81 pages, Flags: 0x8100177)
+      [23142.969261] MattX:[MIGRATE] -> VMA 54: Entering page extraction loop...
+      [23142.971695] MattX:[MIGRATE] -> VMA 54: Sending page 0/81 (Offset: 0x0, Payload: 4112 bytes)...
+      [23142.974589] MattX:[MIGRATE] -> VMA 54 finished. Sent 81 pages.
+      [23142.976038] MattX:[MIGRATE] Pipeline stats: 159463 total, 159463 sent, 0 skipped, 0 net errors
+      [23142.977713] MattX:[MIGRATE] =====================================================
+      [23142.979242] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [23142.980825] MattX:[RECALL] Executing local Surrogate PID 26823...
+      [23186.556605] MattX:[IMPORT] Received Blueprint for PID 22033. Saving to pending...
+      [23186.572246] MattX:[DRAIN] Injected Task Work into PID 27473. Waiting for stable state...
+      [23186.594581] MattX:[DRAIN] PID 27473 is now stable and frozen at the user-space boundary!
+      [23194.137964] MattX:[IMPORT] All memory transferred! Total pages injected: 230820
+      [23194.139899] MattX:[IMPORT] Commencing full brain transplant on PID 27473...
+      [23194.141350] MattX:[IMPORT] Successfully injected 17 Fake FDs!
+      [23194.147289] MattX:[IMPORT] Registered clock-offset fixup for PID 27473: 22050502922197 ns (4 threads)
+      [23194.148917] MattX:[IMPORT] IT'S ALIVE! Waking 4 threads in Gang PID 27473
+[FAIL] qe-3: pw.x not actually running on almanode2 after migration
+  dmesg tail on almanode1:
+    [ 1150.445676] MattX:[MIGRATE] -> VMA 540: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1150.448085] MattX:[MIGRATE] -> VMA 540 finished. Sent 11 pages.
+    [ 1150.449808] MattX:[MIGRATE] Processing VMA 542/544: 0x7f05dbac1000 - 0x7f05dbac3000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+    [ 1150.451875] MattX:[MIGRATE] -> VMA 541: Entering page extraction loop...
+    [ 1150.453319] MattX:[MIGRATE] -> VMA 541: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1150.455597] MattX:[MIGRATE] -> VMA 541 finished. Sent 2 pages.
+    [ 1150.459171] MattX:[MIGRATE] Processing VMA 543/544: 0x7f05dbac3000 - 0x7f05dbac5000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+    [ 1150.461151] MattX:[MIGRATE] -> VMA 542: Entering page extraction loop...
+    [ 1150.462594] MattX:[MIGRATE] -> VMA 542: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1150.464924] MattX:[MIGRATE] -> VMA 542 finished. Sent 2 pages.
+    [ 1150.466800] MattX:[MIGRATE] Processing VMA 544/544: 0x7ffe7dbd5000 - 0x7ffe7ddf7000 (Size: 2236416 bytes, ~546 pages, Flags: 0x100177)
+    [ 1150.468822] MattX:[MIGRATE] -> VMA 543: Entering page extraction loop...
+    [ 1150.470228] MattX:[MIGRATE] -> VMA 543: Sending page 0/546 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1150.476865] MattX:[MIGRATE] -> VMA 543: Sending page 256/546 (Offset: 0x100000, Payload: 4112 bytes)...
+    [ 1150.484000] MattX:[MIGRATE] -> VMA 543: Sending page 512/546 (Offset: 0x200000, Payload: 4112 bytes)...
+    [ 1150.485836] MattX:[MIGRATE] -> VMA 543 finished. Sent 546 pages.
+    [ 1150.487394] MattX:[MIGRATE] Pipeline stats: 230826 total, 230820 sent, 6 skipped, 0 net errors
+    [ 1150.490072] MattX:[MIGRATE] =====================================================
+    [ 1150.491359] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+    [ 1150.492689] MattX:[REGISTRY] PID 22033 registered as Exported to Node 378.
+[PASS] qe-4: no kernel oops on almanode1
+[PASS] qe-4: no kernel oops on almanode2
+
+==============================
+QuantumESPRESSO Results: 4 passed, 1 failed
+==============================
+
+######################################
+# OpenFOAM
+######################################
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== OpenFOAM / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI OpenFOAM module load + pitzDaily tutorial lookup ===
+[PASS] openfoam-1: OpenFOAM module (OpenFOAM/11-foss-2023a) loads on almanode1, pitzDaily found at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/OpenFOAM/11-foss-2023a/OpenFOAM-11/tutorials/incompressibleFluid/pitzDaily
+
+=== Test 2: pitzDaily functional run (serial simpleFoam, short) ===
+  Running short pitzDaily smoke test on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+New entry endTime         20;
+
+New entry writeInterval   1000;
+
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  11
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 11
+Exec   : blockMesh
+Date   : Oct 20 2026
+Time   : 02:00:15
+Host   : "almanode1.local"
+PID    : 24624
+I/O    : uncollated
+Case   : /tmp/eessi-openfoam/pitzDaily_smoke
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Reading "blockMeshDict"
+
+
+
+--> FOAM FATAL ERROR: 
+Cannot find file "system/blockMeshDict"
+
+
+    From function int main(int, char**)
+    in file blockMesh.C at line 159.
+
+FOAM exiting
+
+
+simpleFoam has been superseded and replaced by the more general
+incompressibleFluid solver module executed by the foamRun application:
+
+    foamRun -solver incompressibleFluid
+
+/*---------------------------------------------------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  11
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/
+Build  : 11
+Exec   : foamRun -solver incompressibleFluid
+Date   : Oct 20 2026
+Time   : 02:00:15
+Host   : "almanode1.local"
+PID    : 24628
+I/O    : uncollated
+Case   : /tmp/eessi-openfoam/pitzDaily_smoke
+nProcs : 1
+sigFpe : Enabling floating point exception trapping (FOAM_SIGFPE).
+fileModificationChecking : Monitoring run-time modified files using timeStampMaster (fileModificationSkew 10)
+allowSystemOperations : Allowing user-supplied system call operations
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+Create time
+
+Create mesh for time = 0
+
+
+
+--> FOAM FATAL ERROR: 
+Cannot find file "points" in directory "polyMesh" in times "0" down to constant
+
+    From function virtual Foam::IOobject Foam::fileOperation::findInstance(const Foam::IOobject&, Foam::scalar, const Foam::word&) const
+    in file global/fileOperations/fileOperation/fileOperation.C at line 869.
+
+FOAM exiting
+
+[FAIL] openfoam-2: pitzDaily smoke test failed or timed out on almanode1
+
+=== Test 3: OpenFOAM round-trip migration via MattX ===
+  Preparing long-running pitzDaily case on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+New entry endTime         5000;
+
+New entry writeInterval   100000;
+
+New entry runTimeModifiable false;
+
+######################################
+# PyTorch
+######################################
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== PyTorch / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI PyTorch module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+2.1.2
+[PASS] pytorch-1: PyTorch module loads on almanode1
+
+=== Test 2: short training loop (functional smoke test) ===
+  Running a 200-epoch smoke-test training loop on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+first_loss=5.1295 last_loss=0.0050
+SMOKE OK
+[PASS] pytorch-2: training loop converges on almanode1
+
+=== Test 3/4: PyTorch training-job migration via MattX ===
+  Starting PyTorch migtest on almanode1 (x.x.x.x)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        26314       1 mattx    S    22.4       00:08 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no process matching 'pytorch_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pytorch_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        26314   26314       1 mattx    S    20.9 hrtimer_nanosleep        python3 /tmp/pytorch_migtest.py
+  Log tail from almanode1:
+    epoch 10/600  node=almanode1.local  pid=26314  loss=23.400255
+    epoch 12/600  node=almanode1.local  pid=26314  loss=22.985620
+    epoch 14/600  node=almanode1.local  pid=26314  loss=22.467949
+    epoch 16/600  node=almanode1.local  pid=26314  loss=21.808033
+    epoch 18/600  node=almanode1.local  pid=26314  loss=20.964151
+
+  ─────────────────────────────────────────────────────
+  Starting migration of python3 (PyTorch) [PID 26314]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        26314       1 mattx    T     7.6       00:23 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        28063       2 mattx    S     0.1       00:14 python3 /tmp/pytorch_migtest.py
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'pytorch_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        26314   26314       1 mattx    T     7.5 do_signal_stop           python3 /tmp/pytorch_migtest.py
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 1216.208973] MattX:[MIGRATE] Processing VMA 876/879: 0x7fba2a874000 - 0x7fba2a87f000 (Size: 45056 bytes, ~11 pages, Flags: 0x8000071)
+      [ 1216.210417] MattX:[MIGRATE] -> VMA 875: Entering page extraction loop...
+      [ 1216.211393] MattX:[MIGRATE] -> VMA 875: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1216.212842] MattX:[MIGRATE] -> VMA 875 finished. Sent 11 pages.
+      [ 1216.213710] MattX:[MIGRATE] Processing VMA 877/879: 0x7fba2a87f000 - 0x7fba2a881000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 1216.216125] MattX:[MIGRATE] -> VMA 876: Entering page extraction loop...
+      [ 1216.217116] MattX:[MIGRATE] -> VMA 876: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1216.218639] MattX:[MIGRATE] -> VMA 876 finished. Sent 2 pages.
+      [ 1216.219773] MattX:[MIGRATE] Processing VMA 878/879: 0x7fba2a881000 - 0x7fba2a883000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [ 1216.221180] MattX:[MIGRATE] -> VMA 877: Entering page extraction loop...
+      [ 1216.222138] MattX:[MIGRATE] -> VMA 877: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1216.223620] MattX:[MIGRATE] -> VMA 877 finished. Sent 2 pages.
+      [ 1216.224753] MattX:[MIGRATE] Processing VMA 879/879: 0x7ffd6f8f3000 - 0x7ffd6f95c000 (Size: 430080 bytes, ~105 pages, Flags: 0x100173)
+      [ 1216.226182] MattX:[MIGRATE] -> VMA 878: Entering page extraction loop...
+      [ 1216.227136] MattX:[MIGRATE] -> VMA 878: Sending page 0/105 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1216.229487] MattX:[MIGRATE] -> VMA 878 finished. Sent 105 pages.
+      [ 1216.230358] MattX:[MIGRATE] Pipeline stats: 214525 total, 214519 sent, 6 skipped, 0 net errors
+      [ 1216.231480] MattX:[MIGRATE] =====================================================
+      [ 1216.232475] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 1216.233451] MattX:[REGISTRY] PID 26314 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [23142.976038] MattX:[MIGRATE] Pipeline stats: 159463 total, 159463 sent, 0 skipped, 0 net errors
+      [23142.977713] MattX:[MIGRATE] =====================================================
+      [23142.979242] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [23142.980825] MattX:[RECALL] Executing local Surrogate PID 26823...
+      [23186.556605] MattX:[IMPORT] Received Blueprint for PID 22033. Saving to pending...
+      [23186.572246] MattX:[DRAIN] Injected Task Work into PID 27473. Waiting for stable state...
+      [23186.594581] MattX:[DRAIN] PID 27473 is now stable and frozen at the user-space boundary!
+      [23194.137964] MattX:[IMPORT] All memory transferred! Total pages injected: 230820
+      [23194.139899] MattX:[IMPORT] Commencing full brain transplant on PID 27473...
+      [23194.141350] MattX:[IMPORT] Successfully injected 17 Fake FDs!
+      [23194.147289] MattX:[IMPORT] Registered clock-offset fixup for PID 27473: 22050502922197 ns (4 threads)
+      [23194.148917] MattX:[IMPORT] IT'S ALIVE! Waking 4 threads in Gang PID 27473
+      [23251.409988] MattX:[IMPORT] Received Blueprint for PID 26314. Saving to pending...
+      [23251.420765] MattX:[DRAIN] Injected Task Work into PID 28063. Waiting for stable state...
+      [23251.432859] MattX:[DRAIN] PID 28063 is now stable and frozen at the user-space boundary!
+      [23259.878582] MattX:[IMPORT] All memory transferred! Total pages injected: 214519
+      [23259.879537] MattX:[IMPORT] Commencing full brain transplant on PID 28063...
+      [23259.880488] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [23259.882977] MattX:[IMPORT] Registered clock-offset fixup for PID 28063: 22051334060572 ns (1 threads)
+      [23259.884046] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 28063
+  Log tail (stdout forwarded via MattX wormhole):
+    epoch 28/600  node=almanode1.local  pid=26314  loss=12.328929
+    epoch 30/600  node=almanode1.local  pid=26314  loss=9.720249
+    epoch 32/600  node=almanode1.local  pid=26314  loss=7.139793
+    epoch 34/600  node=almanode1.local  pid=26314  loss=4.874581
+    epoch 36/600  node=almanode1.local  pid=26314  loss=3.159868
+[PASS] pytorch-3: PyTorch process migrated to almanode2
+
+  --- ps snapshot: 15s after outbound migration (settled state) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        26314       1 mattx    T     4.2       00:42 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        28063       2 mattx    S     0.3       00:33 python3 /tmp/pytorch_migtest.py
+[PASS] pytorch-3: PyTorch process still running on almanode2 after 15s (epochs 9 -> 34)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of python3 (PyTorch) [PID 26314]
+    from : almanode2 (x.x.x.x)
+    to   : almanode1   (x.x.x.x)  [node ID home]
+    (admin command issued on almanode1, the home node -- not on almanode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after return migration (almanode2 -> almanode1) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        26314       1 mattx    S     3.3       00:56 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no process matching 'pytorch_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode2 (pattern: 'pytorch_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode2 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no threads matching 'pytorch_migtest' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — return migration (almanode2 -> almanode1):
+      [ 1244.734074] MattX:[RECALL] Carving missing memory hole: 0x7fba195b5000 (Size: 11542528)
+      [ 1244.735378] MattX:[RECALL] Carving missing memory hole: 0x7fba1a0cb000 (Size: 6266880)
+      [ 1244.736778] MattX:[RECALL] Carving missing memory hole: 0x7fba1a6cb000 (Size: 4190208)
+      [ 1244.739011] MattX:[RECALL] Carving missing memory hole: 0x7fba1aade000 (Size: 5795840)
+      [ 1244.740364] MattX:[RECALL] Carving missing memory hole: 0x7fba1b06c000 (Size: 221184)
+      [ 1244.741579] MattX:[RECALL] Carving missing memory hole: 0x7fba1b0a9000 (Size: 21352448)
+      [ 1244.742980] MattX:[RECALL] Carving missing memory hole: 0x7fba1c509000 (Size: 4984832)
+      [ 1244.744210] MattX:[RECALL] Carving missing memory hole: 0x7fba1c9d0000 (Size: 2412544)
+      [ 1244.745385] MattX:[RECALL] Carving missing memory hole: 0x7fba1cc21000 (Size: 189706240)
+      [ 1244.751331] MattX:[RECALL] Carving missing memory hole: 0x7fba28112000 (Size: 17461248)
+      [ 1244.753480] MattX:[RECALL] Carving missing memory hole: 0x7fba291bf000 (Size: 7532544)
+      [ 1244.754936] MattX:[RECALL] Carving missing memory hole: 0x7fba298f2000 (Size: 6262784)
+      [ 1244.756375] MattX:[RECALL] Carving missing memory hole: 0x7fba2a02f000 (Size: 7450624)
+      [ 1244.759781] MattX:[RECALL] Carving missing memory hole: 0x7fba2a74e000 (Size: 1265664)
+      [ 1244.761215] MattX:[RECALL] Carving missing memory hole: 0x7ffce54c7000 (Size: 135168)
+      [ 1244.763202] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+      [ 1247.454664] MattX:[IMPORT] Return memory transferred successfully! Pages: 215310
+      [ 1247.455556] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7fba2a0f5ee3
+      [ 1247.456459] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 26314: -22039825022299 ns (1 threads)
+      [ 1247.457562] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 26314
+  mattx@almanode2 (x.x.x.x) dmesg — return migration (almanode2 -> almanode1):
+      [23291.070252] MattX:[MIGRATE] -> VMA 56: Sending page 1792/2140 (Offset: 0x700000, Payload: 4112 bytes)...
+      [23291.075115] MattX:[MIGRATE] -> VMA 56: Sending page 2048/2140 (Offset: 0x800000, Payload: 4112 bytes)...
+      [23291.077093] MattX:[MIGRATE] -> VMA 56 finished. Sent 2140 pages.
+      [23291.077950] MattX:[MIGRATE] Processing VMA 58/60: 0x7fba2a74c000 - 0x7fba2a883000 (Size: 1273856 bytes, ~311 pages, Flags: 0x8100077)
+      [23291.079377] MattX:[MIGRATE] -> VMA 57: Entering page extraction loop...
+      [23291.080359] MattX:[MIGRATE] -> VMA 57: Sending page 0/311 (Offset: 0x0, Payload: 4112 bytes)...
+      [23291.083430] MattX:[MIGRATE] -> VMA 57: Sending page 256/311 (Offset: 0x100000, Payload: 4112 bytes)...
+      [23291.085188] MattX:[MIGRATE] -> VMA 57 finished. Sent 311 pages.
+      [23291.086385] MattX:[MIGRATE] Processing VMA 59/60: 0x7ffce54c7000 - 0x7ffce54e8000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [23291.087731] MattX:[MIGRATE] -> VMA 58: Entering page extraction loop...
+      [23291.088647] MattX:[MIGRATE] -> VMA 58: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [23291.090357] MattX:[MIGRATE] -> VMA 58 finished. Sent 33 pages.
+      [23291.091557] MattX:[MIGRATE] Processing VMA 60/60: 0x7ffd6f8f3000 - 0x7ffd6f95c000 (Size: 430080 bytes, ~105 pages, Flags: 0x8100177)
+      [23291.092965] MattX:[MIGRATE] -> VMA 59: Entering page extraction loop...
+      [23291.093873] MattX:[MIGRATE] -> VMA 59: Sending page 0/105 (Offset: 0x0, Payload: 4112 bytes)...
+      [23291.095851] MattX:[MIGRATE] -> VMA 59 finished. Sent 105 pages.
+      [23291.096652] MattX:[MIGRATE] Pipeline stats: 215310 total, 215310 sent, 0 skipped, 0 net errors
+      [23291.097727] MattX:[MIGRATE] =====================================================
+      [23291.098670] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [23291.099678] MattX:[RECALL] Executing local Surrogate PID 28063...
+  Log tail (stdout forwarded via MattX wormhole):
+    epoch 90/600  node=almanode1.local  pid=26314  loss=0.208062
+    epoch 92/600  node=almanode1.local  pid=26314  loss=0.201467
+    epoch 94/600  node=almanode1.local  pid=26314  loss=0.195200
+    epoch 96/600  node=almanode1.local  pid=26314  loss=0.189299
+    epoch 98/600  node=almanode1.local  pid=26314  loss=0.183667
+[PASS] pytorch-4: PyTorch process migrated back to almanode1
+
+  --- ps snapshot: 15s after return migration (settled state) (pattern: 'pytorch_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+        26314       1 mattx    S     2.6       01:16 python3 /tmp/pytorch_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'pytorch_migtest' | grep -v grep
+      (no process matching 'pytorch_migtest' on almanode2)
+[PASS] pytorch-4: PyTorch process still running on almanode1 after 15s (round trip complete, epochs 49 -> 72)
+[PASS] pytorch-3: no kernel oops on almanode1
+[PASS] pytorch-3: no kernel oops on almanode2
+
+==============================
+PyTorch Results: 8 passed, 0 failed
+==============================
+
+######################################
+# TensorFlow
+######################################
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== TensorFlow / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI TensorFlow module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+2.13.0
+GPUs: []
+[PASS] tensorflow-1: TensorFlow module (TensorFlow/2.13.0-foss-2023a) loads on almanode1
+
+=== Test 2: MNIST smoke test (functional, CPU-only) ===
+  Syncing demo scripts to almanode1...
+  Running MNIST smoke test on almanode1 (x.x.x.x)...
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+[FAIL] tensorflow-2: MNIST smoke test failed or timed out on almanode1 (check network access for dataset download)
+
+=== Test 3: TensorFlow training-loop migration via MattX ===
+  Starting training loop on almanode1 (x.x.x.x)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'tensorflow_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'tensorflow_migtest' | grep -v grep
+        28019       1 mattx    Sl   37.7       00:10 python3 /tmp/tensorflow_migtest.py
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'tensorflow_migtest' | grep -v grep
+      (no process matching 'tensorflow_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'tensorflow_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'tensorflow_migtest' | grep -v grep
+        28019   28019       1 mattx    Sl   34.3 -                        python3 /tmp/tensorflow_migtest.py
+        28019   28021       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28022       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28023       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28024       1 mattx    Sl    0.4 -                        python3 /tmp/tensorflow_migtest.py
+        28019   28025       1 mattx    Rl    0.4 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28026       1 mattx    Sl    0.8 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28027       1 mattx    Rl    0.8 -                        python3 /tmp/tensorflow_migtest.py
+        28019   28031       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28210       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28211       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28217       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28218       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28219       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+        28019   28220       1 mattx    Sl    0.0 futex_do_wait            python3 /tmp/tensorflow_migtest.py
+  Log tail from almanode1:
+    TensorFlow migtest PID=28019 starting on almanode1.local
+    epoch 5/200  node=almanode1.local  pid=28019  loss=2.1895
+    epoch 10/200  node=almanode1.local  pid=28019  loss=1.9974
+
+  ─────────────────────────────────────────────────────
+  Starting migration of tensorflow_migtest [PID 28019]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'tensorflow_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'tensorflow_migtest' | grep -v grep
+      (no process matching 'tensorflow_migtest' on almanode1)
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'tensorflow_migtest' | grep -v grep
+      (no process matching 'tensorflow_migtest' on almanode2)
+
+  --- per-THREAD snapshot on almanode1 (pattern: 'tensorflow_migtest') -- one row per thread (tid), not one row per process like the snapshot above ---
+  mattx@almanode1 (x.x.x.x)$ ps -eLo pid,tid,ppid,user,stat,%cpu,wchan:24,cmd --no-headers | grep -iE -- 'tensorflow_migtest' | grep -v grep
+      (no threads matching 'tensorflow_migtest' on almanode1)
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 1326.006599] MattX:[MIGRATE] -> VMA 1020: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1326.008130] MattX:[MIGRATE] -> VMA 1020 finished. Sent 1 pages.
+      [ 1326.009273] MattX:[MIGRATE] Processing VMA 1022/1024: 0x7fca5eca5000 - 0x7fca5ecaa000 (Size: 20480 bytes, ~5 pages, Flags: 0x8000071)
+      [ 1326.010755] MattX:[MIGRATE] -> VMA 1021: Entering page extraction loop...
+      [ 1326.011744] MattX:[MIGRATE] -> VMA 1021: Sending page 0/5 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1326.013723] MattX:[MIGRATE] -> VMA 1021 finished. Sent 5 pages.
+      [ 1326.014610] MattX:[MIGRATE] Processing VMA 1023/1024: 0x7fca5ecaa000 - 0x7fca5ed14000 (Size: 434176 bytes, ~106 pages, Flags: 0x8000075)
+      [ 1326.016083] MattX:[MIGRATE] -> VMA 1022: Entering page extraction loop...
+      [ 1326.017064] MattX:[MIGRATE] -> VMA 1022: Sending page 0/106 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1326.019776] MattX:[MIGRATE] -> VMA 1022 finished. Sent 106 pages.
+      [ 1326.020692] MattX:[MIGRATE] Processing VMA 1024/1024: 0x7fca5ed14000 - 0x7fca5ed57000 (Size: 274432 bytes, ~67 pages, Flags: 0x8000071)
+      [ 1326.022182] MattX:[MIGRATE] -> VMA 1023: Entering page extraction loop...
+      [ 1326.024408] MattX:[MIGRATE] -> VMA 1023: Sending page 0/67 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1326.026605] MattX:[MIGRATE] -> VMA 1023 finished. Sent 67 pages.
+      [ 1326.027561] MattX:[MIGRATE] Pipeline stats: 409129 total, 409129 sent, 0 skipped, 0 net errors
+      [ 1326.028692] MattX:[MIGRATE] =====================================================
+      [ 1326.029705] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 1326.030701] MattX:[REGISTRY] PID 28019 registered as Exported to Node 378.
+      [ 1328.838634] MattX: [FUNERAL] Received exit notice for Deputy PID 28019 from Node 378
+      [ 1328.839743] MattX: [FUNERAL] Laying Deputy PID 28019 to rest (Sending SIGKILL)...
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [23362.296451] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca364fd000 (res: 0)
+      [23362.298663] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca364fe000 (res: 0)
+      [23362.300668] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca364ff000 (res: 0)
+      [23362.302457] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca36500000 (res: 0)
+      [23362.304555] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca36501000 (res: 0)
+      [23362.305675] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca36502000 (res: 0)
+      [23367.289107] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44dfe000 (res: 0)
+      [23367.297291] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44dff000 (res: 0)
+      [23367.298404] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e00000 (res: 0)
+      [23367.299934] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e01000 (res: 0)
+      [23367.301358] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e02000 (res: 0)
+      [23367.304033] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e03000 (res: 0)
+      [23367.306280] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e04000 (res: 0)
+      [23367.308170] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e05000 (res: 0)
+      [23367.310054] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e06000 (res: 0)
+      [23367.311988] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e07000 (res: 0)
+      [23369.675862] MattX:[IMPORT] All memory transferred! Total pages injected: 243180
+      [23369.677056] MattX:[IMPORT] Commencing full brain transplant on PID 29134...
+      [23370.777527] MattX:[IMPORT] Registered clock-offset fixup for PID 29134: 22055021002369 ns (0 threads)
+      [23370.781212] MattX:[IMPORT] IT'S ALIVE! Waking 0 threads in Gang PID 29134
+[FAIL] tensorflow-3: training loop not actually running on almanode2 after migration
+  dmesg tail on almanode1:
+    [ 1326.006599] MattX:[MIGRATE] -> VMA 1020: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1326.008130] MattX:[MIGRATE] -> VMA 1020 finished. Sent 1 pages.
+    [ 1326.009273] MattX:[MIGRATE] Processing VMA 1022/1024: 0x7fca5eca5000 - 0x7fca5ecaa000 (Size: 20480 bytes, ~5 pages, Flags: 0x8000071)
+    [ 1326.010755] MattX:[MIGRATE] -> VMA 1021: Entering page extraction loop...
+    [ 1326.011744] MattX:[MIGRATE] -> VMA 1021: Sending page 0/5 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1326.013723] MattX:[MIGRATE] -> VMA 1021 finished. Sent 5 pages.
+    [ 1326.014610] MattX:[MIGRATE] Processing VMA 1023/1024: 0x7fca5ecaa000 - 0x7fca5ed14000 (Size: 434176 bytes, ~106 pages, Flags: 0x8000075)
+    [ 1326.016083] MattX:[MIGRATE] -> VMA 1022: Entering page extraction loop...
+    [ 1326.017064] MattX:[MIGRATE] -> VMA 1022: Sending page 0/106 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1326.019776] MattX:[MIGRATE] -> VMA 1022 finished. Sent 106 pages.
+    [ 1326.020692] MattX:[MIGRATE] Processing VMA 1024/1024: 0x7fca5ed14000 - 0x7fca5ed57000 (Size: 274432 bytes, ~67 pages, Flags: 0x8000071)
+    [ 1326.022182] MattX:[MIGRATE] -> VMA 1023: Entering page extraction loop...
+    [ 1326.024408] MattX:[MIGRATE] -> VMA 1023: Sending page 0/67 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1326.026605] MattX:[MIGRATE] -> VMA 1023 finished. Sent 67 pages.
+    [ 1326.027561] MattX:[MIGRATE] Pipeline stats: 409129 total, 409129 sent, 0 skipped, 0 net errors
+    [ 1326.028692] MattX:[MIGRATE] =====================================================
+    [ 1326.029705] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+    [ 1326.030701] MattX:[REGISTRY] PID 28019 registered as Exported to Node 378.
+    [ 1328.838634] MattX: [FUNERAL] Received exit notice for Deputy PID 28019 from Node 378
+    [ 1328.839743] MattX: [FUNERAL] Laying Deputy PID 28019 to rest (Sending SIGKILL)...
+[PASS] tensorflow-4: no kernel oops on almanode1
+[PASS] tensorflow-4: no kernel oops on almanode2
+
+==============================
+TensorFlow Results: 3 passed, 2 failed
+==============================
+
+######################################
+# Bioconductor
+######################################
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== Bioconductor / EESSI tests on alma cluster (EESSI 2025.06) ===
+
+=== Test 1: EESSI Bioconductor module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2025.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2025.06), have fun!
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    anyDuplicated, aperm, append, as.data.frame, basename, cbind,
+    colnames, dirname, do.call, duplicated, eval, evalq, Filter, Find,
+    get, grep, grepl, intersect, is.unsorted, lapply, Map, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int,
+    Position, rank, rbind, Reduce, rownames, sapply, saveRDS, setdiff,
+    table, tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    expand.grid, I, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+2.74.0 
+[PASS] bioconductor-1: R-bundle-Bioconductor (R-bundle-Bioconductor/3.20-foss-2024a-R-4.4.2) loads on almanode1
+
+=== Test 2: Biostrings pairwise alignment (functional check) ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2025.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2025.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2025.06), have fun!
+Warning message:
+In .call_fun_in_pwalign("pairwiseAlignment", ...) :
+  pairwiseAlignment() has moved to the pwalign package. Please call
+  pwalign::pairwiseAlignment() to get rid of this warning.
+Alignment score: -5208.613 
+[PASS] bioconductor-2: Biostrings pairwiseAlignment completed on almanode1
+
+=== Test 3: Bioconductor migration via MattX ===
+  Starting Bioconductor migtest on almanode1 (x.x.x.x)...
+
+  --- ps snapshot: baseline, before outbound migration (pattern: 'bioconductor_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'bioconductor_migtest' | grep -v grep
+        29232       1 mattx    S    36.1       00:10 /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/R/4.4.2-gfbf-2024a/lib64/R/bin/exec/R --no-echo --no-restore --file=/tmp/bioconductor_migtest.R
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'bioconductor_migtest' | grep -v grep
+      (no process matching 'bioconductor_migtest' on almanode2)
+  Log tail from almanode1:
+    bioconductor_migtest PID=29232 starting on almanode1.local
+
+  ─────────────────────────────────────────────────────
+  Starting migration of bioconductor_migtest [PID 29232]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+
+  --- ps snapshot: immediately after outbound migration (almanode1 -> almanode2) (pattern: 'bioconductor_migtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'bioconductor_migtest' | grep -v grep
+        29232       1 mattx    T    19.9       00:19 /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/R/4.4.2-gfbf-2024a/lib64/R/bin/exec/R --no-echo --no-restore --file=/tmp/bioconductor_migtest.R
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'bioconductor_migtest' | grep -v grep
+        29581       2 mattx    T    10.0       00:08 /cvmfs/software.eessi.io/versions/2025.06/software/linux/x86_64/intel/haswell/software/R/4.4.2-gfbf-2024a/lib64/R/bin/exec/R --no-echo --no-restore --file=/tmp/bioconductor_migtest.R
+  mattx@almanode1 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [ 1423.942206] MattX:[MIGRATE] Processing VMA 200/203: 0x7f7918962000 - 0x7f7918964000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 1423.943615] MattX:[MIGRATE] -> VMA 199: Entering page extraction loop...
+      [ 1423.944586] MattX:[MIGRATE] -> VMA 199: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1423.946179] MattX:[MIGRATE] -> VMA 199 finished. Sent 2 pages.
+      [ 1423.947435] MattX:[MIGRATE] Processing VMA 201/203: 0x7f7918964000 - 0x7f7918965000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [ 1423.948850] MattX:[MIGRATE] -> VMA 200: Entering page extraction loop...
+      [ 1423.949812] MattX:[MIGRATE] -> VMA 200: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1423.951322] MattX:[MIGRATE] -> VMA 200 finished. Sent 1 pages.
+      [ 1423.952513] MattX:[MIGRATE] Processing VMA 202/203: 0x7f7918965000 - 0x7f7918966000 (Size: 4096 bytes, ~1 pages, Flags: 0x8100073)
+      [ 1423.953924] MattX:[MIGRATE] -> VMA 201: Entering page extraction loop...
+      [ 1423.954887] MattX:[MIGRATE] -> VMA 201: Sending page 0/1 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1423.956399] MattX:[MIGRATE] -> VMA 201 finished. Sent 1 pages.
+      [ 1423.957519] MattX:[MIGRATE] Processing VMA 203/203: 0x7fff655ee000 - 0x7fff65689000 (Size: 634880 bytes, ~155 pages, Flags: 0x100173)
+      [ 1423.958950] MattX:[MIGRATE] -> VMA 202: Entering page extraction loop...
+      [ 1423.959921] MattX:[MIGRATE] -> VMA 202: Sending page 0/155 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 1423.962094] MattX:[MIGRATE] -> VMA 202 finished. Sent 155 pages.
+      [ 1423.962971] MattX:[MIGRATE] Pipeline stats: 195035 total, 195029 sent, 6 skipped, 0 net errors
+      [ 1423.964078] MattX:[MIGRATE] =====================================================
+      [ 1423.965068] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 1423.966756] MattX:[REGISTRY] PID 29232 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — outbound migration (almanode1 -> almanode2):
+      [23367.298404] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e00000 (res: 0)
+      [23367.299934] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e01000 (res: 0)
+      [23367.301358] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e02000 (res: 0)
+      [23367.304033] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e03000 (res: 0)
+      [23367.306280] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e04000 (res: 0)
+      [23367.308170] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e05000 (res: 0)
+      [23367.310054] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e06000 (res: 0)
+      [23367.311988] MattX:[IMPORT] ERROR: Failed to inject 4096 bytes at 0x7fca44e07000 (res: 0)
+      [23369.675862] MattX:[IMPORT] All memory transferred! Total pages injected: 243180
+      [23369.677056] MattX:[IMPORT] Commencing full brain transplant on PID 29134...
+      [23370.777527] MattX:[IMPORT] Registered clock-offset fixup for PID 29134: 22055021002369 ns (0 threads)
+      [23370.781212] MattX:[IMPORT] IT'S ALIVE! Waking 0 threads in Gang PID 29134
+      [23464.098589] MattX:[IMPORT] Received Blueprint for PID 29232. Saving to pending...
+      [23464.107432] MattX:[DRAIN] Injected Task Work into PID 29581. Waiting for stable state...
+      [23464.118803] MattX:[DRAIN] PID 29581 is now stable and frozen at the user-space boundary!
+      [23467.611906] MattX:[IMPORT] All memory transferred! Total pages injected: 195029
+      [23467.612886] MattX:[IMPORT] Commencing full brain transplant on PID 29581...
+      [23467.613868] MattX:[IMPORT] Successfully injected 4 Fake FDs!
+      [23467.616508] MattX:[IMPORT] Registered clock-offset fixup for PID 29581: 22046379845519 ns (1 threads)
+      [23467.617658] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 29581
+[FAIL] bioconductor-3: bioconductor_migtest not actually running on almanode2 after migration
+  dmesg tail on almanode1:
+    [ 1423.956399] MattX:[MIGRATE] -> VMA 201 finished. Sent 1 pages.
+    [ 1423.957519] MattX:[MIGRATE] Processing VMA 203/203: 0x7fff655ee000 - 0x7fff65689000 (Size: 634880 bytes, ~155 pages, Flags: 0x100173)
+    [ 1423.958950] MattX:[MIGRATE] -> VMA 202: Entering page extraction loop...
+    [ 1423.959921] MattX:[MIGRATE] -> VMA 202: Sending page 0/155 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 1423.962094] MattX:[MIGRATE] -> VMA 202 finished. Sent 155 pages.
+    [ 1423.962971] MattX:[MIGRATE] Pipeline stats: 195035 total, 195029 sent, 6 skipped, 0 net errors
+    [ 1423.964078] MattX:[MIGRATE] =====================================================
+    [ 1423.965068] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+    [ 1423.966756] MattX:[REGISTRY] PID 29232 registered as Exported to Node 378.
+    [ 1423.976473] MattX:[RPC] Poll Worker started for Deputy PID 29232 (Timeout: 545ms)
+    [ 1424.527544] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 1424.910757] MattX:[RPC] Poll Worker started for Deputy PID 29232 (Timeout: 999ms)
+    [ 1425.912545] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 1426.106874] MattX:[RPC] Poll Worker started for Deputy PID 29232 (Timeout: 999ms)
+    [ 1427.109462] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 1427.288178] MattX:[RPC] Poll Worker started for Deputy PID 29232 (Timeout: 999ms)
+    [ 1428.289483] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 1428.607593] MattX:[RPC] Poll Worker started for Deputy PID 29232 (Timeout: 999ms)
+    [ 1429.609406] MattX:[RPC] Sending POLL_REPLY (Ready: 0) back to Node 378...
+    [ 1429.814727] MattX:[RPC] Poll Worker started for Deputy PID 29232 (Timeout: 999ms)
+[PASS] bioconductor-4: no kernel oops on almanode1
+[PASS] bioconductor-4: no kernel oops on almanode2
+
+==============================
+Bioconductor Results: 4 passed, 1 failed
+==============================
+
+######################################
+# Nextflow
+######################################
+==============================
+mattx commit: 96878e777a5f24ad018c33ae66cd4cc2d07aa29a
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== Nextflow / EESSI tests on alma cluster (EESSI 2023.06) ===
+
+=== Test 1: EESSI Nextflow module load ===
+Found EESSI repo @ /cvmfs/software.eessi.io/versions/2023.06!
+archdetect says x86_64/intel/haswell
+archdetect could not detect any accelerators
+Using x86_64/intel/haswell as software subdirectory.
+Found Lmod configuration file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Found Lmod SitePackage.lua file at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/SitePackage.lua
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell as the site extension directory for installations.
+Using  as the site extension directory for accelerated installations.
+Adding Lmod site configuration file path () to /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/.lmod/lmodrc.lua
+Using /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all as the directory to be added to MODULEPATH.
+Using /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all as the site extension directory to be added to MODULEPATH.
+Found libcurl CAs file at RHEL location, setting CURL_CA_BUNDLE
+Initializing Lmod...
+Prepending /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Prepending site path /cvmfs/software.eessi.io/host_injections/2023.06/software/linux/x86_64/intel/haswell/modules/all to $MODULEPATH...
+Environment set up to use EESSI (2023.06), have fun!
+[PASS] nextflow-1: Nextflow module loads on almanode1
+
+=== Test 2/3/4: single-task Nextflow pipeline + migration via MattX ===
+  Starting nextflow run (single task) on almanode1 (x.x.x.x)...
+  Nextflow orchestrator PID: 30254 (not the migration target -- see header comment)
+[FAIL] nextflow-2: payload task never started (Nextflow/JVM startup or scheduling failure)
+  nextflow_run.log tail:
+    Nextflow 26.10.2 is available - Please consider updating your version to it
+    
+     N E X T F L O W   ~  version 24.10.2
+    
+    Launching `main.nf` [voluminous_cori] DSL2 - revision: d9c0242dea
+    
+[PASS] nextflow-3: no kernel oops on almanode1
+[PASS] nextflow-3: no kernel oops on almanode2
+
+==============================
+Nextflow Results: 3 passed, 1 failed
+==============================
+
+############################################
+# EESSI Test Suite Summary
+############################################
+  ESPResSo: FAIL (exit 1)
+  GROMACS: PASS
+  QuantumESPRESSO: FAIL (exit 1)
+  OpenFOAM: FAIL (exit 1)
+  PyTorch: PASS
+  TensorFlow: FAIL (exit 1)
+  Bioconductor: FAIL (exit 1)
+  Nextflow: FAIL (exit 1)
+
+  Total: 41 passed, 7 failed
+############################################
