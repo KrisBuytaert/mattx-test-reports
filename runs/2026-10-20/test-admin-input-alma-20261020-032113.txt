@@ -1,0 +1,16 @@
+==============================
+mattx commit: d05216dbe840df5e22caa57a8438a553f05e04d9
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== /proc/mattx/admin input handling on almanode1 (peer node id: 378) ===
+
+--- #27: migrate to a PID that does not exist ---
+[PASS] admin-27 (nonexistent pid): almanode1 survived
+
+--- #37: migrate a zombie (exited task, kernel stack already freed) ---
+  zombie PID 38893
+[PASS] admin-37 (zombie pid 38893): almanode1 survived
+
+Admin-Input Results: 2 passed, 0 failed
