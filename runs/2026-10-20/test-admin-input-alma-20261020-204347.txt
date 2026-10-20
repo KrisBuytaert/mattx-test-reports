@@ -1,0 +1,16 @@
+==============================
+mattx commit: f53c3b205fe37a72aa25c366f0fc9b56509abf41
+mattx source: KrisBuytaert/mattx@fix/epoll-wait-per-thread
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== /proc/mattx/admin input handling on almanode1 (peer node id: 378) ===
+
+--- #27: migrate to a PID that does not exist ---
+[PASS] admin-27 (nonexistent pid): almanode1 survived
+
+--- #37: migrate a zombie (exited task, kernel stack already freed) ---
+  zombie PID 16096
+[PASS] admin-37 (zombie pid 16096): almanode1 survived
+
+Admin-Input Results: 2 passed, 0 failed
