@@ -1,0 +1,40 @@
+==============================
+mattx commit: 2770394575aabd29901936d673144af9bc6c228b
+mattx source: brainmatt/mattx@main
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode3 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== Test: MESI (DSM_MODE=2) consistency across 3 independent nodes ===
+  DSM_MODE=2 (MESI) confirmed set, balancer disabled, on all 3 nodes.
+  Starting dsmstresstest-debug with 3 workers on almanode1 (x.x.x.x)...
+  Workers: W1(home)=12342  W2=12380  W3=12417
+[PASS] mesi3: baseline write/read via dsmstresstest-debug works pre-migration
+
+  Migrating W2 (12380) -> almanode2 [378], W3 (12417) -> almanode3 [379]...
+[PASS] mesi3: W2 actually running as Surrogate on almanode2
+[PASS] mesi3: W3 actually running as Surrogate on almanode3
+
+  Round 1: write from HOME (almanode1), read from both remotes...
+[PASS] mesi3: round1 (home writes) -- write on almanode1 registered
+[FAIL] mesi3: round1 (home writes) -- almanode2 did NOT see 'r1-from-home' (stale/incoherent read -- matches Matt's 3+-node MESI gap)
+[FAIL] mesi3: round1 (home writes) -- almanode3 did NOT see 'r1-from-home' (stale/incoherent read -- matches Matt's 3+-node MESI gap)
+
+  Round 2: write from almanode2, read from home AND the OTHER remote (almanode3) --
+  this is the specific case Matt flagged as newly-broken for 3+ nodes.
+[PASS] mesi3: round2 (node2 writes, node3 must see it) -- write on almanode2 registered
+[FAIL] mesi3: round2 (node2 writes, node3 must see it) -- almanode1 did NOT see 'r2-from-node2' (stale/incoherent read -- matches Matt's 3+-node MESI gap)
+[FAIL] mesi3: round2 (node2 writes, node3 must see it) -- almanode3 did NOT see 'r2-from-node2' (stale/incoherent read -- matches Matt's 3+-node MESI gap)
+
+  Round 3: write from almanode3, read from home AND the OTHER remote (almanode2)...
+[PASS] mesi3: round3 (node3 writes, node2 must see it) -- write on almanode3 registered
+[FAIL] mesi3: round3 (node3 writes, node2 must see it) -- almanode1 did NOT see 'r3-from-node3' (stale/incoherent read -- matches Matt's 3+-node MESI gap)
+[FAIL] mesi3: round3 (node3 writes, node2 must see it) -- almanode2 did NOT see 'r3-from-node3' (stale/incoherent read -- matches Matt's 3+-node MESI gap)
+
+[PASS] mesi3: no oops on almanode1
+[PASS] mesi3: no oops on almanode2
+[PASS] mesi3: no oops on almanode3
+
+==============================
+MESI-3Node Results: 9 passed, 6 failed
+==============================

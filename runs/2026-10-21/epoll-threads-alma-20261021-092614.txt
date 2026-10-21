@@ -1,0 +1,14 @@
+==============================
+mattx commit: 2770394575aabd29901936d673144af9bc6c228b
+mattx source: brainmatt/mattx@main
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== epoll_wait(-1) in one thread, eventfd writer in another, across migration (mattx#14) ===
+[PASS] epoll-1: 3 events on almanode1 before the migration
+[PASS] epoll-2: the process keeps producing events on almanode2 (61 -> 72)
+[FAIL] epoll-3: no progress after the recall home (74 -> 74 events in 30 s)
+[PASS] epoll: no kernel oops on almanode1
+[PASS] epoll: no kernel oops on almanode2
+
+Epoll-Threads Results: 4 passed, 1 failed
