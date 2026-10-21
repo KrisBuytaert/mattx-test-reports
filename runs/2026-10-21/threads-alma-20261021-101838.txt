@@ -1,0 +1,26 @@
+==============================
+mattx commit: 54161439ec86310782d7f5b944546a4a87de2ae6
+mattx source: KrisBuytaert/mattx@fix/epoll-wait-per-thread
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== threadtest 4: threads created on almanode2, then recalled home to almanode1 (mattx#9) ===
+  worker PID 17832 (still in its 15 s startup sleep, no threads yet)
+[PASS] threads-1: worker migrated to almanode2 before it spawned its threads
+  waiting for the 4 threads to be created on almanode2 ...
+[PASS] threads-2: 4 threads created on almanode2 (5 tasks of threadtest there)
+  recalling the worker home to almanode1 ...
+[PASS] threads-3: worker is back on almanode1 after the recall
+  waiting for the teardown wave (pthread_cancel/pthread_join = futex) ...
+[FAIL] threads-4: the teardown never completed (futex wait broke or the worker died)
+[PASS] threads-5: the worker is still alive after the teardown
+  tail of the worker log:
+      [Thread 1] (TID: 17832) Still alive and calculating... (150 seconds)
+      [Thread 2] (TID: 17832) Still alive and calculating... (150 seconds)
+      [Thread 3] (TID: 17832) Still alive and calculating... (155 seconds)
+      [Thread 1] (TID: 17832) Still alive and calculating... (155 seconds)
+      [Thread 2] (TID: 17832) Still alive and calculating... (155 seconds)
+      [Thread 3] (TID: 17832) Still alive and calcula[PASS] threads: no kernel oops on almanode1
+[PASS] threads: no kernel oops on almanode2
+
+Threads Results: 6 passed, 1 failed

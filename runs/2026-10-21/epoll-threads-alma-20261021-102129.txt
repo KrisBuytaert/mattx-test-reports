@@ -1,0 +1,14 @@
+==============================
+mattx commit: 54161439ec86310782d7f5b944546a4a87de2ae6
+mattx source: KrisBuytaert/mattx@fix/epoll-wait-per-thread
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== epoll_wait(-1) in one thread, eventfd writer in another, across migration (mattx#14) ===
+[PASS] epoll-1: 4 events on almanode1 before the migration
+[PASS] epoll-2: the process keeps producing events on almanode2 (11 -> 21)
+[FAIL] epoll-3: no progress after the recall home (21 -> 21 events in 30 s)
+[PASS] epoll: no kernel oops on almanode1
+[PASS] epoll: no kernel oops on almanode2
+
+Epoll-Threads Results: 4 passed, 1 failed
