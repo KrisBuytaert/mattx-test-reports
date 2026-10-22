@@ -1,0 +1,27 @@
+==============================
+mattx commit: 88209dd8fe5ba47fd7cfc1b4750d2ebb85d6d946
+mattx source: KrisBuytaert/mattx@fix/vfs-rpc-interrupted-wait
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+==============================
+=== Unload test (mattx#36): 3 stop/start cycles of mattx on almanode1 ===
+
+--- cycle 1 ---
+[FAIL] unload-1: 2 mattx module(s) still loaded on almanode1
+[PASS] unload-1: almanode1 did not reboot
+[PASS] unload-1: no oops/BUG in dmesg on almanode1
+[PASS] unload-1: service restarted, modules loaded on almanode1
+
+--- cycle 2 ---
+[FAIL] unload-2: 2 mattx module(s) still loaded on almanode1
+[PASS] unload-2: almanode1 did not reboot
+[PASS] unload-2: no oops/BUG in dmesg on almanode1
+[PASS] unload-2: service restarted, modules loaded on almanode1
+
+--- cycle 3 ---
+[FAIL] unload-3: 2 mattx module(s) still loaded on almanode1
+[PASS] unload-3: almanode1 did not reboot
+[PASS] unload-3: no oops/BUG in dmesg on almanode1
+[PASS] unload-3: service restarted, modules loaded on almanode1
+
+Unload Results: 9 passed, 3 failed
