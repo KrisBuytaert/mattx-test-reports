@@ -1,0 +1,41 @@
+==============================
+mattx commit: 0805bbca09c7a82d80796ab0c35460586c117927
+mattx source: KrisBuytaert/mattx@fix/epoll-wait-per-thread
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode3 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== Test: MESI (DSM_MODE=2) consistency across 3 independent nodes ===
+  DSM_MODE=2 (MESI) confirmed set, balancer disabled, on all 3 nodes.
+  Starting dsmstresstest-debug with 3 workers on almanode1 (x.x.x.x)...
+  Workers: W1(home)=31255  W2=31294  W3=31332
+[PASS] mesi3: baseline write/read via dsmstresstest-debug works pre-migration
+
+  Migrating W2 (31294) -> almanode2 [378], W3 (31332) -> almanode3 [379]...
+[PASS] mesi3: W2 actually running as Surrogate on almanode2
+[PASS] mesi3: W3 actually running as Surrogate on almanode3
+
+  Round 1: write from HOME (almanode1), read from both remotes...
+[PASS] mesi3: round1 (home writes) -- write on almanode1 registered
+[PASS] mesi3: round1 (home writes) -- almanode2 saw the updated value ('r1-from-home')
+[PASS] mesi3: round1 (home writes) -- almanode3 saw the updated value ('r1-from-home')
+
+  Round 2: write from almanode2, read from home AND the OTHER remote (almanode3) --
+  this is the specific case Matt flagged as newly-broken for 3+ nodes.
+[PASS] mesi3: round2 (node2 writes, node3 must see it) -- write on almanode2 registered
+[PASS] mesi3: round2 (node2 writes, node3 must see it) -- almanode1 saw the updated value ('r2-from-node2')
+[PASS] mesi3: round2 (node2 writes, node3 must see it) -- almanode3 saw the updated value ('r2-from-node2')
+
+  Round 3: write from almanode3, read from home AND the OTHER remote (almanode2)...
+[PASS] mesi3: round3 (node3 writes, node2 must see it) -- write on almanode3 registered
+[PASS] mesi3: round3 (node3 writes, node2 must see it) -- almanode1 saw the updated value ('r3-from-node3')
+[PASS] mesi3: round3 (node3 writes, node2 must see it) -- almanode2 saw the updated value ('r3-from-node3')
+
+[PASS] mesi3: no oops on almanode1
+[PASS] mesi3: no oops on almanode2
+[PASS] mesi3: no oops on almanode3
+
+==============================
+MESI-3Node Results: 15 passed, 0 failed
+==============================
