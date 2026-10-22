@@ -1,0 +1,9 @@
+==============================
+mattx commit: 22c660a6078c42a5c46a268150db7aa73fcd97bf
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== threadtest 4: threads created on almanode2, then recalled home to almanode1 (mattx#9) ===
+  worker PID 55668 (still in its 15 s startup sleep, no threads yet)

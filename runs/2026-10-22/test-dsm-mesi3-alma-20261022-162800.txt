@@ -1,0 +1,15 @@
+==============================
+mattx commit: 22c660a6078c42a5c46a268150db7aa73fcd97bf
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode3 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== Test: MESI (DSM_MODE=2) consistency across 3 independent nodes ===
+  DSM_MODE=2 (MESI) confirmed set, balancer disabled, on all 3 nodes.
+  Starting dsmstresstest-debug with 3 workers on almanode1 (x.x.x.x)...
+  Workers: W1(home)=53303  W2=53341  W3=53378
+[PASS] mesi3: baseline write/read via dsmstresstest-debug works pre-migration
+
+  Migrating W2 (53341) -> almanode2 [378], W3 (53378) -> almanode3 [379]...

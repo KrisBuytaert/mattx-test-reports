@@ -1,0 +1,20 @@
+==============================
+mattx commit: 22c660a6078c42a5c46a268150db7aa73fcd97bf
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== Test 5: migration against a stale cluster link (peer service bounce) ===
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        49965       1 mattx    S     0.0       02:25 migtest
+        49966   49965 mattx    R    90.6       02:25 migtest
+        52840       1 mattx    S     0.0       00:02 migtest
+        52841   52840 mattx    S    10.1       00:02 migtest
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 52841]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
