@@ -1,0 +1,15 @@
+==============================
+mattx commit: 972d96ac9c569f243242433a4832f0a80becd256
+mattx source: KrisBuytaert/mattx@ci/k7-plus-46
+fednode1 kernel: 7.2.11-200.fc44.x86_64
+fednode1 glibc: 2.43 glibc-2.43-9.fc44.x86_64 
+fednode2 kernel: 7.2.11-200.fc44.x86_64
+==============================
+=== epoll_wait(-1) in one thread, eventfd writer in another, across migration (mattx#14) ===
+[PASS] epoll-1: 3 events on fednode1 before the migration
+[PASS] epoll-2: the process keeps producing events on fednode2 (9 -> 19)
+[PASS] epoll-3: still producing events after the recall home (27 -> 37)
+[PASS] epoll: no kernel oops on fednode1
+[PASS] epoll: no kernel oops on fednode2
+
+Epoll-Threads Results: 5 passed, 0 failed

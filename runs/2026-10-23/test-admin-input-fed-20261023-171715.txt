@@ -1,0 +1,17 @@
+==============================
+mattx commit: 972d96ac9c569f243242433a4832f0a80becd256
+mattx source: KrisBuytaert/mattx@ci/k7-plus-46
+fednode1 kernel: 7.2.11-200.fc44.x86_64
+fednode1 glibc: 2.43 glibc-2.43-9.fc44.x86_64 
+fednode2 kernel: 7.2.11-200.fc44.x86_64
+==============================
+=== /proc/mattx/admin input handling on fednode1 (peer node id: 498) ===
+
+--- #27: migrate to a PID that does not exist ---
+[PASS] admin-27 (nonexistent pid): fednode1 survived
+
+--- #37: migrate a zombie (exited task, kernel stack already freed) ---
+  zombie PID 20720
+[PASS] admin-37 (zombie pid 20720): fednode1 survived
+
+Admin-Input Results: 2 passed, 0 failed

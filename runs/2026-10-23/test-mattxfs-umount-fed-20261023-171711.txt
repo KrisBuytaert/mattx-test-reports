@@ -1,0 +1,30 @@
+==============================
+mattx commit: 972d96ac9c569f243242433a4832f0a80becd256
+mattx source: KrisBuytaert/mattx@ci/k7-plus-46
+fednode1 kernel: 7.2.11-200.fc44.x86_64
+fednode1 glibc: 2.43 glibc-2.43-9.fc44.x86_64 
+==============================
+=== MattXFS umount after lookups (mattx#31): 3 cycles on fednode1 ===
+
+--- cycle 1 ---
+[PASS] umount-1: looked up 330 directory entries below /mattxfs
+[PASS] umount-1: umount /mattxfs returned
+[PASS] umount-1: fednode1 did not reboot
+[PASS] umount-1: no 'Busy inodes'/oops/BUG in dmesg on fednode1
+[PASS] umount-1: /mattxfs mounted again
+
+--- cycle 2 ---
+[PASS] umount-2: looked up 330 directory entries below /mattxfs
+[PASS] umount-2: umount /mattxfs returned
+[PASS] umount-2: fednode1 did not reboot
+[PASS] umount-2: no 'Busy inodes'/oops/BUG in dmesg on fednode1
+[PASS] umount-2: /mattxfs mounted again
+
+--- cycle 3 ---
+[PASS] umount-3: looked up 330 directory entries below /mattxfs
+[PASS] umount-3: umount /mattxfs returned
+[PASS] umount-3: fednode1 did not reboot
+[PASS] umount-3: no 'Busy inodes'/oops/BUG in dmesg on fednode1
+[PASS] umount-3: /mattxfs mounted again
+
+MattXFS-Umount Results: 15 passed, 0 failed
