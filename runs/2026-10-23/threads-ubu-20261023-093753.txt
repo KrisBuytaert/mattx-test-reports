@@ -1,0 +1,27 @@
+==============================
+mattx commit: 89ac3d37a70809ef337a79036a774060a970524d
+mattx source: KrisBuytaert/mattx@fix/kernel-7x-build
+ubunode1 kernel: 7.0.0-30-generic
+ubunode1 glibc: 2.43 
+ubunode2 kernel: 7.0.0-30-generic
+==============================
+=== threadtest 4: threads created on ubunode2, then recalled home to ubunode1 (mattx#9) ===
+  worker PID 55370 (still in its 15 s startup sleep, no threads yet)
+[PASS] threads-1: worker migrated to ubunode2 before it spawned its threads
+  waiting for the 4 threads to be created on ubunode2 ...
+[PASS] threads-2: 4 threads created on ubunode2 (5 tasks of threadtest there)
+  recalling the worker home to ubunode1 ...
+[PASS] threads-3: worker is back on ubunode1 after the recall
+  waiting for the teardown wave (pthread_cancel/pthread_join = futex) ...
+[PASS] threads-4: teardown completed (pthread_join returned, 'Threads destroyed')
+[PASS] threads-5: the worker is still alive after the teardown
+  tail of the worker log:
+    [Worker] Threads destroyed. Sleeping 10 seconds before next wave...
+    
+    [Worker] --- SPAWNING 4 THREADS (clone3 / CLONE_VM) ---
+      [Thread 0] Born and ticking! (TID: 57989)
+    [Worker] Threads spawned. Mother is ticking for 60 seconds...
+      [T[PASS] threads: no kernel oops on ubunode1
+[PASS] threads: no kernel oops on ubunode2
+
+Threads Results: 7 passed, 0 failed

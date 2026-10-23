@@ -1,0 +1,30 @@
+==============================
+mattx commit: 89ac3d37a70809ef337a79036a774060a970524d
+mattx source: KrisBuytaert/mattx@fix/kernel-7x-build
+ubunode1 kernel: 7.0.0-30-generic
+ubunode1 glibc: 2.43 
+==============================
+=== MattXFS umount after lookups (mattx#31): 3 cycles on ubunode1 ===
+
+--- cycle 1 ---
+[PASS] umount-1: looked up 402 directory entries below /mattxfs
+[PASS] umount-1: umount /mattxfs returned
+[PASS] umount-1: ubunode1 did not reboot
+[PASS] umount-1: no 'Busy inodes'/oops/BUG in dmesg on ubunode1
+[PASS] umount-1: /mattxfs mounted again
+
+--- cycle 2 ---
+[PASS] umount-2: looked up 402 directory entries below /mattxfs
+[PASS] umount-2: umount /mattxfs returned
+[PASS] umount-2: ubunode1 did not reboot
+[PASS] umount-2: no 'Busy inodes'/oops/BUG in dmesg on ubunode1
+[PASS] umount-2: /mattxfs mounted again
+
+--- cycle 3 ---
+[PASS] umount-3: looked up 402 directory entries below /mattxfs
+[PASS] umount-3: umount /mattxfs returned
+[PASS] umount-3: ubunode1 did not reboot
+[PASS] umount-3: no 'Busy inodes'/oops/BUG in dmesg on ubunode1
+[PASS] umount-3: /mattxfs mounted again
+
+MattXFS-Umount Results: 15 passed, 0 failed
