@@ -1,0 +1,27 @@
+==============================
+mattx commit: 7762c13f515998095c29a30038975cbcb5e60084
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+==============================
+=== Unload test (mattx#36): 3 stop/start cycles of mattx on almanode1 ===
+
+--- cycle 1 ---
+[PASS] unload-1: modules unloaded on almanode1
+[PASS] unload-1: almanode1 did not reboot
+[PASS] unload-1: no oops/BUG in dmesg on almanode1
+[PASS] unload-1: service restarted, modules loaded on almanode1
+
+--- cycle 2 ---
+[PASS] unload-2: modules unloaded on almanode1
+[PASS] unload-2: almanode1 did not reboot
+[PASS] unload-2: no oops/BUG in dmesg on almanode1
+[PASS] unload-2: service restarted, modules loaded on almanode1
+
+--- cycle 3 ---
+[PASS] unload-3: modules unloaded on almanode1
+[PASS] unload-3: almanode1 did not reboot
+[PASS] unload-3: no oops/BUG in dmesg on almanode1
+[PASS] unload-3: service restarted, modules loaded on almanode1
+
+Unload Results: 12 passed, 0 failed
