@@ -1,0 +1,89 @@
+==============================
+mattx commit: 22c660a6078c42a5c46a268150db7aa73fcd97bf
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== epoll_wait(-1) in one thread, eventfd writer in another, across migration (mattx#14) ===
+[PASS] epoll-1: 4 events on almanode1 before the migration
+[FAIL] epoll-2: no progress on almanode2 after the migration (4 -> 4 events in 30 s): process stuck (state: Tl )
+  --- diagnostics (after the migration) ---
+  threads on almanode1:
+      18107 Tl   do_signal_stop         epoll_threads
+      18108 Tl   do_signal_stop         epoll_threads
+  threads on almanode2:
+      12008 Tl   -                      epoll_threads
+      12009 Tl   -                      epoll_threads
+  almanode1 dmesg (RECALL/IMPORT/HIJACK/WORMHOLE/oops), last 12:
+    [  672.070018] MattX:[RECALL] Carving missing memory hole: 0x7ff728c86000 (Size: 258048)
+    [  672.071315] MattX:[RECALL] Carving missing memory hole: 0x7ffd1bb8f000 (Size: 135168)
+    [  672.072593] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+    [  672.408299] MattX:[IMPORT] Return memory transferred successfully! Pages: 9635
+    [  672.409208] MattX:[RECALL] TID word 0x7fee24a87990: remote TID 11725 -> local TID 16903
+    [  672.410367] MattX:[RECALL] TID word 0x7fee24286990: remote TID 11726 -> local TID 16904
+    [  672.412034] MattX:[RECALL] TID word 0x7fee23a85990: remote TID 11727 -> local TID 16905
+    [  672.413478] MattX:[RECALL] TID word 0x7fee23284990: remote TID 11728 -> local TID 16906
+    [  672.415065] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7ff728b4cec3
+    [  672.416256] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 16785: -2930424781729 ns (5 threads)
+    [  672.417532] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 16785
+    [  747.393424] MattX:[WORMHOLE] kernel_write failed for FD 3 with error -22
+  almanode2 dmesg (RECALL/EXTRACT/DRAIN/RPC), last 12:
+    [ 3603.897154] MattX:[MIGRATE] -> VMA 43: Sending page 0/39 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 3603.907839] MattX:[MIGRATE] -> VMA 46: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 3603.913802] MattX:[MIGRATE] -> VMA 47: Sending page 0/522 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 3603.917401] MattX:[MIGRATE] -> VMA 47: Sending page 256/522 (Offset: 0x100000, Payload: 4112 bytes)...
+    [ 3603.921611] MattX:[MIGRATE] -> VMA 47: Sending page 512/522 (Offset: 0x200000, Payload: 4112 bytes)...
+    [ 3603.926934] MattX:[MIGRATE] -> VMA 48: Sending page 0/65 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 3603.932340] MattX:[MIGRATE] -> VMA 49: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 3603.937658] MattX:[MIGRATE] -> VMA 50: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 3603.942493] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+    [ 3603.943541] MattX:[RECALL] Executing local Surrogate PID 11648...
+    [ 3678.708308] MattX:[DRAIN] Injected Task Work into PID 12008. Waiting for stable state...
+    [ 3678.723950] MattX:[DRAIN] PID 12008 is now stable and frozen at the user-space boundary!
+  almanode1 mattx_recv threads:
+    14936 mattx_recv_379 S
+    14975 mattx_recv_378 S
+    19570 bash S
+[FAIL] epoll-3: no progress after the recall home (4 -> 4 events in 30 s)
+  --- diagnostics (after the recall) ---
+  threads on almanode1:
+      18107 Tl   do_signal_stop         epoll_threads
+      18108 Tl   do_signal_stop         epoll_threads
+  threads on almanode2:
+      12008 Tl   -                      epoll_threads
+      12009 Tl   -                      epoll_threads
+  almanode1 dmesg (RECALL/IMPORT/HIJACK/WORMHOLE/oops), last 12:
+    [  792.052140] MattX:[RECALL] Carving missing memory hole: 0x7fe793ca7000 (Size: 4096)
+    [  792.054109] MattX:[RECALL] Carving missing memory hole: 0x7fe793cad000 (Size: 8192)
+    [  792.055915] MattX:[RECALL] Carving missing memory hole: 0x7fe793caf000 (Size: 16384)
+    [  792.057567] MattX:[RECALL] Carving missing memory hole: 0x7fe793cb3000 (Size: 8192)
+    [  792.059042] MattX:[RECALL] Carving missing memory hole: 0x7fe793cb5000 (Size: 8192)
+    [  792.060112] MattX:[RECALL] Carving missing memory hole: 0x7fe793cb7000 (Size: 4096)
+    [  792.061632] MattX:[RECALL] Carving missing memory hole: 0x7fe793cb8000 (Size: 159744)
+    [  792.064087] MattX:[RECALL] Carving missing memory hole: 0x7fe793cdf000 (Size: 45056)
+    [  792.065573] MattX:[RECALL] Carving missing memory hole: 0x7fe793cea000 (Size: 8192)
+    [  792.066967] MattX:[RECALL] Carving missing memory hole: 0x7fe793cec000 (Size: 8192)
+    [  792.068406] MattX:[RECALL] Carving missing memory hole: 0x7ffcfad05000 (Size: 135168)
+    [  792.070026] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+  almanode2 dmesg (RECALL/EXTRACT/DRAIN/RPC), last 12:
+    [ 3723.655347] MattX:[MIGRATE] -> VMA 7: Sending page 0/290 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 3723.658913] MattX:[MIGRATE] -> VMA 7: Sending page 256/290 (Offset: 0x100000, Payload: 4112 bytes)...
+    [ 3723.664576] MattX:[MIGRATE] -> VMA 8: Sending page 0/2526 (Offset: 0x0, Payload: 4112 bytes)...
+    [ 3723.667466] MattX:[MIGRATE] -> VMA 8: Sending page 256/2526 (Offset: 0x100000, Payload: 4112 bytes)...
+    [ 3723.669499] MattX:[MIGRATE] -> VMA 8: Sending page 512/2526 (Offset: 0x200000, Payload: 4112 bytes)...
+    [ 3723.748923] MattX:[MIGRATE] -> VMA 8: Sending page 768/2526 (Offset: 0x300000, Payload: 4112 bytes)...
+    [ 3723.822066] MattX:[MIGRATE] -> VMA 8: Sending page 1024/2526 (Offset: 0x400000, Payload: 4112 bytes)...
+    [ 3723.895336] MattX:[MIGRATE] -> VMA 8: Sending page 1280/2526 (Offset: 0x500000, Payload: 4112 bytes)...
+    [ 3723.897115] MattX:[MIGRATE] -> VMA 8: Sending page 1536/2526 (Offset: 0x600000, Payload: 4112 bytes)...
+    [ 3723.977106] MattX:[MIGRATE] -> VMA 8: Sending page 1792/2526 (Offset: 0x700000, Payload: 4112 bytes)...
+    [ 3724.101095] MattX:[MIGRATE] -> VMA 8: Sending page 2048/2526 (Offset: 0x800000, Payload: 4112 bytes)...
+    [ 3724.103287] MattX:[MIGRATE] -> VMA 8: Sending page 2304/2526 (Offset: 0x900000, Payload: 4112 bytes)...
+  almanode1 mattx_recv threads:
+    14936 mattx_recv_379 S
+    14975 mattx_recv_378 R
+    20881 bash S
+[PASS] epoll: no kernel oops on almanode1
+[PASS] epoll: no kernel oops on almanode2
+
+Epoll-Threads Results: 3 passed, 2 failed
