@@ -1,0 +1,405 @@
+==============================
+mattx commit: f151dac575cf2401909d7b4b39d4f281bb120c69
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== dsmtest (SysV shared memory) tests on alma cluster ===
+
+=== Test 1: dsmtest completes cleanly with no migration ===
+  Waiting up to 130s for baseline completion (10s countdown + 100 x 1s loops)...
+[PASS] dsm-1: baseline produced 100 continuous, self-consistent loops with no migration
+[PASS] dsm-1: baseline shared-memory segment removed cleanly
+
+=== Test 2: migrate dsmtest worker mid-loop, verify DSM survives ===
+  Loops completed before migration: 0 (last: )
+
+  --- ps snapshot: baseline, before migration (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+        58989       1 mattx    S     0.0       00:15 dsmtest
+        58990   58989 mattx    S     0.0       00:15 dsmtest
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode2)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dsmtest [PID 58990]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  Waiting up to 130s more for completion on whichever node it lands on...
+
+  --- ps snapshot: after migration, wait ended (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+        58989       1 mattx    S     0.0       01:51 dsmtest
+        58990   58989 mattx    T     0.0       01:51 dsmtest
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — migration (almanode1 -> almanode2):
+      [ 7364.923254] MattX:[MIGRATE] -> VMA 20: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 7364.924888] MattX:[MIGRATE] -> VMA 20 finished. Sent 11 pages.
+      [ 7364.926029] MattX:[MIGRATE] Processing VMA 22/24: 0x7f90463b5000 - 0x7f90463b7000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 7364.927523] MattX:[MIGRATE] -> VMA 21: Entering page extraction loop...
+      [ 7364.928571] MattX:[MIGRATE] -> VMA 21: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 7364.930610] MattX:[MIGRATE] -> VMA 21 finished. Sent 2 pages.
+      [ 7364.931954] MattX:[MIGRATE] Processing VMA 23/24: 0x7f90463b7000 - 0x7f90463b9000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [ 7364.934341] MattX:[MIGRATE] -> VMA 22: Entering page extraction loop...
+      [ 7364.936719] MattX:[MIGRATE] -> VMA 22: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 7364.938238] MattX:[MIGRATE] -> VMA 22 finished. Sent 2 pages.
+      [ 7364.939553] MattX:[MIGRATE] Processing VMA 24/24: 0x7ffc524b0000 - 0x7ffc524d1000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [ 7364.941029] MattX:[MIGRATE] -> VMA 23: Entering page extraction loop...
+      [ 7364.942060] MattX:[MIGRATE] -> VMA 23: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 7364.944012] MattX:[MIGRATE] -> VMA 23 finished. Sent 33 pages.
+      [ 7364.945572] MattX:[MIGRATE] Pipeline stats: 613 total, 607 sent, 6 skipped, 0 net errors
+      [ 7364.946782] MattX:[MIGRATE] =====================================================
+      [ 7364.947596] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 7364.950340] MattX:[REGISTRY] PID 58990 registered as Exported to Node 378.
+      [ 7459.689730] MattX: [FUNERAL] Received exit notice for Deputy PID 58990 from Node 378
+      [ 7459.690674] MattX: [FUNERAL] Laying Deputy PID 58990 to rest (Sending SIGKILL)...
+  mattx@almanode2 (x.x.x.x) dmesg — migration (almanode1 -> almanode2):
+      [12113.937445] MattX:[MIGRATE] -> VMA 44: Entering page extraction loop...
+      [12113.938379] MattX:[MIGRATE] -> VMA 44: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [12113.941070] MattX:[MIGRATE] -> VMA 44 finished. Sent 33 pages.
+      [12113.942656] MattX:[MIGRATE] Processing VMA 46/46: 0x7ffea2f1f000 - 0x7ffea2f40000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [12113.944240] MattX:[MIGRATE] -> VMA 45: Entering page extraction loop...
+      [12113.945350] MattX:[MIGRATE] -> VMA 45: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [12113.947692] MattX:[MIGRATE] -> VMA 45 finished. Sent 33 pages.
+      [12113.949193] MattX:[MIGRATE] Pipeline stats: 5521 total, 5521 sent, 0 skipped, 0 net errors
+      [12113.950333] MattX:[MIGRATE] =====================================================
+      [12113.951326] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [12113.952378] MattX:[RECALL] Executing local Surrogate PID 36115...
+      [12276.202335] MattX:[IMPORT] Received Blueprint for PID 58990. Saving to pending...
+      [12276.212632] MattX:[DRAIN] Injected Task Work into PID 36588. Waiting for stable state...
+      [12276.224580] MattX:[DRAIN] PID 36588 is now stable and frozen at the user-space boundary!
+      [12276.399712] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [12276.400861] MattX:[IMPORT] Commencing full brain transplant on PID 36588...
+      [12276.402712] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [12276.407856] MattX:[IMPORT] Registered clock-offset fixup for PID 36588: 4912333873532 ns (1 threads)
+      [12276.409230] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 36588
+      [12276.410357] MattX:[IMPORT] Armed DSM Tripwire at 0x7f9046377000 (ID: 30, Size: 4096)
+[PASS] dsm-2: all 100 loops continuous and self-consistent across migration
+[PASS] dsm-2: shared-memory segment removed cleanly after migration (shmid still valid post-move)
+  Full log:
+    [PID 58990] dsmtest worker started.
+    [PID 58990] Waiting 10 seconds for Funny Matt to migrate me...
+    [PID 58990] T-minus 10 seconds...
+    [PID 58990] T-minus 9 seconds...
+    [PID 58990] T-minus 8 seconds...
+    [PID 58990] T-minus 7 seconds...
+    [PID 58990] T-minus 6 seconds...
+    [PID 58990] T-minus 5 seconds...
+    [PID 58990] T-minus 4 seconds...
+    [PID 58990] T-minus 3 seconds...
+    [PID 58990] T-minus 2 seconds...
+    [PID 58990] T-minus 1 seconds...
+    [PID 58990] Waking up! Creating Shared Memory Segment...
+    [PID 58990] shmget successful! SHMID: 30
+    [PID 58990] shmat successful! Attached at virtual address: 0x7f9046377000
+    [PID 58990] Starting 100 Read/Write loops...
+    [PID 58990] Loop 0 - Read from SHM: '0 MattX DSM Magic! Loop 0'
+    [PID 58990] Loop 1 - Read from SHM: '1 MattX DSM Magic! Loop 1'
+    [PID 58990] Loop 2 - Read from SHM: '2 MattX DSM Magic! Loop 2'
+    [PID 58990] Loop 3 - Read from SHM: '3 MattX DSM Magic! Loop 3'
+    [PID 58990] Loop 4 - Read from SHM: '4 MattX DSM Magic! Loop 4'
+    [PID 58990] Loop 5 - Read from SHM: '5 MattX DSM Magic! Loop 5'
+    [PID 58990] Loop 6 - Read from SHM: '6 MattX DSM Magic! Loop 6'
+    [PID 58990] Loop 7 - Read from SHM: '7 MattX DSM Magic! Loop 7'
+    [PID 58990] Loop 8 - Read from SHM: '8 MattX DSM Magic! Loop 8'
+    [PID 58990] Loop 9 - Read from SHM: '9 MattX DSM Magic! Loop 9'
+    [PID 58990] Loop 10 - Read from SHM: '10 MattX DSM Magic! Loop 10'
+    [PID 58990] Loop 11 - Read from SHM: '11 MattX DSM Magic! Loop 11'
+    [PID 58990] Loop 12 - Read from SHM: '12 MattX DSM Magic! Loop 12'
+    [PID 58990] Loop 13 - Read from SHM: '13 MattX DSM Magic! Loop 13'
+    [PID 58990] Loop 14 - Read from SHM: '14 MattX DSM Magic! Loop 14'
+    [PID 58990] Loop 15 - Read from SHM: '15 MattX DSM Magic! Loop 15'
+    [PID 58990] Loop 16 - Read from SHM: '16 MattX DSM Magic! Loop 16'
+    [PID 58990] Loop 17 - Read from SHM: '17 MattX DSM Magic! Loop 17'
+    [PID 58990] Loop 18 - Read from SHM: '18 MattX DSM Magic! Loop 18'
+    [PID 58990] Loop 19 - Read from SHM: '19 MattX DSM Magic! Loop 19'
+    [PID 58990] Loop 20 - Read from SHM: '20 MattX DSM Magic! Loop 20'
+    [PID 58990] Loop 21 - Read from SHM: '21 MattX DSM Magic! Loop 21'
+    [PID 58990] Loop 22 - Read from SHM: '22 MattX DSM Magic! Loop 22'
+    [PID 58990] Loop 23 - Read from SHM: '23 MattX DSM Magic! Loop 23'
+    [PID 58990] Loop 24 - Read from SHM: '24 MattX DSM Magic! Loop 24'
+    [PID 58990] Loop 25 - Read from SHM: '25 MattX DSM Magic! Loop 25'
+    [PID 58990] Loop 26 - Read from SHM: '26 MattX DSM Magic! Loop 26'
+    [PID 58990] Loop 27 - Read from SHM: '27 MattX DSM Magic! Loop 27'
+    [PID 58990] Loop 28 - Read from SHM: '28 MattX DSM Magic! Loop 28'
+    [PID 58990] Loop 29 - Read from SHM: '29 MattX DSM Magic! Loop 29'
+    [PID 58990] Loop 30 - Read from SHM: '30 MattX DSM Magic! Loop 30'
+    [PID 58990] Loop 31 - Read from SHM: '31 MattX DSM Magic! Loop 31'
+    [PID 58990] Loop 32 - Read from SHM: '32 MattX DSM Magic! Loop 32'
+    [PID 58990] Loop 33 - Read from SHM: '33 MattX DSM Magic! Loop 33'
+    [PID 58990] Loop 34 - Read from SHM: '34 MattX DSM Magic! Loop 34'
+    [PID 58990] Loop 35 - Read from SHM: '35 MattX DSM Magic! Loop 35'
+    [PID 58990] Loop 36 - Read from SHM: '36 MattX DSM Magic! Loop 36'
+    [PID 58990] Loop 37 - Read from SHM: '37 MattX DSM Magic! Loop 37'
+    [PID 58990] Loop 38 - Read from SHM: '38 MattX DSM Magic! Loop 38'
+    [PID 58990] Loop 39 - Read from SHM: '39 MattX DSM Magic! Loop 39'
+    [PID 58990] Loop 40 - Read from SHM: '40 MattX DSM Magic! Loop 40'
+    [PID 58990] Loop 41 - Read from SHM: '41 MattX DSM Magic! Loop 41'
+    [PID 58990] Loop 42 - Read from SHM: '42 MattX DSM Magic! Loop 42'
+    [PID 58990] Loop 43 - Read from SHM: '43 MattX DSM Magic! Loop 43'
+    [PID 58990] Loop 44 - Read from SHM: '44 MattX DSM Magic! Loop 44'
+    [PID 58990] Loop 45 - Read from SHM: '45 MattX DSM Magic! Loop 45'
+    [PID 58990] Loop 46 - Read from SHM: '46 MattX DSM Magic! Loop 46'
+    [PID 58990] Loop 47 - Read from SHM: '47 MattX DSM Magic! Loop 47'
+    [PID 58990] Loop 48 - Read from SHM: '48 MattX DSM Magic! Loop 48'
+    [PID 58990] Loop 49 - Read from SHM: '49 MattX DSM Magic! Loop 49'
+    [PID 58990] Loop 50 - Read from SHM: '50 MattX DSM Magic! Loop 50'
+    [PID 58990] Loop 51 - Read from SHM: '51 MattX DSM Magic! Loop 51'
+    [PID 58990] Loop 52 - Read from SHM: '52 MattX DSM Magic! Loop 52'
+    [PID 58990] Loop 53 - Read from SHM: '53 MattX DSM Magic! Loop 53'
+    [PID 58990] Loop 54 - Read from SHM: '54 MattX DSM Magic! Loop 54'
+    [PID 58990] Loop 55 - Read from SHM: '55 MattX DSM Magic! Loop 55'
+    [PID 58990] Loop 56 - Read from SHM: '56 MattX DSM Magic! Loop 56'
+    [PID 58990] Loop 57 - Read from SHM: '57 MattX DSM Magic! Loop 57'
+    [PID 58990] Loop 58 - Read from SHM: '58 MattX DSM Magic! Loop 58'
+    [PID 58990] Loop 59 - Read from SHM: '59 MattX DSM Magic! Loop 59'
+    [PID 58990] Loop 60 - Read from SHM: '60 MattX DSM Magic! Loop 60'
+    [PID 58990] Loop 61 - Read from SHM: '61 MattX DSM Magic! Loop 61'
+    [PID 58990] Loop 62 - Read from SHM: '62 MattX DSM Magic! Loop 62'
+    [PID 58990] Loop 63 - Read from SHM: '63 MattX DSM Magic! Loop 63'
+    [PID 58990] Loop 64 - Read from SHM: '64 MattX DSM Magic! Loop 64'
+    [PID 58990] Loop 65 - Read from SHM: '65 MattX DSM Magic! Loop 65'
+    [PID 58990] Loop 66 - Read from SHM: '66 MattX DSM Magic! Loop 66'
+    [PID 58990] Loop 67 - Read from SHM: '67 MattX DSM Magic! Loop 67'
+    [PID 58990] Loop 68 - Read from SHM: '68 MattX DSM Magic! Loop 68'
+    [PID 58990] Loop 69 - Read from SHM: '69 MattX DSM Magic! Loop 69'
+    [PID 58990] Loop 70 - Read from SHM: '70 MattX DSM Magic! Loop 70'
+    [PID 58990] Loop 71 - Read from SHM: '71 MattX DSM Magic! Loop 71'
+    [PID 58990] Loop 72 - Read from SHM: '72 MattX DSM Magic! Loop 72'
+    [PID 58990] Loop 73 - Read from SHM: '73 MattX DSM Magic! Loop 73'
+    [PID 58990] Loop 74 - Read from SHM: '74 MattX DSM Magic! Loop 74'
+    [PID 58990] Loop 75 - Read from SHM: '75 MattX DSM Magic! Loop 75'
+    [PID 58990] Loop 76 - Read from SHM: '76 MattX DSM Magic! Loop 76'
+    [PID 58990] Loop 77 - Read from SHM: '77 MattX DSM Magic! Loop 77'
+    [PID 58990] Loop 78 - Read from SHM: '78 MattX DSM Magic! Loop 78'
+    [PID 58990] Loop 79 - Read from SHM: '79 MattX DSM Magic! Loop 79'
+    [PID 58990] Loop 80 - Read from SHM: '80 MattX DSM Magic! Loop 80'
+    [PID 58990] Loop 81 - Read from SHM: '81 MattX DSM Magic! Loop 81'
+    [PID 58990] Loop 82 - Read from SHM: '82 MattX DSM Magic! Loop 82'
+    [PID 58990] Loop 83 - Read from SHM: '83 MattX DSM Magic! Loop 83'
+    [PID 58990] Loop 84 - Read from SHM: '84 MattX DSM Magic! Loop 84'
+    [PID 58990] Loop 85 - Read from SHM: '85 MattX DSM Magic! Loop 85'
+    [PID 58990] Loop 86 - Read from SHM: '86 MattX DSM Magic! Loop 86'
+    [PID 58990] Loop 87 - Read from SHM: '87 MattX DSM Magic! Loop 87'
+    [PID 58990] Loop 88 - Read from SHM: '88 MattX DSM Magic! Loop 88'
+    [PID 58990] Loop 89 - Read from SHM: '89 MattX DSM Magic! Loop 89'
+    [PID 58990] Loop 90 - Read from SHM: '90 MattX DSM Magic! Loop 90'
+    [PID 58990] Loop 91 - Read from SHM: '91 MattX DSM Magic! Loop 91'
+    [PID 58990] Loop 92 - Read from SHM: '92 MattX DSM Magic! Loop 92'
+    [PID 58990] Loop 93 - Read from SHM: '93 MattX DSM Magic! Loop 93'
+    [PID 58990] Loop 94 - Read from SHM: '94 MattX DSM Magic! Loop 94'
+    [PID 58990] Loop 95 - Read from SHM: '95 MattX DSM Magic! Loop 95'
+    [PID 58990] Loop 96 - Read from SHM: '96 MattX DSM Magic! Loop 96'
+    [PID 58990] Loop 97 - Read from SHM: '97 MattX DSM Magic! Loop 97'
+    [PID 58990] Loop 98 - Read from SHM: '98 MattX DSM Magic! Loop 98'
+    [PID 58990] Loop 99 - Read from SHM: '99 MattX DSM Magic! Loop 99'
+    [PID 58990] Loops complete. Detaching memory...
+    [PID 58990] Removing Shared Memory Segment...
+    [PID 58990] dsmtest finished cleanly. Goodbye!
+    ==================================================
+    dsmtest: Spawned child worker with PID 58990.
+    dsmtest: Parent exiting to detach from terminal.
+    ==================================================
+    [Manager] Waiting for worker. Press Ctrl-C to terminate the cluster job.
+    [Manager] Worker finished. Exiting.
+
+=== Test 3: migrate dsmtest worker BEFORE any SHM syscall (shmget/shmat wormhole) ===
+  Confirmed: worker still in its startup countdown, no SHM syscalls made yet.
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dsmtest [PID 61047]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  Waiting up to 130s for completion on whichever node it lands on...
+
+  --- ps snapshot: test 3, after wait ended (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+        61046       1 mattx    S     0.0       01:52 dsmtest
+        61047   61046 mattx    T     0.0       01:52 dsmtest
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — test 3 migration (almanode1 -> almanode2):
+      [ 7464.990029] MattX:[MIGRATE] -> VMA 19: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 7464.991576] MattX:[MIGRATE] -> VMA 19 finished. Sent 11 pages.
+      [ 7464.993107] MattX:[MIGRATE] Processing VMA 21/23: 0x7fdb5d25b000 - 0x7fdb5d25d000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [ 7464.994645] MattX:[MIGRATE] -> VMA 20: Entering page extraction loop...
+      [ 7464.995688] MattX:[MIGRATE] -> VMA 20: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 7464.997354] MattX:[MIGRATE] -> VMA 20 finished. Sent 2 pages.
+      [ 7464.998822] MattX:[MIGRATE] Processing VMA 22/23: 0x7fdb5d25d000 - 0x7fdb5d25f000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [ 7464.999968] MattX:[MIGRATE] -> VMA 21: Entering page extraction loop...
+      [ 7465.002147] MattX:[MIGRATE] -> VMA 21: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 7465.003692] MattX:[MIGRATE] -> VMA 21 finished. Sent 2 pages.
+      [ 7465.004967] MattX:[MIGRATE] Processing VMA 23/23: 0x7fff843af000 - 0x7fff843d0000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [ 7465.006404] MattX:[MIGRATE] -> VMA 22: Entering page extraction loop...
+      [ 7465.008327] MattX:[MIGRATE] -> VMA 22: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [ 7465.009685] MattX:[MIGRATE] -> VMA 22 finished. Sent 33 pages.
+      [ 7465.010889] MattX:[MIGRATE] Pipeline stats: 613 total, 607 sent, 6 skipped, 0 net errors
+      [ 7465.011987] MattX:[MIGRATE] =====================================================
+      [ 7465.014263] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [ 7465.015265] MattX:[REGISTRY] PID 61047 registered as Exported to Node 378.
+      [ 7574.378986] MattX: [FUNERAL] Received exit notice for Deputy PID 61047 from Node 378
+      [ 7574.379922] MattX: [FUNERAL] Laying Deputy PID 61047 to rest (Sending SIGKILL)...
+  mattx@almanode2 (x.x.x.x) dmesg — test 3 migration (almanode1 -> almanode2):
+      [12113.950333] MattX:[MIGRATE] =====================================================
+      [12113.951326] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+      [12113.952378] MattX:[RECALL] Executing local Surrogate PID 36115...
+      [12276.202335] MattX:[IMPORT] Received Blueprint for PID 58990. Saving to pending...
+      [12276.212632] MattX:[DRAIN] Injected Task Work into PID 36588. Waiting for stable state...
+      [12276.224580] MattX:[DRAIN] PID 36588 is now stable and frozen at the user-space boundary!
+      [12276.399712] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [12276.400861] MattX:[IMPORT] Commencing full brain transplant on PID 36588...
+      [12276.402712] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [12276.407856] MattX:[IMPORT] Registered clock-offset fixup for PID 36588: 4912333873532 ns (1 threads)
+      [12276.409230] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 36588
+      [12276.410357] MattX:[IMPORT] Armed DSM Tripwire at 0x7f9046377000 (ID: 30, Size: 4096)
+      [12376.276959] MattX:[IMPORT] Received Blueprint for PID 61047. Saving to pending...
+      [12376.284087] MattX:[DRAIN] Injected Task Work into PID 36744. Waiting for stable state...
+      [12376.295760] MattX:[DRAIN] PID 36744 is now stable and frozen at the user-space boundary!
+      [12376.464679] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [12376.466005] MattX:[IMPORT] Commencing full brain transplant on PID 36744...
+      [12376.467201] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [12376.470225] MattX:[IMPORT] Registered clock-offset fixup for PID 36744: 4912303475901 ns (1 threads)
+      [12376.471443] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 36744
+[PASS] dsm-3: shmget() succeeded post-migration (shmget wormhole hook engaged)
+[PASS] dsm-3: shmat() succeeded post-migration (shmat wormhole hook engaged)
+[PASS] dsm-3: all 100 loops continuous and self-consistent, entirely as a Surrogate
+[PASS] dsm-3: shmdt() succeeded post-migration (shmdt wormhole hook engaged)
+[PASS] dsm-3: shmctl(IPC_RMID) succeeded post-migration (shmctl wormhole hook engaged)
+  Full log:
+    [PID 61047] dsmtest worker started.
+    [PID 61047] Waiting 10 seconds for Funny Matt to migrate me...
+    [PID 61047] T-minus 10 seconds...
+    [PID 61047] T-minus 9 seconds...
+    [PID 61047] T-minus 8 seconds...
+    [PID 61047] T-minus 7 seconds...
+    [PID 61047] T-minus 6 seconds...
+    [PID 61047] T-minus 5 seconds...
+    [PID 61047] T-minus 4 seconds...
+    [PID 61047] T-minus 3 seconds...
+    [PID 61047] T-minus 2 seconds...
+    [PID 61047] T-minus 1 seconds...
+    [PID 61047] Waking up! Creating Shared Memory Segment...
+    [PID 61047] shmget successful! SHMID: 31
+    [PID 61047] shmat successful! Attached at virtual address: 0x7fdb5d21d000
+    [PID 61047] Starting 100 Read/Write loops...
+    [PID 61047] Loop 0 - Read from SHM: '0 MattX DSM Magic! Loop 0'
+    [PID 61047] Loop 1 - Read from SHM: '1 MattX DSM Magic! Loop 1'
+    [PID 61047] Loop 2 - Read from SHM: '2 MattX DSM Magic! Loop 2'
+    [PID 61047] Loop 3 - Read from SHM: '3 MattX DSM Magic! Loop 3'
+    [PID 61047] Loop 4 - Read from SHM: '4 MattX DSM Magic! Loop 4'
+    [PID 61047] Loop 5 - Read from SHM: '5 MattX DSM Magic! Loop 5'
+    [PID 61047] Loop 6 - Read from SHM: '6 MattX DSM Magic! Loop 6'
+    [PID 61047] Loop 7 - Read from SHM: '7 MattX DSM Magic! Loop 7'
+    [PID 61047] Loop 8 - Read from SHM: '8 MattX DSM Magic! Loop 8'
+    [PID 61047] Loop 9 - Read from SHM: '9 MattX DSM Magic! Loop 9'
+    [PID 61047] Loop 10 - Read from SHM: '10 MattX DSM Magic! Loop 10'
+    [PID 61047] Loop 11 - Read from SHM: '11 MattX DSM Magic! Loop 11'
+    [PID 61047] Loop 12 - Read from SHM: '12 MattX DSM Magic! Loop 12'
+    [PID 61047] Loop 13 - Read from SHM: '13 MattX DSM Magic! Loop 13'
+    [PID 61047] Loop 14 - Read from SHM: '14 MattX DSM Magic! Loop 14'
+    [PID 61047] Loop 15 - Read from SHM: '15 MattX DSM Magic! Loop 15'
+    [PID 61047] Loop 16 - Read from SHM: '16 MattX DSM Magic! Loop 16'
+    [PID 61047] Loop 17 - Read from SHM: '17 MattX DSM Magic! Loop 17'
+    [PID 61047] Loop 18 - Read from SHM: '18 MattX DSM Magic! Loop 18'
+    [PID 61047] Loop 19 - Read from SHM: '19 MattX DSM Magic! Loop 19'
+    [PID 61047] Loop 20 - Read from SHM: '20 MattX DSM Magic! Loop 20'
+    [PID 61047] Loop 21 - Read from SHM: '21 MattX DSM Magic! Loop 21'
+    [PID 61047] Loop 22 - Read from SHM: '22 MattX DSM Magic! Loop 22'
+    [PID 61047] Loop 23 - Read from SHM: '23 MattX DSM Magic! Loop 23'
+    [PID 61047] Loop 24 - Read from SHM: '24 MattX DSM Magic! Loop 24'
+    [PID 61047] Loop 25 - Read from SHM: '25 MattX DSM Magic! Loop 25'
+    [PID 61047] Loop 26 - Read from SHM: '26 MattX DSM Magic! Loop 26'
+    [PID 61047] Loop 27 - Read from SHM: '27 MattX DSM Magic! Loop 27'
+    [PID 61047] Loop 28 - Read from SHM: '28 MattX DSM Magic! Loop 28'
+    [PID 61047] Loop 29 - Read from SHM: '29 MattX DSM Magic! Loop 29'
+    [PID 61047] Loop 30 - Read from SHM: '30 MattX DSM Magic! Loop 30'
+    [PID 61047] Loop 31 - Read from SHM: '31 MattX DSM Magic! Loop 31'
+    [PID 61047] Loop 32 - Read from SHM: '32 MattX DSM Magic! Loop 32'
+    [PID 61047] Loop 33 - Read from SHM: '33 MattX DSM Magic! Loop 33'
+    [PID 61047] Loop 34 - Read from SHM: '34 MattX DSM Magic! Loop 34'
+    [PID 61047] Loop 35 - Read from SHM: '35 MattX DSM Magic! Loop 35'
+    [PID 61047] Loop 36 - Read from SHM: '36 MattX DSM Magic! Loop 36'
+    [PID 61047] Loop 37 - Read from SHM: '37 MattX DSM Magic! Loop 37'
+    [PID 61047] Loop 38 - Read from SHM: '38 MattX DSM Magic! Loop 38'
+    [PID 61047] Loop 39 - Read from SHM: '39 MattX DSM Magic! Loop 39'
+    [PID 61047] Loop 40 - Read from SHM: '40 MattX DSM Magic! Loop 40'
+    [PID 61047] Loop 41 - Read from SHM: '41 MattX DSM Magic! Loop 41'
+    [PID 61047] Loop 42 - Read from SHM: '42 MattX DSM Magic! Loop 42'
+    [PID 61047] Loop 43 - Read from SHM: '43 MattX DSM Magic! Loop 43'
+    [PID 61047] Loop 44 - Read from SHM: '44 MattX DSM Magic! Loop 44'
+    [PID 61047] Loop 45 - Read from SHM: '45 MattX DSM Magic! Loop 45'
+    [PID 61047] Loop 46 - Read from SHM: '46 MattX DSM Magic! Loop 46'
+    [PID 61047] Loop 47 - Read from SHM: '47 MattX DSM Magic! Loop 47'
+    [PID 61047] Loop 48 - Read from SHM: '48 MattX DSM Magic! Loop 48'
+    [PID 61047] Loop 49 - Read from SHM: '49 MattX DSM Magic! Loop 49'
+    [PID 61047] Loop 50 - Read from SHM: '50 MattX DSM Magic! Loop 50'
+    [PID 61047] Loop 51 - Read from SHM: '51 MattX DSM Magic! Loop 51'
+    [PID 61047] Loop 52 - Read from SHM: '52 MattX DSM Magic! Loop 52'
+    [PID 61047] Loop 53 - Read from SHM: '53 MattX DSM Magic! Loop 53'
+    [PID 61047] Loop 54 - Read from SHM: '54 MattX DSM Magic! Loop 54'
+    [PID 61047] Loop 55 - Read from SHM: '55 MattX DSM Magic! Loop 55'
+    [PID 61047] Loop 56 - Read from SHM: '56 MattX DSM Magic! Loop 56'
+    [PID 61047] Loop 57 - Read from SHM: '57 MattX DSM Magic! Loop 57'
+    [PID 61047] Loop 58 - Read from SHM: '58 MattX DSM Magic! Loop 58'
+    [PID 61047] Loop 59 - Read from SHM: '59 MattX DSM Magic! Loop 59'
+    [PID 61047] Loop 60 - Read from SHM: '60 MattX DSM Magic! Loop 60'
+    [PID 61047] Loop 61 - Read from SHM: '61 MattX DSM Magic! Loop 61'
+    [PID 61047] Loop 62 - Read from SHM: '62 MattX DSM Magic! Loop 62'
+    [PID 61047] Loop 63 - Read from SHM: '63 MattX DSM Magic! Loop 63'
+    [PID 61047] Loop 64 - Read from SHM: '64 MattX DSM Magic! Loop 64'
+    [PID 61047] Loop 65 - Read from SHM: '65 MattX DSM Magic! Loop 65'
+    [PID 61047] Loop 66 - Read from SHM: '66 MattX DSM Magic! Loop 66'
+    [PID 61047] Loop 67 - Read from SHM: '67 MattX DSM Magic! Loop 67'
+    [PID 61047] Loop 68 - Read from SHM: '68 MattX DSM Magic! Loop 68'
+    [PID 61047] Loop 69 - Read from SHM: '69 MattX DSM Magic! Loop 69'
+    [PID 61047] Loop 70 - Read from SHM: '70 MattX DSM Magic! Loop 70'
+    [PID 61047] Loop 71 - Read from SHM: '71 MattX DSM Magic! Loop 71'
+    [PID 61047] Loop 72 - Read from SHM: '72 MattX DSM Magic! Loop 72'
+    [PID 61047] Loop 73 - Read from SHM: '73 MattX DSM Magic! Loop 73'
+    [PID 61047] Loop 74 - Read from SHM: '74 MattX DSM Magic! Loop 74'
+    [PID 61047] Loop 75 - Read from SHM: '75 MattX DSM Magic! Loop 75'
+    [PID 61047] Loop 76 - Read from SHM: '76 MattX DSM Magic! Loop 76'
+    [PID 61047] Loop 77 - Read from SHM: '77 MattX DSM Magic! Loop 77'
+    [PID 61047] Loop 78 - Read from SHM: '78 MattX DSM Magic! Loop 78'
+    [PID 61047] Loop 79 - Read from SHM: '79 MattX DSM Magic! Loop 79'
+    [PID 61047] Loop 80 - Read from SHM: '80 MattX DSM Magic! Loop 80'
+    [PID 61047] Loop 81 - Read from SHM: '81 MattX DSM Magic! Loop 81'
+    [PID 61047] Loop 82 - Read from SHM: '82 MattX DSM Magic! Loop 82'
+    [PID 61047] Loop 83 - Read from SHM: '83 MattX DSM Magic! Loop 83'
+    [PID 61047] Loop 84 - Read from SHM: '84 MattX DSM Magic! Loop 84'
+    [PID 61047] Loop 85 - Read from SHM: '85 MattX DSM Magic! Loop 85'
+    [PID 61047] Loop 86 - Read from SHM: '86 MattX DSM Magic! Loop 86'
+    [PID 61047] Loop 87 - Read from SHM: '87 MattX DSM Magic! Loop 87'
+    [PID 61047] Loop 88 - Read from SHM: '88 MattX DSM Magic! Loop 88'
+    [PID 61047] Loop 89 - Read from SHM: '89 MattX DSM Magic! Loop 89'
+    [PID 61047] Loop 90 - Read from SHM: '90 MattX DSM Magic! Loop 90'
+    [PID 61047] Loop 91 - Read from SHM: '91 MattX DSM Magic! Loop 91'
+    [PID 61047] Loop 92 - Read from SHM: '92 MattX DSM Magic! Loop 92'
+    [PID 61047] Loop 93 - Read from SHM: '93 MattX DSM Magic! Loop 93'
+    [PID 61047] Loop 94 - Read from SHM: '94 MattX DSM Magic! Loop 94'
+    [PID 61047] Loop 95 - Read from SHM: '95 MattX DSM Magic! Loop 95'
+    [PID 61047] Loop 96 - Read from SHM: '96 MattX DSM Magic! Loop 96'
+    [PID 61047] Loop 97 - Read from SHM: '97 MattX DSM Magic! Loop 97'
+    [PID 61047] Loop 98 - Read from SHM: '98 MattX DSM Magic! Loop 98'
+    [PID 61047] Loop 99 - Read from SHM: '99 MattX DSM Magic! Loop 99'
+    [PID 61047] Loops complete. Detaching memory...
+    [PID 61047] Removing Shared Memory Segment...
+    [PID 61047] dsmtest finished cleanly. Goodbye!
+    ==================================================
+    dsmtest: Spawned child worker with PID 61047.
+    dsmtest: Parent exiting to detach from terminal.
+    ==================================================
+    [Manager] Waiting for worker. Press Ctrl-C to terminate the cluster job.
+    [Manager] Worker finished. Exiting.
+[PASS] dsm-2/3: no kernel oops on almanode1
+[PASS] dsm-2/3: no kernel oops on almanode2
+
+==============================
+DSM Results: 11 passed, 0 failed
+==============================
