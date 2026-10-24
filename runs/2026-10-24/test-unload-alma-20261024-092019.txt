@@ -1,0 +1,15 @@
+==============================
+mattx commit: 22c660a6078c42a5c46a268150db7aa73fcd97bf
+mattx source: brainmatt/mattx@1.9-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+==============================
+=== Unload test (mattx#36): 3 stop/start cycles of mattx on almanode1 ===
+
+--- cycle 1 ---
+Read from remote host x.x.x.x: Connection reset by peer
+client_loop: send disconnect: Broken pipe
+[FAIL] unload-1: connection to almanode1 lost or hung while unloading (rc=255) -- the node crashed (mattx#36) or wedged
+  (waiting for almanode1 to come back before stopping the test)
+
+Unload Results: 0 passed, 1 failed
