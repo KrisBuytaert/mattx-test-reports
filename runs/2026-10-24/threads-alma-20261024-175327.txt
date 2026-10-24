@@ -1,0 +1,27 @@
+==============================
+mattx commit: 1be8473bac6725654f5ba3bdc6915d79a7df79a1
+mattx source: brainmatt/mattx@main
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== threadtest 4: threads created on almanode2, then recalled home to almanode1 (mattx#9) ===
+  worker PID 55549 (still in its 15 s startup sleep, no threads yet)
+[PASS] threads-1: worker migrated to almanode2 before it spawned its threads
+  waiting for the 4 threads to be created on almanode2 ...
+[PASS] threads-2: 4 threads created on almanode2 (5 tasks of threadtest there)
+  recalling the worker home to almanode1 ...
+[PASS] threads-3: worker is back on almanode1 after the recall
+  waiting for the teardown wave (pthread_cancel/pthread_join = futex) ...
+[PASS] threads-4: teardown completed (pthread_join returned, 'Threads destroyed')
+[PASS] threads-5: the worker is still alive after the teardown
+  tail of the worker log:
+    [Worker] Threads spawned. Mother is ticking for 60 seconds...
+      [Thread 0] Born and ticking! (TID: 56316)
+      [Thread 2] Born and ticking! (TID: 56318)
+      [Thread 1] Born and ticking! (TID: 56317)
+      [Thread 3] Born and ticking! (TID: 56319)
+      [Thread 1] (TID: 56317) Still aliv[PASS] threads: no kernel oops on almanode1
+[PASS] threads: no kernel oops on almanode2
+
+Threads Results: 7 passed, 0 failed
