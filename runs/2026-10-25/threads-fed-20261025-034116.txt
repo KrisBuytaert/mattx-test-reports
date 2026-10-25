@@ -1,0 +1,27 @@
+==============================
+mattx commit: c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688
+mattx source: brainmatt/mattx@2.0-dev
+fednode1 kernel: 7.2.11-200.fc44.x86_64
+fednode1 glibc: 2.43 glibc-2.43-9.fc44.x86_64 
+fednode2 kernel: 7.2.11-200.fc44.x86_64
+==============================
+=== threadtest 4: threads created on fednode2, then recalled home to fednode1 (mattx#9) ===
+  worker PID 21401 (still in its 15 s startup sleep, no threads yet)
+[PASS] threads-1: worker migrated to fednode2 before it spawned its threads
+  waiting for the 4 threads to be created on fednode2 ...
+[PASS] threads-2: 4 threads created on fednode2 (5 tasks of threadtest there)
+  recalling the worker home to fednode1 ...
+[PASS] threads-3: worker is back on fednode1 after the recall
+  waiting for the teardown wave (pthread_cancel/pthread_join = futex) ...
+[PASS] threads-4: teardown completed (pthread_join returned, 'Threads destroyed')
+[PASS] threads-5: the worker is still alive after the teardown
+  tail of the worker log:
+      [Thread 0] (TID: 22441) Still alive and calculating... (50 seconds)
+      [Thread 3] (TID: 22444) Still alive and calculating... (50 seconds)
+      [Thread 1] (TID: 22442) Still alive and calculating... (50 seconds)
+      [Thread 2] (TID: 22443) Still alive and calculating... (55 seconds)
+      [Thread 0] (TID: 22441) Still alive and calculating... (55 seconds)
+      [Thread 3] (TID: 22444[PASS] threads: no kernel oops on fednode1
+[PASS] threads: no kernel oops on fednode2
+
+Threads Results: 7 passed, 0 failed

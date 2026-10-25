@@ -1,0 +1,27 @@
+==============================
+mattx commit: c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688
+mattx source: brainmatt/mattx@2.0-dev
+fednode1 kernel: 7.2.11-200.fc44.x86_64
+fednode1 glibc: 2.43 glibc-2.43-9.fc44.x86_64 
+==============================
+=== Unload test (mattx#36): 3 stop/start cycles of mattx on fednode1 ===
+
+--- cycle 1 ---
+[PASS] unload-1: modules unloaded on fednode1
+[PASS] unload-1: fednode1 did not reboot
+[PASS] unload-1: no oops/BUG in dmesg on fednode1
+[PASS] unload-1: service restarted, modules loaded on fednode1
+
+--- cycle 2 ---
+[PASS] unload-2: modules unloaded on fednode1
+[PASS] unload-2: fednode1 did not reboot
+[PASS] unload-2: no oops/BUG in dmesg on fednode1
+[PASS] unload-2: service restarted, modules loaded on fednode1
+
+--- cycle 3 ---
+[PASS] unload-3: modules unloaded on fednode1
+[PASS] unload-3: fednode1 did not reboot
+[PASS] unload-3: no oops/BUG in dmesg on fednode1
+[PASS] unload-3: service restarted, modules loaded on fednode1
+
+Unload Results: 12 passed, 0 failed

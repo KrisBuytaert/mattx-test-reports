@@ -1,0 +1,260 @@
+==============================
+mattx commit: c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688
+mattx source: brainmatt/mattx@2.0-dev
+fednode1 kernel: 7.2.11-200.fc44.x86_64
+fednode1 glibc: 2.43 glibc-2.43-9.fc44.x86_64 
+fednode2 kernel: 7.2.11-200.fc44.x86_64
+==============================
+[setup] cleaning up stale test processes...
+
+=== Pre-flight: cluster state ===
+  Cluster OK
+    fednode1: ID=497  IP=x.x.x.x
+    fednode2: ID=498  IP=x.x.x.x
+
+=== Test 1: Basic migration (migtest) ===
+
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         8500       1 mattx    S     0.0       00:02 migtest
+         8501    8500 mattx    R    96.5       00:02 migtest
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 8501]
+    from : fednode1 (x.x.x.x)
+    to   : fednode2   (x.x.x.x)  [node ID 498]
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+
+  After forward migration:
+  Deputy export tracker on fednode1 (/proc/mattx/remote):
+   8501:498  ← Deputy PID 8501 is exported to node 498
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         6836       2 mattx    T    30.0       00:03 migtest
+[PASS] test1: Deputy present on fednode1 (/proc/mattx/remote)
+[PASS] test1: Surrogate running on fednode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 8501]
+    from : fednode2 (x.x.x.x)
+    to   : fednode1   (x.x.x.x)  [node ID home]
+    (admin command issued on fednode1, the home node -- not on fednode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+
+  After return migration:
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         8500       1 mattx    S     0.0       00:14 migtest
+         8501    8500 mattx    R    34.7       00:14 migtest
+[PASS] test1: migtest returned to fednode1
+[PASS] test1: no oops on fednode1
+[PASS] test1: no oops on fednode2
+
+=== Test 2: Network wormhole (servertestpoll) ===
+
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'servertestpoll' | grep -v grep
+         8928       1 mattx    S     0.0       00:02 servertestpoll
+         8929    8928 mattx    S     0.0       00:02 servertestpoll
+  Checking TCP reachability on x.x.x.x:8080 before migration...
+[PASS] test2: server reachable on fednode1 before migration
+
+  ─────────────────────────────────────────────────────
+  Starting migration of servertestpoll [PID 8929]
+    from : fednode1 (x.x.x.x)
+    to   : fednode2   (x.x.x.x)  [node ID 498]
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  Waiting for migration to complete (up to 60s)...
+
+  After migration:
+  Deputy export tracker on fednode1 (/proc/mattx/remote):
+   8929:498  ← Deputy PID 8929 is exported to node 498
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'servertestpoll' | grep -v grep
+         6993       2 mattx    S     0.0       00:00 servertestpoll
+[PASS] test2: Surrogate running on fednode2
+  Checking TCP reachability on x.x.x.x:8080 through wormhole (up to 20s)...
+[PASS] test2: wormhole still serves on fednode1 IP (x.x.x.x:8080)
+[PASS] test2: no oops on fednode1
+[PASS] test2: no oops on fednode2
+
+=== Test 3: Pingpong (5 cycles) ===
+
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         9199       1 mattx    S     0.0       00:02 migtest
+         9200    9199 mattx    R    97.0       00:02 migtest
+
+  -- Cycle 1/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode1 (x.x.x.x)
+    to   : fednode2   (x.x.x.x)  [node ID 498]
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         7187       2 mattx    T    30.0       00:06 migtest
+[PASS] test3: cycle 1 forward — migtest on fednode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode2 (x.x.x.x)
+    to   : fednode1   (x.x.x.x)  [node ID home]
+    (admin command issued on fednode1, the home node -- not on fednode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         9199       1 mattx    S     0.0       00:15 migtest
+         9200    9199 mattx    R    52.7       00:15 migtest
+[PASS] test3: cycle 1 return — migtest back on fednode1
+
+  -- Cycle 2/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode1 (x.x.x.x)
+    to   : fednode2   (x.x.x.x)  [node ID 498]
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         7266       2 mattx    T    26.9       00:06 migtest
+[PASS] test3: cycle 2 forward — migtest on fednode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode2 (x.x.x.x)
+    to   : fednode1   (x.x.x.x)  [node ID home]
+    (admin command issued on fednode1, the home node -- not on fednode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         9199       1 mattx    S     0.0       00:28 migtest
+         9200    9199 mattx    R    48.9       00:28 migtest
+[PASS] test3: cycle 2 return — migtest back on fednode1
+
+  -- Cycle 3/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode1 (x.x.x.x)
+    to   : fednode2   (x.x.x.x)  [node ID 498]
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         7369       2 mattx    T    28.6       00:06 migtest
+[PASS] test3: cycle 3 forward — migtest on fednode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode2 (x.x.x.x)
+    to   : fednode1   (x.x.x.x)  [node ID home]
+    (admin command issued on fednode1, the home node -- not on fednode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         9199       1 mattx    S     0.0       00:42 migtest
+         9200    9199 mattx    R    47.3       00:42 migtest
+[PASS] test3: cycle 3 return — migtest back on fednode1
+
+  -- Cycle 4/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode1 (x.x.x.x)
+    to   : fednode2   (x.x.x.x)  [node ID 498]
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         7471       2 mattx    T    28.8       00:06 migtest
+[PASS] test3: cycle 4 forward — migtest on fednode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode2 (x.x.x.x)
+    to   : fednode1   (x.x.x.x)  [node ID home]
+    (admin command issued on fednode1, the home node -- not on fednode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         9199       1 mattx    S     0.0       00:55 migtest
+         9200    9199 mattx    R    46.4       00:55 migtest
+[PASS] test3: cycle 4 return — migtest back on fednode1
+
+  -- Cycle 5/5 --
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode1 (x.x.x.x)
+    to   : fednode2   (x.x.x.x)  [node ID 498]
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         7573       2 mattx    T    26.2       00:06 migtest
+[PASS] test3: cycle 5 forward — migtest on fednode2
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 9200]
+    from : fednode2 (x.x.x.x)
+    to   : fednode1   (x.x.x.x)  [node ID home]
+    (admin command issued on fednode1, the home node -- not on fednode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         9199       1 mattx    S     0.0       01:09 migtest
+         9200    9199 mattx    R    45.8       01:09 migtest
+[PASS] test3: cycle 5 return — migtest back on fednode1
+[PASS] test3: migtest alive after 5 full cycles
+[PASS] test3: no oops on fednode1
+[PASS] test3: no oops on fednode2
+
+=== Test 4: Sustained file I/O across migration (dd_migtest, ~10min) ===
+  Starting dd_migtest on fednode1 (x.x.x.x) -- single open fd to a plain file,
+  os.urandom()-generated data (getrandom(2), no lingering fd to a character device),
+  fsync'd writes every tick. Tests the ghost-file wormhole path directly, not just process
+  presence: the fd was opened on $NODE1 before migration, so every write after migration
+  must be RPC'd back through mattx_fileio.c to keep landing there.
+
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dd_migtest' | grep -v grep
+        10343       1 mattx    S     0.1       00:05 python3 /tmp/dd_migtest.py
+  Log tail from fednode1:
+    dd_migtest PID=10343 starting on fednode1.local
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dd_migtest [PID 10343]
+    from : fednode1 (x.x.x.x)
+    to   : fednode2   (x.x.x.x)  [node ID 498]
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dd_migtest' | grep -v grep
+         7714       2 mattx    S     0.8       00:08 python3 /tmp/dd_migtest.py
+  Log tail (stdout forwarded via MattX wormhole):
+    dd_migtest PID=10343 starting on fednode1.local
+    tick 10/600  node=fednode1.local  pid=10343  bytes=655360  sha256=c0666ef69b0b1a34a1939d3632ce55746924025b501b3fc4e4f6b657349dcb9d
+[PASS] test4: dd_migtest migrated to fednode2
+  mattx@fednode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dd_migtest' | grep -v grep
+         7714       2 mattx    S     0.7       00:29 python3 /tmp/dd_migtest.py
+[PASS] test4: dd_migtest still running on fednode2, file on fednode1 still growing (917504 -> 2228224 bytes)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dd_migtest [PID 10343]
+    from : fednode2 (x.x.x.x)
+    to   : fednode1   (x.x.x.x)  [node ID home]
+    (admin command issued on fednode1, the home node -- not on fednode2, where the job actually is)
+    tool : raw /proc/mattx/admin   (run on fednode1)
+  ─────────────────────────────────────────────────────
+
+  mattx@fednode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dd_migtest' | grep -v grep
+        10343       1 mattx    S     0.0       00:43 python3 /tmp/dd_migtest.py
+  Log tail:
+    dd_migtest PID=10343 starting on fednode1.local
+    tick 10/600  node=fednode1.local  pid=10343  bytes=655360  sha256=c0666ef69b0b1a34a1939d3632ce55746924025b501b3fc4e4f6b657349dcb9d
+    tick 20/600  node=fednode1.local  pid=10343  bytes=1310720  sha256=f273ff579a98918e21426c4f4191590ae536d1259771e1f50724c812ab5021b1
+    tick 30/600  node=fednode1.local  pid=10343  bytes=1966080  sha256=64cb2e0b84858e535c846dfec3f55d582411f83b92fbccc660386e08452a0edf
+    tick 40/600  node=fednode1.local  pid=10343  bytes=2621440  sha256=ce0bdb338b8b795f2caed84b5a7da2725c933f1bedd7251c148af230b908aa72
+[PASS] test4: dd_migtest migrated back to fednode1
+[PASS] test4: dd_migtest still running on fednode1 after return, file still growing (2818048 -> 4128768 bytes) -- round trip complete
+[PASS] test4: no oops on fednode1
+[PASS] test4: no oops on fednode2
+
+==============================
+Results: 29 passed, 0 failed
+==============================
