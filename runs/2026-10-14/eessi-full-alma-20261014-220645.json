@@ -1,0 +1,31 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-full-alma-20261014-220645",
+  "suite": "eessi-full",
+  "distro": "alma",
+  "report": "eessi-full-alma-20261014-220645.txt",
+  "started": "2026-10-14T20:06:45Z",
+  "finished": "2026-10-14T20:06:45Z",
+  "duration_s": null,
+  "outcome": "error",
+  "completed": false,
+  "counts": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": null,
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": null,
+    "kernels": {},
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": []
+}

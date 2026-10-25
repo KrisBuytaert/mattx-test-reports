@@ -1,0 +1,177 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "run-tests-alma-20261024-091031",
+  "suite": "run-tests",
+  "distro": "alma",
+  "report": "run-tests-alma-20261024-091031.txt",
+  "started": "2026-10-24T07:10:31Z",
+  "finished": "2026-10-24T07:12:16Z",
+  "duration_s": 105.3,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 20,
+    "passed": 18,
+    "failed": 2
+  },
+  "mattx": {
+    "commit": "22c660a6078c42a5c46a268150db7aa73fcd97bf",
+    "source": "brainmatt/mattx@1.9-dev",
+    "branch": "1.9-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "test1",
+      "name": "Deputy present on almanode1 (/proc/mattx/remote)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test1",
+      "name": "Surrogate running on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test1",
+      "name": "migtest returned to almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test1",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test1",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "server reachable on almanode1 before migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "Surrogate running on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "wormhole still serves on almanode1 IP (x.x.x.x:8080)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test3",
+      "name": "lost at cycle 1 (forward migration)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test3",
+      "name": "process died during pingpong",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test3",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test3",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest migrated to almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest still running on almanode2, file on almanode1 still growing (917504 -> 2228224 bytes)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest migrated back to almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest still running on almanode1 after return, file still growing (2883584 -> 4194304 bytes) -- round trip complete",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

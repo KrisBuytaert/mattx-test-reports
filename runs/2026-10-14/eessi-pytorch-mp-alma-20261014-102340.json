@@ -1,0 +1,70 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-pytorch-mp-alma-20261014-102340",
+  "suite": "eessi-pytorch-mp",
+  "distro": "alma",
+  "report": "eessi-pytorch-mp-alma-20261014-102340.txt",
+  "started": "2026-10-14T08:23:40Z",
+  "finished": "2026-10-14T08:23:40Z",
+  "duration_s": null,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 5,
+    "passed": 4,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "103e83b064ba1f57a6d46086d52398d7bbf49a29",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.56.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.56.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "pytorch-mp-1",
+      "name": "eessi-demo multiprocessing example runs to completion on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-mp-2",
+      "name": "multi-process PyTorch job migrated to almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-mp-2",
+      "name": "running on almanode2 but shared-memory progress did not advance (epoch 41 -> 41) -- workers likely no longer share memory with the migrated parent -- alive but not making progress",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-mp-3",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-mp-3",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

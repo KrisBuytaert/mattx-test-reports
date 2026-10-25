@@ -1,0 +1,143 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-dsm-mesi3-alma-20261022-072938",
+  "suite": "test-dsm-mesi3",
+  "distro": "alma",
+  "report": "test-dsm-mesi3-alma-20261022-072938.txt",
+  "started": "2026-10-22T05:29:38Z",
+  "finished": "2026-10-22T05:30:22Z",
+  "duration_s": 44.8,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode3": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "mesi3",
+      "name": "baseline write/read via dsmstresstest-debug works pre-migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "W2 actually running as Surrogate on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "W3 actually running as Surrogate on almanode3",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- write on almanode1 registered",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- almanode2 saw the updated value ('r1-from-home')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- almanode3 saw the updated value ('r1-from-home')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- write on almanode2 registered",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- almanode1 saw the updated value ('r2-from-node2')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- almanode3 saw the updated value ('r2-from-node2')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- write on almanode3 registered",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- almanode1 saw the updated value ('r3-from-node3')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- almanode2 saw the updated value ('r3-from-node3')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "no oops on almanode3",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

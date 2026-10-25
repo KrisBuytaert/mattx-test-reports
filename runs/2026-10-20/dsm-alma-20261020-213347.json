@@ -1,0 +1,112 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "dsm-alma-20261020-213347",
+  "suite": "dsm",
+  "distro": "alma",
+  "report": "dsm-alma-20261020-213347.txt",
+  "started": "2026-10-20T19:33:47Z",
+  "finished": "2026-10-20T19:39:32Z",
+  "duration_s": 345.7,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 11,
+    "passed": 9,
+    "failed": 2
+  },
+  "mattx": {
+    "commit": "2770394575aabd29901936d673144af9bc6c228b",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "dsm-1",
+      "name": "baseline produced 100 continuous, self-consistent loops with no migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-1",
+      "name": "baseline shared-memory segment removed cleanly",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-2",
+      "name": "loop sequence broken across migration (got 99 entries, expected 100 continuous) -- shared-memory contents did not survive the move intact",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-2",
+      "name": "shmctl(IPC_RMID) failed after migration (shmctl IPC_RMID failed: Invalid argument) -- the SysV shmid no longer resolves, meaning the shared-memory segment's IDENTITY did not survive the move even if byte contents happened to look right",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmget() succeeded post-migration (shmget wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmat() succeeded post-migration (shmat wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-3",
+      "name": "all 100 loops continuous and self-consistent, entirely as a Surrogate",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmdt() succeeded post-migration (shmdt wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmctl(IPC_RMID) succeeded post-migration (shmctl wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-2-3-no-kernel-oops-on-almanode1",
+      "name": "dsm-2/3: no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-2-3-no-kernel-oops-on-almanode2",
+      "name": "dsm-2/3: no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

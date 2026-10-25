@@ -1,0 +1,147 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "run-tests-alma-20261016-074607",
+  "suite": "run-tests",
+  "distro": "alma",
+  "report": "run-tests-alma-20261016-074607.txt",
+  "started": "2026-10-16T05:46:07Z",
+  "finished": "2026-10-16T05:48:04Z",
+  "duration_s": 117.5,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 16,
+    "passed": 9,
+    "failed": 7
+  },
+  "mattx": {
+    "commit": "2770394575aabd29901936d673144af9bc6c228b",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "test1",
+      "name": "Deputy missing on almanode1",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test1",
+      "name": "migtest not on almanode2",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test1",
+      "name": "migtest not back on almanode1",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test1",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test1",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "server reachable on almanode1 before migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "servertestpoll not on almanode2 (known issue: brainmatt/mattx#19)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test2",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test3",
+      "name": "lost at cycle 1 (forward migration)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test3",
+      "name": "process died during pingpong",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test3",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test3",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest not actually running on almanode2 after migration",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test4",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

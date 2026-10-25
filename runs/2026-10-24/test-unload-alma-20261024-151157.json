@@ -1,0 +1,120 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-unload-alma-20261024-151157",
+  "suite": "test-unload",
+  "distro": "alma",
+  "report": "test-unload-alma-20261024-151157.txt",
+  "started": "2026-10-24T13:11:57Z",
+  "finished": "2026-10-24T13:12:24Z",
+  "duration_s": 27.9,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "unload-1",
+      "name": "modules unloaded on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "no oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "service restarted, modules loaded on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "modules unloaded on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "no oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "service restarted, modules loaded on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-3",
+      "name": "modules unloaded on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-3",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-3",
+      "name": "no oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-3",
+      "name": "service restarted, modules loaded on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

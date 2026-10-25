@@ -1,0 +1,51 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-admin-input-ubu-20261025-032717",
+  "suite": "test-admin-input",
+  "distro": "ubu",
+  "report": "test-admin-input-ubu-20261025-032717.txt",
+  "started": "2026-10-25T02:27:17Z",
+  "finished": "2026-10-25T02:27:27Z",
+  "duration_s": 10.7,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.0.0-38-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-38-generic",
+      "ubunode2": "7.0.0-38-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "admin-27",
+      "name": "(nonexistent pid): ubunode1 survived",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "admin-37",
+      "name": "(zombie pid 27003): ubunode1 survived",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

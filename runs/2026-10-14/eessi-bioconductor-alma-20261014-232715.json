@@ -1,0 +1,77 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-bioconductor-alma-20261014-232715",
+  "suite": "eessi-bioconductor",
+  "distro": "alma",
+  "report": "eessi-bioconductor-alma-20261014-232715.txt",
+  "started": "2026-10-14T21:27:15Z",
+  "finished": "2026-10-14T21:27:15Z",
+  "duration_s": null,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 6,
+    "passed": 5,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "b401a0e977214435fd3bc19b6e92e782cd5cc5b3",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "bioconductor-1",
+      "name": "R-bundle-Bioconductor (R-bundle-Bioconductor/3.20-foss-2024a-R-4.4.2) loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-2",
+      "name": "Biostrings pairwiseAlignment completed on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-3",
+      "name": "bioconductor_migtest migrated to almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-3",
+      "name": "bioconductor_migtest present on almanode2 but frozen (STAT=T) -- looks stuck/deadlocked, not completed (see mattx#8)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

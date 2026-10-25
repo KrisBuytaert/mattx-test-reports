@@ -1,0 +1,371 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-full-alma-20261020-035410",
+  "suite": "eessi-full",
+  "distro": "alma",
+  "report": "eessi-full-alma-20261020-035410.txt",
+  "started": "2026-10-20T01:54:10Z",
+  "finished": "2026-10-20T02:05:19Z",
+  "duration_s": 669.1,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 48,
+    "passed": 41,
+    "failed": 7
+  },
+  "mattx": {
+    "commit": "96878e777a5f24ad018c33ae66cd4cc2d07aa29a",
+    "source": "brainmatt/mattx@1.9-dev",
+    "branch": "1.9-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "espresso-1",
+      "name": "ESPResSo module loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "espresso-2",
+      "name": "plate_capacitor.py completed and produced output on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "espresso-3",
+      "name": "ESPResSo process not actually running on almanode2 after migration",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "espresso-3",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "espresso-3",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-1",
+      "name": "GROMACS module (GROMACS/2025.2-foss-2025a) loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-2",
+      "name": "ion_channel benchmark completed on almanode1 (Performance:        2.100       11.428)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-3",
+      "name": "gmx mdrun migrated to almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-3",
+      "name": "gmx mdrun still running on almanode2 after 15s (ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-4",
+      "name": "gmx mdrun migrated back to almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-4",
+      "name": "gmx mdrun still running on almanode1 after 15s (round trip complete, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun migrated to almanode2 (expel test)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun still running on almanode2 after 15s (expel test, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun expelled back to almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun still running on almanode1 after 15s (expel round trip complete, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "qe-1",
+      "name": "QuantumESPRESSO module (QuantumESPRESSO/7.3.1-foss-2023a) loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "qe-2",
+      "name": "Si SCF converged on almanode1 (!    total energy              =     -15.84756981 Ry)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "qe-3",
+      "name": "pw.x not actually running on almanode2 after migration",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "qe-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "qe-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "openfoam-1",
+      "name": "OpenFOAM module (OpenFOAM/11-foss-2023a) loads on almanode1, pitzDaily found at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/OpenFOAM/11-foss-2023a/OpenFOAM-11/tutorials/incompressibleFluid/pitzDaily",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "openfoam-2",
+      "name": "pitzDaily smoke test failed or timed out on almanode1",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-1",
+      "name": "PyTorch module loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-2",
+      "name": "training loop converges on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-3",
+      "name": "PyTorch process migrated to almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-3",
+      "name": "PyTorch process still running on almanode2 after 15s (epochs 9 -> 34)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-4",
+      "name": "PyTorch process migrated back to almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-4",
+      "name": "PyTorch process still running on almanode1 after 15s (round trip complete, epochs 49 -> 72)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-3",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "pytorch-3",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-1",
+      "name": "TensorFlow module (TensorFlow/2.13.0-foss-2023a) loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-2",
+      "name": "MNIST smoke test failed or timed out on almanode1 (check network access for dataset download)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-3",
+      "name": "training loop not actually running on almanode2 after migration",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-1",
+      "name": "R-bundle-Bioconductor (R-bundle-Bioconductor/3.20-foss-2024a-R-4.4.2) loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-2",
+      "name": "Biostrings pairwiseAlignment completed on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-3",
+      "name": "bioconductor_migtest not actually running on almanode2 after migration",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "bioconductor-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "nextflow-1",
+      "name": "Nextflow module loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "nextflow-2",
+      "name": "payload task never started (Nextflow/JVM startup or scheduling failure)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "nextflow-3",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "nextflow-3",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

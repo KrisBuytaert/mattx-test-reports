@@ -1,0 +1,69 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-unload-alma-20261020-214521",
+  "suite": "test-unload",
+  "distro": "alma",
+  "report": "test-unload-alma-20261020-214521.txt",
+  "started": "2026-10-20T19:45:21Z",
+  "finished": "2026-10-20T19:45:52Z",
+  "duration_s": 31.8,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 5,
+    "passed": 4,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "2770394575aabd29901936d673144af9bc6c228b",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "unload-1",
+      "name": "modules unloaded on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "no oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "service restarted, modules loaded on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "connection to almanode1 lost or hung while unloading (rc=255) -- the node crashed (mattx#36) or wedged",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

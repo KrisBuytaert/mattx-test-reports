@@ -1,0 +1,79 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "threads-fed-20261023-171724",
+  "suite": "threads",
+  "distro": "fed",
+  "report": "threads-fed-20261023-171724.txt",
+  "started": "2026-10-23T15:17:24Z",
+  "finished": "2026-10-23T15:19:57Z",
+  "duration_s": 153.3,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "972d96ac9c569f243242433a4832f0a80becd256",
+    "source": "KrisBuytaert/mattx@ci/k7-plus-46",
+    "branch": "ci/k7-plus-46"
+  },
+  "environment": {
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "kernels": {
+      "fednode1": "7.2.11-200.fc44.x86_64",
+      "fednode2": "7.2.11-200.fc44.x86_64"
+    },
+    "glibc": {
+      "fednode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "threads-1",
+      "name": "worker migrated to fednode2 before it spawned its threads",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads-2",
+      "name": "4 threads created on fednode2 (5 tasks of threadtest there)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads-3",
+      "name": "worker is back on fednode1 after the recall",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads-4",
+      "name": "teardown completed (pthread_join returned, 'Threads destroyed')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads-5",
+      "name": "the worker is still alive after the teardown",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads",
+      "name": "no kernel oops on fednode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

@@ -1,0 +1,99 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-gromacs-relay-ntomp2-alma-20261014-222327",
+  "suite": "eessi-gromacs-relay-ntomp2",
+  "distro": "alma",
+  "report": "eessi-gromacs-relay-ntomp2-alma-20261014-222327.txt",
+  "started": "2026-10-14T20:23:27Z",
+  "finished": "2026-10-14T20:23:27Z",
+  "duration_s": null,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 9,
+    "passed": 9,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "b401a0e977214435fd3bc19b6e92e782cd5cc5b3",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": null,
+    "kernels": {
+      "almanode1": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode3": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "gromacs-relay-0",
+      "name": "all 3 nodes mutually visible in /proc/mattx/nodes",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-relay-1",
+      "name": "gmx mdrun running on almanode1 before relay migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-relay-2",
+      "name": "gmx mdrun migrated almanode1 -> almanode2 and still running after 15s",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-relay-3",
+      "name": "gmx mdrun recalled almanode2 -> almanode1 and still running after 15s (cumulative CPU time so far: 60s)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-relay-4",
+      "name": "gmx mdrun migrated almanode1 -> almanode3 and still running after 15s",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-relay-5",
+      "name": "gmx mdrun back on almanode1 and running after 15s (relay complete: almanode1 -> almanode2 -> home -> almanode3 -> home, cumulative CPU time 60s -> 105s -- genuinely advanced, not resurrected)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-relay-6",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-relay-6",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-relay-6",
+      "name": "no kernel oops on almanode3",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

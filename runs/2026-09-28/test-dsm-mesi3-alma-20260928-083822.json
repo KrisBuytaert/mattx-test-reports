@@ -1,0 +1,120 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-dsm-mesi3-alma-20260928-083822",
+  "suite": "test-dsm-mesi3",
+  "distro": "alma",
+  "report": "test-dsm-mesi3-alma-20260928-083822.txt",
+  "started": "2026-09-28T06:38:22Z",
+  "finished": "2026-09-28T06:38:22Z",
+  "duration_s": null,
+  "outcome": "fail",
+  "completed": false,
+  "counts": {
+    "total": 12,
+    "passed": 8,
+    "failed": 4
+  },
+  "mattx": {
+    "commit": "103e83b064ba1f57a6d46086d52398d7bbf49a29",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": null,
+    "kernels": {
+      "almanode1": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode3": "6.12.0-211.49.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "mesi3",
+      "name": "baseline write/read via dsmstresstest-debug works pre-migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "W2 actually running as Surrogate on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "W3 actually running as Surrogate on almanode3",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- write on almanode1 registered",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- almanode2 saw the updated value ('r1-from-home')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- almanode3 saw the updated value ('r1-from-home')",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- write on almanode2 registered",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- almanode1 did NOT see 'r2-from-node2' (stale/incoherent read -- matches Matt's 3+-node MESI gap)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- almanode3 did NOT see 'r2-from-node2' (stale/incoherent read -- matches Matt's 3+-node MESI gap)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- write on almanode3 registered",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- almanode1 did NOT see 'r3-from-node3' (stale/incoherent read -- matches Matt's 3+-node MESI gap)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- almanode2 did NOT see 'r3-from-node3' (stale/incoherent read -- matches Matt's 3+-node MESI gap)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

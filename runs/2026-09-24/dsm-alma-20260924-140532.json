@@ -1,0 +1,84 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "dsm-alma-20260924-140532",
+  "suite": "dsm",
+  "distro": "alma",
+  "report": "dsm-alma-20260924-140532.txt",
+  "started": "2026-09-24T12:05:32Z",
+  "finished": "2026-09-24T12:05:32Z",
+  "duration_s": null,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 7,
+    "passed": 6,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "cc5331c08944b18f496f86f06de5aa717b2d8ab5",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.56.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.56.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "dsm-1",
+      "name": "baseline produced 100 continuous, self-consistent loops with no migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-1",
+      "name": "baseline shared-memory segment removed cleanly",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-2",
+      "name": "all 100 loops continuous and self-consistent across migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-2",
+      "name": "shared-memory segment removed cleanly after migration (shmid still valid post-move)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-3",
+      "name": "dsmtest did not reach completion within the wait budget after early migration -- suspected hang",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-2",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "dsm-2",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

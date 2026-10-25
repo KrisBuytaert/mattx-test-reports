@@ -1,0 +1,49 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-osu-shm-alma-20261014-232952",
+  "suite": "eessi-osu-shm",
+  "distro": "alma",
+  "report": "eessi-osu-shm-alma-20261014-232952.txt",
+  "started": "2026-10-14T21:29:52Z",
+  "finished": "2026-10-14T21:29:52Z",
+  "duration_s": null,
+  "outcome": "error",
+  "completed": false,
+  "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "b401a0e977214435fd3bc19b6e92e782cd5cc5b3",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "osu-shm-1",
+      "name": "OSU-Micro-Benchmarks module loads on almanode1 (OSU-Micro-Benchmarks/7.1-1-gompi-2023a)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "osu-shm-2",
+      "name": "osu_bw completed via shared-memory transport on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

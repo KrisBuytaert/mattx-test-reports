@@ -1,0 +1,49 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-openfoam-alma-20261014-231801",
+  "suite": "eessi-openfoam",
+  "distro": "alma",
+  "report": "eessi-openfoam-alma-20261014-231801.txt",
+  "started": "2026-10-14T21:18:01Z",
+  "finished": "2026-10-14T21:18:01Z",
+  "duration_s": null,
+  "outcome": "fail",
+  "completed": false,
+  "counts": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "b401a0e977214435fd3bc19b6e92e782cd5cc5b3",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "openfoam-1",
+      "name": "OpenFOAM module (OpenFOAM/11-foss-2023a) loads on almanode1, pitzDaily found at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/OpenFOAM/11-foss-2023a/OpenFOAM-11/tutorials/incompressibleFluid/pitzDaily",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "openfoam-2",
+      "name": "pitzDaily smoke test failed or timed out on almanode1",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

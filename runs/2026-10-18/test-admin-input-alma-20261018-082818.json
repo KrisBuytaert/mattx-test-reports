@@ -1,0 +1,49 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-admin-input-alma-20261018-082818",
+  "suite": "test-admin-input",
+  "distro": "alma",
+  "report": "test-admin-input-alma-20261018-082818.txt",
+  "started": "2026-10-18T06:28:18Z",
+  "finished": "2026-10-18T06:28:28Z",
+  "duration_s": 10.2,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "3f4e121d9bbd6921e078aff568ee4731631a0e95",
+    "source": "brainmatt/mattx@1.9-dev",
+    "branch": "1.9-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "admin-27",
+      "name": "(nonexistent pid): almanode1 survived",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "admin-37",
+      "name": "(zombie pid 34486): almanode1 survived",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

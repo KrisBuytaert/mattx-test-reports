@@ -1,0 +1,70 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-tensorflow-alma-20261014-221524",
+  "suite": "eessi-tensorflow",
+  "distro": "alma",
+  "report": "eessi-tensorflow-alma-20261014-221524.txt",
+  "started": "2026-10-14T20:15:24Z",
+  "finished": "2026-10-14T20:15:24Z",
+  "duration_s": null,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 5,
+    "passed": 3,
+    "failed": 2
+  },
+  "mattx": {
+    "commit": "b401a0e977214435fd3bc19b6e92e782cd5cc5b3",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.56.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.56.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "tensorflow-1",
+      "name": "TensorFlow module (TensorFlow/2.13.0-foss-2023a) loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-2",
+      "name": "MNIST smoke test failed or timed out on almanode1 (check network access for dataset download)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-3",
+      "name": "training loop not actually running on almanode2 after migration",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "tensorflow-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

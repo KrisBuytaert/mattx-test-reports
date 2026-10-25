@@ -1,0 +1,43 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-unload-alma-20261022-162812",
+  "suite": "test-unload",
+  "distro": "alma",
+  "report": "test-unload-alma-20261022-162812.txt",
+  "started": "2026-10-22T14:28:12Z",
+  "finished": "2026-10-22T14:30:14Z",
+  "duration_s": 122.3,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "22c660a6078c42a5c46a268150db7aa73fcd97bf",
+    "source": "brainmatt/mattx@1.9-dev",
+    "branch": "1.9-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "unload-1",
+      "name": "connection to almanode1 lost or hung while unloading (rc=124) -- the node crashed (mattx#36) or wedged",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "mpi-alma-20261014-220405",
+  "suite": "mpi",
+  "distro": "alma",
+  "report": "mpi-alma-20261014-220405.txt",
+  "started": "2026-10-14T20:04:05Z",
+  "finished": "2026-10-14T20:04:05Z",
+  "duration_s": null,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 5,
+    "passed": 4,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "b401a0e977214435fd3bc19b6e92e782cd5cc5b3",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.56.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.56.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "mpi-1",
+      "name": "mpitest + mpitest-client built on both nodes",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mpi-2",
+      "name": "baseline master/client started and counting, no migration involved",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mpi-3",
+      "name": "counting stalled or broke after migration -- last count was 7, wanted >= 21 within 60s (sequence continuous: yes) -- suspected post-migration hang, not just 'no clean round trip'",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mpi-3",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "mpi-3",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

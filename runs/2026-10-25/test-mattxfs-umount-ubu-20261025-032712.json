@@ -1,0 +1,141 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-mattxfs-umount-ubu-20261025-032712",
+  "suite": "test-mattxfs-umount",
+  "distro": "ubu",
+  "report": "test-mattxfs-umount-ubu-20261025-032712.txt",
+  "started": "2026-10-25T02:27:12Z",
+  "finished": "2026-10-25T02:27:17Z",
+  "duration_s": 5.7,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.0.0-38-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-38-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "umount-1",
+      "name": "looked up 406 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "looked up 406 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "looked up 406 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

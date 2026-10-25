@@ -1,0 +1,120 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-unload-ubu-20261023-093712",
+  "suite": "test-unload",
+  "distro": "ubu",
+  "report": "test-unload-ubu-20261023-093712.txt",
+  "started": "2026-10-23T07:37:12Z",
+  "finished": "2026-10-23T07:37:38Z",
+  "duration_s": 26.9,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "89ac3d37a70809ef337a79036a774060a970524d",
+    "source": "KrisBuytaert/mattx@fix/kernel-7x-build",
+    "branch": "fix/kernel-7x-build"
+  },
+  "environment": {
+    "kernel": "7.0.0-30-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-30-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "unload-1",
+      "name": "modules unloaded on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "no oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-1",
+      "name": "service restarted, modules loaded on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "modules unloaded on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "no oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-2",
+      "name": "service restarted, modules loaded on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-3",
+      "name": "modules unloaded on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-3",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-3",
+      "name": "no oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "unload-3",
+      "name": "service restarted, modules loaded on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

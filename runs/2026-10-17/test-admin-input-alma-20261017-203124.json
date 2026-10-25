@@ -1,0 +1,49 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-admin-input-alma-20261017-203124",
+  "suite": "test-admin-input",
+  "distro": "alma",
+  "report": "test-admin-input-alma-20261017-203124.txt",
+  "started": "2026-10-17T18:31:24Z",
+  "finished": "2026-10-17T18:32:04Z",
+  "duration_s": 40.1,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 2,
+    "passed": 0,
+    "failed": 2
+  },
+  "mattx": {
+    "commit": "2c854a1ac4801b30161c87d3d4df5129778c33e2",
+    "source": "KrisBuytaert/mattx@fix/mattxfs-kill-anon-super",
+    "branch": "fix/mattxfs-kill-anon-super"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "admin-27",
+      "name": "(nonexistent pid): almanode1 rebooted (boot_id changed) -- kernel crash",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "admin-37",
+      "name": "(zombie pid 2193): almanode1 rebooted (boot_id changed) -- kernel crash",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

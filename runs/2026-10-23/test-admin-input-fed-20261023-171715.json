@@ -1,0 +1,51 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-admin-input-fed-20261023-171715",
+  "suite": "test-admin-input",
+  "distro": "fed",
+  "report": "test-admin-input-fed-20261023-171715.txt",
+  "started": "2026-10-23T15:17:15Z",
+  "finished": "2026-10-23T15:17:23Z",
+  "duration_s": 8.9,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "972d96ac9c569f243242433a4832f0a80becd256",
+    "source": "KrisBuytaert/mattx@ci/k7-plus-46",
+    "branch": "ci/k7-plus-46"
+  },
+  "environment": {
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "kernels": {
+      "fednode1": "7.2.11-200.fc44.x86_64",
+      "fednode2": "7.2.11-200.fc44.x86_64"
+    },
+    "glibc": {
+      "fednode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "admin-27",
+      "name": "(nonexistent pid): fednode1 survived",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "admin-37",
+      "name": "(zombie pid 20720): fednode1 survived",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

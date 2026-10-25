@@ -1,0 +1,141 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-mattxfs-umount-fed-20261025-034101",
+  "suite": "test-mattxfs-umount",
+  "distro": "fed",
+  "report": "test-mattxfs-umount-fed-20261025-034101.txt",
+  "started": "2026-10-25T02:41:01Z",
+  "finished": "2026-10-25T02:41:06Z",
+  "duration_s": 5.5,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "kernels": {
+      "fednode1": "7.2.11-200.fc44.x86_64"
+    },
+    "glibc": {
+      "fednode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "umount-1",
+      "name": "looked up 340 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "fednode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on fednode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "looked up 340 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "fednode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on fednode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-2",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "looked up 340 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "fednode1 did not reboot",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on fednode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-3",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

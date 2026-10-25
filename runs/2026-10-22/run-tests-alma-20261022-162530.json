@@ -1,0 +1,36 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "run-tests-alma-20261022-162530",
+  "suite": "run-tests",
+  "distro": "alma",
+  "report": "run-tests-alma-20261022-162530.txt",
+  "started": "2026-10-22T14:25:30Z",
+  "finished": "2026-10-22T14:25:36Z",
+  "duration_s": 6.7,
+  "outcome": "error",
+  "completed": false,
+  "counts": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "22c660a6078c42a5c46a268150db7aa73fcd97bf",
+    "source": "brainmatt/mattx@1.9-dev",
+    "branch": "1.9-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": []
+}

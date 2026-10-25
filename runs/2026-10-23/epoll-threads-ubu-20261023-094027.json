@@ -1,0 +1,72 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "epoll-threads-ubu-20261023-094027",
+  "suite": "epoll-threads",
+  "distro": "ubu",
+  "report": "epoll-threads-ubu-20261023-094027.txt",
+  "started": "2026-10-23T07:40:27Z",
+  "finished": "2026-10-23T07:41:11Z",
+  "duration_s": 44.7,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "89ac3d37a70809ef337a79036a774060a970524d",
+    "source": "KrisBuytaert/mattx@fix/kernel-7x-build",
+    "branch": "fix/kernel-7x-build"
+  },
+  "environment": {
+    "kernel": "7.0.0-30-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-30-generic",
+      "ubunode2": "7.0.0-30-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "epoll-1",
+      "name": "3 events on ubunode1 before the migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "epoll-2",
+      "name": "the process keeps producing events on ubunode2 (11 -> 22)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "epoll-3",
+      "name": "still producing events after the recall home (30 -> 41)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on ubunode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-stale-link-alma-20261019-082429",
+  "suite": "test-stale-link",
+  "distro": "alma",
+  "report": "test-stale-link-alma-20261019-082429.txt",
+  "started": "2026-10-19T06:24:29Z",
+  "finished": "2026-10-19T06:25:00Z",
+  "duration_s": 31.7,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "2770394575aabd29901936d673144af9bc6c228b",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "test5",
+      "name": "migtest migrated normally to almanode2 (stale-link condition not present this run)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test5",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test5",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

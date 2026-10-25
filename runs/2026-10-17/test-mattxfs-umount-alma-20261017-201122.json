@@ -1,0 +1,48 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-mattxfs-umount-alma-20261017-201122",
+  "suite": "test-mattxfs-umount",
+  "distro": "alma",
+  "report": "test-mattxfs-umount-alma-20261017-201122.txt",
+  "started": "2026-10-17T18:11:22Z",
+  "finished": "2026-10-17T18:11:41Z",
+  "duration_s": 19.6,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "4df10f7a17dc990e017f60f71110fcacc0cc6e7c",
+    "source": "KrisBuytaert/mattx@fix/rmmod-unregister-unregistered-kretprobe",
+    "branch": "fix/rmmod-unregister-unregistered-kretprobe"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "umount-1",
+      "name": "looked up 592 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "connection to almanode1 lost during umount -- the node crashed (mattx#31)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

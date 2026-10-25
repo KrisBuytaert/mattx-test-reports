@@ -1,0 +1,48 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-mattxfs-umount-alma-20261020-214552",
+  "suite": "test-mattxfs-umount",
+  "distro": "alma",
+  "report": "test-mattxfs-umount-alma-20261020-214552.txt",
+  "started": "2026-10-20T19:45:52Z",
+  "finished": "2026-10-20T19:46:12Z",
+  "duration_s": 20.9,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 2,
+    "passed": 1,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "2770394575aabd29901936d673144af9bc6c228b",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "umount-1",
+      "name": "looked up 396 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "umount-1",
+      "name": "connection to almanode1 lost during umount -- the node crashed (mattx#31)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

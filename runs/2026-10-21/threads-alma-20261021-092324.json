@@ -1,0 +1,77 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "threads-alma-20261021-092324",
+  "suite": "threads",
+  "distro": "alma",
+  "report": "threads-alma-20261021-092324.txt",
+  "started": "2026-10-21T07:23:24Z",
+  "finished": "2026-10-21T07:26:14Z",
+  "duration_s": 170.6,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 6,
+    "passed": 5,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "2770394575aabd29901936d673144af9bc6c228b",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "threads-1",
+      "name": "worker migrated to almanode2 before it spawned its threads",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads-2",
+      "name": "4 threads created on almanode2 (5 tasks of threadtest there)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads-3",
+      "name": "worker is back on almanode1 after the recall",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads-4",
+      "name": "the teardown never completed (futex wait broke or the worker died)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads-5",
+      "name": "the worker is still alive after the teardown",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "threads",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

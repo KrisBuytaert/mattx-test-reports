@@ -1,0 +1,43 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-dsm-mesi3-alma-20260928-083417",
+  "suite": "test-dsm-mesi3",
+  "distro": "alma",
+  "report": "test-dsm-mesi3-alma-20260928-083417.txt",
+  "started": "2026-09-28T06:34:17Z",
+  "finished": "2026-09-28T06:34:17Z",
+  "duration_s": null,
+  "outcome": "error",
+  "completed": false,
+  "counts": {
+    "total": 1,
+    "passed": 1,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "103e83b064ba1f57a6d46086d52398d7bbf49a29",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": null,
+    "kernels": {
+      "almanode1": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode3": "6.12.0-211.49.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "mesi3",
+      "name": "baseline write/read via dsmstresstest-debug works pre-migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

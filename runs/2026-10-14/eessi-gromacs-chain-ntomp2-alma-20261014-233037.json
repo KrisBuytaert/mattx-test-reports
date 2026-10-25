@@ -1,0 +1,92 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-gromacs-chain-ntomp2-alma-20261014-233037",
+  "suite": "eessi-gromacs-chain-ntomp2",
+  "distro": "alma",
+  "report": "eessi-gromacs-chain-ntomp2-alma-20261014-233037.txt",
+  "started": "2026-10-14T21:30:37Z",
+  "finished": "2026-10-14T21:30:37Z",
+  "duration_s": null,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "b401a0e977214435fd3bc19b6e92e782cd5cc5b3",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode3": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "gromacs-chain-0",
+      "name": "all 3 nodes mutually visible in /proc/mattx/nodes",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-chain-1",
+      "name": "gmx mdrun running on almanode1 before chain migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-chain-2",
+      "name": "gmx mdrun migrated almanode1 -> almanode2 and still running after 15s (ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-chain-3",
+      "name": "gmx mdrun migrated almanode2 -> almanode3 and still running after 15s (ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-chain-4",
+      "name": "gmx mdrun back on almanode1 and running after 15s (chain complete: almanode1 -> almanode2 -> almanode3 -> almanode1, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-chain-5",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-chain-5",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-chain-5",
+      "name": "no kernel oops on almanode3",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

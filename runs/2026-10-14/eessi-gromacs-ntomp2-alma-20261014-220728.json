@@ -1,0 +1,133 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-gromacs-ntomp2-alma-20261014-220728",
+  "suite": "eessi-gromacs-ntomp2",
+  "distro": "alma",
+  "report": "eessi-gromacs-ntomp2-alma-20261014-220728.txt",
+  "started": "2026-10-14T20:07:28Z",
+  "finished": "2026-10-14T20:07:28Z",
+  "duration_s": null,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "b401a0e977214435fd3bc19b6e92e782cd5cc5b3",
+    "source": null,
+    "branch": null
+  },
+  "environment": {
+    "kernel": "6.12.0-211.56.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.56.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.56.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "gromacs-1",
+      "name": "GROMACS module (GROMACS/2025.2-foss-2025a) loads on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-2",
+      "name": "ion_channel benchmark completed on almanode1 (Performance:        2.230       10.763)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-3",
+      "name": "gmx mdrun migrated to almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-3",
+      "name": "gmx mdrun still running on almanode2 after 15s (ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-4",
+      "name": "gmx mdrun migrated back to almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-4",
+      "name": "gmx mdrun still running on almanode1 after 15s (round trip complete, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun migrated to almanode2 (expel test)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun still running on almanode2 after 15s (expel test, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun expelled back to almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun still running on almanode1 after 15s (expel round trip complete, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "gromacs-5",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

@@ -1,0 +1,70 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "epoll-threads-alma-20261021-095806",
+  "suite": "epoll-threads",
+  "distro": "alma",
+  "report": "epoll-threads-alma-20261021-095806.txt",
+  "started": "2026-10-21T07:58:06Z",
+  "finished": "2026-10-21T07:59:44Z",
+  "duration_s": 98.3,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 5,
+    "passed": 3,
+    "failed": 2
+  },
+  "mattx": {
+    "commit": "da6719d69132316f1aacebd9e3d939db10fca007",
+    "source": "KrisBuytaert/mattx@fix/gettid-thread-tids",
+    "branch": "fix/gettid-thread-tids"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {}
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "epoll-1",
+      "name": "3 events on almanode1 before the migration",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "epoll-2",
+      "name": "no progress on almanode2 after the migration (3 -> 3 events in 30 s): process stuck (state: Tl )",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "epoll-3",
+      "name": "no progress after the recall home (3 -> 3 events in 30 s)",
+      "outcome": "fail",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}

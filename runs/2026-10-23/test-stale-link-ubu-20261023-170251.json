@@ -1,0 +1,58 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-stale-link-ubu-20261023-170251",
+  "suite": "test-stale-link",
+  "distro": "ubu",
+  "report": "test-stale-link-ubu-20261023-170251.txt",
+  "started": "2026-10-23T15:02:51Z",
+  "finished": "2026-10-23T15:03:06Z",
+  "duration_s": 15.7,
+  "outcome": "pass",
+  "completed": true,
+  "counts": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "972d96ac9c569f243242433a4832f0a80becd256",
+    "source": "KrisBuytaert/mattx@ci/k7-plus-46",
+    "branch": "ci/k7-plus-46"
+  },
+  "environment": {
+    "kernel": "7.0.0-30-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-30-generic",
+      "ubunode2": "7.0.0-30-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/185"
+  },
+  "cases": [
+    {
+      "id": "test5",
+      "name": "migtest migrated normally to ubunode2 (stale-link condition not present this run)",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test5",
+      "name": "no oops on ubunode1",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    },
+    {
+      "id": "test5",
+      "name": "no oops on ubunode2",
+      "outcome": "pass",
+      "finished": null,
+      "duration_s": null
+    }
+  ]
+}
