@@ -1,0 +1,12 @@
+==============================
+ssh: connect to host x.x.x.x port 22: Connection refused
+mattx commit: unknown
+ssh: connect to host x.x.x.x port 22: Connection refused
+mattx source: unknown
+almanode1 kernel: unknown
+almanode1 glibc: unknown
+==============================
+=== Unload test (mattx#36): 3 stop/start cycles of mattx on almanode1 ===
+[FAIL] unload-0: almanode1 not reachable, cannot run
+
+Unload Results: 0 passed, 1 failed

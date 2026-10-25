@@ -1,0 +1,46 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-unload-alma-20261025-153635",
+  "suite": "test-unload",
+  "distro": "alma",
+  "report": "test-unload-alma-20261025-153635.txt",
+  "started": "2026-10-25T14:36:35Z",
+  "finished": "2026-10-25T14:36:35Z",
+  "duration_s": 0.8,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 1,
+    "passed": 0,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "unknown",
+    "source": "unknown",
+    "branch": null
+  },
+  "environment": {
+    "kernel": "unknown",
+    "kernels": {
+      "almanode1": "unknown"
+    },
+    "glibc": {
+      "almanode1": "unknown"
+    }
+  },
+  "ci": {
+    "run_url": "http://x.x.x.x:3020/vox/mattx-testsuite/actions/runs/197",
+    "run_id": "197",
+    "run_number": "113",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "unload-0",
+      "name": "almanode1 not reachable, cannot run",
+      "outcome": "fail",
+      "finished": "2026-10-25T14:36:35Z",
+      "duration_s": 0.8
+    }
+  ]
+}
