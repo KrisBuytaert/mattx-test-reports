@@ -1,0 +1,27 @@
+==============================
+mattx commit: c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688
+mattx source: brainmatt/mattx@2.0-dev
+ubunode1 kernel: 7.0.0-38-generic
+ubunode1 glibc: 2.43 
+==============================
+=== Unload test (mattx#36): 3 stop/start cycles of mattx on ubunode1 ===
+
+--- cycle 1 ---
+[PASS] unload-1: modules unloaded on ubunode1
+[PASS] unload-1: ubunode1 did not reboot
+[PASS] unload-1: no oops/BUG in dmesg on ubunode1
+[PASS] unload-1: service restarted, modules loaded on ubunode1
+
+--- cycle 2 ---
+[PASS] unload-2: modules unloaded on ubunode1
+[PASS] unload-2: ubunode1 did not reboot
+[PASS] unload-2: no oops/BUG in dmesg on ubunode1
+[PASS] unload-2: service restarted, modules loaded on ubunode1
+
+--- cycle 3 ---
+[PASS] unload-3: modules unloaded on ubunode1
+[PASS] unload-3: ubunode1 did not reboot
+[PASS] unload-3: no oops/BUG in dmesg on ubunode1
+[PASS] unload-3: service restarted, modules loaded on ubunode1
+
+Unload Results: 12 passed, 0 failed

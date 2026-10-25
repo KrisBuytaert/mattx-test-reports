@@ -1,0 +1,17 @@
+==============================
+mattx commit: c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688
+mattx source: brainmatt/mattx@2.0-dev
+ubunode1 kernel: 7.0.0-38-generic
+ubunode1 glibc: 2.43 
+ubunode2 kernel: 7.0.0-38-generic
+==============================
+=== /proc/mattx/admin input handling on ubunode1 (peer node id: 946) ===
+
+--- #27: migrate to a PID that does not exist ---
+[PASS] admin-27 (nonexistent pid): ubunode1 survived
+
+--- #37: migrate a zombie (exited task, kernel stack already freed) ---
+  zombie PID 27003
+[PASS] admin-37 (zombie pid 27003): ubunode1 survived
+
+Admin-Input Results: 2 passed, 0 failed

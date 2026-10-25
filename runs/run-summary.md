@@ -774,6 +774,14 @@
 | 7.0.0-30-generic | [972d96ac9c56](https://github.com/KrisBuytaert/mattx/commit/972d96ac9c569f243242433a4832f0a80becd256) | KrisBuytaert/mattx@ci/k7-plus-46 | test-unload (ubu) | 2026-10-23 17:03 | ✅ all 12 passed |
 | 7.0.0-30-generic | [972d96ac9c56](https://github.com/KrisBuytaert/mattx/commit/972d96ac9c569f243242433a4832f0a80becd256) | KrisBuytaert/mattx@ci/k7-plus-46 | threads (ubu) | 2026-10-23 17:03 | ✅ all 6 passed |
 | 7.0.0-30-generic | [972d96ac9c56](https://github.com/KrisBuytaert/mattx/commit/972d96ac9c569f243242433a4832f0a80becd256) | KrisBuytaert/mattx@ci/k7-plus-46 | epoll-threads (ubu) | 2026-10-23 17:06 | ✅ all 5 passed |
+| 7.0.0-38-generic | [c48b5bcc3fb0](https://github.com/brainmatt/mattx/commit/c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688) | brainmatt/mattx@2.0-dev | run-tests (ubu) | 2026-10-25 03:18 | ✅ all 29 passed |
+| 7.0.0-38-generic | [c48b5bcc3fb0](https://github.com/brainmatt/mattx/commit/c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688) | brainmatt/mattx@2.0-dev | dsm (ubu) | 2026-10-25 03:20 | ✅ all 11 passed |
+| 7.0.0-38-generic | [c48b5bcc3fb0](https://github.com/brainmatt/mattx/commit/c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688) | brainmatt/mattx@2.0-dev | test-stale-link (ubu) | 2026-10-25 03:26 | ✅ all 3 passed |
+| 7.0.0-38-generic | [c48b5bcc3fb0](https://github.com/brainmatt/mattx/commit/c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688) | brainmatt/mattx@2.0-dev | test-unload (ubu) | 2026-10-25 03:26 | ✅ all 12 passed |
+| 7.0.0-38-generic | [c48b5bcc3fb0](https://github.com/brainmatt/mattx/commit/c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688) | brainmatt/mattx@2.0-dev | test-admin-input (ubu) | 2026-10-25 03:27 | ✅ all 2 passed |
+| 7.0.0-38-generic | [c48b5bcc3fb0](https://github.com/brainmatt/mattx/commit/c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688) | brainmatt/mattx@2.0-dev | test-mattxfs-umount (ubu) | 2026-10-25 03:27 | ✅ all 15 passed |
+| 7.0.0-38-generic | [c48b5bcc3fb0](https://github.com/brainmatt/mattx/commit/c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688) | brainmatt/mattx@2.0-dev | threads (ubu) | 2026-10-25 03:27 | ✅ all 6 passed |
+| 7.0.0-38-generic | [c48b5bcc3fb0](https://github.com/brainmatt/mattx/commit/c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688) | brainmatt/mattx@2.0-dev | epoll-threads (ubu) | 2026-10-25 03:30 | ✅ all 5 passed |
 | 7.2.11-200.fc44.x86_64 | [972d96ac9c56](https://github.com/KrisBuytaert/mattx/commit/972d96ac9c569f243242433a4832f0a80becd256) | KrisBuytaert/mattx@ci/k7-plus-46 | run-tests (fed) | 2026-10-23 17:07 | ✅ all 29 passed |
 | 7.2.11-200.fc44.x86_64 | [972d96ac9c56](https://github.com/KrisBuytaert/mattx/commit/972d96ac9c569f243242433a4832f0a80becd256) | KrisBuytaert/mattx@ci/k7-plus-46 | dsm (fed) | 2026-10-23 17:10 | ✅ all 11 passed |
 | 7.2.11-200.fc44.x86_64 | [972d96ac9c56](https://github.com/KrisBuytaert/mattx/commit/972d96ac9c569f243242433a4832f0a80becd256) | KrisBuytaert/mattx@ci/k7-plus-46 | test-stale-link (fed) | 2026-10-23 17:16 | ✅ all 3 passed |

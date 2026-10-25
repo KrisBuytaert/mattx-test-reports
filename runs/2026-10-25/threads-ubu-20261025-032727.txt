@@ -1,0 +1,27 @@
+==============================
+mattx commit: c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688
+mattx source: brainmatt/mattx@2.0-dev
+ubunode1 kernel: 7.0.0-38-generic
+ubunode1 glibc: 2.43 
+ubunode2 kernel: 7.0.0-38-generic
+==============================
+=== threadtest 4: threads created on ubunode2, then recalled home to ubunode1 (mattx#9) ===
+  worker PID 27677 (still in its 15 s startup sleep, no threads yet)
+[PASS] threads-1: worker migrated to ubunode2 before it spawned its threads
+  waiting for the 4 threads to be created on ubunode2 ...
+[PASS] threads-2: 4 threads created on ubunode2 (5 tasks of threadtest there)
+  recalling the worker home to ubunode1 ...
+[PASS] threads-3: worker is back on ubunode1 after the recall
+  waiting for the teardown wave (pthread_cancel/pthread_join = futex) ...
+[PASS] threads-4: teardown completed (pthread_join returned, 'Threads destroyed')
+[PASS] threads-5: the worker is still alive after the teardown
+  tail of the worker log:
+      [Thread 3] (TID: 29311) Still alive and calculating... (50 seconds)
+      [Thread 2] (TID: 29310) Still alive and calculating... (50 seconds)
+      [Thread 1] (TID: 29309) Still alive and calculating... (50 seconds)
+      [Thread 0] (TID: 29308) Still alive and calculating... (50 seconds)
+      [Thread 2] (TID: 29310) Still alive and calculating... (55 seconds)
+      [Thread 3] (TID: 29311) Still alive and calculating.[PASS] threads: no kernel oops on ubunode1
+[PASS] threads: no kernel oops on ubunode2
+
+Threads Results: 7 passed, 0 failed

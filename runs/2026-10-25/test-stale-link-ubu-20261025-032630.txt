@@ -1,0 +1,28 @@
+==============================
+mattx commit: c48b5bcc3fb01fc61b9b3bcec0fe91291ee72688
+mattx source: brainmatt/mattx@2.0-dev
+ubunode1 kernel: 7.0.0-38-generic
+ubunode1 glibc: 2.43 
+ubunode2 kernel: 7.0.0-38-generic
+==============================
+=== Test 5: migration against a stale cluster link (peer service bounce) ===
+  mattx@ubunode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        22866       1 mattx    S     0.0       00:02 migtest
+        22867   22866 mattx    R    97.0       00:02 migtest
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 22867]
+    from : ubunode1 (x.x.x.x)
+    to   : ubunode2   (x.x.x.x)  [node ID 946]
+    tool : raw /proc/mattx/admin   (run on ubunode1)
+  ─────────────────────────────────────────────────────
+  ► stale-link condition did not reproduce this run (send succeeded) -- falling back to a normal migration assertion
+  mattx@ubunode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+         8606       2 mattx    T    30.3       00:05 migtest
+[PASS] test5: migtest migrated normally to ubunode2 (stale-link condition not present this run)
+[PASS] test5: no oops on ubunode1
+[PASS] test5: no oops on ubunode2
+
+==============================
+Stale-Link Results: 3 passed, 0 failed
+==============================
