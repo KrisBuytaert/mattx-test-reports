@@ -1,0 +1,75 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "epoll-threads-alma-20261028-083120",
+  "suite": "epoll-threads",
+  "distro": "alma",
+  "report": "epoll-threads-alma-20261028-083120.txt",
+  "started": "2026-10-28T07:31:20Z",
+  "finished": "2026-10-28T07:33:01Z",
+  "duration_s": 101.8,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 5,
+    "passed": 3,
+    "failed": 2
+  },
+  "mattx": {
+    "commit": "22c660a6078c42a5c46a268150db7aa73fcd97bf",
+    "source": "brainmatt/mattx@1.9-dev",
+    "branch": "1.9-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/121",
+    "run_id": "226",
+    "run_number": "121",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "epoll-1",
+      "name": "4 events on almanode1 before the migration",
+      "outcome": "pass",
+      "finished": "2026-10-28T07:31:27Z",
+      "duration_s": 7.8
+    },
+    {
+      "id": "epoll-2",
+      "name": "no progress on almanode2 after the migration (4 -> 4 events in 30 s): process stuck (state: Tl )",
+      "outcome": "fail",
+      "finished": "2026-10-28T07:32:12Z",
+      "duration_s": 44.6
+    },
+    {
+      "id": "epoll-3",
+      "name": "no progress after the recall home (4 -> 4 events in 30 s)",
+      "outcome": "fail",
+      "finished": "2026-10-28T07:32:59Z",
+      "duration_s": 47.2
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-28T07:33:01Z",
+      "duration_s": 2.0
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-28T07:33:01Z",
+      "duration_s": 0.3
+    }
+  ]
+}
