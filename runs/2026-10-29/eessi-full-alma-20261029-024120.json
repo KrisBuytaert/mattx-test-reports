@@ -1,0 +1,313 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "eessi-full-alma-20261029-024120",
+  "suite": "eessi-full",
+  "distro": "alma",
+  "report": "eessi-full-alma-20261029-024120.txt",
+  "started": "2026-10-29T01:41:20Z",
+  "finished": "2026-10-29T02:01:31Z",
+  "duration_s": 1211.0,
+  "outcome": "fail",
+  "completed": true,
+  "counts": {
+    "total": 39,
+    "passed": 32,
+    "failed": 7
+  },
+  "mattx": {
+    "commit": "unknown",
+    "source": "unknown",
+    "branch": null
+  },
+  "environment": {
+    "kernel": null,
+    "kernels": {
+      "almanode1": "unknown",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "unknown"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/128",
+    "run_id": "233",
+    "run_number": "128",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "espresso-1",
+      "name": "ESPResSo module loads on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:42:50Z",
+      "duration_s": 90.4
+    },
+    {
+      "id": "espresso-2",
+      "name": "plate_capacitor.py completed and produced output on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:42:50Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "espresso-3",
+      "name": "ESPResSo process migrated to almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:42:50Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "espresso-3",
+      "name": "ESPResSo process still running on almanode2 after 15s",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:42:50Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "espresso-4",
+      "name": "ESPResSo process migrated back to almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:42:50Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "espresso-4",
+      "name": "ESPResSo process still running on almanode1 after 15s (round trip complete)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:42:50Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "espresso-3",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:42:50Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "espresso-3",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:42:50Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-1",
+      "name": "GROMACS module (GROMACS/2025.2-foss-2025a) loads on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 266.3
+    },
+    {
+      "id": "gromacs-2",
+      "name": "ion_channel benchmark completed on almanode1 (Performance:        2.212       10.848)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-3",
+      "name": "gmx mdrun migrated to almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-3",
+      "name": "gmx mdrun still running on almanode2 after 15s (ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-4",
+      "name": "gmx mdrun migrated back to almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-4",
+      "name": "gmx mdrun still running on almanode1 after 15s (round trip complete, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun migrated to almanode2 (expel test)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun still running on almanode2 after 15s (expel test, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun expelled back to almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-5",
+      "name": "gmx mdrun still running on almanode1 after 15s (expel round trip complete, ener.edr 0 -> 0 bytes, informational)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-5",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "gromacs-5",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:47:16Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "qe-1",
+      "name": "QuantumESPRESSO module (QuantumESPRESSO/7.3.1-foss-2023a) loads on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:48:18Z",
+      "duration_s": 61.8
+    },
+    {
+      "id": "qe-2",
+      "name": "Si SCF converged on almanode1 (!    total energy              =     -15.84756981 Ry)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:48:18Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "qe-3",
+      "name": "pw.x migrated to almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:48:18Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "qe-3",
+      "name": "pw.x present on almanode2 but frozen (STAT=Tl) -- looks stuck/deadlocked, not completed (see mattx#8)",
+      "outcome": "fail",
+      "finished": "2026-10-29T01:48:18Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "qe-4",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:48:18Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "qe-4",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:48:18Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "openfoam-1",
+      "name": "OpenFOAM module (OpenFOAM/11-foss-2023a) loads on almanode1, pitzDaily found at /cvmfs/software.eessi.io/versions/2023.06/software/linux/x86_64/intel/haswell/software/OpenFOAM/11-foss-2023a/OpenFOAM-11/tutorials/incompressibleFluid/pitzDaily",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:48:41Z",
+      "duration_s": 22.9
+    },
+    {
+      "id": "openfoam-2",
+      "name": "pitzDaily smoke test failed or timed out on almanode1",
+      "outcome": "fail",
+      "finished": "2026-10-29T01:48:41Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pytorch-1",
+      "name": "PyTorch module loads on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:57:36Z",
+      "duration_s": 535.0
+    },
+    {
+      "id": "pytorch-2",
+      "name": "training loop converges on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:57:36Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pytorch-3",
+      "name": "PyTorch process migrated to almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:57:36Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pytorch-3",
+      "name": "PyTorch process still running on almanode2 after 15s (epochs 8 -> 32)",
+      "outcome": "pass",
+      "finished": "2026-10-29T01:57:36Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pytorch-4",
+      "name": "PyTorch process not actually running on almanode1 after return migration",
+      "outcome": "fail",
+      "finished": "2026-10-29T01:57:36Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "tensorflow-1",
+      "name": "TensorFlow module (TensorFlow/2.13.0-foss-2023a) failed to load on almanode1",
+      "outcome": "fail",
+      "finished": "2026-10-29T01:58:47Z",
+      "duration_s": 71.3
+    },
+    {
+      "id": "bioconductor-1",
+      "name": "R-bundle-Bioconductor (R-bundle-Bioconductor/3.16-foss-2022b-R-4.2.2) failed to load on almanode1",
+      "outcome": "fail",
+      "finished": "2026-10-29T02:00:09Z",
+      "duration_s": 81.4
+    },
+    {
+      "id": "nextflow-1",
+      "name": "Nextflow module failed to load on almanode1 (EESSI 2023.06)",
+      "outcome": "fail",
+      "finished": "2026-10-29T02:01:31Z",
+      "duration_s": 82.0
+    },
+    {
+      "id": "nextflow-2",
+      "name": "MattX not running on almanode1/almanode2 \u2014 run 'make almacluster' first",
+      "outcome": "fail",
+      "finished": "2026-10-29T02:01:31Z",
+      "duration_s": 0.0
+    }
+  ]
+}
