@@ -19,14 +19,14 @@
         "failed": 7
       },
       "mattx": {
-        "commit": "unknown",
-        "source": "unknown",
-        "branch": null
+        "commit": "bc57e24fdf89e3e2bf3300a24084e4f7e6e3535f",
+        "source": "brainmatt/mattx@matt-2.0-dev-fix-blocking-syscalls",
+        "branch": "matt-2.0-dev-fix-blocking-syscalls"
       },
       "environment": {
-        "kernel": null,
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
         "kernels": {
-          "almanode1": "unknown",
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
           "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
         },
         "glibc": {
@@ -38,7 +38,8 @@
         "run_id": "233",
         "run_number": "128",
         "workflow": "mattx-ci"
-      }
+      },
+      "node_unreachable_lines": 13
     },
     {
       "schema": "mattx-test-run/1",
