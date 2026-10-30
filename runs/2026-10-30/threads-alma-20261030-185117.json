@@ -1,0 +1,83 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "threads-alma-20261030-185117",
+  "suite": "threads",
+  "distro": "alma",
+  "report": "threads-alma-20261030-185117.txt",
+  "started": "2026-10-30T17:51:17Z",
+  "finished": "2026-10-30T17:52:43Z",
+  "duration_s": 86.2,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "53f0601d4515de707e6174b375dc6f936409de49",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/150",
+    "run_id": "255",
+    "run_number": "150",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "threads-1",
+      "name": "worker migrated to almanode2 before it spawned its threads",
+      "outcome": "pass",
+      "finished": "2026-10-30T17:51:28Z",
+      "duration_s": 11.9
+    },
+    {
+      "id": "threads-2",
+      "name": "4 threads created on almanode2 (5 tasks of threadtest there)",
+      "outcome": "pass",
+      "finished": "2026-10-30T17:51:31Z",
+      "duration_s": 2.5
+    },
+    {
+      "id": "threads-3",
+      "name": "worker is back on almanode1 after the recall",
+      "outcome": "pass",
+      "finished": "2026-10-30T17:51:39Z",
+      "duration_s": 8.5
+    },
+    {
+      "id": "threads-4",
+      "name": "teardown completed (pthread_join returned, 'Threads destroyed')",
+      "outcome": "pass",
+      "finished": "2026-10-30T17:52:38Z",
+      "duration_s": 58.7
+    },
+    {
+      "id": "threads-5",
+      "name": "the worker is still alive after the teardown",
+      "outcome": "pass",
+      "finished": "2026-10-30T17:52:41Z",
+      "duration_s": 3.3
+    },
+    {
+      "id": "threads",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-30T17:52:42Z",
+      "duration_s": 0.9
+    }
+  ]
+}
