@@ -1,0 +1,28 @@
+==============================
+mattx commit: 53f0601d4515de707e6174b375dc6f936409de49
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== Test 5: migration against a stale cluster link (peer service bounce) ===
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        71977       1 mattx    S     0.0       00:02 migtest
+        71978   71977 mattx    R    93.7       00:02 migtest
+
+  ─────────────────────────────────────────────────────
+  Starting migration of migtest [PID 71978]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  ► stale-link condition did not reproduce this run (send succeeded) -- falling back to a normal migration assertion
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'migtest' | grep -v grep
+        14259       2 mattx    R    29.4       00:10 migtest
+[PASS] test5: migtest migrated normally to almanode2 (stale-link condition not present this run)
+[PASS] test5: no oops on almanode1
+[PASS] test5: no oops on almanode2
+
+==============================
+Stale-Link Results: 3 passed, 0 failed
+==============================
