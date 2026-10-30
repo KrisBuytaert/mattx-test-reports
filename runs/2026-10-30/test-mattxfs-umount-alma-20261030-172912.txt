@@ -1,0 +1,30 @@
+==============================
+mattx commit: 53f0601d4515de707e6174b375dc6f936409de49
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+==============================
+=== MattXFS umount after lookups (mattx#31): 3 cycles on almanode1 ===
+
+--- cycle 1 ---
+[PASS] umount-1: looked up 396 directory entries below /mattxfs
+[PASS] umount-1: umount /mattxfs returned
+[PASS] umount-1: almanode1 did not reboot
+[PASS] umount-1: no 'Busy inodes'/oops/BUG in dmesg on almanode1
+[PASS] umount-1: /mattxfs mounted again
+
+--- cycle 2 ---
+[PASS] umount-2: looked up 592 directory entries below /mattxfs
+[PASS] umount-2: umount /mattxfs returned
+[PASS] umount-2: almanode1 did not reboot
+[PASS] umount-2: no 'Busy inodes'/oops/BUG in dmesg on almanode1
+[PASS] umount-2: /mattxfs mounted again
+
+--- cycle 3 ---
+[FAIL] umount-3: nothing could be looked up below /mattxfs on almanode1 (not mounted or no peers?)
+[PASS] umount-3: umount /mattxfs returned
+[PASS] umount-3: almanode1 did not reboot
+[PASS] umount-3: no 'Busy inodes'/oops/BUG in dmesg on almanode1
+[PASS] umount-3: /mattxfs mounted again
+
+MattXFS-Umount Results: 14 passed, 1 failed

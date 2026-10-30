@@ -1,0 +1,29 @@
+==============================
+mattx commit: 53f0601d4515de707e6174b375dc6f936409de49
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== threadtest 4: threads created on almanode2, then recalled home to almanode1 (mattx#9) ===
+  worker PID 22942 (still in its 15 s startup sleep, no threads yet)
+[FAIL] threads-1: worker did not show up on almanode2 after migration
+  waiting for the 4 threads to be created on almanode2 ...
+ssh: connect to host x.x.x.x port 22: Connection timed out
+ssh: connect to host x.x.x.x port 22: Connection refused
+[FAIL] threads-2: only 0 threadtest tasks on almanode2, expected 5
+  recalling the worker home to almanode1 ...
+[PASS] threads-3: worker is back on almanode1 after the recall
+  waiting for the teardown wave (pthread_cancel/pthread_join = futex) ...
+[PASS] threads-4: teardown completed (pthread_join returned, 'Threads destroyed')
+[PASS] threads-5: the worker is still alive after the teardown
+  tail of the worker log:
+      [Thread 3] (TID: 23422) Still alive and calculating... (55 seconds)
+    [Worker] Mother Tick 60/60 seconds... (Mother PID: 22942)
+    [Worker] --- TEARING DOWN THREADS (futex / exit) ---
+    [Worker] Threads destroyed. Sleeping 10 seconds before next wave...
+    
+    [Worker] --- SPAWNING 4 THREADS (clone3 / CLONE_VM[PASS] threads: no kernel oops on almanode1
+[PASS] threads: no kernel oops on almanode2
+
+Threads Results: 5 passed, 2 failed

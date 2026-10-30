@@ -1,0 +1,124 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-unload-alma-20261030-172846",
+  "suite": "test-unload",
+  "distro": "alma",
+  "report": "test-unload-alma-20261030-172846.txt",
+  "started": "2026-10-30T16:28:46Z",
+  "finished": "2026-10-30T16:29:12Z",
+  "duration_s": 26.1,
+  "outcome": "fail",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 12,
+    "passed": 10,
+    "failed": 2
+  },
+  "mattx": {
+    "commit": "53f0601d4515de707e6174b375dc6f936409de49",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/147",
+    "run_id": "252",
+    "run_number": "147",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "unload-1",
+      "name": "modules unloaded on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:28:52Z",
+      "duration_s": 6.4
+    },
+    {
+      "id": "unload-1",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:28:52Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-1",
+      "name": "no oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:28:52Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-1",
+      "name": "service restarted, modules loaded on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:28:57Z",
+      "duration_s": 5.1
+    },
+    {
+      "id": "unload-2",
+      "name": "modules unloaded on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:29:01Z",
+      "duration_s": 3.1
+    },
+    {
+      "id": "unload-2",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:29:01Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-2",
+      "name": "no oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:29:01Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-2",
+      "name": "service restarted, modules loaded on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:29:06Z",
+      "duration_s": 5.2
+    },
+    {
+      "id": "unload-3",
+      "name": "1 mattx module(s) still loaded on almanode1",
+      "outcome": "fail",
+      "finished": "2026-10-30T16:29:07Z",
+      "duration_s": 0.5
+    },
+    {
+      "id": "unload-3",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:29:07Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-3",
+      "name": "no oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": "2026-10-30T16:29:07Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-3",
+      "name": "service did not come back cleanly on almanode1 (1 readable )",
+      "outcome": "fail",
+      "finished": "2026-10-30T16:29:12Z",
+      "duration_s": 4.5
+    }
+  ]
+}
