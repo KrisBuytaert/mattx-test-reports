@@ -1,0 +1,55 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-admin-input-alma-20261031-221506",
+  "suite": "test-admin-input",
+  "distro": "alma",
+  "report": "test-admin-input-alma-20261031-221506.txt",
+  "started": "2026-10-31T21:15:06Z",
+  "finished": "2026-10-31T21:15:16Z",
+  "duration_s": 10.1,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "87fddf468cd1f49824f0ac8602f1bc13772aa242",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/184",
+    "run_id": "320",
+    "run_number": "184",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "admin-27",
+      "name": "(nonexistent pid): almanode1 survived",
+      "outcome": "pass",
+      "finished": "2026-10-31T21:15:11Z",
+      "duration_s": 5.0
+    },
+    {
+      "id": "admin-37",
+      "name": "(zombie pid 21292): almanode1 survived",
+      "outcome": "pass",
+      "finished": "2026-10-31T21:15:15Z",
+      "duration_s": 4.9
+    }
+  ]
+}
