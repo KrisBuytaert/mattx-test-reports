@@ -1,0 +1,89 @@
+==============================
+mattx commit: 1be8473bac6725654f5ba3bdc6915d79a7df79a1
+mattx source: brainmatt/mattx@main
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== epoll_wait(-1) in one thread, eventfd writer in another, across migration (mattx#14) ===
+[PASS] epoll-1: 4 events on almanode1 before the migration
+[FAIL] epoll-2: no progress on almanode2 after the migration (4 -> 4 events in 30 s): process stuck (state: Tl )
+  --- diagnostics (after the migration) ---
+  threads on almanode1:
+     168590 Tl   do_signal_stop         epoll_threads
+     168591 Tl   do_signal_stop         epoll_threads
+  threads on almanode2:
+      94095 Tl   -                      epoll_threads
+      94096 Tl   -                      epoll_threads
+  almanode1 dmesg (RECALL/IMPORT/HIJACK/WORMHOLE/oops), last 12:
+    [15193.529402] MattX:[RECALL] Carving missing memory hole: 0x7febcd6cf000 (Size: 258048)
+    [15193.530934] MattX:[RECALL] Carving missing memory hole: 0x7ffe63c38000 (Size: 135168)
+    [15193.532320] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+    [15193.956095] MattX:[IMPORT] Return memory transferred successfully! Pages: 9635
+    [15193.957332] MattX:[RECALL] TID word 0x7fd9bdf80990: remote TID 93813 -> local TID 167386
+    [15193.958772] MattX:[RECALL] TID word 0x7fd9bd77f990: remote TID 93814 -> local TID 167387
+    [15193.960770] MattX:[RECALL] TID word 0x7fd9bcf7e990: remote TID 93815 -> local TID 167388
+    [15193.963544] MattX:[RECALL] TID word 0x7fd9bc77d990: remote TID 93816 -> local TID 167389
+    [15193.965278] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7febcd595ec3
+    [15193.966307] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 167268: -16711342565423 ns (5 threads)
+    [15193.967573] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 167268
+    [15269.890678] MattX:[WORMHOLE] kernel_write failed for FD 3 with error -22
+  almanode2 dmesg (RECALL/EXTRACT/DRAIN/RPC), last 12:
+    [31905.138784] MattX:[MIGRATE] -> VMA 43: Sending page 0/39 (Offset: 0x0, Payload: 4112 bytes)...
+    [31905.151461] MattX:[MIGRATE] -> VMA 46: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+    [31905.157115] MattX:[MIGRATE] -> VMA 47: Sending page 0/522 (Offset: 0x0, Payload: 4112 bytes)...
+    [31905.160267] MattX:[MIGRATE] -> VMA 47: Sending page 256/522 (Offset: 0x100000, Payload: 4112 bytes)...
+    [31905.163259] MattX:[MIGRATE] -> VMA 47: Sending page 512/522 (Offset: 0x200000, Payload: 4112 bytes)...
+    [31905.168639] MattX:[MIGRATE] -> VMA 48: Sending page 0/65 (Offset: 0x0, Payload: 4112 bytes)...
+    [31905.174101] MattX:[MIGRATE] -> VMA 49: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+    [31905.179489] MattX:[MIGRATE] -> VMA 50: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+    [31905.185963] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+    [31905.187105] MattX:[RECALL] Executing local Surrogate PID 93736...
+    [31980.878675] MattX:[DRAIN] Injected Task Work into PID 94095. Waiting for stable state...
+    [31980.890297] MattX:[DRAIN] PID 94095 is now stable and frozen at the user-space boundary!
+  almanode1 mattx_recv threads:
+    165410 mattx_recv_379 S
+    165460 mattx_recv_378 S
+    170053 bash S
+[FAIL] epoll-3: no progress after the recall home (4 -> 4 events in 30 s)
+  --- diagnostics (after the recall) ---
+  threads on almanode1:
+     168590 Tl   do_signal_stop         epoll_threads
+     168591 Tl   do_signal_stop         epoll_threads
+  threads on almanode2:
+      94095 Tl   -                      epoll_threads
+      94096 Tl   -                      epoll_threads
+  almanode1 dmesg (RECALL/IMPORT/HIJACK/WORMHOLE/oops), last 12:
+    [15193.532320] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+    [15193.956095] MattX:[IMPORT] Return memory transferred successfully! Pages: 9635
+    [15193.957332] MattX:[RECALL] TID word 0x7fd9bdf80990: remote TID 93813 -> local TID 167386
+    [15193.958772] MattX:[RECALL] TID word 0x7fd9bd77f990: remote TID 93814 -> local TID 167387
+    [15193.960770] MattX:[RECALL] TID word 0x7fd9bcf7e990: remote TID 93815 -> local TID 167388
+    [15193.963544] MattX:[RECALL] TID word 0x7fd9bc77d990: remote TID 93816 -> local TID 167389
+    [15193.965278] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7febcd595ec3
+    [15193.966307] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 167268: -16711342565423 ns (5 threads)
+    [15193.967573] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 167268
+    [15269.890678] MattX:[WORMHOLE] kernel_write failed for FD 3 with error -22
+    [15314.182890] MattX: [RECALL] Sending RECALL_REQ for PID 168590 to Node 378...
+    [15314.192280] MattX:[WORMHOLE] kernel_write failed for FD 3 with error -22
+  almanode2 dmesg (RECALL/EXTRACT/DRAIN/RPC), last 12:
+    [31980.878675] MattX:[DRAIN] Injected Task Work into PID 94095. Waiting for stable state...
+    [31980.890297] MattX:[DRAIN] PID 94095 is now stable and frozen at the user-space boundary!
+    [32025.415602] MattX:[EXPORT] Received RECALL request for Orig PID 168590 from Node 377
+    [32025.418071] MattX:[EXTRACT] Initiating RETURN state capture for Surrogate PID 94095...
+    [32025.419869] MattX:[DRAIN] Injected Task Work into PID 94095. Waiting for stable state...
+    [32025.427348] MattX:[RPC] Migration initiated! Aborted RPC for Surrogate 94095
+    [32025.428382] MattX:[RPC] Worker finished, but Surrogate 94095 is migrating! Leaving it frozen.
+    [32025.431372] MattX:[DRAIN] PID 94095 is now stable and frozen at the user-space boundary!
+    [32025.433061] MattX:[EXTRACT] Captured RETURN process name: 'epoll_threads'
+    [32025.434578] MattX:[DRAIN] Injected Task Work into PID 94096. Waiting for stable state...
+    [32025.539383] MattX:[RPC] Migration initiated! Aborted RPC for Surrogate 94095
+    [32025.540610] MattX:[RPC] Worker finished, but Surrogate 94095 is migrating! Leaving it frozen.
+  almanode1 mattx_recv threads:
+    165410 mattx_recv_379 S
+    165460 mattx_recv_378 S
+    171363 bash S
+[PASS] epoll: no kernel oops on almanode1
+[PASS] epoll: no kernel oops on almanode2
+
+Epoll-Threads Results: 3 passed, 2 failed
