@@ -1,0 +1,69 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "dsm-alma-20261031-135155",
+  "suite": "dsm",
+  "distro": "alma",
+  "report": "dsm-alma-20261031-135155.txt",
+  "started": "2026-10-31T12:51:55Z",
+  "finished": "2026-10-31T12:59:33Z",
+  "duration_s": 459.0,
+  "outcome": "fail",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 4,
+    "passed": 1,
+    "failed": 3
+  },
+  "mattx": {
+    "commit": "53f0601d4515de707e6174b375dc6f936409de49",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/171",
+    "run_id": "280",
+    "run_number": "171",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "dsm-1",
+      "name": "baseline dsmtest did not complete within 130s",
+      "outcome": "fail",
+      "finished": "2026-10-31T12:54:21Z",
+      "duration_s": 146.6
+    },
+    {
+      "id": "dsm-2",
+      "name": "dsmtest did not reach completion within the wait budget after migration -- suspected hang (ps liveness alone would not have caught this, see header comment)",
+      "outcome": "fail",
+      "finished": "2026-10-31T12:57:04Z",
+      "duration_s": 162.6
+    },
+    {
+      "id": "dsm-3",
+      "name": "dsmtest did not reach completion within the wait budget after early migration -- suspected hang (matches known issue brainmatt/mattx#18: shmget() through the wormhole fails with EFAULT and the worker never proceeds)",
+      "outcome": "fail",
+      "finished": "2026-10-31T12:59:32Z",
+      "duration_s": 148.6
+    },
+    {
+      "id": "dsm-2-3-no-kernel-oops-on-almanode2",
+      "name": "dsm-2/3: no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-10-31T12:59:33Z",
+      "duration_s": 1.2
+    }
+  ]
+}

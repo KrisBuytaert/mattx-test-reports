@@ -1,0 +1,196 @@
+==============================
+mattx commit: 53f0601d4515de707e6174b375dc6f936409de49
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== dsmtest (SysV shared memory) tests on alma cluster ===
+
+=== Test 1: dsmtest completes cleanly with no migration ===
+  Waiting up to 130s for baseline completion (10s countdown + 100 x 1s loops)...
+[FAIL] dsm-1: baseline dsmtest did not complete within 130s
+    [PID 11929] Loop 42 - Read from SHM: '42 MattX DSM Magic! Loop 42'
+    [PID 11929] Loop 43 - Read from SHM: '43 MattX DSM Magic! Loop 43'
+    [PID 11929] Loop 44 - Read from SHM: '44 MattX DSM Magic! Loop 44'
+    [PID 11929] Loop 45 - Read from SHM: '45 MattX DSM Magic! Loop 45'
+    [PID 11929] Loop 46 - Read from SHM: '46 MattX DSM Magic! Loop 46'
+    [PID 11929] Loop 47 - Read from SHM: '47 MattX DSM Magic! Loop 47'
+    [PID 11929] Loop 48 - Read from SHM: '48 MattX DSM Magic! Loop 48'
+    [PID 11929] Loop 49 - Read from SHM: '49 MattX DSM Magic! Loop 49'
+    [PID 11929] Loop 50 - Read from SHM: '50 MattX DSM Magic! Loop 50'
+    [PID 11929] Loop 51 - Read from SHM: '51 MattX DSM Magic! Loop 
+=== Test 2: migrate dsmtest worker mid-loop, verify DSM survives ===
+  Loops completed before migration: 0 (last: )
+
+  --- ps snapshot: baseline, before migration (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+        17173       1 mattx    S     0.0       00:15 dsmtest
+        17174   17173 mattx    S     0.0       00:15 dsmtest
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode2)
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dsmtest [PID 17174]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  Waiting up to 130s more for completion on whichever node it lands on...
+
+  --- ps snapshot: after migration, wait ended (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+        21011       1 mattx    S     0.0       00:54 dsmtest
+        21012   21011 mattx    S     0.0       00:54 dsmtest
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+      (no process matching 'dsmtest' on almanode2)
+  mattx@almanode1 (x.x.x.x) dmesg — migration (almanode1 -> almanode2):
+      [  445.024987] MattX:[MIGRATE] Processing VMA 21/24: 0x7fbd107e6000 - 0x7fbd107f1000 (Size: 45056 bytes, ~11 pages, Flags: 0x8000071)
+      [  445.026471] MattX:[MIGRATE] -> VMA 20: Entering page extraction loop...
+      [  445.028525] MattX:[MIGRATE] -> VMA 20: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [  445.031470] MattX:[MIGRATE] -> VMA 20 finished. Sent 11 pages.
+      [  445.032753] MattX:[MIGRATE] Processing VMA 22/24: 0x7fbd107f1000 - 0x7fbd107f3000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [  445.034174] MattX:[MIGRATE] -> VMA 21: Entering page extraction loop...
+      [  445.035234] MattX:[MIGRATE] -> VMA 21: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  445.037356] MattX:[MIGRATE] -> VMA 21 finished. Sent 2 pages.
+      [  445.038352] MattX:[MIGRATE] Processing VMA 23/24: 0x7fbd107f3000 - 0x7fbd107f5000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [  445.040025] MattX:[MIGRATE] -> VMA 22: Entering page extraction loop...
+      [  445.041143] MattX:[MIGRATE] -> VMA 22: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  445.042552] MattX:[MIGRATE] -> VMA 22 finished. Sent 2 pages.
+      [  445.045064] MattX:[MIGRATE] Processing VMA 24/24: 0x7ffc08561000 - 0x7ffc08582000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [  445.047014] MattX:[MIGRATE] -> VMA 23: Entering page extraction loop...
+      [  445.048393] MattX:[MIGRATE] -> VMA 23: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [  445.050738] MattX:[MIGRATE] -> VMA 23 finished. Sent 33 pages.
+      [  445.052302] MattX:[MIGRATE] Pipeline stats: 613 total, 607 sent, 6 skipped, 0 net errors
+      [  445.053819] MattX:[MIGRATE] =====================================================
+      [  445.054752] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [  445.058902] MattX:[REGISTRY] PID 17174 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — migration (almanode1 -> almanode2):
+      [  264.335238] MattX:[ASSASSIN] Executing Surrogate PID 5163 (Sending SIGKILL)...
+      [  362.320716] MattX:[IMPORT] Received Blueprint for PID 15314. Saving to pending...
+      [  362.328277] MattX:[DRAIN] Injected Task Work into PID 5564. Waiting for stable state...
+      [  362.341044] MattX:[DRAIN] PID 5564 is now stable and frozen at the user-space boundary!
+      [  362.530129] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [  362.531229] MattX:[IMPORT] Commencing full brain transplant on PID 5564...
+      [  362.532783] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [  362.536001] MattX:[IMPORT] Registered clock-offset fixup for PID 5564: -19580976401 ns (1 threads)
+      [  362.537211] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 5564
+      [  407.695526] MattX:[ASSASSIN] Executing Surrogate PID 5564 (Sending SIGKILL)...
+      [  424.532401] MattX:[IMPORT] Received Blueprint for PID 17174. Saving to pending...
+      [  424.538959] MattX:[DRAIN] Injected Task Work into PID 5676. Waiting for stable state...
+      [  424.551169] MattX:[DRAIN] PID 5676 is now stable and frozen at the user-space boundary!
+      [  424.729973] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [  424.731045] MattX:[IMPORT] Commencing full brain transplant on PID 5676...
+      [  424.732227] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [  424.735701] MattX:[IMPORT] Registered clock-offset fixup for PID 5676: -19591408159 ns (1 threads)
+      [  424.736883] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 5676
+      [  424.737805] MattX:[IMPORT] Armed DSM Tripwire at 0x7fbd107b3000 (ID: 1, Size: 4096)
+      [  510.095764] MattX:[ASSASSIN] Executing Surrogate PID 5676 (Sending SIGKILL)...
+[FAIL] dsm-2: dsmtest did not reach completion within the wait budget after migration -- suspected hang (ps liveness alone would not have caught this, see header comment)
+  Log tail:
+    [PID 17174] Loop 32 - Read from SHM: '32 MattX DSM Magic! Loop 32'
+    [PID 17174] Loop 33 - Read from SHM: '33 MattX DSM Magic! Loop 33'
+    [PID 17174] Loop 34 - Read from SHM: '34 MattX DSM Magic! Loop 34'
+    [PID 17174] Loop 35 - Read from SHM: '35 MattX DSM Magic! Loop 35'
+    [PID 17174] Loop 36 - Read from SHM: '36 MattX DSM Magic! Loop 36'
+    [PID 17174] Loop 37 - Read from SHM: '37 MattX DSM Magic! Loop 37'
+    [PID 17174] Loop 38 - Read from SHM: '38 MattX DSM Magic! Loop 38'
+    [PID 17174] Loop 39 - Read from SHM: '39 MattX DSM Magic! Loop 39'
+    [PID 17174] Loop 40 - Read from SHM: '40 MattX DSM Magic! Loop 40'
+    [PID 17174] Loop 41 - Read from SHM: '41 MattX DSM Magic! Loop 41'
+    [PID 17174] Loop 42 - Read from SHM: '42 MattX DSM Magic! Loop 42'
+    [PID 17174] Loop 43 - Read from SHM: '43 MattX DSM Magic! Loop 43'
+    [PID 17174] Loop 44 - Read from SHM: '44 MattX DSM Magic! Loop 44'
+    [PID 17174] Loop 45 - Read from SHM: '45 MattX DSM Magic! Loop 45'
+    [PID 17174] Loop 46 - Read from SHM: '46 MattX DSM Magic! Loop 46'
+    [PID 17174] Loop 47 - Read from SHM: '47 MattX DSM Magic! Loop 47'
+    [PID 17174] Loop 48 - Read from SHM: '48 MattX DSM Magic! Loop 48'
+    [PID 17174] Loop 49 - Read from SHM: '49 MattX DSM Magic! Loop 49'
+    [PID 17174] Loop 50 - Read from SHM: '50 MattX DSM Magic! Loop 50'
+    [PID 17174] Loop 51 - Read from SHM: '51 MattX DSM Magic! Loop 
+=== Test 3: migrate dsmtest worker BEFORE any SHM syscall (shmget/shmat wormhole) ===
+  Confirmed: worker still in its startup countdown, no SHM syscalls made yet.
+
+  ─────────────────────────────────────────────────────
+  Starting migration of dsmtest [PID 23060]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+  Waiting up to 130s for completion on whichever node it lands on...
+
+  --- ps snapshot: test 3, after wait ended (pattern: 'dsmtest') ---
+  mattx@almanode1 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+        26366       1 mattx    S     0.0       00:55 dsmtest
+        26367   26366 mattx    T     0.0       00:55 dsmtest
+  mattx@almanode2 (x.x.x.x)$ ps -eo pid,ppid,user,stat,%cpu,etime,cmd --no-headers | grep -iE -- 'dsmtest' | grep -v grep
+         6213       2 mattx    S     0.0       00:38 dsmtest
+  mattx@almanode1 (x.x.x.x) dmesg — test 3 migration (almanode1 -> almanode2):
+      [  698.859200] MattX:[MIGRATE] Processing VMA 21/24: 0x7fd0a6d1d000 - 0x7fd0a6d28000 (Size: 45056 bytes, ~11 pages, Flags: 0x8000071)
+      [  698.860716] MattX:[MIGRATE] -> VMA 20: Entering page extraction loop...
+      [  698.861717] MattX:[MIGRATE] -> VMA 20: Sending page 0/11 (Offset: 0x0, Payload: 4112 bytes)...
+      [  698.863384] MattX:[MIGRATE] -> VMA 20 finished. Sent 11 pages.
+      [  698.864630] MattX:[MIGRATE] Processing VMA 22/24: 0x7fd0a6d28000 - 0x7fd0a6d2a000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100071)
+      [  698.866073] MattX:[MIGRATE] -> VMA 21: Entering page extraction loop...
+      [  698.868079] MattX:[MIGRATE] -> VMA 21: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  698.871838] MattX:[MIGRATE] -> VMA 21 finished. Sent 2 pages.
+      [  698.873437] MattX:[MIGRATE] Processing VMA 23/24: 0x7fd0a6d2a000 - 0x7fd0a6d2c000 (Size: 8192 bytes, ~2 pages, Flags: 0x8100073)
+      [  698.875542] MattX:[MIGRATE] -> VMA 22: Entering page extraction loop...
+      [  698.877015] MattX:[MIGRATE] -> VMA 22: Sending page 0/2 (Offset: 0x0, Payload: 4112 bytes)...
+      [  698.879211] MattX:[MIGRATE] -> VMA 22 finished. Sent 2 pages.
+      [  698.880504] MattX:[MIGRATE] Processing VMA 24/24: 0x7ffc88a70000 - 0x7ffc88a91000 (Size: 135168 bytes, ~33 pages, Flags: 0x100173)
+      [  698.880509] MattX:[MIGRATE] -> VMA 23: Entering page extraction loop...
+      [  698.880526] MattX:[MIGRATE] -> VMA 23: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+      [  698.880697] MattX:[MIGRATE] -> VMA 23 finished. Sent 33 pages.
+      [  698.888759] MattX:[MIGRATE] Pipeline stats: 613 total, 607 sent, 6 skipped, 0 net errors
+      [  698.890289] MattX:[MIGRATE] =====================================================
+      [  698.891548] MattX:[MIGRATE] Data pipeline complete. Sending DONE signal.
+      [  698.892342] MattX:[REGISTRY] PID 26367 registered as Exported to Node 378.
+  mattx@almanode2 (x.x.x.x) dmesg — test 3 migration (almanode1 -> almanode2):
+      [  424.737805] MattX:[IMPORT] Armed DSM Tripwire at 0x7fbd107b3000 (ID: 1, Size: 4096)
+      [  510.095764] MattX:[ASSASSIN] Executing Surrogate PID 5676 (Sending SIGKILL)...
+      [  573.099073] MattX:[IMPORT] Received Blueprint for PID 23060. Saving to pending...
+      [  573.105658] MattX:[DRAIN] Injected Task Work into PID 6095. Waiting for stable state...
+      [  573.117788] MattX:[DRAIN] PID 6095 is now stable and frozen at the user-space boundary!
+      [  573.294399] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [  573.295841] MattX:[IMPORT] Commencing full brain transplant on PID 6095...
+      [  573.297460] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [  573.301112] MattX:[IMPORT] Registered clock-offset fixup for PID 6095: -19595238147 ns (1 threads)
+      [  573.302416] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 6095
+      [  661.648446] MattX:[ASSASSIN] Executing Surrogate PID 6095 (Sending SIGKILL)...
+      [  678.365665] MattX:[IMPORT] Received Blueprint for PID 26367. Saving to pending...
+      [  678.374224] MattX:[DRAIN] Injected Task Work into PID 6213. Waiting for stable state...
+      [  678.386527] MattX:[DRAIN] PID 6213 is now stable and frozen at the user-space boundary!
+      [  678.563368] MattX:[IMPORT] All memory transferred! Total pages injected: 607
+      [  678.564367] MattX:[IMPORT] Commencing full brain transplant on PID 6213...
+      [  678.565532] MattX:[IMPORT] Successfully injected 3 Fake FDs!
+      [  678.568792] MattX:[IMPORT] Registered clock-offset fixup for PID 6213: -19592705086 ns (1 threads)
+      [  678.569988] MattX:[IMPORT] IT'S ALIVE! Waking 1 threads in Gang PID 6213
+      [  678.570963] MattX:[IMPORT] Armed DSM Tripwire at 0x7fd0a6cea000 (ID: 1, Size: 4096)
+[FAIL] dsm-3: dsmtest did not reach completion within the wait budget after early migration -- suspected hang (matches known issue brainmatt/mattx#18: shmget() through the wormhole fails with EFAULT and the worker never proceeds)
+  Log tail:
+    [PID 23060] Loop 32 - Read from SHM: '32 MattX DSM Magic! Loop 32'
+    [PID 23060] Loop 33 - Read from SHM: '33 MattX DSM Magic! Loop 33'
+    [PID 23060] Loop 34 - Read from SHM: '34 MattX DSM Magic! Loop 34'
+    [PID 23060] Loop 35 - Read from SHM: '35 MattX DSM Magic! Loop 35'
+    [PID 23060] Loop 36 - Read from SHM: '36 MattX DSM Magic! Loop 36'
+    [PID 23060] Loop 37 - Read from SHM: '37 MattX DSM Magic! Loop 37'
+    [PID 23060] Loop 38 - Read from SHM: '38 MattX DSM Magic! Loop 38'
+    [PID 23060] Loop 39 - Read from SHM: '39 MattX DSM Magic! Loop 39'
+    [PID 23060] Loop 40 - Read from SHM: '40 MattX DSM Magic! Loop 40'
+    [PID 23060] Loop 41 - Read from SHM: '41 MattX DSM Magic! Loop 41'
+    [PID 23060] Loop 42 - Read from SHM: '42 MattX DSM Magic! Loop 42'
+    [PID 23060] Loop 43 - Read from SHM: '43 MattX DSM Magic! Loop 43'
+    [PID 23060] Loop 44 - Read from SHM: '44 MattX DSM Magic! Loop 44'
+    [PID 23060] Loop 45 - Read from SHM: '45 MattX DSM Magic! Loop 45'
+    [PID 23060] Loop 46 - Read from SHM: '46 MattX DSM Magic! Loop 46'
+    [PID 23060] Loop 47 - Read from SHM: '47 MattX DSM Magic! Loop 47'
+    [PID 23060] Loop 48 - Read from SHM: '48 MattX DSM Magic! Loop 48'
+    [PID 23060] Loop 49 - Read from SHM: '49 MattX DSM Magic! Loop 49'
+    [PID 23060] Loop 50 - Read from SHM: '50 MattX DSM Magic! Loop 50'
+    [PID 23060] Loop 51 - Read from SHM: '51 MattX DSM Magic! Loop [PASS] dsm-2/3: no kernel oops on almanode1
+[PASS] dsm-2/3: no kernel oops on almanode2
+
+==============================
+DSM Results: 2 passed, 3 failed
+==============================
