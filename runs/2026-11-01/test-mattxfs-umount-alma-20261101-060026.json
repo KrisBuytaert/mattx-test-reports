@@ -1,0 +1,145 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-mattxfs-umount-alma-20261101-060026",
+  "suite": "test-mattxfs-umount",
+  "distro": "alma",
+  "report": "test-mattxfs-umount-alma-20261101-060026.txt",
+  "started": "2026-11-01T05:00:26Z",
+  "finished": "2026-11-01T05:00:31Z",
+  "duration_s": 5.5,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "f0c51c51e7b47a17e20c1c47f16d9d398a31b22a",
+    "source": "brainmatt/mattx@matt-2.0-dev-fix-blocking-syscalls",
+    "branch": "matt-2.0-dev-fix-blocking-syscalls"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/196",
+    "run_id": "332",
+    "run_number": "196",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "umount-1",
+      "name": "looked up 595 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:27Z",
+      "duration_s": 1.7
+    },
+    {
+      "id": "umount-1",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:27Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "umount-1",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:28Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "umount-1",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:28Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "umount-1",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:28Z",
+      "duration_s": 0.4
+    },
+    {
+      "id": "umount-2",
+      "name": "looked up 595 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:29Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "umount-2",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:29Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "umount-2",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:29Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "umount-2",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:29Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "umount-2",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:30Z",
+      "duration_s": 0.4
+    },
+    {
+      "id": "umount-3",
+      "name": "looked up 595 directory entries below /mattxfs",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:30Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "umount-3",
+      "name": "umount /mattxfs returned",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:30Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "umount-3",
+      "name": "almanode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:30Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "umount-3",
+      "name": "no 'Busy inodes'/oops/BUG in dmesg on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:31Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "umount-3",
+      "name": "/mattxfs mounted again",
+      "outcome": "pass",
+      "finished": "2026-11-01T05:00:31Z",
+      "duration_s": 0.4
+    }
+  ]
+}
