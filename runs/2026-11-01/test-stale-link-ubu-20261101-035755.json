@@ -1,0 +1,62 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-stale-link-ubu-20261101-035755",
+  "suite": "test-stale-link",
+  "distro": "ubu",
+  "report": "test-stale-link-ubu-20261101-035755.txt",
+  "started": "2026-11-01T02:57:55Z",
+  "finished": "2026-11-01T02:58:10Z",
+  "duration_s": 15.4,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "ac996bb94593032179248ea3792f041777e218e5",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.0.0-38-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-38-generic",
+      "ubunode2": "7.0.0-38-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+    "run_id": "331",
+    "run_number": "195",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "test5",
+      "name": "migtest migrated normally to ubunode2 (stale-link condition not present this run)",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:58:09Z",
+      "duration_s": 14.5
+    },
+    {
+      "id": "test5",
+      "name": "no oops on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:58:10Z",
+      "duration_s": 0.6
+    },
+    {
+      "id": "test5",
+      "name": "no oops on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:58:10Z",
+      "duration_s": 0.2
+    }
+  ]
+}

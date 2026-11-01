@@ -1,0 +1,55 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-admin-input-ubu-20261101-035842",
+  "suite": "test-admin-input",
+  "distro": "ubu",
+  "report": "test-admin-input-ubu-20261101-035842.txt",
+  "started": "2026-11-01T02:58:42Z",
+  "finished": "2026-11-01T02:58:51Z",
+  "duration_s": 9.8,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "ac996bb94593032179248ea3792f041777e218e5",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.0.0-38-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-38-generic",
+      "ubunode2": "7.0.0-38-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+    "run_id": "331",
+    "run_number": "195",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "admin-27",
+      "name": "(nonexistent pid): ubunode1 survived",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:58:46Z",
+      "duration_s": 4.8
+    },
+    {
+      "id": "admin-37",
+      "name": "(zombie pid 133476): ubunode1 survived",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:58:51Z",
+      "duration_s": 4.8
+    }
+  ]
+}
