@@ -1,0 +1,76 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "epoll-threads-alma-20261101-032246",
+  "suite": "epoll-threads",
+  "distro": "alma",
+  "report": "epoll-threads-alma-20261101-032246.txt",
+  "started": "2026-11-01T02:22:46Z",
+  "finished": "2026-11-01T02:23:29Z",
+  "duration_s": 43.6,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "abac2d13d32354d8d1cb8e565bc7d16f2135c725",
+    "source": "brainmatt/mattx@matt-2.0-dev-fix-blocking-syscalls",
+    "branch": "matt-2.0-dev-fix-blocking-syscalls"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/194",
+    "run_id": "330",
+    "run_number": "194",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "epoll-1",
+      "name": "4 events on almanode1 before the migration",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:22:53Z",
+      "duration_s": 7.5
+    },
+    {
+      "id": "epoll-2",
+      "name": "the process keeps producing events on almanode2 (10 -> 20)",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:23:10Z",
+      "duration_s": 16.5
+    },
+    {
+      "id": "epoll-3",
+      "name": "still producing events after the recall home (29 -> 39)",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:23:28Z",
+      "duration_s": 18.3
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:23:29Z",
+      "duration_s": 1.0
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-01T02:23:29Z",
+      "duration_s": 0.3
+    }
+  ]
+}
