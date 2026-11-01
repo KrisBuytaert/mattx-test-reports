@@ -1285,6 +1285,15 @@
 | 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | test-mattxfs-umount (alma) | 2026-11-01 16:16 | ✅ all 15 passed |
 | 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | threads (alma) | 2026-11-01 16:16 | ✅ all 6 passed |
 | 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | epoll-threads (alma) | 2026-11-01 16:17 | ✅ all 5 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | run-tests (alma) | 2026-11-01 16:36 | ❌ 1 failed, 27 passed — FAIL: test4: dd_migtest not actually running on almanode1 after return migration |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | dsm (alma) | 2026-11-01 16:38 | ✅ all 11 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | test-dsm-mesi3 (alma) | 2026-11-01 16:44 | ✅ all 15 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | test-stale-link (alma) | 2026-11-01 16:44 | ✅ all 3 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | test-unload (alma) | 2026-11-01 16:45 | ✅ all 12 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | test-admin-input (alma) | 2026-11-01 16:46 | ✅ all 2 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | test-mattxfs-umount (alma) | 2026-11-01 16:46 | ✅ all 15 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | threads (alma) | 2026-11-01 16:46 | ✅ all 6 passed |
+| 6.12.0-211.65.1.el10_2.x86_64 | [ac996bb94593](https://github.com/brainmatt/mattx/commit/ac996bb94593032179248ea3792f041777e218e5) | brainmatt/mattx@2.0-dev | epoll-threads (alma) | 2026-11-01 16:47 | ✅ all 5 passed |
 | 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | unknown | run-tests (alma) | 2026-10-14 22:48 | ✅ all 29 passed |
 | 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | unknown | dsm (alma) | 2026-10-14 22:51 | ✅ all 11 passed |
 | 6.12.0-211.65.1.el10_2.x86_64 | b401a0e97721 | unknown | test-dsm-mesi3 (alma) | 2026-10-14 22:57 | ✅ all 15 passed |
