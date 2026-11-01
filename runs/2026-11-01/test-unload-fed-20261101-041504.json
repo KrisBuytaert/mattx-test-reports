@@ -1,0 +1,124 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-unload-fed-20261101-041504",
+  "suite": "test-unload",
+  "distro": "fed",
+  "report": "test-unload-fed-20261101-041504.txt",
+  "started": "2026-11-01T03:15:04Z",
+  "finished": "2026-11-01T03:15:30Z",
+  "duration_s": 26.1,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "ac996bb94593032179248ea3792f041777e218e5",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "kernels": {
+      "fednode1": "7.2.11-200.fc44.x86_64"
+    },
+    "glibc": {
+      "fednode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+    "run_id": "331",
+    "run_number": "195",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "unload-1",
+      "name": "modules unloaded on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:09Z",
+      "duration_s": 5.4
+    },
+    {
+      "id": "unload-1",
+      "name": "fednode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:09Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-1",
+      "name": "no oops/BUG in dmesg on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:09Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-1",
+      "name": "service restarted, modules loaded on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:14Z",
+      "duration_s": 4.9
+    },
+    {
+      "id": "unload-2",
+      "name": "modules unloaded on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:17Z",
+      "duration_s": 2.4
+    },
+    {
+      "id": "unload-2",
+      "name": "fednode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:17Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-2",
+      "name": "no oops/BUG in dmesg on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:17Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-2",
+      "name": "service restarted, modules loaded on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:22Z",
+      "duration_s": 4.9
+    },
+    {
+      "id": "unload-3",
+      "name": "modules unloaded on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:24Z",
+      "duration_s": 2.4
+    },
+    {
+      "id": "unload-3",
+      "name": "fednode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:24Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-3",
+      "name": "no oops/BUG in dmesg on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:25Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-3",
+      "name": "service restarted, modules loaded on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:30Z",
+      "duration_s": 4.9
+    }
+  ]
+}

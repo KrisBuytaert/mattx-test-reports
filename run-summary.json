@@ -1,7 +1,317 @@
 {
   "schema": "mattx-test-run/1-index",
-  "generated": "2026-11-01T03:02:14Z",
+  "generated": "2026-11-01T03:19:05Z",
   "runs": [
+    {
+      "schema": "mattx-test-run/1",
+      "id": "epoll-threads-fed-20261101-041821",
+      "suite": "epoll-threads",
+      "distro": "fed",
+      "report": "epoll-threads-fed-20261101-041821.txt",
+      "started": "2026-11-01T03:18:21Z",
+      "finished": "2026-11-01T03:19:02Z",
+      "duration_s": 41.8,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "ac996bb94593032179248ea3792f041777e218e5",
+        "source": "brainmatt/mattx@2.0-dev",
+        "branch": "2.0-dev"
+      },
+      "environment": {
+        "kernel": "7.2.11-200.fc44.x86_64",
+        "kernels": {
+          "fednode1": "7.2.11-200.fc44.x86_64",
+          "fednode2": "7.2.11-200.fc44.x86_64"
+        },
+        "glibc": {
+          "fednode1": "2.43"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+        "run_id": "331",
+        "run_number": "195",
+        "workflow": "mattx-ci-other-distros"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "threads-fed-20261101-041546",
+      "suite": "threads",
+      "distro": "fed",
+      "report": "threads-fed-20261101-041546.txt",
+      "started": "2026-11-01T03:15:46Z",
+      "finished": "2026-11-01T03:18:20Z",
+      "duration_s": 154.7,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "ac996bb94593032179248ea3792f041777e218e5",
+        "source": "brainmatt/mattx@2.0-dev",
+        "branch": "2.0-dev"
+      },
+      "environment": {
+        "kernel": "7.2.11-200.fc44.x86_64",
+        "kernels": {
+          "fednode1": "7.2.11-200.fc44.x86_64",
+          "fednode2": "7.2.11-200.fc44.x86_64"
+        },
+        "glibc": {
+          "fednode1": "2.43"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+        "run_id": "331",
+        "run_number": "195",
+        "workflow": "mattx-ci-other-distros"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-admin-input-fed-20261101-041536",
+      "suite": "test-admin-input",
+      "distro": "fed",
+      "report": "test-admin-input-fed-20261101-041536.txt",
+      "started": "2026-11-01T03:15:36Z",
+      "finished": "2026-11-01T03:15:45Z",
+      "duration_s": 9.7,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "ac996bb94593032179248ea3792f041777e218e5",
+        "source": "brainmatt/mattx@2.0-dev",
+        "branch": "2.0-dev"
+      },
+      "environment": {
+        "kernel": "7.2.11-200.fc44.x86_64",
+        "kernels": {
+          "fednode1": "7.2.11-200.fc44.x86_64",
+          "fednode2": "7.2.11-200.fc44.x86_64"
+        },
+        "glibc": {
+          "fednode1": "2.43"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+        "run_id": "331",
+        "run_number": "195",
+        "workflow": "mattx-ci-other-distros"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-mattxfs-umount-fed-20261101-041531",
+      "suite": "test-mattxfs-umount",
+      "distro": "fed",
+      "report": "test-mattxfs-umount-fed-20261101-041531.txt",
+      "started": "2026-11-01T03:15:31Z",
+      "finished": "2026-11-01T03:15:35Z",
+      "duration_s": 4.5,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 15,
+        "passed": 15,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "ac996bb94593032179248ea3792f041777e218e5",
+        "source": "brainmatt/mattx@2.0-dev",
+        "branch": "2.0-dev"
+      },
+      "environment": {
+        "kernel": "7.2.11-200.fc44.x86_64",
+        "kernels": {
+          "fednode1": "7.2.11-200.fc44.x86_64"
+        },
+        "glibc": {
+          "fednode1": "2.43"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+        "run_id": "331",
+        "run_number": "195",
+        "workflow": "mattx-ci-other-distros"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-unload-fed-20261101-041504",
+      "suite": "test-unload",
+      "distro": "fed",
+      "report": "test-unload-fed-20261101-041504.txt",
+      "started": "2026-11-01T03:15:04Z",
+      "finished": "2026-11-01T03:15:30Z",
+      "duration_s": 26.1,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "ac996bb94593032179248ea3792f041777e218e5",
+        "source": "brainmatt/mattx@2.0-dev",
+        "branch": "2.0-dev"
+      },
+      "environment": {
+        "kernel": "7.2.11-200.fc44.x86_64",
+        "kernels": {
+          "fednode1": "7.2.11-200.fc44.x86_64"
+        },
+        "glibc": {
+          "fednode1": "2.43"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+        "run_id": "331",
+        "run_number": "195",
+        "workflow": "mattx-ci-other-distros"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-stale-link-fed-20261101-041428",
+      "suite": "test-stale-link",
+      "distro": "fed",
+      "report": "test-stale-link-fed-20261101-041428.txt",
+      "started": "2026-11-01T03:14:28Z",
+      "finished": "2026-11-01T03:15:03Z",
+      "duration_s": 35.5,
+      "outcome": "fail",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 3,
+        "passed": 2,
+        "failed": 1
+      },
+      "mattx": {
+        "commit": "ac996bb94593032179248ea3792f041777e218e5",
+        "source": "brainmatt/mattx@2.0-dev",
+        "branch": "2.0-dev"
+      },
+      "environment": {
+        "kernel": "7.2.11-200.fc44.x86_64",
+        "kernels": {
+          "fednode1": "7.2.11-200.fc44.x86_64",
+          "fednode2": "7.2.11-200.fc44.x86_64"
+        },
+        "glibc": {
+          "fednode1": "2.43"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+        "run_id": "331",
+        "run_number": "195",
+        "workflow": "mattx-ci-other-distros"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "dsm-fed-20261101-040843",
+      "suite": "dsm",
+      "distro": "fed",
+      "report": "dsm-fed-20261101-040843.txt",
+      "started": "2026-11-01T03:08:43Z",
+      "finished": "2026-11-01T03:14:27Z",
+      "duration_s": 344.6,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "ac996bb94593032179248ea3792f041777e218e5",
+        "source": "brainmatt/mattx@2.0-dev",
+        "branch": "2.0-dev"
+      },
+      "environment": {
+        "kernel": "7.2.11-200.fc44.x86_64",
+        "kernels": {
+          "fednode1": "7.2.11-200.fc44.x86_64",
+          "fednode2": "7.2.11-200.fc44.x86_64"
+        },
+        "glibc": {
+          "fednode1": "2.43"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+        "run_id": "331",
+        "run_number": "195",
+        "workflow": "mattx-ci-other-distros"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "run-tests-fed-20261101-040601",
+      "suite": "run-tests",
+      "distro": "fed",
+      "report": "run-tests-fed-20261101-040601.txt",
+      "started": "2026-11-01T03:06:01Z",
+      "finished": "2026-11-01T03:08:43Z",
+      "duration_s": 162.0,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 29,
+        "passed": 29,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "ac996bb94593032179248ea3792f041777e218e5",
+        "source": "brainmatt/mattx@2.0-dev",
+        "branch": "2.0-dev"
+      },
+      "environment": {
+        "kernel": "7.2.11-200.fc44.x86_64",
+        "kernels": {
+          "fednode1": "7.2.11-200.fc44.x86_64",
+          "fednode2": "7.2.11-200.fc44.x86_64"
+        },
+        "glibc": {
+          "fednode1": "2.43"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+        "run_id": "331",
+        "run_number": "195",
+        "workflow": "mattx-ci-other-distros"
+      }
+    },
     {
       "schema": "mattx-test-run/1",
       "id": "epoll-threads-ubu-20261101-040128",

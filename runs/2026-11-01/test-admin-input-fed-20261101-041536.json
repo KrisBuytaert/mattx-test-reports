@@ -1,0 +1,55 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-admin-input-fed-20261101-041536",
+  "suite": "test-admin-input",
+  "distro": "fed",
+  "report": "test-admin-input-fed-20261101-041536.txt",
+  "started": "2026-11-01T03:15:36Z",
+  "finished": "2026-11-01T03:15:45Z",
+  "duration_s": 9.7,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 2,
+    "passed": 2,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "ac996bb94593032179248ea3792f041777e218e5",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "kernels": {
+      "fednode1": "7.2.11-200.fc44.x86_64",
+      "fednode2": "7.2.11-200.fc44.x86_64"
+    },
+    "glibc": {
+      "fednode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/195",
+    "run_id": "331",
+    "run_number": "195",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "admin-27",
+      "name": "(nonexistent pid): fednode1 survived",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:40Z",
+      "duration_s": 4.8
+    },
+    {
+      "id": "admin-37",
+      "name": "(zombie pid 135827): fednode1 survived",
+      "outcome": "pass",
+      "finished": "2026-11-01T03:15:45Z",
+      "duration_s": 4.8
+    }
+  ]
+}
