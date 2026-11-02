@@ -1,0 +1,76 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "epoll-threads-alma-20261102-114851",
+  "suite": "epoll-threads",
+  "distro": "alma",
+  "report": "epoll-threads-alma-20261102-114851.txt",
+  "started": "2026-11-02T10:48:51Z",
+  "finished": "2026-11-02T10:50:32Z",
+  "duration_s": 101.6,
+  "outcome": "fail",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 5,
+    "passed": 3,
+    "failed": 2
+  },
+  "mattx": {
+    "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/215",
+    "run_id": "375",
+    "run_number": "215",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "epoll-1",
+      "name": "4 events on almanode1 before the migration",
+      "outcome": "pass",
+      "finished": "2026-11-02T10:48:59Z",
+      "duration_s": 8.1
+    },
+    {
+      "id": "epoll-2",
+      "name": "no progress on almanode2 after the migration (4 -> 4 events in 30 s): process stuck (state: Tl )",
+      "outcome": "fail",
+      "finished": "2026-11-02T10:49:42Z",
+      "duration_s": 43.5
+    },
+    {
+      "id": "epoll-3",
+      "name": "no progress after the recall home (4 -> 4 events in 30 s)",
+      "outcome": "fail",
+      "finished": "2026-11-02T10:50:30Z",
+      "duration_s": 47.5
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-02T10:50:32Z",
+      "duration_s": 2.3
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-02T10:50:32Z",
+      "duration_s": 0.3
+    }
+  ]
+}
