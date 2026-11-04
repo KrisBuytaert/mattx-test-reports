@@ -1,0 +1,50 @@
+==============================
+mattx commit: 8c69facb4b21cf089f30fcc100235fa81c074cd5
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+==============================
+=== epoll_wait(-1) in one thread, eventfd writer in another, across migration (mattx#14) ===
+[PASS] epoll-1: 4 events on almanode1 before the migration
+[PASS] epoll-2: the process keeps producing events on almanode2 (10 -> 20)
+[FAIL] epoll-3: no progress after the recall home (21 -> 21 events in 30 s)
+  --- diagnostics (after the recall) ---
+  threads on almanode1:
+     548844 Sl   ep_poll                epoll_threads
+     548845 Sl   hrtimer_nanosleep      epoll_threads
+  threads on almanode2:
+  almanode1 dmesg (RECALL/IMPORT/HIJACK/WORMHOLE/oops), last 12:
+    [157463.255496] MattX:[RECALL] Carving missing memory hole: 0x7f2f72100000 (Size: 258048)
+    [157463.256919] MattX:[RECALL] Carving missing memory hole: 0x7ffe93e07000 (Size: 135168)
+    [157463.258477] MattX: [RECALL] Sending READY_FOR_DATA signal to Node 378...
+    [157463.471357] MattX:[IMPORT] Skipped all-zero page at 0x7f2f7171b000 (PROT_NONE VMA, 4096 bytes)
+    [157463.538366] MattX:[IMPORT] Return memory transferred successfully! Pages: 3447
+    [157463.539585] MattX:[IMPORT] 1 pages skipped because the target VMA is PROT_NONE
+    [157463.541729] MattX:[RECALL] Deputy PID 548844 is stopped (waited 0 ms), injecting its registers
+    [157463.543150] MattX:[RECALL] FPU restore TID 548844: last_cpu was 0, task_cpu is 1 -> register reload forced
+    [157463.546025] MattX:[RECALL] FPU restore TID 548845: last_cpu was 0, task_cpu is 0 -> register reload forced
+    [157463.551411] MattX:[IMPORT] Deputy Brain Restored. New Mother RIP: 0x7f2f7202af12
+    [157463.556541] MattX:[IMPORT] Registered RETURN clock-offset fixup for PID 548844: 20173553755133 ns (2 threads)
+    [157463.558363] MattX:[IMPORT] Welcome home! Waking Gang Deputy PID 548844
+  almanode2 dmesg (RECALL/EXTRACT/DRAIN/RPC), last 12:
+    [137289.985976] MattX:[MIGRATE] -> VMA 39: Sending page 768/2526 (Offset: 0x300000, Payload: 4112 bytes)...
+    [137289.990927] MattX:[MIGRATE] -> VMA 39: Sending page 1024/2526 (Offset: 0x400000, Payload: 4112 bytes)...
+    [137289.995208] MattX:[MIGRATE] -> VMA 39: Sending page 1280/2526 (Offset: 0x500000, Payload: 4112 bytes)...
+    [137289.999737] MattX:[MIGRATE] -> VMA 39: Sending page 1536/2526 (Offset: 0x600000, Payload: 4112 bytes)...
+    [137290.003824] MattX:[MIGRATE] -> VMA 39: Sending page 1792/2526 (Offset: 0x700000, Payload: 4112 bytes)...
+    [137290.008932] MattX:[MIGRATE] -> VMA 39: Sending page 2048/2526 (Offset: 0x800000, Payload: 4112 bytes)...
+    [137290.012414] MattX:[MIGRATE] -> VMA 39: Sending page 2304/2526 (Offset: 0x900000, Payload: 4112 bytes)...
+    [137290.019483] MattX:[MIGRATE] -> VMA 40: Sending page 0/65 (Offset: 0x0, Payload: 4112 bytes)...
+    [137290.028759] MattX:[MIGRATE] -> VMA 41: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+    [137290.035456] MattX:[MIGRATE] -> VMA 42: Sending page 0/33 (Offset: 0x0, Payload: 4112 bytes)...
+    [137290.042355] MattX:[MIGRATE] Return pipeline complete. Sending RETURN_DONE signal.
+    [137290.044899] MattX:[RECALL] Executing local Surrogate PID 526397...
+  almanode1 mattx_recv threads:
+    545131 mattx_recv_378 S
+    545132 mattx_recv_379 S
+    551054 bash S
+[PASS] epoll: no kernel oops on almanode1
+[PASS] epoll: no kernel oops on almanode2
+
+Epoll-Threads Results: 4 passed, 1 failed
