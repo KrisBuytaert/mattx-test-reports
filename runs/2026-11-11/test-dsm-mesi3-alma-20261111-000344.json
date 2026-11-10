@@ -1,0 +1,147 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-dsm-mesi3-alma-20261111-000344",
+  "suite": "test-dsm-mesi3",
+  "distro": "alma",
+  "report": "test-dsm-mesi3-alma-20261111-000344.txt",
+  "started": "2026-11-10T23:03:44Z",
+  "finished": "2026-11-10T23:04:26Z",
+  "duration_s": 43.0,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 15,
+    "passed": 15,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "98693eac98d45928cdef47719349b43c739d75ed",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode3": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/257",
+    "run_id": "423",
+    "run_number": "257",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "mesi3",
+      "name": "baseline write/read via dsmstresstest-debug works pre-migration",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:03:53Z",
+      "duration_s": 9.6
+    },
+    {
+      "id": "mesi3",
+      "name": "W2 actually running as Surrogate on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:06Z",
+      "duration_s": 12.9
+    },
+    {
+      "id": "mesi3",
+      "name": "W3 actually running as Surrogate on almanode3",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:06Z",
+      "duration_s": 0.4
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- write on almanode1 registered",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:12Z",
+      "duration_s": 5.2
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- almanode2 saw the updated value ('r1-from-home')",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:12Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "mesi3",
+      "name": "round1 (home writes) -- almanode3 saw the updated value ('r1-from-home')",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:12Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- write on almanode2 registered",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:17Z",
+      "duration_s": 5.2
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- almanode1 saw the updated value ('r2-from-node2')",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:17Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "mesi3",
+      "name": "round2 (node2 writes, node3 must see it) -- almanode3 saw the updated value ('r2-from-node2')",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:17Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- write on almanode3 registered",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:22Z",
+      "duration_s": 5.1
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- almanode1 saw the updated value ('r3-from-node3')",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:22Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "mesi3",
+      "name": "round3 (node3 writes, node2 must see it) -- almanode2 saw the updated value ('r3-from-node3')",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:22Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "mesi3",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:26Z",
+      "duration_s": 4.0
+    },
+    {
+      "id": "mesi3",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:26Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "mesi3",
+      "name": "no oops on almanode3",
+      "outcome": "pass",
+      "finished": "2026-11-10T23:04:26Z",
+      "duration_s": 0.2
+    }
+  ]
+}
