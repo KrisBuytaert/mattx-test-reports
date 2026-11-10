@@ -1,0 +1,62 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-stale-link-alma-20261110-130302",
+  "suite": "test-stale-link",
+  "distro": "alma",
+  "report": "test-stale-link-alma-20261110-130302.txt",
+  "started": "2026-11-10T12:03:02Z",
+  "finished": "2026-11-10T12:03:17Z",
+  "duration_s": 15.3,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "4f7e860fe7f75695c3d8e5c9b1fed0a2345c1e90",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/253",
+    "run_id": "419",
+    "run_number": "253",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "test5",
+      "name": "migtest migrated normally to almanode2 (stale-link condition not present this run)",
+      "outcome": "pass",
+      "finished": "2026-11-10T12:03:16Z",
+      "duration_s": 14.4
+    },
+    {
+      "id": "test5",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-10T12:03:17Z",
+      "duration_s": 0.7
+    },
+    {
+      "id": "test5",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-10T12:03:17Z",
+      "duration_s": 0.2
+    }
+  ]
+}
