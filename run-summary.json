@@ -1,7 +1,357 @@
 {
   "schema": "mattx-test-run/1-index",
-  "generated": "2026-11-15T12:59:13Z",
+  "generated": "2026-11-15T16:11:24Z",
   "runs": [
+    {
+      "schema": "mattx-test-run/1",
+      "id": "epoll-threads-alma-20261115-171031",
+      "suite": "epoll-threads",
+      "distro": "alma",
+      "report": "epoll-threads-alma-20261115-171031.txt",
+      "started": "2026-11-15T16:10:31Z",
+      "finished": "2026-11-15T16:11:15Z",
+      "duration_s": 44.6,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 5,
+        "passed": 5,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "threads-alma-20261115-170906",
+      "suite": "threads",
+      "distro": "alma",
+      "report": "threads-alma-20261115-170906.txt",
+      "started": "2026-11-15T16:09:06Z",
+      "finished": "2026-11-15T16:10:28Z",
+      "duration_s": 82.3,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-admin-input-alma-20261115-170852",
+      "suite": "test-admin-input",
+      "distro": "alma",
+      "report": "test-admin-input-alma-20261115-170852.txt",
+      "started": "2026-11-15T16:08:52Z",
+      "finished": "2026-11-15T16:09:03Z",
+      "duration_s": 12.0,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-mattxfs-umount-alma-20261115-170843",
+      "suite": "test-mattxfs-umount",
+      "distro": "alma",
+      "report": "test-mattxfs-umount-alma-20261115-170843.txt",
+      "started": "2026-11-15T16:08:43Z",
+      "finished": "2026-11-15T16:08:49Z",
+      "duration_s": 6.7,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 15,
+        "passed": 15,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-unload-alma-20261115-170812",
+      "suite": "test-unload",
+      "distro": "alma",
+      "report": "test-unload-alma-20261115-170812.txt",
+      "started": "2026-11-15T16:08:12Z",
+      "finished": "2026-11-15T16:08:40Z",
+      "duration_s": 28.5,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-dsm-mesi3-alma-20261115-170725",
+      "suite": "test-dsm-mesi3",
+      "distro": "alma",
+      "report": "test-dsm-mesi3-alma-20261115-170725.txt",
+      "started": "2026-11-15T16:07:25Z",
+      "finished": "2026-11-15T16:08:10Z",
+      "duration_s": 45.2,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 15,
+        "passed": 15,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode3": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-stale-link-alma-20261115-170656",
+      "suite": "test-stale-link",
+      "distro": "alma",
+      "report": "test-stale-link-alma-20261115-170656.txt",
+      "started": "2026-11-15T16:06:56Z",
+      "finished": "2026-11-15T16:07:22Z",
+      "duration_s": 26.7,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "dsm-alma-20261115-170102",
+      "suite": "dsm",
+      "distro": "alma",
+      "report": "dsm-alma-20261115-170102.txt",
+      "started": "2026-11-15T16:01:02Z",
+      "finished": "2026-11-15T16:06:52Z",
+      "duration_s": 350.8,
+      "outcome": "fail",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 11,
+        "passed": 9,
+        "failed": 2
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "run-tests-alma-20261115-165812",
+      "suite": "run-tests",
+      "distro": "alma",
+      "report": "run-tests-alma-20261115-165812.txt",
+      "started": "2026-11-15T15:58:12Z",
+      "finished": "2026-11-15T16:01:00Z",
+      "duration_s": 168.2,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 29,
+        "passed": 29,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "14a05bd426650c89a47f9fe325d73fae05f32e01",
+        "source": "KrisBuytaert/mattx@fix/hooks-task-work-add-unexported",
+        "branch": "fix/hooks-task-work-add-unexported"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/276",
+        "run_id": "442",
+        "run_number": "276",
+        "workflow": "mattx-ci"
+      }
+    },
     {
       "schema": "mattx-test-run/1",
       "id": "epoll-threads-alma-20261112-190627",

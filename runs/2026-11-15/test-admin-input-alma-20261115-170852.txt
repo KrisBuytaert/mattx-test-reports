@@ -1,0 +1,19 @@
+==============================
+mattx commit: 14a05bd426650c89a47f9fe325d73fae05f32e01
+mattx source: KrisBuytaert/mattx@fix/hooks-task-work-add-unexported
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded 0275FB5D8D44EA3D0EB5A6B = built 0275FB5D8D44EA3D0EB5A6B (OK)
+mattx module on almanode2: loaded 0275FB5D8D44EA3D0EB5A6B = built 0275FB5D8D44EA3D0EB5A6B (OK)
+==============================
+=== /proc/mattx/admin input handling on almanode1 (peer node id: 378) ===
+
+--- #27: migrate to a PID that does not exist ---
+[PASS] admin-27 (nonexistent pid): almanode1 survived
+
+--- #37: migrate a zombie (exited task, kernel stack already freed) ---
+  zombie PID 22704
+[PASS] admin-37 (zombie pid 22704): almanode1 survived
+
+Admin-Input Results: 2 passed, 0 failed
