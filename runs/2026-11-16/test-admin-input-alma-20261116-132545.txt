@@ -1,0 +1,19 @@
+==============================
+mattx commit: 0d14ca44d9699fcf9e42dbef6c2a7a749c205df4
+mattx source: KrisBuytaert/mattx@feat/migration-exclude-config
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded 183B9FACB8B141387DED3D0 = built 183B9FACB8B141387DED3D0 (OK)
+mattx module on almanode2: loaded 183B9FACB8B141387DED3D0 = built 183B9FACB8B141387DED3D0 (OK)
+==============================
+=== /proc/mattx/admin input handling on almanode1 (peer node id: 378) ===
+
+--- #27: migrate to a PID that does not exist ---
+[PASS] admin-27 (nonexistent pid): almanode1 survived
+
+--- #37: migrate a zombie (exited task, kernel stack already freed) ---
+  zombie PID 22910
+[PASS] admin-37 (zombie pid 22910): almanode1 survived
+
+Admin-Input Results: 2 passed, 0 failed

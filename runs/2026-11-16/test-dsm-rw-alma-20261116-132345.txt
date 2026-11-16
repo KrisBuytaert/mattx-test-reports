@@ -1,0 +1,15 @@
+==============================
+mattx commit: 0d14ca44d9699fcf9e42dbef6c2a7a749c205df4
+mattx source: KrisBuytaert/mattx@feat/migration-exclude-config
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded 183B9FACB8B141387DED3D0 = built 183B9FACB8B141387DED3D0 (OK)
+mattx module on almanode2: loaded 183B9FACB8B141387DED3D0 = built 183B9FACB8B141387DED3D0 (OK)
+==============================
+=== DSM microscope (dsmreadwritetest via dsmrw-loop) on alma cluster ===
+SKIP: dsmrw-loop / dsmreadwritetest not installed on almanode1 (MattX commit predates them)
+
+==============================
+DSM-RW Results: 0 passed, 0 failed (skipped)
+==============================
