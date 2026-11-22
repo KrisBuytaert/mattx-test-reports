@@ -1,0 +1,244 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "run-tests-ubu-20261122-031833",
+  "suite": "run-tests",
+  "distro": "ubu",
+  "report": "run-tests-ubu-20261122-031833.txt",
+  "started": "2026-11-22T02:18:33Z",
+  "finished": "2026-11-22T02:21:19Z",
+  "duration_s": 166.1,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 29,
+    "passed": 29,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "744005ef70a120831390cfbd53acf8148930a91b",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.0.0-43-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-43-generic",
+      "ubunode2": "7.0.0-43-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/304",
+    "run_id": "501",
+    "run_number": "304",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "test1",
+      "name": "Deputy present on ubunode1 (/proc/mattx/remote)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:45Z",
+      "duration_s": 12.4
+    },
+    {
+      "id": "test1",
+      "name": "Surrogate running on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:45Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "test1",
+      "name": "migtest returned to ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:54Z",
+      "duration_s": 8.6
+    },
+    {
+      "id": "test1",
+      "name": "no oops on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:54Z",
+      "duration_s": 0.4
+    },
+    {
+      "id": "test1",
+      "name": "no oops on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:54Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "test2",
+      "name": "server reachable on ubunode1 before migration",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:57Z",
+      "duration_s": 2.8
+    },
+    {
+      "id": "test2",
+      "name": "Surrogate running on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:58Z",
+      "duration_s": 1.0
+    },
+    {
+      "id": "test2",
+      "name": "wormhole still serves on ubunode1 IP (x.x.x.x:8080)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:58Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "test2",
+      "name": "no oops on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:59Z",
+      "duration_s": 0.5
+    },
+    {
+      "id": "test2",
+      "name": "no oops on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:18:59Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "test3",
+      "name": "cycle 1 forward \u2014 migtest on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:19:08Z",
+      "duration_s": 9.3
+    },
+    {
+      "id": "test3",
+      "name": "cycle 1 return \u2014 migtest back on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:19:15Z",
+      "duration_s": 6.6
+    },
+    {
+      "id": "test3",
+      "name": "cycle 2 forward \u2014 migtest on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:19:22Z",
+      "duration_s": 6.9
+    },
+    {
+      "id": "test3",
+      "name": "cycle 2 return \u2014 migtest back on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:19:29Z",
+      "duration_s": 6.8
+    },
+    {
+      "id": "test3",
+      "name": "cycle 3 forward \u2014 migtest on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:19:36Z",
+      "duration_s": 7.3
+    },
+    {
+      "id": "test3",
+      "name": "cycle 3 return \u2014 migtest back on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:19:43Z",
+      "duration_s": 7.2
+    },
+    {
+      "id": "test3",
+      "name": "cycle 4 forward \u2014 migtest on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:19:50Z",
+      "duration_s": 6.9
+    },
+    {
+      "id": "test3",
+      "name": "cycle 4 return \u2014 migtest back on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:19:57Z",
+      "duration_s": 6.6
+    },
+    {
+      "id": "test3",
+      "name": "cycle 5 forward \u2014 migtest on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:20:04Z",
+      "duration_s": 7.0
+    },
+    {
+      "id": "test3",
+      "name": "cycle 5 return \u2014 migtest back on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:20:10Z",
+      "duration_s": 6.7
+    },
+    {
+      "id": "test3",
+      "name": "migtest alive after 5 full cycles",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:20:11Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "test3",
+      "name": "no oops on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:20:11Z",
+      "duration_s": 0.4
+    },
+    {
+      "id": "test3",
+      "name": "no oops on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:20:11Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest migrated to ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:20:26Z",
+      "duration_s": 15.2
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest still running on ubunode2, file on ubunode1 still growing (589824 -> 1900544 bytes)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:20:48Z",
+      "duration_s": 21.7
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest migrated back to ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:20:57Z",
+      "duration_s": 8.8
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest still running on ubunode1 after return, file still growing (1966080 -> 2293760 bytes) -- round trip complete",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:21:17Z",
+      "duration_s": 20.6
+    },
+    {
+      "id": "test4",
+      "name": "no oops on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:21:18Z",
+      "duration_s": 0.9
+    },
+    {
+      "id": "test4",
+      "name": "no oops on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:21:19Z",
+      "duration_s": 0.3
+    }
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "dsm-ubu-20261122-032122",
+  "suite": "dsm",
+  "distro": "ubu",
+  "report": "dsm-ubu-20261122-032122.txt",
+  "started": "2026-11-22T02:21:22Z",
+  "finished": "2026-11-22T02:27:07Z",
+  "duration_s": 345.9,
+  "outcome": "fail",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 11,
+    "passed": 10,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "744005ef70a120831390cfbd53acf8148930a91b",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.0.0-43-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-43-generic",
+      "ubunode2": "7.0.0-43-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/304",
+    "run_id": "501",
+    "run_number": "304",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "dsm-1",
+      "name": "baseline loop sequence not clean (got 99 entries) -- test's own assumptions are broken, treat Test 2 results with suspicion",
+      "outcome": "fail",
+      "finished": "2026-11-22T02:23:16Z",
+      "duration_s": 114.7
+    },
+    {
+      "id": "dsm-1",
+      "name": "baseline shared-memory segment removed cleanly",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:23:17Z",
+      "duration_s": 0.4
+    },
+    {
+      "id": "dsm-2",
+      "name": "all 100 loops continuous and self-consistent across migration",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:25:12Z",
+      "duration_s": 115.0
+    },
+    {
+      "id": "dsm-2",
+      "name": "shared-memory segment removed cleanly after migration (shmid still valid post-move)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:25:12Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmget() succeeded post-migration (shmget wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:06Z",
+      "duration_s": 113.7
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmat() succeeded post-migration (shmat wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:06Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-3",
+      "name": "all 100 loops continuous and self-consistent, entirely as a Surrogate",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:06Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmdt() succeeded post-migration (shmdt wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:06Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmctl(IPC_RMID) succeeded post-migration (shmctl wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:06Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-2-3-no-kernel-oops-on-ubunode1",
+      "name": "dsm-2/3: no kernel oops on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:07Z",
+      "duration_s": 0.8
+    },
+    {
+      "id": "dsm-2-3-no-kernel-oops-on-ubunode2",
+      "name": "dsm-2/3: no kernel oops on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:07Z",
+      "duration_s": 0.2
+    }
+  ]
+}

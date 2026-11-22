@@ -1,0 +1,29 @@
+==============================
+mattx commit: 744005ef70a120831390cfbd53acf8148930a91b
+mattx source: brainmatt/mattx@2.0-dev
+ubunode1 kernel: 7.0.0-43-generic
+ubunode1 glibc: 2.43 
+ubunode2 kernel: 7.0.0-43-generic
+mattx module on ubunode1: loaded 48ABB1D309F2DC7D9ED9D25 = built 48ABB1D309F2DC7D9ED9D25 (OK)
+mattx module on ubunode2: loaded 48ABB1D309F2DC7D9ED9D25 = built 48ABB1D309F2DC7D9ED9D25 (OK)
+==============================
+=== threadtest 4: threads created on ubunode2, then recalled home to ubunode1 (mattx#9) ===
+  worker PID 29924 (still in its 15 s startup sleep, no threads yet)
+[PASS] threads-1: worker migrated to ubunode2 before it spawned its threads
+  waiting for the 4 threads to be created on ubunode2 ...
+[PASS] threads-2: 4 threads created on ubunode2 (5 tasks of threadtest there)
+  recalling the worker home to ubunode1 ...
+[PASS] threads-3: worker is back on ubunode1 after the recall
+  waiting for the teardown wave (pthread_cancel/pthread_join = futex) ...
+[PASS] threads-4: teardown completed (pthread_join returned, 'Threads destroyed')
+[PASS] threads-5: the worker is still alive after the teardown
+  tail of the worker log:
+      [Thread 1] (TID: 31562) Still alive and calculating... (55 seconds)
+      [Thread 3] (TID: 31564) Still alive and calculating... (55 seconds)
+      [Thread 0] (TID: 31561) Still alive and calculating... (55 seconds)
+      [Thread 2] (TID: 31563) Still alive and calculating... (55 seconds)
+    [Worker] Mother Tick 60/60 seconds... (Mother PID: 29924)
+    [Worker][PASS] threads: no kernel oops on ubunode1
+[PASS] threads: no kernel oops on ubunode2
+
+Threads Results: 7 passed, 0 failed

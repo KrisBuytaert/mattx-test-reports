@@ -1,0 +1,76 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "epoll-threads-ubu-20261122-033103",
+  "suite": "epoll-threads",
+  "distro": "ubu",
+  "report": "epoll-threads-ubu-20261122-033103.txt",
+  "started": "2026-11-22T02:31:03Z",
+  "finished": "2026-11-22T02:31:47Z",
+  "duration_s": 44.7,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "744005ef70a120831390cfbd53acf8148930a91b",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.0.0-43-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-43-generic",
+      "ubunode2": "7.0.0-43-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/304",
+    "run_id": "501",
+    "run_number": "304",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "epoll-1",
+      "name": "3 events on ubunode1 before the migration",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:31:10Z",
+      "duration_s": 7.9
+    },
+    {
+      "id": "epoll-2",
+      "name": "the process keeps producing events on ubunode2 (6 -> 16)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:31:27Z",
+      "duration_s": 16.1
+    },
+    {
+      "id": "epoll-3",
+      "name": "still producing events after the recall home (13 -> 24)",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:31:46Z",
+      "duration_s": 19.6
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:31:47Z",
+      "duration_s": 0.8
+    },
+    {
+      "id": "epoll",
+      "name": "no kernel oops on ubunode2",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:31:47Z",
+      "duration_s": 0.2
+    }
+  ]
+}

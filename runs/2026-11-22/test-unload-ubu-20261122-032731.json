@@ -1,0 +1,124 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-unload-ubu-20261122-032731",
+  "suite": "test-unload",
+  "distro": "ubu",
+  "report": "test-unload-ubu-20261122-032731.txt",
+  "started": "2026-11-22T02:27:31Z",
+  "finished": "2026-11-22T02:27:57Z",
+  "duration_s": 26.2,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 12,
+    "passed": 12,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "744005ef70a120831390cfbd53acf8148930a91b",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.0.0-43-generic",
+    "kernels": {
+      "ubunode1": "7.0.0-43-generic"
+    },
+    "glibc": {
+      "ubunode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/304",
+    "run_id": "501",
+    "run_number": "304",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "unload-1",
+      "name": "modules unloaded on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:35Z",
+      "duration_s": 4.5
+    },
+    {
+      "id": "unload-1",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:35Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-1",
+      "name": "no oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:35Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-1",
+      "name": "service restarted, modules loaded on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:41Z",
+      "duration_s": 5.3
+    },
+    {
+      "id": "unload-2",
+      "name": "modules unloaded on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:43Z",
+      "duration_s": 2.0
+    },
+    {
+      "id": "unload-2",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:43Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-2",
+      "name": "no oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:43Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-2",
+      "name": "service restarted, modules loaded on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:49Z",
+      "duration_s": 5.4
+    },
+    {
+      "id": "unload-3",
+      "name": "modules unloaded on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:51Z",
+      "duration_s": 2.1
+    },
+    {
+      "id": "unload-3",
+      "name": "ubunode1 did not reboot",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:51Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-3",
+      "name": "no oops/BUG in dmesg on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:51Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "unload-3",
+      "name": "service restarted, modules loaded on ubunode1",
+      "outcome": "pass",
+      "finished": "2026-11-22T02:27:57Z",
+      "duration_s": 5.7
+    }
+  ]
+}
