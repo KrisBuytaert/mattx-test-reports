@@ -1,0 +1,29 @@
+==============================
+mattx commit: 7111d5dacdf156645fb7e8e60f1eda16eb447ebf
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded 341E124E9718ABAB8AB2E8F = built 341E124E9718ABAB8AB2E8F (OK)
+mattx module on almanode2: loaded 341E124E9718ABAB8AB2E8F = built 341E124E9718ABAB8AB2E8F (OK)
+==============================
+=== threadtest 4: threads created on almanode2, then recalled home to almanode1 (mattx#9) ===
+  worker PID 32427 (still in its 15 s startup sleep, no threads yet)
+[PASS] threads-1: worker migrated to almanode2 before it spawned its threads
+  waiting for the 4 threads to be created on almanode2 ...
+[PASS] threads-2: 4 threads created on almanode2 (5 tasks of threadtest there)
+  recalling the worker home to almanode1 ...
+[PASS] threads-3: worker is back on almanode1 after the recall
+  waiting for the teardown wave (pthread_cancel/pthread_join = futex) ...
+[PASS] threads-4: teardown completed (pthread_join returned, 'Threads destroyed')
+[PASS] threads-5: the worker is still alive after the teardown
+  tail of the worker log:
+    [Worker] --- SPAWNING 4 THREADS (clone3 / CLONE_VM) ---
+    [Worker] Threads spawned. Mother is ticking for 60 seconds...
+      [Thread 0] Born and ticking! (TID: 33423)
+      [Thread 1] Born and ticking! (TID: 33424)
+      [Thread 2] Born and ticking! (TID: 33425)
+      [Thread [PASS] threads: no kernel oops on almanode1
+[PASS] threads: no kernel oops on almanode2
+
+Threads Results: 7 passed, 0 failed
