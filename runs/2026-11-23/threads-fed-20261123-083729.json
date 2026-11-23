@@ -1,0 +1,83 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "threads-fed-20261123-083729",
+  "suite": "threads",
+  "distro": "fed",
+  "report": "threads-fed-20261123-083729.txt",
+  "started": "2026-11-23T07:37:29Z",
+  "finished": "2026-11-23T07:40:05Z",
+  "duration_s": 156.2,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 6,
+    "passed": 6,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "7111d5dacdf156645fb7e8e60f1eda16eb447ebf",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "kernels": {
+      "fednode1": "7.2.11-200.fc44.x86_64",
+      "fednode2": "7.2.11-200.fc44.x86_64"
+    },
+    "glibc": {
+      "fednode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/310",
+    "run_id": "520",
+    "run_number": "310",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "threads-1",
+      "name": "worker migrated to fednode2 before it spawned its threads",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:37:41Z",
+      "duration_s": 12.4
+    },
+    {
+      "id": "threads-2",
+      "name": "4 threads created on fednode2 (5 tasks of threadtest there)",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:37:43Z",
+      "duration_s": 2.4
+    },
+    {
+      "id": "threads-3",
+      "name": "worker is back on fednode1 after the recall",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:37:52Z",
+      "duration_s": 8.4
+    },
+    {
+      "id": "threads-4",
+      "name": "teardown completed (pthread_join returned, 'Threads destroyed')",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:40:00Z",
+      "duration_s": 128.7
+    },
+    {
+      "id": "threads-5",
+      "name": "the worker is still alive after the teardown",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:40:04Z",
+      "duration_s": 3.2
+    },
+    {
+      "id": "threads",
+      "name": "no kernel oops on fednode2",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:40:04Z",
+      "duration_s": 0.8
+    }
+  ]
+}

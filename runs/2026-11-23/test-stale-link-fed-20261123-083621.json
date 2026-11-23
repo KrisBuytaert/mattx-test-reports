@@ -1,0 +1,62 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-stale-link-fed-20261123-083621",
+  "suite": "test-stale-link",
+  "distro": "fed",
+  "report": "test-stale-link-fed-20261123-083621.txt",
+  "started": "2026-11-23T07:36:21Z",
+  "finished": "2026-11-23T07:36:36Z",
+  "duration_s": 15.7,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 3,
+    "passed": 3,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "7111d5dacdf156645fb7e8e60f1eda16eb447ebf",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "kernels": {
+      "fednode1": "7.2.11-200.fc44.x86_64",
+      "fednode2": "7.2.11-200.fc44.x86_64"
+    },
+    "glibc": {
+      "fednode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/310",
+    "run_id": "520",
+    "run_number": "310",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "test5",
+      "name": "migtest migrated normally to fednode2 (stale-link condition not present this run)",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:35Z",
+      "duration_s": 14.8
+    },
+    {
+      "id": "test5",
+      "name": "no oops on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:36Z",
+      "duration_s": 0.6
+    },
+    {
+      "id": "test5",
+      "name": "no oops on fednode2",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:36Z",
+      "duration_s": 0.3
+    }
+  ]
+}

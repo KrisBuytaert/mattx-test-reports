@@ -1,0 +1,118 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "dsm-fed-20261123-083033",
+  "suite": "dsm",
+  "distro": "fed",
+  "report": "dsm-fed-20261123-083033.txt",
+  "started": "2026-11-23T07:30:33Z",
+  "finished": "2026-11-23T07:36:18Z",
+  "duration_s": 345.3,
+  "outcome": "fail",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 11,
+    "passed": 10,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "7111d5dacdf156645fb7e8e60f1eda16eb447ebf",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "7.2.11-200.fc44.x86_64",
+    "kernels": {
+      "fednode1": "7.2.11-200.fc44.x86_64",
+      "fednode2": "7.2.11-200.fc44.x86_64"
+    },
+    "glibc": {
+      "fednode1": "2.43"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/310",
+    "run_id": "520",
+    "run_number": "310",
+    "workflow": "mattx-ci-other-distros"
+  },
+  "cases": [
+    {
+      "id": "dsm-1",
+      "name": "baseline loop sequence not clean (got 99 entries) -- test's own assumptions are broken, treat Test 2 results with suspicion",
+      "outcome": "fail",
+      "finished": "2026-11-23T07:32:27Z",
+      "duration_s": 114.4
+    },
+    {
+      "id": "dsm-1",
+      "name": "baseline shared-memory segment removed cleanly",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:32:27Z",
+      "duration_s": 0.4
+    },
+    {
+      "id": "dsm-2",
+      "name": "all 100 loops continuous and self-consistent across migration",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:34:21Z",
+      "duration_s": 113.6
+    },
+    {
+      "id": "dsm-2",
+      "name": "shared-memory segment removed cleanly after migration (shmid still valid post-move)",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:34:21Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmget() succeeded post-migration (shmget wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:16Z",
+      "duration_s": 115.0
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmat() succeeded post-migration (shmat wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:16Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-3",
+      "name": "all 100 loops continuous and self-consistent, entirely as a Surrogate",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:16Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmdt() succeeded post-migration (shmdt wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:17Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-3",
+      "name": "shmctl(IPC_RMID) succeeded post-migration (shmctl wormhole hook engaged)",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:17Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "dsm-2-3-no-kernel-oops-on-fednode1",
+      "name": "dsm-2/3: no kernel oops on fednode1",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:18Z",
+      "duration_s": 0.8
+    },
+    {
+      "id": "dsm-2-3-no-kernel-oops-on-fednode2",
+      "name": "dsm-2/3: no kernel oops on fednode2",
+      "outcome": "pass",
+      "finished": "2026-11-23T07:36:18Z",
+      "duration_s": 0.2
+    }
+  ]
+}
