@@ -1,0 +1,139 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-dsm-rw-alma-20261125-191803",
+  "suite": "test-dsm-rw",
+  "distro": "alma",
+  "report": "test-dsm-rw-alma-20261125-191803.txt",
+  "started": "2026-11-25T18:18:03Z",
+  "finished": "2026-11-25T18:23:48Z",
+  "duration_s": 345.7,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 14,
+    "passed": 14,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "bd7d8b5927943ad74ca0946991996b0240fb916d",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/320",
+    "run_id": "530",
+    "run_number": "320",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "dsm-rw",
+      "name": "atomic d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 344.8
+    },
+    {
+      "id": "dsm-rw",
+      "name": "atomic d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "ctl d=0: 1/1 PASS, 0 FAIL (0 inconclusive, 0 invalid, 0 warned)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "ctl d=0.1: 1/1 PASS, 0 FAIL (0 inconclusive, 0 invalid, 0 warned)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "mp d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "mp d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "rw d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "rw d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "rwfield d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "rwfield d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "store d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "store d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:47Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "dsm-rw",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:48Z",
+      "duration_s": 0.6
+    },
+    {
+      "id": "dsm-rw",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T18:23:48Z",
+      "duration_s": 0.4
+    }
+  ]
+}
