@@ -1,0 +1,244 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "run-tests-alma-20261125-180918",
+  "suite": "run-tests",
+  "distro": "alma",
+  "report": "run-tests-alma-20261125-180918.txt",
+  "started": "2026-11-25T17:09:18Z",
+  "finished": "2026-11-25T17:12:08Z",
+  "duration_s": 170.3,
+  "outcome": "fail",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 29,
+    "passed": 28,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "bd7d8b5927943ad74ca0946991996b0240fb916d",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/318",
+    "run_id": "528",
+    "run_number": "318",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "test1",
+      "name": "Deputy present on almanode1 (/proc/mattx/remote)",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:31Z",
+      "duration_s": 13.7
+    },
+    {
+      "id": "test1",
+      "name": "Surrogate running on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:31Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "test1",
+      "name": "migtest returned to almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:40Z",
+      "duration_s": 8.7
+    },
+    {
+      "id": "test1",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:41Z",
+      "duration_s": 0.4
+    },
+    {
+      "id": "test1",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:41Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "test2",
+      "name": "server reachable on almanode1 before migration",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:44Z",
+      "duration_s": 3.0
+    },
+    {
+      "id": "test2",
+      "name": "Surrogate running on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:47Z",
+      "duration_s": 3.6
+    },
+    {
+      "id": "test2",
+      "name": "wormhole still serves on almanode1 IP (x.x.x.x:8080)",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:48Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "test2",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:48Z",
+      "duration_s": 0.6
+    },
+    {
+      "id": "test2",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:48Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "test3",
+      "name": "cycle 1 forward \u2014 migtest on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:09:58Z",
+      "duration_s": 9.4
+    },
+    {
+      "id": "test3",
+      "name": "cycle 1 return \u2014 migtest back on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:05Z",
+      "duration_s": 6.7
+    },
+    {
+      "id": "test3",
+      "name": "cycle 2 forward \u2014 migtest on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:11Z",
+      "duration_s": 6.8
+    },
+    {
+      "id": "test3",
+      "name": "cycle 2 return \u2014 migtest back on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:18Z",
+      "duration_s": 6.7
+    },
+    {
+      "id": "test3",
+      "name": "cycle 3 forward \u2014 migtest on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:25Z",
+      "duration_s": 6.9
+    },
+    {
+      "id": "test3",
+      "name": "cycle 3 return \u2014 migtest back on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:32Z",
+      "duration_s": 6.7
+    },
+    {
+      "id": "test3",
+      "name": "cycle 4 forward \u2014 migtest on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:38Z",
+      "duration_s": 6.9
+    },
+    {
+      "id": "test3",
+      "name": "cycle 4 return \u2014 migtest back on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:45Z",
+      "duration_s": 6.7
+    },
+    {
+      "id": "test3",
+      "name": "cycle 5 forward \u2014 migtest on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:52Z",
+      "duration_s": 6.8
+    },
+    {
+      "id": "test3",
+      "name": "cycle 5 return \u2014 migtest back on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:59Z",
+      "duration_s": 6.7
+    },
+    {
+      "id": "test3",
+      "name": "migtest alive after 5 full cycles",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:59Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "test3",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:10:59Z",
+      "duration_s": 0.5
+    },
+    {
+      "id": "test3",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:11:00Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest migrated to almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:11:15Z",
+      "duration_s": 15.8
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest still running on almanode2, file on almanode1 still growing (458752 -> 1638400 bytes)",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:11:37Z",
+      "duration_s": 21.2
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest migrated back to almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:11:46Z",
+      "duration_s": 9.1
+    },
+    {
+      "id": "test4",
+      "name": "dd_migtest not actually running, or file stopped growing, on almanode1 after return migration settled",
+      "outcome": "fail",
+      "finished": "2026-11-25T17:12:06Z",
+      "duration_s": 20.7
+    },
+    {
+      "id": "test4",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:12:07Z",
+      "duration_s": 1.0
+    },
+    {
+      "id": "test4",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-25T17:12:08Z",
+      "duration_s": 0.3
+    }
+  ]
+}
