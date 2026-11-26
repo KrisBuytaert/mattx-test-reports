@@ -1,0 +1,76 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-preadspeed-alma-20261126-133500",
+  "suite": "test-preadspeed",
+  "distro": "alma",
+  "report": "test-preadspeed-alma-20261126-133500.txt",
+  "started": "2026-11-26T12:35:00Z",
+  "finished": "2026-11-26T12:35:27Z",
+  "duration_s": 27.6,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 5,
+    "passed": 5,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "6327f887f7fb345717bc7fddb20a7cefcf91b051",
+    "source": "KrisBuytaert/mattx@fix/pread64-via-proxy",
+    "branch": "fix/pread64-via-proxy"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/332",
+    "run_id": "542",
+    "run_number": "332",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "preadspeed",
+      "name": "process hosted on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T12:35:09Z",
+      "duration_s": 9.6
+    },
+    {
+      "id": "preadspeed",
+      "name": "32 MB read back intact after the migration",
+      "outcome": "pass",
+      "finished": "2026-11-26T12:35:26Z",
+      "duration_s": 16.5
+    },
+    {
+      "id": "preadspeed",
+      "name": "bulk pread64 of the migrated process runs at 8.857 MB/s (>= 2)",
+      "outcome": "pass",
+      "finished": "2026-11-26T12:35:26Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "preadspeed",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-26T12:35:27Z",
+      "duration_s": 1.2
+    },
+    {
+      "id": "preadspeed",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T12:35:27Z",
+      "duration_s": 0.3
+    }
+  ]
+}
