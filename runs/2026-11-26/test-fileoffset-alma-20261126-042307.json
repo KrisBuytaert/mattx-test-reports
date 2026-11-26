@@ -1,0 +1,97 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-fileoffset-alma-20261126-042307",
+  "suite": "test-fileoffset",
+  "distro": "alma",
+  "report": "test-fileoffset-alma-20261126-042307.txt",
+  "started": "2026-11-26T03:23:07Z",
+  "finished": "2026-11-26T03:23:51Z",
+  "duration_s": 44.6,
+  "outcome": "fail",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 8,
+    "passed": 4,
+    "failed": 4
+  },
+  "mattx": {
+    "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/329",
+    "run_id": "539",
+    "run_number": "329",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "fileoffset",
+      "name": "process hosted on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T03:23:29Z",
+      "duration_s": 22.5
+    },
+    {
+      "id": "fileoffset",
+      "name": "inherited stderr file continued at the right offset (7 lines before, 18 in all, in order)",
+      "outcome": "pass",
+      "finished": "2026-11-26T03:23:29Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "fileoffset",
+      "name": "pwrite64/pread64 on the inherited fd failed (11 errors; last: 18 EXC ESPIPE)",
+      "outcome": "fail",
+      "finished": "2026-11-26T03:23:30Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "fileoffset",
+      "name": "pwrite file wrong (header 'HEADER-0123456789', marker 'p0007', program at line 18)",
+      "outcome": "fail",
+      "finished": "2026-11-26T03:23:30Z",
+      "duration_s": 0.5
+    },
+    {
+      "id": "fileoffset",
+      "name": "preadv at an offset did not read the header after the migration",
+      "outcome": "fail",
+      "finished": "2026-11-26T03:23:30Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "fileoffset",
+      "name": "pread64 of a pipe after the migration: 6 -> 6 lines, 1 thread(s) group-stopped (T) of 1 on almanode2 (mattx#79)",
+      "outcome": "fail",
+      "finished": "2026-11-26T03:23:50Z",
+      "duration_s": 20.0
+    },
+    {
+      "id": "fileoffset",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-26T03:23:51Z",
+      "duration_s": 0.8
+    },
+    {
+      "id": "fileoffset",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T03:23:51Z",
+      "duration_s": 0.3
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+==============================
+mattx commit: 1be8473bac6725654f5ba3bdc6915d79a7df79a1
+mattx source: brainmatt/mattx@main
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded B4B852187B6D6FC07404338 = built B4B852187B6D6FC07404338 (OK)
+mattx module on almanode2: loaded B4B852187B6D6FC07404338 = built B4B852187B6D6FC07404338 (OK)
+==============================
+=== file offsets across a migration (write/pwrite/pread of inherited fds, mattx#78) on alma cluster ===
+
+  ─────────────────────────────────────────────────────
+  Starting migration of fileoffset-prog.py [PID 21580]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] fileoffset: process hosted on almanode2
+[PASS] fileoffset: inherited stderr file continued at the right offset (7 lines before, 18 in all, in order)
+[FAIL] fileoffset: pwrite64/pread64 on the inherited fd failed (11 errors; last: 18 EXC ESPIPE)
+    8 EXC ESPIPE
+    9 EXC ESPIPE
+[FAIL] fileoffset: pwrite file wrong (header 'HEADER-0123456789', marker 'p0007', program at line 18)
+[FAIL] fileoffset: preadv at an offset did not read the header after the migration
+
+  ─────────────────────────────────────────────────────
+  Starting migration of fileoffset-pipe.py [PID 22365]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[FAIL] fileoffset: pread64 of a pipe after the migration: 6 -> 6 lines, 1 thread(s) group-stopped (T) of 1 on almanode2 (mattx#79)
+[PASS] fileoffset: no oops on almanode1
+[PASS] fileoffset: no oops on almanode2
+
+==============================
+FileOffset Results: 4 passed, 4 failed
+==============================
