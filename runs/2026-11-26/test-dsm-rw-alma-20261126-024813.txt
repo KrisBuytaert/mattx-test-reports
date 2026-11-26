@@ -1,0 +1,64 @@
+==============================
+mattx commit: c31715e93522c6c562ae72a868979594669e9b97
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded D40F3E002FB177536D7391A = built D40F3E002FB177536D7391A (OK)
+mattx module on almanode2: loaded D40F3E002FB177536D7391A = built D40F3E002FB177536D7391A (OK)
+==============================
+=== DSM microscope (dsmreadwritetest via dsmrw-loop) on alma cluster ===
+  runs=1 rounds=300 delays=[0 0.1] node2 id=378 (output on almanode1: ~/dsmrw-20261126-024815)
+dsmrw-loop: rounds=300 workers=1 delays=[0 0.1] scenarios=[all] node=378
+dsmrw-loop: logs -> /home/USER/dsmrw-20261126-024815   (VM1 log: yes, VM2 log: mattx@x.x.x.x)
+[01:50:13] run 1   d=0    ctl      PASS 300/300 acked, avg - ms max - ms
+[01:50:13] run 1   d=0    atomic   WARN 300/300 acked, avg 56.12 ms max 160.46 ms
+[01:50:13] run 1   d=0    store    WARN 300/300 acked, avg 56.75 ms max 152.29 ms
+[01:50:13] run 1   d=0    rw       WARN 300/300 acked, avg 58.37 ms max 240.32 ms
+[01:50:13] run 1   d=0    rwfield  WARN 300/300 acked, avg 56.14 ms max 95.55 ms
+[01:50:13] run 1   d=0    mp       WARN 300/300 acked, avg 76.86 ms max 447.98 ms
+[01:55:08] run 2   d=0.1  ctl      PASS 300/300 acked, avg - ms max - ms
+[01:55:08] run 2   d=0.1  atomic   WARN 300/300 acked, avg 53.11 ms max 88.15 ms
+[01:55:08] run 2   d=0.1  store    WARN 300/300 acked, avg 54.21 ms max 133.12 ms
+[01:55:08] run 2   d=0.1  rw       WARN 300/300 acked, avg 54.36 ms max 159.27 ms
+[01:55:08] run 2   d=0.1  rwfield  WARN 300/300 acked, avg 54.42 ms max 206.13 ms
+[01:55:08] run 2   d=0.1  mp       WARN 300/300 acked, avg 71.96 ms max 177.72 ms
+
+======================================= dsmrw-loop summary =======================================
+scenario  delay   runs  PASS  FAIL  HANG   ERR INCON INVAL  pass%   95%-CI(pass)   fail/Mround  avg-ms   max-ms   warned
+atomic    0          1     0     0     0     0     0     0      -        -         0.0          56.12    160.46   0
+atomic    0.1        1     0     0     0     0     0     0      -        -         0.0          53.11    88.15    0
+ctl       0          1     1     0     0     0     0     0  100.0%   20.7-100.0%   0.0          -        -        0
+ctl       0.1        1     1     0     0     0     0     0  100.0%   20.7-100.0%   0.0          -        -        0
+mp        0          1     0     0     0     0     0     0      -        -         0.0          76.86    447.98   0
+mp        0.1        1     0     0     0     0     0     0      -        -         0.0          71.96    177.72   0
+rw        0          1     0     0     0     0     0     0      -        -         0.0          58.37    240.32   0
+rw        0.1        1     0     0     0     0     0     0      -        -         0.0          54.36    159.27   0
+rwfield   0          1     0     0     0     0     0     0      -        -         0.0          56.14    95.55    0
+rwfield   0.1        1     0     0     0     0     0     0      -        -         0.0          54.42    206.13   0
+store     0          1     0     0     0     0     0     0      -        -         0.0          56.75    152.29   0
+store     0.1        1     0     0     0     0     0     0      -        -         0.0          54.21    133.12   0
+-------------------------------------------------------------------------------------------------
+12 results, 2 PASS, 0 FAIL/HANG/ERROR, 3600 rounds acked
+csv: /home/USER/dsmrw-20261126-024815/runs.csv
+
+[PASS] dsm-rw: atomic d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: atomic d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: ctl d=0: 1/1 PASS, 0 FAIL (0 inconclusive, 0 invalid, 0 warned)
+[PASS] dsm-rw: ctl d=0.1: 1/1 PASS, 0 FAIL (0 inconclusive, 0 invalid, 0 warned)
+[PASS] dsm-rw: mp d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: mp d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: rw d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: rw d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: rwfield d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: rwfield d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: store d=0: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+[PASS] dsm-rw: store d=0.1: no failure in 1 run(s) (WARN: latency near the 50 ms Sweeper period, consistency only eventual)
+  evidence of bad runs (fail-*/warn-*), if any, on almanode1:
+    /home/USER/dsmrw-20261126-024815/runs.csv
+[PASS] dsm-rw: no oops on almanode1
+[PASS] dsm-rw: no oops on almanode2
+
+==============================
+DSM-RW Results: 14 passed, 0 failed
+==============================

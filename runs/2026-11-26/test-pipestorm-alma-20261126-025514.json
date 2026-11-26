@@ -1,0 +1,230 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-pipestorm-alma-20261126-025514",
+  "suite": "test-pipestorm",
+  "distro": "alma",
+  "report": "test-pipestorm-alma-20261126-025514.txt",
+  "started": "2026-11-26T01:55:14Z",
+  "finished": "2026-11-26T01:59:57Z",
+  "duration_s": 283.6,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 27,
+    "passed": 27,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "c31715e93522c6c562ae72a868979594669e9b97",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/327",
+    "run_id": "537",
+    "run_number": "327",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "pipestorm-rs-baseline-on-almanode1-5-lines-recei",
+      "name": "pipestorm rs: baseline on almanode1, 5 lines received",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:55:33Z",
+      "duration_s": 19.4
+    },
+    {
+      "id": "pipestorm-rs-reader-hosted-on-almanode2-3-thread",
+      "name": "pipestorm rs: reader hosted on almanode2 (3 threads)",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:56:09Z",
+      "duration_s": 36.2
+    },
+    {
+      "id": "pipestorm-rs-no-thread-stopped-on-almanode2",
+      "name": "pipestorm rs: no thread stopped on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:56:09Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "pipestorm-rs-8-lines-received-in-25s-after-the-m",
+      "name": "pipestorm rs: 8 lines received in 25s after the migration",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:56:09Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pipestorm-rs-no-watchdog-report",
+      "name": "pipestorm rs: no watchdog report",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:56:10Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "pipestorm-rp-baseline-on-almanode1-5-lines-recei",
+      "name": "pipestorm rp: baseline on almanode1, 5 lines received",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:56:29Z",
+      "duration_s": 19.0
+    },
+    {
+      "id": "pipestorm-rp-reader-hosted-on-almanode2-3-thread",
+      "name": "pipestorm rp: reader hosted on almanode2 (3 threads)",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:57:05Z",
+      "duration_s": 36.2
+    },
+    {
+      "id": "pipestorm-rp-no-thread-stopped-on-almanode2",
+      "name": "pipestorm rp: no thread stopped on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:57:05Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "pipestorm-rp-8-lines-received-in-25s-after-the-m",
+      "name": "pipestorm rp: 8 lines received in 25s after the migration",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:57:05Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pipestorm-rp-no-watchdog-report",
+      "name": "pipestorm rp: no watchdog report",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:57:05Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "pipestorm-ss-baseline-on-almanode1-5-lines-recei",
+      "name": "pipestorm ss: baseline on almanode1, 5 lines received",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:57:24Z",
+      "duration_s": 18.9
+    },
+    {
+      "id": "pipestorm-ss-reader-hosted-on-almanode2-3-thread",
+      "name": "pipestorm ss: reader hosted on almanode2 (3 threads)",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:00Z",
+      "duration_s": 36.2
+    },
+    {
+      "id": "pipestorm-ss-no-thread-stopped-on-almanode2",
+      "name": "pipestorm ss: no thread stopped on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:01Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "pipestorm-ss-8-lines-received-in-25s-after-the-m",
+      "name": "pipestorm ss: 8 lines received in 25s after the migration",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:01Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pipestorm-ss-no-watchdog-report",
+      "name": "pipestorm ss: no watchdog report",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:01Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "pipestorm-sc-baseline-on-almanode1-5-lines-recei",
+      "name": "pipestorm sc: baseline on almanode1, 5 lines received",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:20Z",
+      "duration_s": 18.9
+    },
+    {
+      "id": "pipestorm-sc-reader-hosted-on-almanode2-3-thread",
+      "name": "pipestorm sc: reader hosted on almanode2 (3 threads)",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:56Z",
+      "duration_s": 36.2
+    },
+    {
+      "id": "pipestorm-sc-no-thread-stopped-on-almanode2",
+      "name": "pipestorm sc: no thread stopped on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:56Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "pipestorm-sc-8-lines-received-in-25s-after-the-m",
+      "name": "pipestorm sc: 8 lines received in 25s after the migration",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:56Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pipestorm-sc-no-watchdog-report",
+      "name": "pipestorm sc: no watchdog report",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:58:56Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "pipestorm-pc-baseline-on-almanode1-5-lines-recei",
+      "name": "pipestorm pc: baseline on almanode1, 5 lines received",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:59:15Z",
+      "duration_s": 19.0
+    },
+    {
+      "id": "pipestorm-pc-reader-hosted-on-almanode2-3-thread",
+      "name": "pipestorm pc: reader hosted on almanode2 (3 threads)",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:59:52Z",
+      "duration_s": 36.3
+    },
+    {
+      "id": "pipestorm-pc-no-thread-stopped-on-almanode2",
+      "name": "pipestorm pc: no thread stopped on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:59:52Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "pipestorm-pc-8-lines-received-in-25s-after-the-m",
+      "name": "pipestorm pc: 8 lines received in 25s after the migration",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:59:52Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "pipestorm-pc-no-watchdog-report",
+      "name": "pipestorm pc: no watchdog report",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:59:52Z",
+      "duration_s": 0.2
+    },
+    {
+      "id": "pipestorm",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:59:57Z",
+      "duration_s": 4.5
+    },
+    {
+      "id": "pipestorm",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T01:59:57Z",
+      "duration_s": 0.3
+    }
+  ]
+}
