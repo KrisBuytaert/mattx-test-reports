@@ -1,0 +1,69 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-preadspeed-alma-20261126-123906",
+  "suite": "test-preadspeed",
+  "distro": "alma",
+  "report": "test-preadspeed-alma-20261126-123906.txt",
+  "started": "2026-11-26T11:39:06Z",
+  "finished": "2026-11-26T11:42:26Z",
+  "duration_s": 200.3,
+  "outcome": "fail",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 4,
+    "passed": 3,
+    "failed": 1
+  },
+  "mattx": {
+    "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+    "run_id": "541",
+    "run_number": "331",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "preadspeed",
+      "name": "process hosted on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T11:39:15Z",
+      "duration_s": 9.3
+    },
+    {
+      "id": "preadspeed",
+      "name": "no result after 150s (last progress: PROG 6291456 161.78) -- bulk pread64 of the migrated process is far too slow (mattx#74)",
+      "outcome": "fail",
+      "finished": "2026-11-26T11:42:24Z",
+      "duration_s": 189.5
+    },
+    {
+      "id": "preadspeed",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-26T11:42:26Z",
+      "duration_s": 1.3
+    },
+    {
+      "id": "preadspeed",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-26T11:42:26Z",
+      "duration_s": 0.2
+    }
+  ]
+}

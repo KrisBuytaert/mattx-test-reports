@@ -1,7 +1,513 @@
 {
   "schema": "mattx-test-run/1-index",
-  "generated": "2026-11-26T11:06:55Z",
+  "generated": "2026-11-26T11:48:02Z",
   "runs": [
+    {
+      "schema": "mattx-test-run/1",
+      "id": "epoll-threads-alma-20261126-124612",
+      "suite": "epoll-threads",
+      "distro": "alma",
+      "report": "epoll-threads-alma-20261126-124612.txt",
+      "started": "2026-11-26T11:46:12Z",
+      "finished": "2026-11-26T11:47:54Z",
+      "duration_s": 102.1,
+      "outcome": "fail",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 5,
+        "passed": 3,
+        "failed": 2
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "threads-alma-20261126-124447",
+      "suite": "threads",
+      "distro": "alma",
+      "report": "threads-alma-20261126-124447.txt",
+      "started": "2026-11-26T11:44:47Z",
+      "finished": "2026-11-26T11:46:09Z",
+      "duration_s": 82.9,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 6,
+        "passed": 6,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-admin-input-alma-20261126-124433",
+      "suite": "test-admin-input",
+      "distro": "alma",
+      "report": "test-admin-input-alma-20261126-124433.txt",
+      "started": "2026-11-26T11:44:33Z",
+      "finished": "2026-11-26T11:44:45Z",
+      "duration_s": 12.1,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 2,
+        "passed": 2,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-mattxfs-umount-alma-20261126-124423",
+      "suite": "test-mattxfs-umount",
+      "distro": "alma",
+      "report": "test-mattxfs-umount-alma-20261126-124423.txt",
+      "started": "2026-11-26T11:44:23Z",
+      "finished": "2026-11-26T11:44:30Z",
+      "duration_s": 7.6,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 15,
+        "passed": 15,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-unload-alma-20261126-124350",
+      "suite": "test-unload",
+      "distro": "alma",
+      "report": "test-unload-alma-20261126-124350.txt",
+      "started": "2026-11-26T11:43:50Z",
+      "finished": "2026-11-26T11:44:20Z",
+      "duration_s": 30.5,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 12,
+        "passed": 12,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-dsm-mesi3-alma-20261126-124301",
+      "suite": "test-dsm-mesi3",
+      "distro": "alma",
+      "report": "test-dsm-mesi3-alma-20261126-124301.txt",
+      "started": "2026-11-26T11:43:01Z",
+      "finished": "2026-11-26T11:43:47Z",
+      "duration_s": 46.4,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 15,
+        "passed": 15,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode3": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-stale-link-alma-20261126-124230",
+      "suite": "test-stale-link",
+      "distro": "alma",
+      "report": "test-stale-link-alma-20261126-124230.txt",
+      "started": "2026-11-26T11:42:30Z",
+      "finished": "2026-11-26T11:42:57Z",
+      "duration_s": 27.8,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 3,
+        "passed": 3,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-preadspeed-alma-20261126-123906",
+      "suite": "test-preadspeed",
+      "distro": "alma",
+      "report": "test-preadspeed-alma-20261126-123906.txt",
+      "started": "2026-11-26T11:39:06Z",
+      "finished": "2026-11-26T11:42:26Z",
+      "duration_s": 200.3,
+      "outcome": "fail",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 4,
+        "passed": 3,
+        "failed": 1
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-fileoffset-alma-20261126-123818",
+      "suite": "test-fileoffset",
+      "distro": "alma",
+      "report": "test-fileoffset-alma-20261126-123818.txt",
+      "started": "2026-11-26T11:38:18Z",
+      "finished": "2026-11-26T11:39:02Z",
+      "duration_s": 44.7,
+      "outcome": "fail",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 8,
+        "passed": 4,
+        "failed": 4
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-pipestorm-alma-20261126-123313",
+      "suite": "test-pipestorm",
+      "distro": "alma",
+      "report": "test-pipestorm-alma-20261126-123313.txt",
+      "started": "2026-11-26T11:33:13Z",
+      "finished": "2026-11-26T11:38:14Z",
+      "duration_s": 301.7,
+      "outcome": "fail",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 27,
+        "passed": 17,
+        "failed": 10
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "test-dsm-rw-alma-20261126-123307",
+      "suite": "test-dsm-rw",
+      "distro": "alma",
+      "report": "test-dsm-rw-alma-20261126-123307.txt",
+      "started": "2026-11-26T11:33:07Z",
+      "finished": "2026-11-26T11:33:10Z",
+      "duration_s": 3.2,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 0,
+        "passed": 0,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "dsm-alma-20261126-122716",
+      "suite": "dsm",
+      "distro": "alma",
+      "report": "dsm-alma-20261126-122716.txt",
+      "started": "2026-11-26T11:27:16Z",
+      "finished": "2026-11-26T11:33:03Z",
+      "duration_s": 347.8,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 11,
+        "passed": 11,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
+    {
+      "schema": "mattx-test-run/1",
+      "id": "run-tests-alma-20261126-122425",
+      "suite": "run-tests",
+      "distro": "alma",
+      "report": "run-tests-alma-20261126-122425.txt",
+      "started": "2026-11-26T11:24:25Z",
+      "finished": "2026-11-26T11:27:13Z",
+      "duration_s": 168.3,
+      "outcome": "pass",
+      "completed": true,
+      "node_unreachable_lines": 0,
+      "counts": {
+        "total": 29,
+        "passed": 29,
+        "failed": 0
+      },
+      "mattx": {
+        "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+        "source": "brainmatt/mattx@main",
+        "branch": "main"
+      },
+      "environment": {
+        "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+        "kernels": {
+          "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+          "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+        },
+        "glibc": {
+          "almanode1": "2.39"
+        }
+      },
+      "ci": {
+        "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/331",
+        "run_id": "541",
+        "run_number": "331",
+        "workflow": "mattx-ci"
+      }
+    },
     {
       "schema": "mattx-test-run/1",
       "id": "epoll-threads-alma-20261126-120553",
