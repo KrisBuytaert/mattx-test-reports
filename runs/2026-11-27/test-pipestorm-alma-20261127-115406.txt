@@ -1,0 +1,86 @@
+==============================
+mattx commit: d09cf95e6da870d85bb3f2be98bb47ef1751cc43
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded A231D22F2ADADE51CDD8040 = built A231D22F2ADADE51CDD8040 (OK)
+mattx module on almanode2: loaded A231D22F2ADADE51CDD8040 = built A231D22F2ADADE51CDD8040 (OK)
+==============================
+=== pipestorm (colibri hang shapes, mattx#74) on alma cluster ===
+
+--- mode rs ---
+[PASS] pipestorm rs: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m rs [PID 25786]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm rs: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm rs: no thread stopped on almanode2
+[PASS] pipestorm rs: 8 lines received in 25s after the migration
+[PASS] pipestorm rs: no watchdog report
+
+--- mode rp ---
+[PASS] pipestorm rp: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m rp [PID 26356]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm rp: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm rp: no thread stopped on almanode2
+[PASS] pipestorm rp: 8 lines received in 25s after the migration
+[PASS] pipestorm rp: no watchdog report
+
+--- mode ss ---
+[PASS] pipestorm ss: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m ss [PID 26896]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm ss: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm ss: no thread stopped on almanode2
+[PASS] pipestorm ss: 8 lines received in 25s after the migration
+[PASS] pipestorm ss: no watchdog report
+
+--- mode sc ---
+[PASS] pipestorm sc: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m sc [PID 27487]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm sc: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm sc: no thread stopped on almanode2
+[PASS] pipestorm sc: 8 lines received in 25s after the migration
+[PASS] pipestorm sc: no watchdog report
+
+--- mode pc ---
+[PASS] pipestorm pc: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m pc [PID 28030]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm pc: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm pc: no thread stopped on almanode2
+[PASS] pipestorm pc: 8 lines received in 25s after the migration
+[PASS] pipestorm pc: no watchdog report
+[PASS] pipestorm: no oops on almanode1
+[PASS] pipestorm: no oops on almanode2
+
+==============================
+Pipestorm Results: 27 passed, 0 failed
+==============================

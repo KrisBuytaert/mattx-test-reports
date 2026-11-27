@@ -1,0 +1,26 @@
+==============================
+mattx commit: d09cf95e6da870d85bb3f2be98bb47ef1751cc43
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded A231D22F2ADADE51CDD8040 = built A231D22F2ADADE51CDD8040 (OK)
+mattx module on almanode2: loaded A231D22F2ADADE51CDD8040 = built A231D22F2ADADE51CDD8040 (OK)
+==============================
+=== bulk pread64 of an inherited file after a migration (mattx#74) on alma cluster ===
+
+  ─────────────────────────────────────────────────────
+  Starting migration of preadspeed-prog.py [PID 30944]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] preadspeed: process hosted on almanode2
+[PASS] preadspeed: 32 MB read back intact after the migration
+[PASS] preadspeed: bulk pread64 of the migrated process runs at 9.217 MB/s (>= 2)
+[PASS] preadspeed: no oops on almanode1
+[PASS] preadspeed: no oops on almanode2
+
+==============================
+PreadSpeed Results: 5 passed, 0 failed
+==============================
