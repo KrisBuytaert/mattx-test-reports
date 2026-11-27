@@ -1,0 +1,97 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-fileoffset-alma-20261127-111349",
+  "suite": "test-fileoffset",
+  "distro": "alma",
+  "report": "test-fileoffset-alma-20261127-111349.txt",
+  "started": "2026-11-27T10:13:49Z",
+  "finished": "2026-11-27T10:14:34Z",
+  "duration_s": 45.0,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 8,
+    "passed": 8,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "d09cf95e6da870d85bb3f2be98bb47ef1751cc43",
+    "source": "brainmatt/mattx@2.0-dev",
+    "branch": "2.0-dev"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/334",
+    "run_id": "544",
+    "run_number": "334",
+    "workflow": "mattx-ci"
+  },
+  "cases": [
+    {
+      "id": "fileoffset",
+      "name": "process hosted on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-27T10:14:11Z",
+      "duration_s": 22.4
+    },
+    {
+      "id": "fileoffset",
+      "name": "inherited stderr file continued at the right offset (7 lines before, 17 in all, in order)",
+      "outcome": "pass",
+      "finished": "2026-11-27T10:14:11Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "fileoffset",
+      "name": "pwrite64/pread64 work on the inherited fd after the migration (17 pread=HEADER preadv=HEADER)",
+      "outcome": "pass",
+      "finished": "2026-11-27T10:14:11Z",
+      "duration_s": 0.3
+    },
+    {
+      "id": "fileoffset",
+      "name": "pwrite landed at the offset of the caller after the migration (header intact, marker p0018)",
+      "outcome": "pass",
+      "finished": "2026-11-27T10:14:12Z",
+      "duration_s": 0.5
+    },
+    {
+      "id": "fileoffset",
+      "name": "preadv at an offset reads there after the migration",
+      "outcome": "pass",
+      "finished": "2026-11-27T10:14:12Z",
+      "duration_s": 0.0
+    },
+    {
+      "id": "fileoffset",
+      "name": "pread64 of a pipe returns ESPIPE after the migration, process keeps running (6 -> 18 lines)",
+      "outcome": "pass",
+      "finished": "2026-11-27T10:14:32Z",
+      "duration_s": 20.4
+    },
+    {
+      "id": "fileoffset",
+      "name": "no oops on almanode1",
+      "outcome": "pass",
+      "finished": "2026-11-27T10:14:33Z",
+      "duration_s": 0.9
+    },
+    {
+      "id": "fileoffset",
+      "name": "no oops on almanode2",
+      "outcome": "pass",
+      "finished": "2026-11-27T10:14:34Z",
+      "duration_s": 0.3
+    }
+  ]
+}

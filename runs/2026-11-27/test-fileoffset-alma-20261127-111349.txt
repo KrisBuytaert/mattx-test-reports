@@ -1,0 +1,36 @@
+==============================
+mattx commit: d09cf95e6da870d85bb3f2be98bb47ef1751cc43
+mattx source: brainmatt/mattx@2.0-dev
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded A231D22F2ADADE51CDD8040 = built A231D22F2ADADE51CDD8040 (OK)
+mattx module on almanode2: loaded A231D22F2ADADE51CDD8040 = built A231D22F2ADADE51CDD8040 (OK)
+==============================
+=== file offsets across a migration (write/pwrite/pread of inherited fds, mattx#78) on alma cluster ===
+
+  ─────────────────────────────────────────────────────
+  Starting migration of fileoffset-prog.py [PID 29175]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] fileoffset: process hosted on almanode2
+[PASS] fileoffset: inherited stderr file continued at the right offset (7 lines before, 17 in all, in order)
+[PASS] fileoffset: pwrite64/pread64 work on the inherited fd after the migration (17 pread=HEADER preadv=HEADER)
+[PASS] fileoffset: pwrite landed at the offset of the caller after the migration (header intact, marker p0018)
+[PASS] fileoffset: preadv at an offset reads there after the migration
+
+  ─────────────────────────────────────────────────────
+  Starting migration of fileoffset-pipe.py [PID 29958]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] fileoffset: pread64 of a pipe returns ESPIPE after the migration, process keeps running (6 -> 18 lines)
+[PASS] fileoffset: no oops on almanode1
+[PASS] fileoffset: no oops on almanode2
+
+==============================
+FileOffset Results: 8 passed, 0 failed
+==============================
