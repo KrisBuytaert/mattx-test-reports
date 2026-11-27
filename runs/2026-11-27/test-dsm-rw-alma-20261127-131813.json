@@ -1,0 +1,40 @@
+{
+  "schema": "mattx-test-run/1",
+  "id": "test-dsm-rw-alma-20261127-131813",
+  "suite": "test-dsm-rw",
+  "distro": "alma",
+  "report": "test-dsm-rw-alma-20261127-131813.txt",
+  "started": "2026-11-27T12:18:13Z",
+  "finished": "2026-11-27T12:18:16Z",
+  "duration_s": 3.4,
+  "outcome": "pass",
+  "completed": true,
+  "node_unreachable_lines": 0,
+  "counts": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0
+  },
+  "mattx": {
+    "commit": "1be8473bac6725654f5ba3bdc6915d79a7df79a1",
+    "source": "brainmatt/mattx@main",
+    "branch": "main"
+  },
+  "environment": {
+    "kernel": "6.12.0-211.65.1.el10_2.x86_64",
+    "kernels": {
+      "almanode1": "6.12.0-211.65.1.el10_2.x86_64",
+      "almanode2": "6.12.0-211.65.1.el10_2.x86_64"
+    },
+    "glibc": {
+      "almanode1": "2.39"
+    }
+  },
+  "ci": {
+    "run_url": "https://forgejo.lab.kribu.be/vox/mattx-testsuite/actions/runs/337",
+    "run_id": "547",
+    "run_number": "337",
+    "workflow": "mattx-ci"
+  },
+  "cases": []
+}

@@ -1,0 +1,146 @@
+==============================
+mattx commit: 1be8473bac6725654f5ba3bdc6915d79a7df79a1
+mattx source: brainmatt/mattx@main
+almanode1 kernel: 6.12.0-211.65.1.el10_2.x86_64
+almanode1 glibc: 2.39 glibc-2.39-142.el10_2.alma.1.x86_64 
+almanode2 kernel: 6.12.0-211.65.1.el10_2.x86_64
+mattx module on almanode1: loaded B4B852187B6D6FC07404338 = built B4B852187B6D6FC07404338 (OK)
+mattx module on almanode2: loaded B4B852187B6D6FC07404338 = built B4B852187B6D6FC07404338 (OK)
+==============================
+=== pipestorm (colibri hang shapes, mattx#74) on alma cluster ===
+
+--- mode rs ---
+[PASS] pipestorm rs: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m rs [PID 17733]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm rs: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm rs: no thread stopped on almanode2
+[FAIL] pipestorm rs: only 0 lines in 25s after the migration (need >= 4): the reader stopped receiving
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    node2 8058 state=S wchan=hrtimer_nanosleep syscall=230 0x0 0x0 0x7ffcfea85270 0x7ffcfea8527
+    node2 8059 state=R wchan=0 syscall=running
+    node2 8060 state=R wchan=0 syscall=running
+[FAIL] pipestorm rs: the reader's own watchdog fired
+    [WATCHDOG] no input for 10s - thread dump:
+
+--- mode rp ---
+[PASS] pipestorm rp: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m rp [PID 18389]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm rp: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm rp: no thread stopped on almanode2
+[FAIL] pipestorm rp: only 0 lines in 25s after the migration (need >= 4): the reader stopped receiving
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    node2 8495 state=S wchan=hrtimer_nanosleep syscall=230 0x0 0x0 0x7ffd2ed5c890 0x7ffd2ed5c89
+    node2 8496 state=R wchan=0 syscall=running
+    node2 8497 state=R wchan=0 syscall=running
+[FAIL] pipestorm rp: the reader's own watchdog fired
+    [WATCHDOG] no input for 10s - thread dump:
+
+--- mode ss ---
+[PASS] pipestorm ss: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m ss [PID 19049]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm ss: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm ss: no thread stopped on almanode2
+[FAIL] pipestorm ss: only 0 lines in 25s after the migration (need >= 4): the reader stopped receiving
+    [T1] read error: Bad file descriptor
+    [T2] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T2] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T2] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T2] read error: Bad file descriptor
+    node2 8910 state=S wchan=hrtimer_nanosleep syscall=230 0x0 0x0 0x7ffd4ce73500 0x7ffd4ce7350
+    node2 8911 state=R wchan=0 syscall=running
+    node2 8912 state=R wchan=0 syscall=running
+[FAIL] pipestorm ss: the reader's own watchdog fired
+    [WATCHDOG] no input for 10s - thread dump:
+
+--- mode sc ---
+[PASS] pipestorm sc: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m sc [PID 19675]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm sc: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm sc: no thread stopped on almanode2
+[FAIL] pipestorm sc: only 0 lines in 25s after the migration (need >= 4): the reader stopped receiving
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    node2 9345 state=S wchan=hrtimer_nanosleep syscall=230 0x0 0x0 0x7fff6fcfe500 0x7fff6fcfe50
+    node2 9346 state=R wchan=0 syscall=running
+    node2 9347 state=R wchan=0 syscall=running
+[FAIL] pipestorm sc: the reader's own watchdog fired
+    [WATCHDOG] no input for 10s - thread dump:
+
+--- mode pc ---
+[PASS] pipestorm pc: baseline on almanode1, 5 lines received
+
+  ─────────────────────────────────────────────────────
+  Starting migration of pipestorm -m pc [PID 20337]
+    from : almanode1 (x.x.x.x)
+    to   : almanode2   (x.x.x.x)  [node ID 378]
+    tool : raw /proc/mattx/admin   (run on almanode1)
+  ─────────────────────────────────────────────────────
+[PASS] pipestorm pc: reader hosted on almanode2 (3 threads)
+[PASS] pipestorm pc: no thread stopped on almanode2
+[FAIL] pipestorm pc: only 0 lines in 25s after the migration (need >= 4): the reader stopped receiving
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    [T1] read error: Bad file descriptor
+    node2 9747 state=S wchan=hrtimer_nanosleep syscall=230 0x0 0x0 0x7fff586eda10 0x7fff586eda1
+    node2 9748 state=R wchan=0 syscall=running
+    node2 9749 state=S wchan=0 syscall=running
+[FAIL] pipestorm pc: the reader's own watchdog fired
+    [WATCHDOG] no input for 10s - thread dump:
+[PASS] pipestorm: no oops on almanode1
+[PASS] pipestorm: no oops on almanode2
+
+==============================
+Pipestorm Results: 17 passed, 10 failed
+==============================
